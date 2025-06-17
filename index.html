@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROCA MP</title>
+    <link rel="icon" type="image/x-icon" href="images/Png.png">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+div.nav a{
+    font-size: 20px;
+}
+#bannertext {
+    display: flex;
+    flex-direction: column; /* This is the key change: stack items vertically */
+    justify-content: center;
+    align-items: center;
+    gap: 10px; /* Adjust as needed for space between text and image */
+}
+
+/* Style for the image within the banner text */
+.box img{
+position: absolute;
+            width: 1615px;
+            height:747px;
+            /* background-image: url("/images/2025-02-15_224229999993.PNG"); */
+            font-size: 24px;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            filter:grayscale(0%) brightness(75%); /* 灰階 亮度 */
+            opacity:1;
+            z-index: -1;
+        }
+        .box p,h1{
+        position: relative;
+        top: 126px;
+    
+                     display: flex;
+                     justify-content: center;
+                     align-items: center;
+                     
+            filter: brightness(100%);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid bg-Secondary">
+            <div class="navbar-header">
+                <a class="nav-link active" href="#"><img src="/images/Png.png" alt="" width="50" height="50"></a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="button"><a href="#">首頁</a></li>
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">認識高層 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">指揮官</a></li>
+                        <li><a href="#">副指揮官</a></li>
+                        <li><a href="#">參謀長</a></li>
+                        <li><a href="#">副參謀長</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">最新資訊<span class="caret"></span></a>
+                        <ul class="dropdown-menu"> 
+                            <li><a href="#">指揮部公告</a></li>
+                            <li><a href="#">加入我們</a></li>
+                        </ul>
+                </li>
+                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">認識憲兵 <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">憲兵部門介紹</a></li>
+                            <li><a href="#">日常勤務</a></li>
+                            <li><a href="#">活動紀錄</a></li>
+                        </ul>
+                </li>
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">轄下單位<span class="caret"></span></a>
+                        <ul class="dropdown-menu"> 
+                            <li><a href="#">勤務支援大隊</a></li>
+                            <li><a href="#">特種勤務大隊</a></li>
+                            <li><a href="#">憲兵訓練中心</a></li>
+                        </ul>
+                </li>
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">更多資訊<span class="caret"></span></a>
+                        <ul class="dropdown-menu"> 
+                            <li><a href="#">法規資料庫</a></li>
+                            <li><a href="#">友軍網站</a></li>
+                            <li><a href="#">ROCA官方網站</a></li>
+                        </ul>
+                </li>
+            </ul>
+        </div>
+      </nav>
+      <div class="text-black text-center">
+        <div id="bannertext" class="box">
+            <img src="/images/2025-02-15_224229999993.PNG" alt="">
+                <h1 style="font-size: 48px"> 國防部憲兵指揮部  </h1>
+                <p>【 ROCA MP 】 Republic of China  Army Military Police</p>   
+            
+        </div>
+            
+      </body>
+      </html>
