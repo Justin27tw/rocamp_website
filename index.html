@@ -19,12 +19,15 @@
 
         /* Navbar 樣式調整 */
         .navbar {
+            position: sticky;
+            top:0;
             background-color: #343a40;
             /* 深灰色背景，接近圖片效果 */
             padding: 0;
             /* 將 navbar 的 padding 設為 0 */
             min-height: 60px;
             /* 設定一個最小高度，確保有足夠空間垂直居中 */
+            z-index: 1030; /* 新增：確保 Navbar 在其他內容上方 */
         }
 
         .navbar-brand {
