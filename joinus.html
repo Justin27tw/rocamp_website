@@ -3,9 +3,465 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>加入我們</title>
+    <link rel="icon" type="image/png" href="/images/Png.png">
+    <style>
+        /* 移除 Bootstrap 預設的一些邊距，使內容更緊湊 */
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            /* 防止水平滾動條 */
+        }
+
+        /* Navbar 樣式調整 */
+        .navbar {
+            background-color: #343a40;
+            /* 深灰色背景，接近圖片效果 */
+            padding: 0;
+            /* 將 navbar 的 padding 設為 0 */
+            min-height: 60px;
+            /* 設定一個最小高度，確保有足夠空間垂直居中 */
+        }
+
+        .navbar-brand {
+            padding: 0.5rem 1rem;
+            /* 與 nav-link 保持一致的垂直 padding */
+            display: flex;
+            /* 使 brand 內部元素也能 flex 排列 */
+            align-items: center;
+            /* 垂直居中品牌圖標和文字 */
+            height: 100%;
+            /* 確保 brand 佔滿 navbar 垂直空間 */
+        }
+
+        .navbar-brand img {
+            margin-right: 5px;
+            /* 標誌和文字之間的間距 */
+        }
+
+        .navbar-brand span {
+            color: white;
+            letter-spacing: 2px;
+            font-size: 1rem;
+            /* 調整字體大小以適應導航列 */
+        }
+
+        /* 導航項目容器 */
+        .navbar-nav {
+            height: 100%;
+            /* 確保 nav-nav 佔滿 navbar 垂直空間 */
+            align-items: center;
+            /* 垂直居中所有 nav-item */
+        }
+
+        .navbar-nav .nav-item {
+            height: 100%;
+            /* 確保 nav-item 佔滿父元素垂直空間 */
+            display: flex;
+            /* 使 nav-item 內部元素也能 flex 排列 */
+            align-items: center;
+            /* 垂直居中 nav-link */
+        }
+
+        .navbar-nav .nav-link {
+            color: rgba(255, 255, 255, 0.75);
+            /* 淺色文字，hover 時變亮 */
+            padding: 0.8rem 1rem;
+            /* 增加垂直 padding 以調整高度和居中 */
+            font-size: 16px;
+            /* 保留你設定的字體大小 */
+            height: 100%;
+            /* 讓 nav-link 填充 nav-item 的高度 */
+            display: flex;
+            /* 再次使用 flexbox 確保內部文字垂直居中 */
+            align-items: center;
+            /* 垂直居中文字 */
+        }
+
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active {
+            color: white;
+            /* hover 或 active 時變為白色 */
+        }
+
+        /* 下拉選單樣式 (Bootstrap 5) */
+        .navbar-nav .dropdown-menu {
+            background-color: #343330;
+            /* 與導航列接近的深色背景 */
+            border: none;
+            border-radius: 0;
+            /* 移除圓角 */
+            padding: 0;
+            /* 移除預設內距 */
+
+            /* ===== 動畫效果 CSS ===== */
+            opacity: 0;
+            /* 初始狀態為透明 */
+            transform: translateY(10px);
+            /* 初始狀態向下位移一點 */
+            transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+            /* 過渡動畫 */
+            display: block;
+            /* 讓 opacity 和 transform 應用在非 display: none 的元素上 */
+            visibility: hidden;
+            /* 隱藏但保留空間，方便動畫 */
+            pointer-events: none;
+            /* 讓滑鼠事件穿透，避免佔用空間時影響下方元素 */
+            /* ============================== */
+        }
+
+        /* 當下拉選單顯示時的樣式 */
+        .navbar-nav .dropdown-menu.show {
+            /* ===== 動畫效果 CSS ===== */
+            opacity: 1;
+            /* 顯示時完全不透明 */
+            transform: translateY(0);
+            /* 恢復到原始位置 */
+            visibility: visible;
+            /* 顯示 */
+            pointer-events: auto;
+            /* 恢復滑鼠事件 */
+            /* ============================== */
+        }
+
+        .navbar-nav .dropdown-item {
+            color: rgba(255, 255, 255, 0.75);
+            padding: 0.75rem 1.5rem;
+            /* 調整下拉項目內距 */
+        }
+
+        .navbar-nav .dropdown-item:hover,
+        .navbar-nav .dropdown-item:focus {
+            background-color: #495057;
+            /* hover 時的背景色 */
+            color: white;
+        }
+
+        /* Banner 區塊調整 */
+        .banner-section {
+            position: relative;
+            width: 100%;
+            /* 佔滿整個寬度 */
+            height: 500px;
+            /* 圖片高度 */
+            overflow: hidden;
+            display: flex;
+            /* 使用 flexbox 居中內容 */
+            justify-content: center;
+            align-items: center;
+        }
+
+        .banner-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 89%;
+            /* 根據您給的圖片調整，確保圖像內容能被看見 */
+            object-fit: cover;
+            /* 確保圖片覆蓋整個容器 */
+            filter: grayscale(10%) brightness(60%);
+            /* 灰階 亮度 */
+            z-index: -1;
+            /* 確保圖片在文字下方 */
+            object-position: center center;
+            /* 將圖片內容置於容器中央 */
+        }
+
+        #bannertext {
+            color: white;
+            text-align: center;
+            z-index: 1;
+            /* 確保文字在圖片上方 */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            /* 文字間距 */
+        }
+
+        #bannertext h1 {
+            font-size: 52px;
+            margin-bottom: 0;
+            /* 移除 h1 的底部預設邊距 */
+            font-weight: bold;
+            /* 讓字體更粗一點，接近圖片效果 */
+        }
+
+        #bannertext p {
+            font-size: 18px;
+            margin-top: 0;
+            /* 移除 p 的頂部預設邊距 */
+        }
+
+        /* 為了演示滾動效果，我們需要一些下方內容 */
+        .content-placeholder {
+            height: 1000px;
+            /* 增加高度以產生滾動條 */
+            background-color: #f0f0f0;
+            padding: 50px;
+            text-align: center;
+            color: #333;
+        }
+
+        .content-placeholder:nth-of-type(odd) {
+            background-color: #e9e9e9;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        /* Style the tab */
+        .tab {
+            float: left;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+            width: 30%;
+            height: 300px;
+        }
+
+        /* Style the buttons that are used to open the tab content */
+        .tab button {
+            display: block;
+            background-color: inherit;
+            color: black;
+            padding: 22px 16px;
+            width: 100%;
+            border: none;
+            outline: none;
+            text-align: left;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        /* Change background color of buttons on hover */
+        .tab button:hover {
+            background-color: #ddd;
+        }
+
+        /* Create an active/current "tab button" class */
+        .tab button.active {
+            background-color: #ccc;
+        }
+
+        /* Style the tab content */
+        .tabcontent {
+            float: left;
+            padding: 0px 12px;
+            border: 1px solid #ccc;
+            width: 70%;
+            border-left: none;
+            height: 300px;
+            display: none; /* 預設隱藏所有 tab content */
+        }
+    </style>
 </head>
 <body>
-    
+    <nav class="navbar navbar-expand-md navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="/images/Png.png" alt="" width="50" height="50" class="d-inline-block align-text-middle">
+                <span>憲兵指揮部</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">首頁</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            最新資訊
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/notice.html">指揮部公告</a></li>
+                            <li><a class="dropdown-item" href="/joinus.html">加入我們</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            認識憲兵
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/mpdept.html">憲兵部門介紹</a></li>
+                            <li><a class="dropdown-item" href="/daily.html">日常勤務</a></li>
+                            <li><a class="dropdown-item" href="/event.html">活動紀錄</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            認識高層
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/CO.html">指揮官</a></li>
+                            <li><a class="dropdown-item" href="/DCO.html">副指揮官</a></li>
+                            <li><a class="dropdown-item" href="/COS.html">參謀長</a></li>
+                            <li><a class="dropdown-item" href="/DCOS.html">副參謀長</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            轄下單位
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/MPDSC.html">勤務支援大隊</a></li>
+                            <li><a class="dropdown-item" href="/MPSSC.html">特種勤務大隊</a></li>
+                            <li><a class="dropdown-item" href="/MPTC.html">憲兵訓練中心</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            更多資訊
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item"
+                                    href="https://sites.google.com/view/law-roca/%E9%A6%96%E9%A0%81?authuser=0">法規資料庫</a>
+                            </li>
+                            <li><a class="dropdown-item"
+                                    href="https://sites.google.com/view/roca-584/%E9%A6%96%E9%A0%81">陸軍裝甲第五八四旅</a></li>
+                            <li><a class="dropdown-item"
+                                    href="https://sites.google.com/view/robloxrocaaasfc/%E9%A6%96%E9%A0%81">陸軍航空特戰指揮部</a></li>
+                            <li><a class="dropdown-item" href="https://sites.google.com/view/roca2022">ROCA官方網站</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="banner-section">
+        <img src="/images/7646713684_11750841896_1742005422997.png" alt="Banner Image" class="banner-image">
+        <div id="bannertext">
+            <h1> 加入我們 </h1>
+            <p>Join us</p>
+        </div>
+    </div>
+    <h1 style="text-align: center;color:black;font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">憲兵需求</h1>
+    <div class="tab">
+        <button class="tablinks" onclick="openCity(event, '待更新1')">待更新</button>
+        <button class="tablinks" onclick="openCity(event, '待更新2')">待更新</button>
+        <button class="tablinks" onclick="openCity(event, '待更新3')">待更新</button>
+    </div>
+
+    <div id="待更新1" class="tabcontent">
+        <h3>待更新</h3>
+        <p>待更新</p>
+    </div>
+
+    <div id="待更新2" class="tabcontent">
+        <h3>待更新</h3>
+        <p>待更新</p>
+    </div>
+
+    <div id="待更新3" class="tabcontent">
+        <h3>待更新</h3>
+        <p>待更新</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 處理導航項的 active 狀態
+            const currentPath = window.location.pathname;
+            const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                link.removeAttribute('aria-current');
+
+                const linkHref = link.getAttribute('href');
+
+                if (
+                    (currentPath === '/' || currentPath.endsWith('/index.html') || currentPath.endsWith('/')) &&
+                    (linkHref === 'index.html' || linkHref === '#' || linkHref === '/')
+                ) {
+                    if (link.textContent.trim() === '首頁') {
+                        link.classList.add('active');
+                        link.setAttribute('aria-current', 'page');
+                    }
+                } else if (linkHref && linkHref !== '#' && currentPath.includes(linkHref)) {
+                    link.classList.add('active');
+                    link.setAttribute('aria-current', 'page');
+                }
+            });
+
+            // 原有的視差滾動效果
+            const bannerSection = document.querySelector('.banner-section');
+            const bannerImage = document.querySelector('.banner-image');
+
+            if (bannerSection && bannerImage) {
+                function parallaxScroll() {
+                    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                    const rect = bannerSection.getBoundingClientRect();
+                    const bannerTop = rect.top;
+
+                    if (rect.bottom > 0 && bannerTop < window.innerHeight) {
+                        const distanceScrolled = Math.max(0, -bannerTop);
+                        const parallaxFactor = 0.3;
+                        const yPos = distanceScrolled * parallaxFactor;
+                        bannerImage.style.transform = `translateY(${yPos}px)`;
+                    } else {
+                        bannerImage.style.transform = `translateY(0px)`;
+                    }
+                }
+
+                window.addEventListener('scroll', parallaxScroll);
+                parallaxScroll(); // 頁面載入時先執行一次，確保初始位置正確
+            }
+
+            // ====== 新增的 TAB 預設顯示邏輯 ======
+            // 取得第一個 tab button
+            const defaultTabButton = document.querySelector('.tablinks');
+            // 如果存在第一個 tab button，就模擬點擊它
+            if (defaultTabButton) {
+                defaultTabButton.click();
+            }
+            // ======================================
+        });
+    </script>
+    <script>
+        function openCity(evt, cityName) {
+            // Declare all variables
+            var i, tabcontent, tablinks;
+
+            // Get all elements with class="tabcontent" and hide them
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            // Get all elements with class="tablinks" and remove the class "active"
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            // Show the current tab, and add an "active" class to the link that opened the tab
+            document.getElementById(cityName).style.display = "block";
+            // Check if evt is defined (it won't be when called programmatically)
+            if (evt) {
+                evt.currentTarget.className += " active";
+            } else {
+                // If called programmatically (no event object), find the button by cityName
+                const button = document.querySelector(`.tab button[onclick*="${cityName}"]`);
+                if (button) {
+                    button.className += " active";
+                }
+            }
+        }
+    </script>
+
 </body>
 </html>
