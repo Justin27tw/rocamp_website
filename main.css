@@ -1,0 +1,88 @@
+/* Navbar 樣式調整 */
+.navbar {
+    background-color: #343a40; /* 深灰色背景，接近圖片效果 */
+    padding: 0; /* 將 navbar 的 padding 設為 0 */
+    min-height: 60px; /* 設定一個最小高度，確保有足夠空間垂直居中 */
+}
+
+.navbar-brand {
+    padding: 0.5rem 1rem; /* 與 nav-link 保持一致的垂直 padding */
+    display: flex; /* 使 brand 內部元素也能 flex 排列 */
+    align-items: center; /* 垂直居中品牌圖標和文字 */
+    height: 100%; /* 確保 brand 佔滿 navbar 垂直空間 */
+}
+
+.navbar-brand img {
+    margin-right: 5px; /* 標誌和文字之間的間距 */
+}
+
+.navbar-brand span {
+    color: white;
+    letter-spacing: 2px;
+    font-size: 1rem; /* 調整字體大小以適應導航列 */
+}
+
+/* 導航項目容器 */
+.navbar-nav {
+    height: 100%; /* 確保 nav-nav 佔滿 navbar 垂直空間 */
+    align-items: center; /* 垂直居中所有 nav-item */
+}
+
+.navbar-nav .nav-item {
+    height: 100%; /* 確保 nav-item 佔滿父元素垂直空間 */
+    display: flex; /* 使 nav-item 內部元素也能 flex 排列 */
+    align-items: center; /* 垂直居中 nav-link */
+}
+
+.navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.75); /* 淺色文字，hover 時變亮 */
+    padding: 0.8rem 1rem; /* 增加垂直 padding 以調整高度和居中 */
+    font-size: 16px; /* 保留你設定的字體大小 */
+    height: 100%; /* 讓 nav-link 填充 nav-item 的高度 */
+    display: flex; /* 再次使用 flexbox 確保內部文字垂直居中 */
+    align-items: center; /* 垂直居中文字 */
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+    color: white; /* hover 或 active 時變為白色 */
+}
+
+/* 下拉選單樣式 (Bootstrap 5) */
+.navbar-nav .dropdown-menu {
+    background-color: #343330; /* 與導航列接近的深色背景 */
+    border: none;
+    border-radius: 0; /* 移除圓角 */
+    padding: 0; /* 移除預設內距 */
+
+    /* ===== 動畫效果 CSS ===== */
+    opacity: 0; /* 初始狀態為透明 */
+    transform: translateY(10px); /* 初始狀態向下位移一點 */
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out; /* 過渡動畫 */
+    display: block; /* 讓 opacity 和 transform 應用在非 display: none 的元素上 */
+    visibility: hidden; /* 隱藏但保留空間，方便動畫 */
+    pointer-events: none; /* 讓滑鼠事件穿透，避免佔用空間時影響下方元素 */
+    /* ============================== */
+}
+
+/* 當下拉選單顯示時的樣式 */
+.navbar-nav .dropdown-menu.show {
+    /* ===== 動畫效果 CSS ===== */
+    opacity: 1; /* 顯示時完全不透明 */
+    transform: translateY(0); /* 恢復到原始位置 */
+    visibility: visible; /* 顯示 */
+    pointer-events: auto; /* 恢復滑鼠事件 */
+    /* ============================== */
+}
+
+
+.navbar-nav .dropdown-item {
+    color: rgba(255, 255, 255, 0.75);
+    padding: 0.75rem 1.5rem; /* 調整下拉項目內距 */
+}
+
+.navbar-nav .dropdown-item:hover,
+.navbar-nav .dropdown-item:focus {
+    background-color: #495057; /* hover 時的背景色 */
+    color: white;
+}
