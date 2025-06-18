@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,54 +10,107 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <style>
-div.nav a{
-    font-size: 20px;
-}
-#bannertext {
-    display: flex;
-    flex-direction: column; /* This is the key change: stack items vertically */
-    justify-content: center;
-    align-items: center;
-    gap: 10px; /* Adjust as needed for space between text and image */
-}
+        .dropdown-toggle a:hover {}
 
-/* Style for the image within the banner text */
-.box img{
-position: absolute;
+        #bannertext {
+            display: flex;
+            flex-direction: column;
+            /* This is the key change: stack items vertically */
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            /* Adjust as needed for space between text and image */
+        }
+
+        /* Style for the image within the banner text */
+        .box img {
+            position: absolute;
             width: 1615px;
-            height:747px;
+            height: 747px;
             /* background-image: url("/images/2025-02-15_224229999993.PNG"); */
             font-size: 24px;
             color: white;
             display: flex;
             justify-content: center;
             align-items: center;
-            filter:grayscale(0%) brightness(75%); /* 灰階 亮度 */
-            opacity:1;
+            filter: grayscale(10%) brightness(60%);
+            /* 灰階 亮度 */
+            opacity: 1;
             z-index: -1;
         }
-        .box p,h1{
-        position: relative;
-        top: 126px;
-    
-                     display: flex;
-                     justify-content: center;
-                     align-items: center;
-                     
+
+        .box p,
+        h1 {
+            position: relative;
+            top: 126px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
             filter: brightness(100%);
             color: white;
         }
+
+        .navbar-nav>li.dropdown>.dropdown-menu {
+            display: block !important;
+            /* 覆寫 Bootstrap 預設的 display: none */
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            visibility: hidden;
+            transition: max-height 0.3s ease-out, opacity 0.3s ease-out, visibility 0.3s ease-out;
+        }
+
+        .navbar-nav>li.dropdown.open>.dropdown-menu {
+            max-height: 300px;
+            /* 足夠大的值，請根據你的內容調整 */
+            opacity: 1;
+            visibility: visible;
+        }
+        #boxa{
+            position: relative;
+            top: 310px;
+        }
+        #indeximg1{
+         width: fit-content;
+         height: fit-content;
+        }
+         div.box.boxa{
+width: 300px;
+height: 600px;
+background-image: url(/images/2025-02-15_224223000.png);
+
+        }
     </style>
 </head>
+
 <body>
     <nav class="navbar navbar-inverse">
         <div class="container-fluid bg-Secondary">
             <div class="navbar-header">
                 <a class="nav-link active" href="#"><img src="/images/Png.png" alt="" width="50" height="50"></a>
+                <a class="nav-link" href="#" style="text-decoration: none;color:white;letter-spacing: 2px; margin-left: 3px;">憲兵指揮部</a>
             </div>
             <ul class="nav navbar-nav navbar-right">
-                <li class="button"><a href="#">首頁</a></li>
-                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">認識高層 <span class="caret"></span></a>
+                <li class="nav-link "><a href="#" style="font-size: 16px">首頁</a></li>
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"
+                        style="font-size: 16px">最新資訊<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">指揮部公告</a></li>
+                        <li><a href="/joinus.html">加入我們</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"
+                        style="font-size: 16px">認識憲兵 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/mpdept.html">憲兵部門介紹</a></li>
+                        <li><a href="#">日常勤務</a></li>
+                        <li><a href="#">活動紀錄</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"
+                        style="font-size: 16px">認識高層 <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="#">指揮官</a></li>
                         <li><a href="#">副指揮官</a></li>
@@ -64,43 +118,42 @@ position: absolute;
                         <li><a href="#">副參謀長</a></li>
                     </ul>
                 </li>
-                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">最新資訊<span class="caret"></span></a>
-                        <ul class="dropdown-menu"> 
-                            <li><a href="#">指揮部公告</a></li>
-                            <li><a href="#">加入我們</a></li>
-                        </ul>
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"
+                        style="font-size: 16px">轄下單位<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/MPDSC.html">勤務支援大隊</a></li>
+                        <li><a href="/MPSSC.html">特種勤務大隊</a></li>
+                        <li><a href="/MPTC.html">憲兵訓練中心</a></li>
+                    </ul>
                 </li>
-                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">認識憲兵 <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">憲兵部門介紹</a></li>
-                            <li><a href="#">日常勤務</a></li>
-                            <li><a href="#">活動紀錄</a></li>
-                        </ul>
-                </li>
-                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">轄下單位<span class="caret"></span></a>
-                        <ul class="dropdown-menu"> 
-                            <li><a href="#">勤務支援大隊</a></li>
-                            <li><a href="#">特種勤務大隊</a></li>
-                            <li><a href="#">憲兵訓練中心</a></li>
-                        </ul>
-                </li>
-                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">更多資訊<span class="caret"></span></a>
-                        <ul class="dropdown-menu"> 
-                            <li><a href="https://sites.google.com/view/law-roca/%E9%A6%96%E9%A0%81?authuser=0">法規資料庫</a></li>
-                            <li><a href="#">裝甲584旅</a></li>
-                            <li> <a href="#">陸軍航空特戰指揮部</a></li>
-                            <li><a href="#">ROCA官方網站</a></li>
-                        </ul>
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"
+                        style="font-size: 16px">更多資訊<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="https://sites.google.com/view/law-roca/%E9%A6%96%E9%A0%81?authuser=0">法規資料庫</a>
+                        </li>
+                        <li><a href="https://sites.google.com/view/roca-584/%E9%A6%96%E9%A0%81">陸軍裝甲第五八四旅</a></li>
+                        <li> <a href="https://sites.google.com/view/robloxrocaaasfc/%E9%A6%96%E9%A0%81">陸軍航空特戰指揮部</a>
+                        </li>
+                        <li><a href="https://sites.google.com/view/roca2022">ROCA官方網站</a></li>
+                    </ul>
                 </li>
             </ul>
         </div>
-      </nav>
-      <div class="text-black text-center">
+    </nav>
+    <div class="text-black text-center">
         <div id="bannertext" class="box">
             <img src="/images/2025-02-15_224229999993.PNG" alt="">
-                <h1 style="font-size: 48px"> 國防部憲兵指揮部  </h1>
-                <p>【 ROCA MP 】 Republic of China  Army Military Police</p>   
+            <h1 style="font-size: 52px"> 國防部憲兵指揮部 </h1>
+            <p style="font-size: 18px">【 ROCA MP 】 Republic of China Army Military Police</p>
         </div>
-        
-      </body>
-      </html>
+    </div>
+    <div class="container ml-5">
+        <div class="row" id="boxa">
+            <div class="col-sm-5 box boxa" style="background-color: blue;"></div>
+            <div class="col-sm-7" style="background-color: red;">hello</div>
+            
+        </div>    
+    </div>
+</body>
+
+</html>
