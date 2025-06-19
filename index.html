@@ -19,8 +19,9 @@
 
         /* Navbar 樣式調整 */
         .navbar {
-            position: sticky;
+            position: fixed; /* Changed from sticky to fixed */
             top: 0;
+            width: 100%; /* Add width: 100% for fixed positioning */
             background-color: #343a40;
             /* 深灰色背景，接近圖片效果 */
             padding: 0;
@@ -318,81 +319,108 @@
 
         /* === 輪播圖片樣式 START === */
         .carousel-item img {
-            height: 400px; /* 您可以根據需求調整這個高度 */
-            object-fit: contain; /* 確保圖片填充整個區域，可能會裁剪部分內容 */
-            width: fit-content; /* 確保圖片佔滿輪播區塊寬度 */
+            height: 400px;
+            /* 您可以根據需求調整這個高度 */
+            object-fit: contain;
+            /* 確保圖片填充整個區域，可能會裁剪部分內容 */
+            width: fit-content;
+            /* 確保圖片佔滿輪播區塊寬度 */
         }
 
         .carousel-caption {
-            background-color: rgba(0, 0, 0, 0.5); /* 為文字背景添加半透明黑色，提升可讀性 */
+            background-color: rgba(0, 0, 0, 0.5);
+            /* 為文字背景添加半透明黑色，提升可讀性 */
             padding: 10px 20px;
             border-radius: 5px;
-            bottom: 20px; /* 調整說明文字區塊距離底部的位置 */
+            bottom: 20px;
+            /* 調整說明文字區塊距離底部的位置 */
         }
 
         .carousel-caption h5,
         .carousel-caption p {
-            color: white; /* 確保文字顏色為白色，在深色背景上清晰可見 */
-            margin-bottom: 5px; /* 調整標題和段落間距 */
+            color: white;
+            /* 確保文字顏色為白色，在深色背景上清晰可見 */
+            margin-bottom: 5px;
+            /* 調整標題和段落間距 */
         }
 
         .carousel-control-prev-icon,
         .carousel-control-next-icon {
-            filter: invert(1); /* 將箭頭圖標變為白色，使其在深色圖片上可見 */
+            filter: invert(1);
+            /* 將箭頭圖標變為白色，使其在深色圖片上可見 */
         }
+
         /* === 輪播圖片樣式 END === */
-        body, html {
-  height: 100%;
-  margin: 0;
-  font-family: Arial;
-}
- /* Style tab links */
-.tablink {
-  background-color: #555;
-  color: white;
-  float: left;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 14px 16px;
-  font-size: 17px;
-  width: 25%;
-}
+        body,
+        html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial;
+        }
 
-.tablink:hover {
-  background-color: #777;
-}
+        /* Style tab links */
+        .tablink {
+            background-color: #555;
+            color: white;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            font-size: 17px;
+            width: 25%;
+        }
 
-/* Style the tab content (and add height:100% for full page content) */
-.tabcontent {
-  color: black;
-  display: none;
-  padding: 70px 12px;
-  height: 400px;
-  background-color: #ffffffe5;
-}
+        .tablink:hover {
+            background-color: #777;
+        }
 
-.tabcontent ul li{
-    margin-bottom: 5px;
-    font-size: 16px;;
+        /* Style the tab content (and add height:100% for full page content) */
+        .tabcontent {
+            color: black;
+            display: none;
+            padding: 70px 12px;
+            height: 400px;
+            background-color: #ffffffe5;
+        }
 
-} 
-.tabcontent ul{
-    border-bottom: 1px solid #495057;
-    text-align: left ;
+        .tabcontent ul li {
+            margin-bottom: 5px;
+            font-size: 18px;
+            ;
 
-}
-.tabcontent ul li span{
-    letter-spacing: 2px;
-    margin-right: 40px;
-    color:darkgoldenrod;
+        }
 
-}
-footer p{
-    text-align: center;
-    font-size:medium;
-}
+        .tabcontent ul {
+            border-bottom: 1px solid #495057;
+            text-align: left;
 
+        }
+
+        .tabcontent ul li span {
+            letter-spacing: 2px;
+            margin-right: 60px;
+            color: darkgoldenrod;
+
+        }
+
+        footer {
+            width: 100vw;
+            height: 100px;
+            background-color: rgb(51, 81, 0);
+        }
+
+        footer p {
+            color: whitesmoke;
+            text-align: center;
+            font-size: medium;
+            justify-items: center;
+            padding-top: 30px;
+        }
+        /* Add padding-top to the body to prevent content from being hidden behind the fixed navbar */
+        body {
+            padding-top: 60px; /* Adjust this value to match the navbar's min-height */
+        }
     </style>
 </head>
 
@@ -463,12 +491,12 @@ footer p{
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li><a class="dropdown-item"
-                                    href="https://sites.google.com/view/law-roca/%E9%A6%96%E9%A0%81?authuser=0">法規資料庫</a>
+                                        href="https://sites.google.com/view/law-roca/%E9%A6%96%E9%A0%81?authuser=0">法規資料庫</a>
                             </li>
                             <li><a class="dropdown-item"
-                                    href="https://sites.google.com/view/roca-584/%E9%A6%96%E9%A0%81">陸軍裝甲第五八四旅</a></li>
+                                        href="https://sites.google.com/view/roca-584/%E9%A6%96%E9%A0%81">陸軍裝甲第五八四旅</a></li>
                             <li><a class="dropdown-item"
-                                    href="https://sites.google.com/view/robloxrocaaasfc/%E9%A6%96%E9%A0%81">陸軍航空特戰指揮部</a></li>
+                                        href="https://sites.google.com/view/robloxrocaaasfc/%E9%A6%96%E9%A0%81">陸軍航空特戰指揮部</a></li>
                             <li><a class="dropdown-item" href="https://sites.google.com/view/roca2022">ROCA官方網站</a></li>
                         </ul>
                     </li>
@@ -481,12 +509,22 @@ footer p{
         <div class="news-ticker-header">訊息公告</div>
         <div class="news-ticker-viewport">
             <ul class="news-list">
-                <li><p>指揮部公告：加入憲兵方式，由招聘改回招募</p></li>
+                <li>
+                    <p>指揮部公告：加入憲兵方式，由招聘改回招募</p>
+                </li>
                 <li><a href="/joinus.html">指揮部公告：歡迎加入憲兵大家庭，<span style="text-decoration: underline; color:blue">了解更多</span></a></li>
-                <li><p>恭賀升遷：hgjk66ll升至副指揮官</p></li>
-                <li><p>恭賀升遷：rockroll901升至參謀長</p></li>
-                <li><p>恭賀升遷：Justin_chiu27升至副參謀長</p></li>
-                <li><p>恭賀升遷：XxChortleKidd升至督導、nollihj升至勤務支援大隊長</p></li>
+                <li>
+                    <p>恭賀升遷：hgjk66ll升至副指揮官</p>
+                </li>
+                <li>
+                    <p>恭賀升遷：rockroll901升至參謀長</p>
+                </li>
+                <li>
+                    <p>恭賀升遷：Justin_chiu27升至副參謀長</p>
+                </li>
+                <li>
+                    <p>恭賀升遷：XxChortleKidd升至督導、nollihj升至勤務支援大隊長</p>
+                </li>
             </ul>
         </div>
     </div>
@@ -501,76 +539,117 @@ footer p{
     <div class="content-placeholder">
         <h1>憲兵 </h1>
         <p style="font-size: 16px;">Military Police</p>
-        <p>憲兵為營區執法單位，負責維持營區內秩序、打擊突襲者，執行外交勤務保護外賓，保護首長</p>
-        <p>指揮部轄下部隊分為：勤務支援大隊、特種勤務大隊</p>
-    
+        <p style="font-size: 18px;">憲兵為營區執法單位，負責維持營區內秩序、打擊突襲者，執行外交勤務保護外賓，保護首長</p>
+        <p style="font-size: 18px;">指揮部轄下部隊分為：勤務支援大隊、特種勤務大隊</p>
+
         <button class="tablink" onclick="openPage('notice', this, 'dark')" id="defaultOpen">指揮部公告</button>
-        <button class="tablink" onclick="openPage('conscript', this, 'dark')" >招募公告</button>
+        <button class="tablink" onclick="openPage('conscript', this, 'dark')">招募公告</button>
         <button class="tablink" onclick="openPage('SSC', this, 'dark')">特勤隊公告</button>
         <button class="tablink" onclick="openPage('creater', this, 'dark')">製作名單</button>
-     
+
         <div class="content-vertab table">
             <div id="notice" class="tabcontent ">
-            <ul class="row">
-                <li><span>2025-06-09</span>人員調動：有五位成員選為法制委員會委員，將代表憲兵參與會議</li>
-            </ul>
-           <ul class="row">
-            <li><span>2025-06-01</span>人事調動：新高層名單，有五位幹部升遷，帶領憲兵前進</li>
-           </ul>
+                <ul class="row">
+                    <li><span>2025-06-09</span>人員調動：有五位成員選為法制委員會委員，將代表憲兵參與會議</li>
+                </ul>
+                <ul class="row">
+                    <li><span>2025-06-01</span>人事調動：新高層名單，有五位幹部升遷，帶領憲兵前進</li>
+                </ul>
+                <ul class="row">
+                    <li><span>2025-06-01</span>指揮官：昨日(5/31)，外交活動順利結束，參與者都表現出色，給予肯定</li>
+                </ul>
             </div>
-            
+
             <div id="conscript" class="tabcontent">
-            <ul class="row">
-            <li><span>2025-06-19</span>暫無公告</li>
-            </ul>
-            </div>      
+                <ul class="row">
+                    <li><span>2025-06-19</span>暫無公告</li>
+                </ul>
+            </div>
             <div id="SSC" class="tabcontent">
                 <ul class="row">
                     <li><span>2025-06-19</span>暫無公告</li>
                 </ul>
             </div>
             <div id="creater" class="tabcontent">
-            <ul class="row">
-            <li><span>製作人員</span>Justin_chiu27</li>
-            </ul>
-            <ul class="row">
-                <li> <span>協作人員</span>XxChortleKidd</li>
-            </ul>
+                <ul class="row">
+                    <li><span>製作人員</span>Justin_chiu27</li>
+                </ul>
+                <ul class="row">
+                    <li> <span>協作人員</span>XxChortleKidd</li>
+                </ul>
+                <ul class="row">
+                    <li> <span>協作人員</span>rockroll901</li>
+                </ul>
             </div>
-            
-        
-   </div>
+
+
+        </div>
     </div>
     </div>
     <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
         <div class="carousel-indicators">
-            <button type="button" data-bs-target="#imageCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#imageCarousel" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
             <button type="button" data-bs-target="#imageCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
             <button type="button" data-bs-target="#imageCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            </div>
+            <button type="button" data-bs-target="#imageCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+            <button type="button" data-bs-target="#imageCarousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
+            <button type="button" data-bs-target="#imageCarousel" data-bs-slide-to="5" aria-label="Slide 6"></button>
+            <button type="button" data-bs-target="#imageCarousel" data-bs-slide-to="6" aria-label="Slide 7"></button>
+            <button type="button" data-bs-target="#imageCarousel" data-bs-slide-to="7" aria-label="Slide 8"></button>
+        </div>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="/images/2024-12-29_170442.png" class="d-block w-100" alt="憲兵執勤">
+                <img src="/images/2024-12-29_170442.png" class="d-block w-100" alt="憲兵檢閱">
                 <div class="carousel-caption d-none d-md-block">
                     <h5>檢閱</h5>
-                 
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="/images/2025-02-02_014136.png" class="d-block w-100" alt="憲兵演訓">
+                <img src="/images/image.png" class="d-block w-100" alt="憲兵檢閱">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>檢閱</h5>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="/images/ROCAMP_logo2.png" class="d-block w-100" alt="憲兵檢閱">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>檢閱</h5>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="/images/RobloxScreenShot20241010_201354145.png" class="d-block w-100" alt="憲兵檢閱">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>檢閱</h5>
+                </div>
+            </div>
+
+            <div class="carousel-item">
+                <img src="/images/2025-02-02_014136.png" class="d-block w-100" alt="特勤監控">
                 <div class="carousel-caption d-none d-md-block">
                     <h5>特勤隊監控</h5>
-                
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="/images/7646713684_133920583594452_1744973518340.png" class="d-block w-100" alt="憲兵宣導">
+                <img src="/images/7646713684_133920583594452_1744973518340.png" class="d-block w-100" alt="站崗照">
                 <div class="carousel-caption d-none d-md-block">
                     <h5>日常站崗</h5>
-                    
                 </div>
             </div>
+            <div class="carousel-item">
+                <img src="/images/image-31.png" class="d-block w-100" alt="站崗照">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>打擊突襲</h5>
+                </div>
             </div>
+            <div class="carousel-item">
+                <img src="/images/2025-02-02_013927.png" class="d-block w-100" alt="站崗照">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>打擊突襲</h5>
+                </div>
+            </div>
+
+        </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#imageCarousel" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
@@ -581,14 +660,14 @@ footer p{
         </button>
     </div>
 
-  
+
 </body>
 <footer>
     <p>© 2025 中華民國陸軍事基地 憲兵指揮部版權所屬 <br><span style="color:red">嚴禁抄襲，違者必追究</span></p>
-    
+
 </footer>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         // Navbar active 狀態處理
         const currentPath = window.location.pathname;
         const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
@@ -663,7 +742,7 @@ footer p{
                     newsList.removeChild(firstItemClone); // 移除複製的項目
                     currentIndex = 0; // 重置索引
                     // 強制瀏覽器重繪，確保 transition 禁用生效
-                    newsList.offsetHeight; 
+                    newsList.offsetHeight;
                     // 重新啟用過渡
                     newsList.style.transition = `transform ${slideDuration / 1000}s ease-in-out`;
                 }, slideDuration);
@@ -697,28 +776,28 @@ footer p{
         }
     });
     function openPage(pageName, elmnt, color) {
-  // Hide all elements with class="tabcontent" by default */
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
+        // Hide all elements with class="tabcontent" by default */
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
 
-  // Remove the background color of all tablinks/buttons
-  tablinks = document.getElementsByClassName("tablink");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].style.backgroundColor = "";
-  }
+        // Remove the background color of all tablinks/buttons
+        tablinks = document.getElementsByClassName("tablink");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].style.backgroundColor = "";
+        }
 
-  // Show the specific tab content
-  document.getElementById(pageName).style.display = "block";
+        // Show the specific tab content
+        document.getElementById(pageName).style.display = "block";
 
-  // Add the specific color to the button used to open the tab content
-  elmnt.style.backgroundColor = color;
-}
+        // Add the specific color to the button used to open the tab content
+        elmnt.style.backgroundColor = color;
+    }
 
-// Get the element with id="defaultOpen" and click on it
-document.getElementById("defaultOpen").click();
+    // Get the element with id="defaultOpen" and click on it
+    document.getElementById("defaultOpen").click();
 </script>
 
 </html>

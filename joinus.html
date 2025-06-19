@@ -326,13 +326,42 @@ margin-left: 12px;
 .tabcontent ul li{
     font-size: 22px;
 }
+footer{
+    width: 100vw;
+    height: 100px;
+    background-color: rgb(51, 81, 0);
+    margin-top: 30px;
+}
 footer p{
+    color: whitesmoke;
     text-align: center;
     font-size:medium;
+    justify-items: center;
+    padding-top: 30px;
+}
+footer{
+    width: 100vw;
+    height: 100px;
+    background-color: rgb(51, 81, 0);
+    margin-top: 30px;
+    display: flex; /* 使用 flexbox */
+    justify-content: center; /* 水平居中 */
+    align-items: center; /* 垂直居中 */
+    flex-direction: column; /* 讓內容垂直排列 (如果有多行) */
+}
+footer p{
+    color: whitesmoke;
+    text-align: center;
+    font-size:medium;
+    /* 移除原有的 padding-top 和 justify-items，因為 flexbox 會處理居中 */
+    /* padding-top: 30px; */
+    /* justify-items: center; */
+    margin: 0; /* 移除 p 元素的預設邊距 */
 }
     </style>
 </head>
 <body>
+<div>
     <nav class="navbar navbar-expand-md navbar-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
@@ -461,101 +490,103 @@ footer p{
         </ul>
     </div>
     
+</div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // 處理導航項的 active 狀態
-            const currentPath = window.location.pathname;
-            const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                link.removeAttribute('aria-current');
+   
 
-                const linkHref = link.getAttribute('href');
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // 處理導航項的 active 狀態
+        const currentPath = window.location.pathname;
+        const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            link.removeAttribute('aria-current');
 
-                if (
-                    (currentPath === '/' || currentPath.endsWith('/index.html') || currentPath.endsWith('/')) &&
-                    (linkHref === 'index.html' || linkHref === '#' || linkHref === '/')
-                ) {
-                    if (link.textContent.trim() === '首頁') {
-                        link.classList.add('active');
-                        link.setAttribute('aria-current', 'page');
-                    }
-                } else if (linkHref && linkHref !== '#' && currentPath.includes(linkHref)) {
+            const linkHref = link.getAttribute('href');
+
+            if (
+                (currentPath === '/' || currentPath.endsWith('/index.html') || currentPath.endsWith('/')) &&
+                (linkHref === 'index.html' || linkHref === '#' || linkHref === '/')
+            ) {
+                if (link.textContent.trim() === '首頁') {
                     link.classList.add('active');
                     link.setAttribute('aria-current', 'page');
                 }
-            });
-
-            // 原有的視差滾動效果
-            const bannerSection = document.querySelector('.banner-section');
-            const bannerImage = document.querySelector('.banner-image');
-
-            if (bannerSection && bannerImage) {
-                function parallaxScroll() {
-                    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                    const rect = bannerSection.getBoundingClientRect();
-                    const bannerTop = rect.top;
-
-                    if (rect.bottom > 0 && bannerTop < window.innerHeight) {
-                        const distanceScrolled = Math.max(0, -bannerTop);
-                        const parallaxFactor = 0.3;
-                        const yPos = distanceScrolled * parallaxFactor;
-                        bannerImage.style.transform = `translateY(${yPos}px)`;
-                    } else {
-                        bannerImage.style.transform = `translateY(0px)`;
-                    }
-                }
-
-                window.addEventListener('scroll', parallaxScroll);
-                parallaxScroll(); // 頁面載入時先執行一次，確保初始位置正確
+            } else if (linkHref && linkHref !== '#' && currentPath.includes(linkHref)) {
+                link.classList.add('active');
+                link.setAttribute('aria-current', 'page');
             }
-
-            // ====== 新增的 TAB 預設顯示邏輯 ======
-            // 取得第一個 tab button
-            const defaultTabButton = document.querySelector('.tablinks');
-            // 如果存在第一個 tab button，就模擬點擊它
-            if (defaultTabButton) {
-                defaultTabButton.click();
-            }
-            // ======================================
         });
-    </script>
-    <script>
-        function openCity(evt, cityName) {
-            // Declare all variables
-            var i, tabcontent, tablinks;
 
-            // Get all elements with class="tabcontent" and hide them
-            tabcontent = document.getElementsByClassName("tabcontent");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].style.display = "none";
-            }
+        // 原有的視差滾動效果
+        const bannerSection = document.querySelector('.banner-section');
+        const bannerImage = document.querySelector('.banner-image');
 
-            // Get all elements with class="tablinks" and remove the class "active"
-            tablinks = document.getElementsByClassName("tablinks");
-            for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].className = tablinks[i].className.replace(" active", "");
-            }
+        if (bannerSection && bannerImage) {
+            function parallaxScroll() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const rect = bannerSection.getBoundingClientRect();
+                const bannerTop = rect.top;
 
-            // Show the current tab, and add an "active" class to the link that opened the tab
-            document.getElementById(cityName).style.display = "block";
-            // Check if evt is defined (it won't be when called programmatically)
-            if (evt) {
-                evt.currentTarget.className += " active";
-            } else {
-                // If called programmatically (no event object), find the button by cityName
-                const button = document.querySelector(`.tab button[onclick*="${cityName}"]`);
-                if (button) {
-                    button.className += " active";
+                if (rect.bottom > 0 && bannerTop < window.innerHeight) {
+                    const distanceScrolled = Math.max(0, -bannerTop);
+                    const parallaxFactor = 0.3;
+                    const yPos = distanceScrolled * parallaxFactor;
+                    bannerImage.style.transform = `translateY(${yPos}px)`;
+                } else {
+                    bannerImage.style.transform = `translateY(0px)`;
                 }
+            }
+
+            window.addEventListener('scroll', parallaxScroll);
+            parallaxScroll(); // 頁面載入時先執行一次，確保初始位置正確
+        }
+
+        // ====== 新增的 TAB 預設顯示邏輯 ======
+        // 取得第一個 tab button
+        const defaultTabButton = document.querySelector('.tablinks');
+        // 如果存在第一個 tab button，就模擬點擊它
+        if (defaultTabButton) {
+            defaultTabButton.click();
+        }
+        // ======================================
+    });
+</script>
+<script>
+    function openCity(evt, cityName) {
+        // Declare all variables
+        var i, tabcontent, tablinks;
+
+        // Get all elements with class="tabcontent" and hide them
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+
+        // Get all elements with class="tablinks" and remove the class "active"
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+
+        // Show the current tab, and add an "active" class to the link that opened the tab
+        document.getElementById(cityName).style.display = "block";
+        // Check if evt is defined (it won't be when called programmatically)
+        if (evt) {
+            evt.currentTarget.className += " active";
+        } else {
+            // If called programmatically (no event object), find the button by cityName
+            const button = document.querySelector(`.tab button[onclick*="${cityName}"]`);
+            if (button) {
+                button.className += " active";
             }
         }
-    </script>
-
-</body>
+    }
+</script>
 <footer>
     <p>© 2025 中華民國陸軍事基地 憲兵指揮部版權所屬 <br><span style="color:red">嚴禁抄襲，違者必追究</span></p>
     
