@@ -12,6 +12,7 @@
             margin: 0;
             padding: 0;
             overflow-x: hidden;
+            background-color:#e9e9e9;
             /* 防止水平滾動條 */
         }
 
@@ -165,7 +166,7 @@
             /* 根據您給的圖片調整，確保圖像內容能被看見 */
             object-fit: cover;
             /* 確保圖片覆蓋整個容器 */
-            filter: grayscale(10%) brightness(60%);
+            filter: grayscale(5%) brightness(70%);
             /* 灰階 亮度 */
             z-index: -1;
             /* 確保圖片在文字下方 */
@@ -219,14 +220,20 @@
         }
 
         /* Style the tab */
-        .tab {
-            float: left;
-            border: 1px solid #ccc;
-            background-color: #f1f1f1;
-            width: 30%;
-            height: 300px;
-        }
+      /* Style the tab */
+.tab {
+    float: left; /* 保留浮動，但 Flexbox 佈局通常不需要浮動 */
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+    width: 30%;
+    height: 400px;
 
+    /* 新增 Flexbox 屬性 */
+    display: flex; /* 啟用 Flexbox */
+    flex-direction: column; /* 讓子元素垂直堆疊 */
+    justify-content: space-evenly; /* 將空間平均分配在項目之間和兩端 */
+    /* 或者使用 justify-content: space-around; 或 justify-content: space-between; 根據實際需求調整 */
+}
         /* Style the buttons that are used to open the tab content */
         .tab button {
             display: block;
@@ -239,6 +246,8 @@
             text-align: left;
             cursor: pointer;
             transition: 0.3s;
+            font-size: 20px;
+            font-size: large;
         }
 
         /* Change background color of buttons on hover */
@@ -253,15 +262,48 @@
 
         /* Style the tab content */
         .tabcontent {
-            float: left;
-            padding: 0px 0px;
-            border: 1px solid #ccc;
-            width: 70%;
-            border-left: none;
-            height: 300px;
-            display: none; /* 預設隱藏所有 tab content */
-        }
-        #MPrequest ul {
+ float: left;
+ /* 增加內邊距，確保文字不會太靠近邊緣 */
+ border: 1px solid #ccc;
+ width: 70%;
+ border-left: none;
+ height: 400px;
+ display: none; /* 預設隱藏所有 tab content */
+ background-image: url('/images/1491384103_11750841896_1728562926262.png'); /* 替換成您的圖片路徑 */
+ background-size: cover; /* 讓背景圖片覆蓋整個容器 */
+ background-repeat: no-repeat; /* 防止圖片重複 */
+ background-position: center; /* 讓圖片置中 */
+ background-color: rgba(255, 255, 255, 0.8); /* 添加半透明白色背景疊加，提高文字可讀性 */
+ filter: grayscale(7%) brightness(80%);
+ background-blend-mode: overlay; /* 使用疊加混合模式，讓圖片更柔和地顯示 */
+
+}
+.tabcontent ul {
+ display: block;
+ list-style-type: disc;
+ margin-top: 1em;
+ margin-bottom: 1 em;
+ margin-left: 0;
+ margin-right: 0;
+ padding-left: 40px;
+ position: relative; /* 確保文字在背景之上 */
+ z-index: 1;
+}
+#MPrequest li{
+ padding-bottom: 4px;
+ margin-left: 12px;
+}
+#joinMPtabbtn button{
+ text-align: center;
+ font-size: large;
+ font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+ gap:5px
+}
+.tabcontent ul li{
+ font-size: 22px;
+ color: black; /* 確保文字顏色在半透明背景上清晰可見 */
+}
+        .tabcontent ul {
   display: block;
   list-style-type: disc;
   margin-top: 1em;
@@ -272,12 +314,21 @@
 }
 #MPrequest li{
 padding-bottom: 4px;
+margin-left: 12px;
 }
 #joinMPtabbtn button{
     text-align: center;
     font-size: large;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    gap:5px
+    gap:5px;
+    border-top-color: #495057;
+}
+.tabcontent ul li{
+    font-size: 22px;
+}
+footer p{
+    text-align: center;
+    font-size:medium;
 }
     </style>
 </head>
@@ -373,31 +424,43 @@ padding-bottom: 4px;
     <div class="tab" id="joinMPtabbtn">
         <button class="tablinks" onclick="openCity(event, 'MPrequest')">憲兵條件</button>
         <button class="tablinks" onclick="openCity(event, 'step')">步驟</button>
-        <button class="tablinks" onclick="openCity(event, 'remind')">提醒</button>
+        <button class="tablinks" onclick="openCity(event, 'remind')">注意事項</button>
     </div>
 
     <div id="MPrequest" class="tabcontent">
-        <h3 style="padding-top: 20px;padding-left: 10px;text-align: center;background-color:gray;margin-left: 0;"><strong> 請確認是否符合以下條件</strong>  <hr></h3>
+        <h3 style="padding-top: 20px;padding-left: 10px;text-align: center;background-color:gray;margin-left: 0;color: white;"><strong> 請確認是否符合以下條件</strong>  <hr></h3>
       
-        <ul style="font-size: 20px;gap:3px;margin-left: 12px;">
+        <ul style="gap:3px;margin-left: 12px;">
             <li>軍階：二等兵(含)上</li>
             <li>有基本理解能力</li>
             <li>裝置不限制</li>
             <li>一定的活躍，且要維持長期</li>
             <li>無重大違規紀錄、非通緝者</li>
             <li>非其他主單位成員、幹部、高層</li>
+            <li>ROCA DC主群身分組，無主單位身分組</li>
           </ul>
     </div>
 
     <div id="step" class="tabcontent">
-        <h3>待更新</h3>
-        <p>待更新</p>
+        <h3 style="padding-top: 20px;padding-left: 10px;text-align: center;background-color:gray;margin-left: 0;"> <strong>確認符合資格後，請參閱以下步驟</strong><hr></h3>
+        <ul style="gap:3px;margin-left: 12px;">
+        <li>先至ROCA DC主群"事件申請"頻道，打上"憲兵招募"</li>
+        <li>接著請等待憲兵招募官回覆，請勿催促招募</li>
+        </ul>
     </div>
 
     <div id="remind" class="tabcontent">
-        <h3>待更新</h3>
-        <p>待更新</p>
+        
+        <h3 style="padding-top: 20px;padding-left: 10px;text-align: center;background-color:gray;margin-left: 0;color: rgb(255, 251, 0);"> <strong>注意事項 </strong><hr></h3>
+        <ul style="gap:3px;margin-left: 12px;">
+            <li>若剛退單位者，記得先Update更新身分組</li>
+            <li>招募期間，請聽從招募官指示，勿催促</li>
+        <li>加入憲兵並成為正式成員後會直接分配至勤務支援大隊</li>
+        <li>想加入特種勤務大隊需等待內部招募</li>
+        <li style="color:red;"><strong>憲兵需要一定的活躍!!</strong></li>
+        </ul>
     </div>
+    
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -493,4 +556,8 @@ padding-bottom: 4px;
     </script>
 
 </body>
+<footer>
+    <p>© 2025 中華民國陸軍事基地 憲兵指揮部版權所屬 <br><span style="color:red">嚴禁抄襲，違者必追究</span></p>
+    
+</footer>
 </html>
