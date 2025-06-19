@@ -254,13 +254,31 @@
         /* Style the tab content */
         .tabcontent {
             float: left;
-            padding: 0px 12px;
+            padding: 0px 0px;
             border: 1px solid #ccc;
             width: 70%;
             border-left: none;
             height: 300px;
             display: none; /* 預設隱藏所有 tab content */
         }
+        #MPrequest ul {
+  display: block;
+  list-style-type: disc;
+  margin-top: 1em;
+  margin-bottom: 1 em;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 40px;
+}
+#MPrequest li{
+padding-bottom: 4px;
+}
+#joinMPtabbtn button{
+    text-align: center;
+    font-size: large;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    gap:5px
+}
     </style>
 </head>
 <body>
@@ -351,24 +369,32 @@
             <p>Join us</p>
         </div>
     </div>
-    <h1 style="text-align: center;color:black;font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">憲兵需求</h1>
-    <div class="tab">
-        <button class="tablinks" onclick="openCity(event, '待更新1')">待更新</button>
-        <button class="tablinks" onclick="openCity(event, '待更新2')">待更新</button>
-        <button class="tablinks" onclick="openCity(event, '待更新3')">待更新</button>
+    <h1 style="text-align: center;color:black;font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">加入憲兵</h1>
+    <div class="tab" id="joinMPtabbtn">
+        <button class="tablinks" onclick="openCity(event, 'MPrequest')">憲兵條件</button>
+        <button class="tablinks" onclick="openCity(event, 'step')">步驟</button>
+        <button class="tablinks" onclick="openCity(event, 'remind')">提醒</button>
     </div>
 
-    <div id="待更新1" class="tabcontent">
+    <div id="MPrequest" class="tabcontent">
+        <h3 style="padding-top: 20px;padding-left: 10px;text-align: center;background-color:gray;margin-left: 0;"><strong> 請確認是否符合以下條件</strong>  <hr></h3>
+      
+        <ul style="font-size: 20px;gap:3px;margin-left: 12px;">
+            <li>軍階：二等兵(含)上</li>
+            <li>有基本理解能力</li>
+            <li>裝置不限制</li>
+            <li>一定的活躍，且要維持長期</li>
+            <li>無重大違規紀錄、非通緝者</li>
+            <li>非其他主單位成員、幹部、高層</li>
+          </ul>
+    </div>
+
+    <div id="step" class="tabcontent">
         <h3>待更新</h3>
         <p>待更新</p>
     </div>
 
-    <div id="待更新2" class="tabcontent">
-        <h3>待更新</h3>
-        <p>待更新</p>
-    </div>
-
-    <div id="待更新3" class="tabcontent">
+    <div id="remind" class="tabcontent">
         <h3>待更新</h3>
         <p>待更新</p>
     </div>
