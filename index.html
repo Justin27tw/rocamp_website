@@ -15,136 +15,96 @@
             padding: 0;
             overflow-x: hidden;
             /* 防止水平滾動條 */
+            /* 設置基礎字體大小，以便 rem 單位進行計算 */
+            font-size: 16px;
+            /* 基準字體大小 */
         }
 
         /* Navbar 樣式調整 */
         .navbar {
-            position: fixed; /* Changed from sticky to fixed */
+            position: fixed;
             top: 0;
-            width: 100%; /* Add width: 100% for fixed positioning */
+            width: 100%;
             background-color: #343a40;
-            /* 深灰色背景，接近圖片效果 */
             padding: 0;
-            /* 將 navbar 的 padding 設為 0 */
             min-height: 60px;
-            /* 設定一個最小高度，確保有足夠空間垂直居中 */
             z-index: 1030;
-            /* 確保 Navbar 在其他內容上方 */
         }
 
         .navbar-brand {
             padding: 0.5rem 1rem;
-            /* 與 nav-link 保持一致的垂直 padding */
             display: flex;
-            /* 使 brand 內部元素也能 flex 排列 */
             align-items: center;
-            /* 垂直居中品牌圖標和文字 */
             height: 100%;
-            /* 確保 brand 佔滿 navbar 垂直空間 */
         }
 
         .navbar-brand img {
             margin-right: 5px;
-            /* 標誌和文字之間的間距 */
         }
 
         .navbar-brand span {
             color: white;
             letter-spacing: 2px;
             font-size: 1rem;
-            /* 調整字體大小以適應導航列 */
+            /* 使用 rem */
         }
 
         /* 導航項目容器 */
         .navbar-nav {
             height: 100%;
-            /* 確保 nav-nav 佔滿 navbar 垂直空間 */
             align-items: center;
-            /* 垂直居中所有 nav-item */
         }
 
         .navbar-nav .nav-item {
             height: 100%;
-            /* 確保 nav-item 佔滿父元素垂直空間 */
             display: flex;
-            /* 使 nav-item 內部元素也能 flex 排列 */
             align-items: center;
-            /* 垂直居中 nav-link */
         }
 
         .navbar-nav .nav-link {
             color: rgba(255, 255, 255, 0.75);
-            /* 淺色文字，hover 時變亮 */
             padding: 0.8rem 1rem;
-            /* 增加垂直 padding 以調整高度和居中 */
-            font-size: 16px;
-            /* 保留你設定的字體大小 */
+            font-size: 1rem;
+            /* 使用 rem */
             height: 100%;
-            /* 讓 nav-link 填充 nav-item 的高度 */
             display: flex;
-            /* 再次使用 flexbox 確保內部文字垂直居中 */
             align-items: center;
-            /* 垂直居中文字 */
         }
 
         .navbar-nav .nav-link:hover,
         .navbar-nav .nav-link.active {
             color: white;
-            /* hover 或 active 時變為白色 */
         }
 
         /* 下拉選單樣式 (Bootstrap 5) */
         .navbar-nav .dropdown-menu {
             background-color: #343330;
-            /* 與導航列接近的深色背景 */
             border: none;
             border-radius: 0;
-            /* 移除圓角 */
             padding: 0;
-            /* 移除預設內距 */
-
-            /* ===== 動畫效果 CSS ===== */
             opacity: 0;
-            /* 初始狀態為透明 */
             transform: translateY(10px);
-            /* 初始狀態向下位移一點 */
             transition: opacity 0.3s ease-out, transform 0.3s ease-out;
-            /* 過渡動畫 */
             display: block;
-            /* 讓 opacity 和 transform 應用在非 display: none 的元素上 */
             visibility: hidden;
-            /* 隱藏但保留空間，方便動畫 */
             pointer-events: none;
-            /* 讓滑鼠事件穿透，避免佔用空間時影響下方元素 */
-            /* ============================== */
         }
 
-        /* 當下拉選單顯示時的樣式 */
         .navbar-nav .dropdown-menu.show {
-
-            /* ===== 動畫效果 CSS ===== */
             opacity: 1;
-            /* 顯示時完全不透明 */
             transform: translateY(0);
-            /* 恢復到原始位置 */
             visibility: visible;
-            /* 顯示 */
             pointer-events: auto;
-            /* 恢復滑鼠事件 */
-            /* ============================== */
         }
-
 
         .navbar-nav .dropdown-item {
             color: rgba(255, 255, 255, 0.75);
             padding: 0.75rem 1.5rem;
-            /* 調整下拉項目內距 */
         }
 
         .navbar-nav .dropdown-item:hover,
         .navbar-nav .dropdown-item:focus {
             background-color: #495057;
-            /* hover 時的背景色 */
             color: white;
         }
 
@@ -152,14 +112,14 @@
         .banner-section {
             position: relative;
             width: 100vw;
-            /* 佔滿整個寬度 */
             height: 500px;
-            /* 圖片高度 */
             overflow: hidden;
             display: flex;
-            /* 使用 flexbox 居中內容 */
             justify-content: center;
             align-items: center;
+            /* 增加一個 top 值來補償 fixed navbar 的高度 */
+            margin-top: 20px;
+            /* 匹配 navbar 的 min-height */
         }
 
         .banner-image {
@@ -167,49 +127,46 @@
             top: 0;
             left: 0;
             width: 100vw;
-            height: 89%;
-            /* 根據您給的圖片調整，確保圖像內容能被看見 */
+            height: 100%;
+            /* 使用 100% 確保填充父容器 */
             object-fit: cover;
-            /* 確保圖片覆蓋整個容器 */
             filter: grayscale(10%) brightness(60%);
-            /* 灰階 亮度 */
             z-index: -1;
-            /* 確保圖片在文字下方 */
             object-position: center center;
-            /* 將圖片內容置於容器中央 */
         }
 
         #bannertext {
             color: white;
             text-align: center;
             z-index: 1;
-            /* 確保文字在圖片上方 */
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: center;
+            align-items:center;
             gap: 10px;
-            /* 文字間距 */
         }
 
         #bannertext h1 {
-            font-size: 52px;
+            font-size: 3.25rem;
+            /* 使用 rem */
             margin-bottom: 0;
-            /* 移除 h1 的底部預設邊距 */
             font-weight: bold;
-            /* 讓字體更粗一點，接近圖片效果 */
+            position: relative;
+            top:46px;
+
         }
 
         #bannertext p {
-            font-size: 18px;
+            font-size: 1.125rem;
+            /* 使用 rem */
             margin-top: 0;
-            /* 移除 p 的頂部預設邊距 */
+            position: relative;
+            top:50px;
         }
 
         /* 為了演示滾動效果，我們需要一些下方內容 */
         .content-placeholder {
             height: fit-content;
-            /* 增加高度以產生滾動條 */
             background-color: #f0f0f0;
             padding: 50px;
             text-align: center;
@@ -223,91 +180,80 @@
         /* === 垂直跑馬燈 (新聞快訊) 樣式 START === */
         .news-ticker-container {
             display: flex;
-            /* 使用 flex 排列標題和內容 */
             align-items: center;
-            /* 垂直居中對齊 */
             background-color: #e7e7e7ca;
-            /* 背景色 */
             border-bottom: 1px solid #ddd;
-            /* 底部邊線 */
             height: 40px;
-            /* 整個新聞快訊條的高度 */
             overflow: hidden;
-            /* 隱藏溢出內容 */
             position: relative;
             z-index: 1020;
-            /* 確保在下方內容之上，但比 navbar 略低 */
+            margin-top: 5px;
         }
 
         .news-ticker-header {
             background-color: #dc3545;
-            /* 紅色背景，類似 udn.com 顏色 */
             color: white;
             padding: 0 15px;
             height: 100%;
-            /* 佔滿容器高度 */
             display: flex;
             align-items: center;
-            font-weight: bold;
+            font-weight:bold;
             flex-shrink: 0;
-            /* 防止縮小 */
             box-sizing: border-box;
-            /* 包含 padding 在高度內 */
         }
 
         .news-ticker-viewport {
             flex-grow: 1;
-            /* 佔據剩餘空間 */
             height: 100%;
-            overflow: hidden;
-            /* 隱藏未顯示的新聞項目 */
+            overflow:auto;
             position: relative;
-            /* 為內部 ul 提供定位上下文 */
         }
 
         .news-list {
             list-style: none;
-            /* 移除列表點 */
             margin: 0;
             padding: 0;
+            padding-top: 7.5px;
             position: absolute;
-            /* 相對於 viewport 定位 */
             top: 0;
             left: 0;
             width: 100%;
-            /* 移除了 animation，改為 JS 控制的 transition */
             transition: transform 0.5s ease-in-out;
-            /* 平滑的過渡效果 */
         }
 
         .news-list li {
-            height: 40px;
-            /* 每個新聞項目高度與容器相同 */
-            line-height: 40px;
-            /* 文字垂直居中 */
-            padding: 0 15px;
-            box-sizing: border-box;
-            white-space: nowrap;
-            /* 防止文字換行 */
-            overflow: hidden;
-            /* 隱藏溢出文字 */
-            text-overflow: ellipsis;
-            /* 文字過長時顯示省略號 */
-        }
+    height: 40px; /* 您可能需要調整這個高度，以適應多行文本 */
+    line-height: 20px; /* 調整行高，讓多行文本有更好的可讀性 */
+    padding: 0 20px;
+        
+    box-sizing: border-box;
+    /* 移除以下兩行，以允許文字換行 */
+    /* white-space: nowrap; */
+    /* overflow: hidden; */
+    text-overflow: ellipsis; /* 移除這行，因為換行後通常不需要省略號 */
+    font-size: 1rem;
+    /* 根據需要增加高度，例如 auto 或更大值 */
+    height: auto; /* 讓 li 的高度根據內容自動調整 */
+    min-height: 40px; /* 保持最小高度為 40px */
+    display: flex; /* 使用 flexbox 垂直居中文本，如果 height 設定為固定值 */
+    align-items: center; /* 垂直居中文本 */
+}
+
+/* 為了讓垂直跑馬燈繼續工作，您可能需要調整 news-list 的動畫邏輯 */
+/* 如果要讓多行文本在垂直滾動時也表現良好，動畫可能需要更複雜的計算 */
 
         .news-list li a {
             color: #333;
             text-decoration: none;
             display: block;
-            /* 讓連結填滿 li 區域 */
+        width: 100%;
+        height: 40px;
+        
         }
 
         .news-list li a:hover {
-
             color: #007bff;
-            /* 懸停顏色 */
             text-decoration: none;
-            /* 懸停時也沒有底線 */
         }
 
         .news-list li p:hover {
@@ -315,42 +261,33 @@
             text-decoration: none;
         }
 
-        /* === 垂直跑馬燈 (新聞快訊) 樣式 END === */
-
         /* === 輪播圖片樣式 START === */
         .carousel-item img {
             height: 400px;
-            /* 您可以根據需求調整這個高度 */
             object-fit: contain;
-            /* 確保圖片填充整個區域，可能會裁剪部分內容 */
-            width: fit-content;
-            /* 確保圖片佔滿輪播區塊寬度 */
+            /* 保持圖片比例，可能出現留白 */
+            width: 100%;
+            /* 確保佔滿寬度 */
         }
 
         .carousel-caption {
             background-color: rgba(0, 0, 0, 0.5);
-            /* 為文字背景添加半透明黑色，提升可讀性 */
             padding: 10px 20px;
             border-radius: 5px;
             bottom: 20px;
-            /* 調整說明文字區塊距離底部的位置 */
         }
 
         .carousel-caption h5,
         .carousel-caption p {
             color: white;
-            /* 確保文字顏色為白色，在深色背景上清晰可見 */
             margin-bottom: 5px;
-            /* 調整標題和段落間距 */
         }
 
         .carousel-control-prev-icon,
         .carousel-control-next-icon {
             filter: invert(1);
-            /* 將箭頭圖標變為白色，使其在深色圖片上可見 */
         }
 
-        /* === 輪播圖片樣式 END === */
         body,
         html {
             height: 100%;
@@ -362,13 +299,15 @@
         .tablink {
             background-color: #555;
             color: white;
-            float: left;
+            /* 移除 float: left; 讓 Bootstrap col 處理佈局 */
+            /* float: left; */
             border: none;
             outline: none;
             cursor: pointer;
             padding: 14px 16px;
-            font-size: 17px;
-            width: 25%;
+            font-size: 1.0625rem;
+            /* 使用 rem */
+            /* width: 25%; 移除，讓 Bootstrap col 處理寬度 */
         }
 
         .tablink:hover {
@@ -379,29 +318,31 @@
         .tabcontent {
             color: black;
             display: none;
-            padding: 70px 12px;
+            padding: 20px 12px;
             height: 400px;
             background-color: #ffffffe5;
         }
 
         .tabcontent ul li {
-            margin-bottom: 5px;
-            font-size: 18px;
-            ;
-
-        }
+    margin-bottom: 5px;
+    font-size: 1.125rem;
+    border-bottom: 1px solid #ddd; /* 添加這一行，您可以調整顏色和粗細 */
+    padding-bottom: 5px; /* 增加一些底部內距，讓橫線和文字之間有空間 */
+}
+/* 如果最後一個 li 不需要底線，可以這樣做 */
+.tabcontent ul li:last-child {
+    border-bottom: 1px solid #ddd;
+}
 
         .tabcontent ul {
-            border-bottom: 1px solid #495057;
-            text-align: left;
-
-        }
+    /* border-bottom: 1px solid #495057; /* 移除這一行 */
+    text-align: left;
+}
 
         .tabcontent ul li span {
             letter-spacing: 2px;
             margin-right: 60px;
             color: darkgoldenrod;
-
         }
 
         footer {
@@ -417,9 +358,303 @@
             justify-items: center;
             padding-top: 30px;
         }
+
         /* Add padding-top to the body to prevent content from being hidden behind the fixed navbar */
         body {
-            padding-top: 60px; /* Adjust this value to match the navbar's min-height */
+            padding-top: 60px;
+        }
+
+        /* 小型裝置: 360*608, 375*608 */
+        @media (max-width: 575.98px) {
+
+            /* Bootstrap xs breakpoint */
+            .navbar-brand span {
+                font-size: 0.8rem;
+                /* 縮小導航列品牌字體 */
+            }
+
+            .navbar-brand img {
+                width: 40px;
+                /* 縮小品牌圖標 */
+                height: 40px;
+            }
+
+            .banner-section {
+                height: 300px;
+                /* 縮小 Banner 高度 */
+                
+            }
+
+            #bannertext h1 {
+                font-size: 32px;
+                /* 縮小 Banner 標題字體 */
+            }
+
+            #bannertext p {
+                font-size: 14px;
+                /* 縮小 Banner 段落字體 */
+            }
+
+            .news-ticker-container {
+                height: 45px;
+                /* 縮小新聞跑馬燈高度 */
+            }
+
+            .news-list li {
+                height: 40px;
+                line-height: 20px;
+                font-size: 14px;
+             padding-bottom: 1px;
+                margin-bottom: 1px;
+                
+                /* 縮小新聞跑馬燈字體 */
+            }
+
+            .tablink {
+                font-size: 14px;
+                /* 縮小 Tab 按鈕字體 */
+                padding: 10px 12px;
+            }
+
+            .tabcontent {
+                padding: 30px 10px;
+                /* 縮小 Tab 內容內距 */
+                height: auto;
+                /* 讓內容高度自動適應 */
+            }
+
+            .tabcontent ul li {
+                font-size: 15px;
+                /* 縮小 Tab 內容列表字體 */
+            }
+
+            .tabcontent ul li span {
+                margin-right: 10px;
+                /* 調整間距 */
+                display: block;
+                /* 讓日期換行 */
+                margin-bottom: 5px;
+            }
+
+            .carousel-item img {
+                height: 250px;
+                /* 縮小輪播圖片高度 */
+                object-fit: contain;
+                /* 確保圖片縮放時不會被裁剪太多 */
+            }
+
+            .carousel-caption {
+                padding: 5px 10px;
+                /* 縮小輪播說明文字區塊 */
+                bottom: 10px;
+            }
+
+            .carousel-caption h5 {
+                font-size: 16px;
+            }
+
+            .carousel-caption p {
+                font-size: 12px;
+            }
+        }
+
+        /* 中型裝置: 375*608 - 通常與小型裝置處理方式類似，或者可以做微調 */
+        /* 由於 375x608 與 360x608 差異不大，可以與 max-width: 575.98px 共用，或在這裡進行微調 */
+        @media (min-width: 375px) and (max-width: 767.98px) {
+
+            /* 例如，如果覺得 375px 以上可以稍微放大一點點 */
+            .banner-section {
+                height: 350px;
+            }
+
+            #bannertext h1 {
+                font-size: 38px;
+            }
+
+            #bannertext p {
+                font-size: 16px;
+            }
+        }
+
+
+        /* 平板電腦: 768*608 (通常是 Bootstrap 的 sm 或 md breakpoint) */
+        @media (min-width: 768px) and (max-width: 991.98px) {
+
+            /* Bootstrap md breakpoint */
+            .navbar-brand span {
+                font-size: 1rem;
+            }
+
+            .navbar-brand img {
+                width: 50px;
+                height: 50px;
+            }
+
+            .banner-section {
+                height: 400px;
+            }
+
+            #bannertext h1 {
+                font-size: 42px;
+            }
+
+            #bannertext p {
+                font-size: 17px;
+            }
+
+            .news-ticker-container {
+                height: 35px;
+            }
+
+            .news-list li {
+                height: 35px;
+                line-height: 35px;
+                font-size: 15px;
+            }
+
+            .tablink {
+                font-size: 16px;
+                padding: 12px 14px;
+            }
+
+            .tabcontent {
+                padding: 50px 15px;
+                height: 400px;
+                /* 平板上可能仍希望保持一定高度 */
+            }
+
+            .tabcontent ul li {
+                font-size: 17px;
+            }
+
+            .tabcontent ul li span {
+                margin-right: 30px;
+                display: inline;
+                /* 日期可以不換行 */
+            }
+
+            .carousel-item img {
+                height: 350px;
+            }
+        }
+
+        /* 筆記型電腦: 1024*811 (通常是 Bootstrap 的 lg breakpoint) */
+        @media (min-width: 992px) and (max-width: 1199.98px) {
+
+            /* Bootstrap lg breakpoint */
+            /* 在此可以針對 1024px 左右的筆記本進行微調 */
+            .banner-section {
+                height: 450px;
+            }
+
+            #bannertext h1 {
+                font-size: 48px;
+            }
+        }
+
+        /* 大型電腦: 1440*1014 (通常是 Bootstrap 的 xl 或 xxl breakpoint) */
+        @media (min-width: 1200px) {
+
+            /* Bootstrap xl/xxl breakpoint 及以上 */
+            /* 對於大型螢幕，可以恢復或稍微放大一些元素 */
+            .banner-section {
+                height: 500px;
+                /* 保持原樣或更大 */
+            }
+
+            #bannertext h1 {
+                font-size: 52px;
+            }
+
+            #bannertext p {
+                font-size: 18px;
+            }
+
+            .carousel-item img {
+                height: 400px;
+                /* 保持原樣或更大 */
+            }
+        }
+
+        /* 橫向模式 (Landscape Mode) */
+        /* 針對所有手持設備橫向模式的通用調整 */
+        @media screen and (orientation: landscape) and (max-width: 991.98px) {
+
+            /* 針對手機和平板的橫向模式 */
+            .banner-section {
+                height: 300px;
+                /* 橫向時減少 Banner 高度，避免佔用太多垂直空間 */
+            }
+
+            #bannertext h1 {
+                font-size: 38px;
+            }
+
+            #bannertext p {
+                font-size: 16px;
+            }
+
+            .navbar-brand span {
+                font-size: 0.9rem;
+            }
+
+            .navbar-brand img {
+                width: 45px;
+                height: 45px;
+            }
+
+            .news-ticker-container {
+                height: 35px;
+                /* 橫向時可能需要稍微高一點 */
+            }
+
+            .news-list li {
+                height: 35px;
+                line-height: 35px;
+                font-size: 15px;
+            }
+
+            .tablink {
+                width: 100%;
+                /* 在橫向小螢幕時讓按鈕垂直堆疊 */
+                float: none;
+                margin-bottom: 5px;
+                /* 增加按鈕間距 */
+            }
+
+            .tabcontent {
+                padding: 20px 10px;
+                /* 減少內距 */
+                height: auto;
+                /* 確保內容能完整顯示 */
+            }
+
+            .tabcontent ul li {
+                font-size: 16px;
+            }
+
+            .tabcontent ul li span {
+                display: inline;
+                /* 橫向時可能空間足夠，讓日期和內容同行 */
+                margin-right: 20px;
+                margin-bottom: 0;
+            }
+
+            .carousel-item img {
+                height: 300px;
+                /* 橫向時調整輪播圖高度 */
+            }
+        }
+
+        /* 針對特定尺寸橫向模式的微調 */
+        /* 例如：手機橫向 608x360 */
+        @media (width: 608px) and (height: 360px) and (orientation: landscape) {
+            /* 這裡可以做更精細的調整，但通常通用橫向規則就夠了 */
+        }
+
+        /* 例如：平板橫向 1024x768 */
+        @media (width: 1024px) and (height: 768px) and (orientation: landscape) {
+            /* 這裡可以做更精細的調整，但通常通用橫向規則就夠了 */
         }
     </style>
 </head>
@@ -491,12 +726,13 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li><a class="dropdown-item"
-                                        href="https://sites.google.com/view/law-roca/%E9%A6%96%E9%A0%81?authuser=0">法規資料庫</a>
+                                    href="https://sites.google.com/view/law-roca/%E9%A6%96%E9%A0%81?authuser=0">法規資料庫</a>
                             </li>
                             <li><a class="dropdown-item"
-                                        href="https://sites.google.com/view/roca-584/%E9%A6%96%E9%A0%81">陸軍裝甲第五八四旅</a></li>
+                                    href="https://sites.google.com/view/roca-584/%E9%A6%96%E9%A0%81">陸軍裝甲第五八四旅</a></li>
                             <li><a class="dropdown-item"
-                                        href="https://sites.google.com/view/robloxrocaaasfc/%E9%A6%96%E9%A0%81">陸軍航空特戰指揮部</a></li>
+                                    href="https://sites.google.com/view/robloxrocaaasfc/%E9%A6%96%E9%A0%81">陸軍航空特戰指揮部</a>
+                            </li>
                             <li><a class="dropdown-item" href="https://sites.google.com/view/roca2022">ROCA官方網站</a></li>
                         </ul>
                     </li>
@@ -512,7 +748,8 @@
                 <li>
                     <p>指揮部公告：加入憲兵方式，由招聘改回招募</p>
                 </li>
-                <li><a href="/joinus.html">指揮部公告：歡迎加入憲兵大家庭，<span style="text-decoration: underline; color:blue">了解更多</span></a></li>
+                <li><a href="/joinus.html">指揮部公告：歡迎加入憲兵大家庭，<span
+                            style="text-decoration: underline; color:blue">了解更多</span></a></li>
                 <li>
                     <p>恭賀升遷：hgjk66ll升至副指揮官</p>
                 </li>
@@ -523,7 +760,10 @@
                     <p>恭賀升遷：Justin_chiu27升至副參謀長</p>
                 </li>
                 <li>
-                    <p>恭賀升遷：XxChortleKidd升至督導、nollihj升至勤務支援大隊長</p>
+                    <p>恭賀升遷：XxChortleKidd升至督導</p>
+                </li>
+                <li>
+                    <p>恭賀升遷：nollihj升至勤務支援大隊長</p>
                 </li>
             </ul>
         </div>
@@ -542,50 +782,73 @@
         <p style="font-size: 18px;">憲兵為營區執法單位，負責維持營區內秩序、打擊突襲者，執行外交勤務保護外賓，保護首長</p>
         <p style="font-size: 18px;">指揮部轄下部隊分為：勤務支援大隊、特種勤務大隊</p>
 
-        <button class="tablink" onclick="openPage('notice', this, 'dark')" id="defaultOpen">指揮部公告</button>
-        <button class="tablink" onclick="openPage('conscript', this, 'dark')">招募公告</button>
-        <button class="tablink" onclick="openPage('SSC', this, 'dark')">特勤隊公告</button>
-        <button class="tablink" onclick="openPage('creater', this, 'dark')">製作名單</button>
+        <div class="row mb-3">
+            <div class="col-6 col-md-3">
+                <button class="tablink w-100" onclick="openPage('notice', this, 'dark')" id="defaultOpen">指揮部公告</button>
+            </div>
+            <div class="col-6 col-md-3">
+                <button class="tablink w-100" onclick="openPage('conscript', this, 'dark')">招募公告</button>
+            </div>
+            <div class="col-6 col-md-3">
+                <button class="tablink w-100" onclick="openPage('SSC', this, 'dark')">特勤隊公告</button>
+            </div>
+            <div class="col-6 col-md-3">
+                <button class="tablink w-100" onclick="openPage('creater', this, 'dark')">製作名單</button>
+            </div>
+        </div>
 
         <div class="content-vertab table">
-            <div id="notice" class="tabcontent ">
-                <ul class="row">
-                    <li><span>2025-06-09</span>人員調動：有五位成員選為法制委員會委員，將代表憲兵參與會議</li>
-                </ul>
-                <ul class="row">
-                    <li><span>2025-06-01</span>人事調動：新高層名單，有五位幹部升遷，帶領憲兵前進</li>
-                </ul>
-                <ul class="row">
-                    <li><span>2025-06-01</span>指揮官：昨日(5/31)，外交活動順利結束，參與者都表現出色，給予肯定</li>
+            <div id="notice" class="tabcontent">
+                <ul class="list-unstyled">
+                    <li class="row">
+                        <span class="col-12 col-md-auto">2025-06-09</span>
+                        <p class="col">人員調動：有五位成員選為法制委員會委員，將代表憲兵參與會議</p>
+                    </li>
+                    <li class="row">
+                        <span class="col-12 col-md-auto">2025-06-01</span>
+                        <p class="col">人事調動：新高層名單，有五位幹部升遷，帶領憲兵前進</p>
+                    </li>
+                    <li class="row">
+                        <span class="col-12 col-md-auto">2025-06-01</span>
+                        <p class="col">指揮官：昨日(5/31)，外交活動順利結束，參與者都表現出色，給予肯定</p>
+                    </li>
                 </ul>
             </div>
-
             <div id="conscript" class="tabcontent">
-                <ul class="row">
-                    <li><span>2025-06-19</span>暫無公告</li>
+                <ul class="list-unstyled">
+                    <li class="row">
+                        <span class="col-12 col-md-auto">2025-06-19</span>
+                        <p class="col">暫無公告</p>
+                    </li>
                 </ul>
             </div>
             <div id="SSC" class="tabcontent">
-                <ul class="row">
-                    <li><span>2025-06-19</span>暫無公告</li>
+                <ul class="list-unstyled">
+                    <li class="row">
+                        <span class="col-12 col-md-auto">2025-06-19</span>
+                        <p class="col">暫無公告</p>
+                    </li>
                 </ul>
             </div>
             <div id="creater" class="tabcontent">
-                <ul class="row">
-                    <li><span>製作人員</span>Justin_chiu27</li>
-                </ul>
-                <ul class="row">
-                    <li> <span>協作人員</span>XxChortleKidd</li>
-                </ul>
-                <ul class="row">
-                    <li> <span>協作人員</span>rockroll901</li>
+                <ul class="list-unstyled">
+                    <li class="row">
+                        <span class="col-12 col-md-auto">製作人員</span>
+                        <p class="col">Justin_chiu27</p>
+                    </li>
+                    <li class="row">
+                        <span class="col-12 col-md-auto">協作人員</span>
+                        <p class="col">XxChortleKidd</p>
+                    </li>
+                    <li class="row">
+                        <span class="col-12 col-md-auto">協作人員</span>
+                        <p class="col">rockroll901</p>
+                    </li>
                 </ul>
             </div>
-
-
         </div>
     </div>
-    </div>
+
     <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#imageCarousel" data-bs-slide-to="0" class="active"
@@ -717,7 +980,8 @@
         const newsList = document.querySelector('.news-list');
         const newsItemsOriginal = Array.from(newsList.querySelectorAll('li')); // 原始新聞項目
         if (newsItemsOriginal.length === 0) return; // 如果沒有新聞項目則退出
-
+        // news-ticker 的 JS 已經是動態獲取 itemHeight，所以通常不需要特別調整
+        // 只要確保 CSS 中對 li 的高度調整在媒體查詢中生效即可
         const itemHeight = newsItemsOriginal[0].offsetHeight; // 獲取單個項目高度
         let currentIndex = 0; // 當前顯示項目索引
         let tickerInterval; // 定時器變量
