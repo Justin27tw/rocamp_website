@@ -12,6 +12,7 @@
             margin: 0;
             padding: 0;
             overflow-x: hidden;
+            background-color: beige;
             /* 防止水平滾動條 */
         }
 
@@ -221,41 +222,57 @@
             border-spacing: 0;
             width: 100%;
             border: 1px solid #ddd;
-        align-items: center;
+            align-items: center;
         }
 
-        .table th,.table td {
-            text-align:center;
+        .table th,
+        .table td {
+            text-align: center;
             padding: 16px;
-            font-size:20px;
+            font-size: 20px;
             color: black;
-            font: optional;;
-            
+            font: optional;
+            ;
+
         }
-.table tr th:first-child,.table tr td:first-child {
+
+        .table tr th:first-child,
+        .table tr td:first-child {
             background-color: snow;
         }
+
         #MPSSCtable {
-    background-image: url(/images/3773716831_11750841896_1739627904425.png);
-    background-size: contain; /* 讓背景圖片覆蓋整個表格 */
-    background-position: right; /* 讓背景圖片置中 */
-    background-repeat: no-repeat; /* 防止圖片重複 */
-   
-    background-color: rgba(246, 246, 246, 0.751);
-    filter: grayscale(15%) brightness(100%);
+            background-image: url(/images/3773716831_11750841896_1739627904425.png);
+            background-size: contain;
+            /* 讓背景圖片覆蓋整個表格 */
+            background-position: right;
+            /* 讓背景圖片置中 */
+            background-repeat: no-repeat;
+            /* 防止圖片重複 */
+
+            background-color: rgba(246, 246, 246, 0.751);
+            filter: grayscale(15%) brightness(100%);
             background-blend-mode: overlay;
-            color: white; /* 考慮將文字顏色改為白色，以便在深色背景圖片上清晰可見 */
+            color: white;
+            /* 考慮將文字顏色改為白色，以便在深色背景圖片上清晰可見 */
             opacity: 0.9;
-}
-/* 為了讓單元格內容不完全遮擋背景圖片，可以將單元格背景設為透明或半透明 */
-#MPSSCtable th, #MPSSCtable td {
-    background-color: rgba(255, 255, 255, 0.2); /* 半透明白色背景 */
-}
-/* 您原有的這條規則會讓第一欄為雪白色，這會完全遮擋背景圖片，如果想看到背景圖片，需要調整 */
-.table tr th:first-child, .table tr td:first-child {
-    background-color: rgba(255, 250, 250, 0.5); /* 將雪白色也改成半透明 */
-}
-footer {
+        }
+
+        /* 為了讓單元格內容不完全遮擋背景圖片，可以將單元格背景設為透明或半透明 */
+        #MPSSCtable th,
+        #MPSSCtable td {
+            background-color: rgba(255, 255, 255, 0.2);
+            /* 半透明白色背景 */
+        }
+
+        /* 您原有的這條規則會讓第一欄為雪白色，這會完全遮擋背景圖片，如果想看到背景圖片，需要調整 */
+        .table tr th:first-child,
+        .table tr td:first-child {
+            background-color: rgba(255, 250, 250, 0.5);
+            /* 將雪白色也改成半透明 */
+        }
+
+        footer {
             width: 100vw;
             height: 100px;
             background-color: rgb(51, 81, 0);
@@ -267,6 +284,217 @@ footer {
             font-size: medium;
             justify-items: center;
             padding-top: 30px;
+        }
+
+        /* 1. 極小螢幕調整：@media (max-width: 575.98px) */
+        @media (max-width: 575.98px) {
+            .navbar-brand span {
+                font-size: 0.9rem;
+            }
+
+            .navbar-nav .nav-link {
+                padding: 0.7rem 0.8rem;
+                font-size: 14px;
+            }
+
+            #bannertext h1 {
+                font-size: 36px;
+            }
+
+            #bannertext p {
+                font-size: 16px;
+            }
+
+            #bannertext {
+                gap: 5px;
+            }
+
+            /* 表格調整 */
+            .container-table table {
+                font-size: 16px;
+                /* 縮小表格字體 */
+            }
+
+            .table th,
+            .table td {
+                /* 這裡改為 .table th, .table td */
+                padding: 10px;
+                /* 縮小表格內距 */
+            }
+
+            #MPDSCtable {
+                background-image: none;
+                /* 在小螢幕上移除表格背景圖片 */
+            }
+
+            /* 左圖右文區塊改為垂直堆疊 */
+            .image-text-section {
+                flex-direction: column;
+                align-items: flex-start;
+                /* 左對齊 */
+                padding: 10px;
+                /* 縮小內距 */
+            }
+
+            .image-text-section img {
+                max-width: 90%;
+                /* 圖片佔比更大 */
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+
+            .image-text-section p {
+                font-size: 16px;
+                text-align: left;
+                /* 文字左對齊 */
+            }
+
+            footer p {
+                font-size: 0.8rem;
+                padding-top: 20px;
+            }
+        }
+
+        /* 2. 小到中型螢幕調整：@media (min-width: 375px) and (max-width: 767.98px) */
+        @media (min-width: 375px) and (max-width: 767.98px) {
+            .navbar-brand span {
+                font-size: 1rem;
+            }
+
+            .navbar-nav .nav-link {
+                padding: 0.7rem 1rem;
+                font-size: 15px;
+            }
+
+            #bannertext h1 {
+                font-size: 42px;
+            }
+
+            #bannertext p {
+                font-size: 17px;
+            }
+
+            /* 表格調整 */
+            .container-table {
+                overflow-x: auto;
+                /* 允許表格水平滾動 */
+            }
+
+            .container-table table {
+                width: auto;
+                /* 讓表格根據內容自動調整寬度，配合水平滾動 */
+                font-size: 18px;
+            }
+
+            .table th,
+            .table td {
+                /* 這裡改為 .table th, .table td */
+                padding: 12px;
+            }
+
+            /* 左圖右文區塊保持水平，但調整圖片寬度 */
+            .image-text-section {
+                flex-direction: row;
+                /* 保持水平 */
+                align-items: center;
+                padding: 15px;
+            }
+
+            .image-text-section img {
+                max-width: 40%;
+                margin-right: 15px;
+                margin-bottom: 0;
+            }
+
+            .image-text-section p {
+                font-size: 17px;
+                flex-grow: 1;
+                text-align: left;
+                /* 文字左對齊 */
+            }
+
+            footer p {
+                font-size: 0.9rem;
+                padding-top: 25px;
+            }
+        }
+
+        /* 3. 橫向模式調整：@media (orientation: landscape) */
+        /* 橫向時，會同時觸發上面寬度區間的媒體查詢，所以這裡只針對橫向特有的調整 */
+
+        /* 極小螢幕橫向模式： (max-width: 575.98px) and (orientation: landscape) */
+        @media (max-width: 575.98px) and (orientation: landscape) {
+            .banner-section {
+                height: 300px;
+                /* 橫向時減小 banner 高度 */
+            }
+
+            #bannertext h1 {
+                font-size: 30px;
+            }
+
+            #bannertext p {
+                font-size: 15px;
+            }
+
+            /* 左圖右文在極小橫向時嘗試保持水平，但圖片更小 */
+            .image-text-section {
+                flex-direction: row;
+                align-items: center;
+                padding: 10px;
+            }
+
+            .image-text-section img {
+                max-width: 30%;
+                /* 橫向時可以稍微縮小圖片佔比 */
+                margin-right: 10px;
+                margin-bottom: 0;
+            }
+
+            .image-text-section p {
+                font-size: 14px;
+                /* 橫向時文字可以稍微小一點 */
+                flex-grow: 1;
+            }
+        }
+
+        /* 中小型螢幕橫向模式：(min-width: 375px) and (max-width: 767.98px) and (orientation: landscape) */
+        @media (min-width: 375px) and (max-width: 767.98px) and (orientation: landscape) {
+            .banner-section {
+                height: 350px;
+                /* 橫向時適度調整 banner 高度 */
+            }
+
+            #bannertext h1 {
+                font-size: 38px;
+            }
+
+            #bannertext p {
+                font-size: 16px;
+            }
+
+            /* 如果表格在橫向空間足夠，可以嘗試不要強制水平滾動，但仍需注意內容是否超出 */
+            /* 這裡設定一個較大的橫向寬度才移除滾動條 */
+            @media (min-width: 600px) {
+
+                /* 當寬度大於600px時移除水平滾動條 */
+                .container-table {
+                    overflow-x: visible;
+                }
+
+                .container-table table {
+                    width: 100%;
+                }
+            }
+
+            /* 左圖右文調整 */
+            .image-text-section img {
+                max-width: 35%;
+            }
+
+            .image-text-section p {
+                font-size: 16px;
+            }
         }
     </style>
 
@@ -302,7 +530,7 @@ footer {
                             認識憲兵
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/mpdept.html">憲兵部門介紹</a></li>
+                            <li><a class="dropdown-item" href="/mpdept.html">指揮鏈</a></li>
                             <li><a class="dropdown-item" href="/daily.html">日常勤務</a></li>
                             <li><a class="dropdown-item" href="/event.html">活動紀錄</a></li>
                         </ul>
@@ -326,8 +554,10 @@ footer {
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="/MPDSC.html">勤務支援大隊</a></li>
-                            <li><a class="dropdown-item" href="/MPSSC.html">特種勤務大隊</a></li>
+                            <li><a class="dropdown-item" href="#">特種勤務大隊</a></li>
                             <li><a class="dropdown-item" href="/MPTC.html">憲兵訓練中心</a></li>
+                            <li><a class="dropdown-item" href="/MPIO.html">督察室</a></li>
+                            <li><a class="dropdown-item" href="/MPRPC.html">獎懲委員會</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
@@ -358,9 +588,10 @@ footer {
             <p style="font-size: 24px;">MPSSC</p>
         </div>
     </div>
-    <p style="text-align: center; font-size: 18px;">特勤隊為憲兵內菁英中的菁英，須通過刻苦的訓練並有超乎常人的戰鬥能力，在特殊的時刻能看到他們</p>
+    <p style="text-align: center; font-size: 24px;">特勤隊為憲兵內菁英中的菁英，須通過刻苦的訓練並有超乎常人的戰鬥能力，在特殊的時刻能看到他們</p>
+    <br>
     <div class="container-table" style="text-align: center; font-size: large;color:white">
-        <h4>特種勤務大隊人員名單</h4>
+        <h5 style="color:black">特種勤務大隊人員名單</h5>
         <table class="table" id="MPSSCtable" style="color:whitesmoke;">
             <tr>
                 <th>職位</th>
@@ -409,8 +640,15 @@ footer {
             </tr>
         </table>
     </div>
+    <div style="display: flex; flex-direction: row; align-items: center; margin-top: 20px; padding: 20px;background-color:beige;">
+        <img src="/images/3773716831_11750841896_1738162865563.png" alt="特勤隊訓練圖"
+            style="margin-right: 20px; max-width: 50%;">
+        <p style="margin: 0; flex-grow: 1; font-size: 24px;text-align: center;">
+            <strong>特勤隊需要內部招募，菁英中的菁英才能成為特勤隊一員</strong></p>
+    </div>
 </body>
 <footer>
     <p>© 2025 中華民國陸軍事基地 憲兵指揮部版權所屬 <br><span style="color:red">嚴禁抄襲，違者必追究</span></p>
 </footer>
+
 </html>

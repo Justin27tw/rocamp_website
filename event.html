@@ -1,11 +1,278 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <title>活動紀錄</title>
+    <link rel="icon" type="image/png" href="/images/Png.png">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            background-color: beige;
+            /* 防止水平滾動條 */
+        }
+
+        /* Navbar 樣式調整 */
+        .navbar {
+            position: fixed;
+            /* Changed from sticky to fixed */
+            top: 0;
+            width: 100%;
+            /* Add width: 100% for fixed positioning */
+            background-color: #343a40;
+            /* 深灰色背景，接近圖片效果 */
+            padding: 0;
+            /* 將 navbar 的 padding 設為 0 */
+            min-height: 60px;
+            /* 設定一個最小高度，確保有足夠空間垂直居中 */
+            z-index: 1030;
+            /* 確保 Navbar 在其他內容上方 */
+        }
+
+        .navbar-brand {
+            padding: 0.5rem 1rem;
+            /* 與 nav-link 保持一致的垂直 padding */
+            display: flex;
+            /* 使 brand 內部元素也能 flex 排列 */
+            align-items: center;
+            /* 垂直居中品牌圖標和文字 */
+            height: 100%;
+            /* 確保 brand 佔滿 navbar 垂直空間 */
+        }
+
+        .navbar-brand img {
+            margin-right: 5px;
+            /* 標誌和文字之間的間距 */
+        }
+
+        .navbar-brand span {
+            color: white;
+            letter-spacing: 2px;
+            font-size: 1rem;
+            /* 調整字體大小以適應導航列 */
+        }
+
+        /* 導航項目容器 */
+        .navbar-nav {
+            height: 100%;
+            /* 確保 nav-nav 佔滿 navbar 垂直空間 */
+            align-items: center;
+            /* 垂直居中所有 nav-item */
+        }
+
+        .navbar-nav .nav-item {
+            height: 100%;
+            /* 確保 nav-item 佔滿父元素垂直空間 */
+            display: flex;
+            /* 使 nav-item 內部元素也能 flex 排列 */
+            align-items: center;
+            /* 垂直居中 nav-link */
+        }
+
+        .navbar-nav .nav-link {
+            color: rgba(255, 255, 255, 0.75);
+            /* 淺色文字，hover 時變亮 */
+            padding: 0.8rem 1rem;
+            /* 增加垂直 padding 以調整高度和居中 */
+            font-size: 16px;
+            /* 保留你設定的字體大小 */
+            height: 100%;
+            /* 讓 nav-link 填充 nav-item 的高度 */
+            display: flex;
+            /* 再次使用 flexbox 確保內部文字垂直居中 */
+            align-items: center;
+            /* 垂直居中文字 */
+        }
+
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active {
+            color: white;
+            /* hover 或 active 時變為白色 */
+        }
+
+        /* 下拉選單樣式 (Bootstrap 5) */
+        .navbar-nav .dropdown-menu {
+            background-color: #343330;
+            /* 與導航列接近的深色背景 */
+            border: none;
+            border-radius: 0;
+            /* 移除圓角 */
+            padding: 0;
+            /* 移除預設內距 */
+
+            /* ===== 動畫效果 CSS ===== */
+            opacity: 0;
+            /* 初始狀態為透明 */
+            transform: translateY(10px);
+            /* 初始狀態向下位移一點 */
+            transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+            /* 過渡動畫 */
+            display: block;
+            /* 讓 opacity 和 transform 應用在非 display: none 的元素上 */
+            visibility: hidden;
+            /* 隱藏但保留空間，方便動畫 */
+            pointer-events: none;
+            /* 讓滑鼠事件穿透，避免佔用空間時影響下方元素 */
+            /* ============================== */
+        }
+
+        /* 當下拉選單顯示時的樣式 */
+        .navbar-nav .dropdown-menu.show {
+
+            /* ===== 動畫效果 CSS ===== */
+            opacity: 1;
+            /* 顯示時完全不透明 */
+            transform: translateY(0);
+            /* 恢復到原始位置 */
+            visibility: visible;
+            /* 顯示 */
+            pointer-events: auto;
+            /* 恢復滑鼠事件 */
+            /* ============================== */
+        }
+
+
+        .navbar-nav .dropdown-item {
+            color: rgba(255, 255, 255, 0.75);
+            padding: 0.75rem 1.5rem;
+            /* 調整下拉項目內距 */
+        }
+
+        .navbar-nav .dropdown-item:hover,
+        .navbar-nav .dropdown-item:focus {
+            background-color: #495057;
+            /* hover 時的背景色 */
+            color: white;
+        }
+#bannertext{
+    margin-top: 66px;
+}
+        footer {
+            width: 100vw;
+            height: 100px;
+            background-color: rgb(51, 81, 0);
+        }
+
+        footer p {
+            color: whitesmoke;
+            text-align: center;
+            font-size: medium;
+            justify-items: center;
+            padding-top: 30px;
+        }
+
+        @media (max-width: 575.98px) {
+            .carousel-item img {
+                height: 250px;
+                /* 縮小輪播圖片高度 */
+                object-fit: contain;
+                /* 確保圖片縮放時不會被裁剪太多 */
+            }
+
+            .carousel-caption {
+                padding: 5px 10px;
+                /* 縮小輪播說明文字區塊 */
+                bottom: 10px;
+            }
+
+        }
+    </style>
 </head>
+
 <body>
-    
+    <nav class="navbar navbar-expand-md navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="/images/Png.png" alt="" width="50" height="50" class="d-inline-block align-text-middle">
+                <span>憲兵指揮部</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/index.html">首頁</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            最新資訊
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/notice.html">指揮部公告</a></li>
+                            <li><a class="dropdown-item" href="/joinus.html">加入我們</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            認識憲兵
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/mpdept.html">指揮鏈</a></li>
+                            <li><a class="dropdown-item" href="/daily.html">日常勤務</a></li>
+                            <li><a class="dropdown-item" href="/event.html">活動紀錄</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            認識高層
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/CO.html">指揮官</a></li>
+                            <li><a class="dropdown-item" href="/DCO.html">副指揮官</a></li>
+                            <li><a class="dropdown-item" href="/COS.html">參謀長</a></li>
+                            <li><a class="dropdown-item" href="/DCOS.html">副參謀長</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            轄下單位
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/MPDSC.html">勤務支援大隊</a></li>
+                            <li><a class="dropdown-item" href="/MPSSC.html">特種勤務大隊</a></li>
+                            <li><a class="dropdown-item" href="#">憲兵訓練中心</a></li>
+                            <li><a class="dropdown-item" href="/MPIO.html">督察室</a></li>
+                            <li><a class="dropdown-item" href="/MPRPC.html">獎懲委員會</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            更多資訊
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item"
+                                    href="https://sites.google.com/view/law-roca/%E9%A6%96%E9%A0%81?authuser=0">法規資料庫</a>
+                            </li>
+                            <li><a class="dropdown-item"
+                                    href="https://sites.google.com/view/roca-584/%E9%A6%96%E9%A0%81">陸軍裝甲第五八四旅</a></li>
+                            <li><a class="dropdown-item"
+                                    href="https://sites.google.com/view/robloxrocaaasfc/%E9%A6%96%E9%A0%81">陸軍航空特戰指揮部</a>
+                            </li>
+                            <li><a class="dropdown-item" href="https://sites.google.com/view/roca2022">ROCA官方網站</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="p-5 bg-primary text-white text-center" id="bannertext">
+        <h1>活動紀錄</h1>
+        <p></p>
+    </div>
 </body>
+<footer>
+    <p>© 2025 中華民國陸軍事基地 憲兵指揮部版權所屬 <br><span style="color:red">嚴禁抄襲，違者必追究</span></p>
+</footer>
 </html>
