@@ -9,177 +9,403 @@
     <title>活動紀錄</title>
     <link rel="icon" type="image/png" href="/images/Png.png">
     <style>
+        /* 移除 Bootstrap 預設的一些邊距，使內容更緊湊 */
         body {
             margin: 0;
             padding: 0;
-            overflow-x: hidden;
+            overflow-x: hidden; /* 防止水平滾動條 */
+            font-size: 16px; /* 設置基礎字體大小，以便 rem 單位進行計算 */
             background-color: beige;
-            /* 防止水平滾動條 */
         }
 
         /* Navbar 樣式調整 */
         .navbar {
             position: fixed;
-            /* Changed from sticky to fixed */
             top: 0;
             width: 100%;
-            /* Add width: 100% for fixed positioning */
-            background-color: #343a40;
-            /* 深灰色背景，接近圖片效果 */
-            padding: 0;
-            /* 將 navbar 的 padding 設為 0 */
-            min-height: 60px;
-            /* 設定一個最小高度，確保有足夠空間垂直居中 */
-            z-index: 1030;
-            /* 確保 Navbar 在其他內容上方 */
+            background-color: #343a40; /* 深灰色背景，接近圖片效果 */
+            padding: 0; /* 將 navbar 的 padding 設為 0 */
+            min-height: 60px; /* 設定一個最小高度，確保有足夠空間垂直居中 */
+            z-index: 1030; /* 確保 Navbar 在其他內容上方 */
         }
 
         .navbar-brand {
-            padding: 0.5rem 1rem;
-            /* 與 nav-link 保持一致的垂直 padding */
-            display: flex;
-            /* 使 brand 內部元素也能 flex 排列 */
-            align-items: center;
-            /* 垂直居中品牌圖標和文字 */
-            height: 100%;
-            /* 確保 brand 佔滿 navbar 垂直空間 */
+            padding: 0.5rem 1rem; /* 與 nav-link 保持一致的垂直 padding */
+            display: flex; /* 使 brand 內部元素也能 flex 排列 */
+            align-items: center; /* 垂直居中品牌圖標和文字 */
+            height: 100%; /* 確保 brand 佔滿 navbar 垂直空間 */
         }
 
         .navbar-brand img {
-            margin-right: 5px;
-            /* 標誌和文字之間的間距 */
+            margin-right: 5px; /* 標誌和文字之間的間距 */
         }
 
         .navbar-brand span {
             color: white;
             letter-spacing: 2px;
-            font-size: 1rem;
-            /* 調整字體大小以適應導航列 */
+            font-size: 1rem; /* 調整字體大小以適應導航列 */
         }
 
         /* 導航項目容器 */
         .navbar-nav {
-            height: 100%;
-            /* 確保 nav-nav 佔滿 navbar 垂直空間 */
-            align-items: center;
-            /* 垂直居中所有 nav-item */
+            height: 100%; /* 確保 nav-nav 佔滿 navbar 垂直空間 */
+            align-items: center; /* 垂直居中所有 nav-item */
         }
 
         .navbar-nav .nav-item {
-            height: 100%;
-            /* 確保 nav-item 佔滿父元素垂直空間 */
-            display: flex;
-            /* 使 nav-item 內部元素也能 flex 排列 */
-            align-items: center;
-            /* 垂直居中 nav-link */
+            height: 100%; /* 確保 nav-item 佔滿父元素垂直空間 */
+            display: flex; /* 使 nav-item 內部元素也能 flex 排列 */
+            align-items: center; /* 垂直居中 nav-link */
         }
 
         .navbar-nav .nav-link {
-            color: rgba(255, 255, 255, 0.75);
-            /* 淺色文字，hover 時變亮 */
-            padding: 0.8rem 1rem;
-            /* 增加垂直 padding 以調整高度和居中 */
-            font-size: 16px;
-            /* 保留你設定的字體大小 */
-            height: 100%;
-            /* 讓 nav-link 填充 nav-item 的高度 */
-            display: flex;
-            /* 再次使用 flexbox 確保內部文字垂直居中 */
-            align-items: center;
-            /* 垂直居中文字 */
+            color: rgba(255, 255, 255, 0.75); /* 淺色文字，hover 時變亮 */
+            padding: 0.8rem 1rem; /* 增加垂直 padding 以調整高度和居中 */
+            font-size: 16px; /* 保留你設定的字體大小 */
+            height: 100%; /* 讓 nav-link 填充 nav-item 的高度 */
+            display: flex; /* 再次使用 flexbox 確保內部文字垂直居中 */
+            align-items: center; /* 垂直居中文字 */
         }
 
         .navbar-nav .nav-link:hover,
         .navbar-nav .nav-link.active {
-            color: white;
-            /* hover 或 active 時變為白色 */
+            color: white; /* hover 或 active 時變為白色 */
         }
 
         /* 下拉選單樣式 (Bootstrap 5) */
         .navbar-nav .dropdown-menu {
-            background-color: #343330;
-            /* 與導航列接近的深色背景 */
+            background-color: #343330; /* 與導航列接近的深色背景 */
             border: none;
-            border-radius: 0;
-            /* 移除圓角 */
-            padding: 0;
-            /* 移除預設內距 */
+            border-radius: 0; /* 移除圓角 */
+            padding: 0; /* 移除預設內距 */
 
             /* ===== 動畫效果 CSS ===== */
-            opacity: 0;
-            /* 初始狀態為透明 */
-            transform: translateY(10px);
-            /* 初始狀態向下位移一點 */
-            transition: opacity 0.3s ease-out, transform 0.3s ease-out;
-            /* 過渡動畫 */
-            display: block;
-            /* 讓 opacity 和 transform 應用在非 display: none 的元素上 */
-            visibility: hidden;
-            /* 隱藏但保留空間，方便動畫 */
-            pointer-events: none;
-            /* 讓滑鼠事件穿透，避免佔用空間時影響下方元素 */
+            opacity: 0; /* 初始狀態為透明 */
+            transform: translateY(10px); /* 初始狀態向下位移一點 */
+            transition: opacity 0.3s ease-out, transform 0.3s ease-out; /* 過渡動畫 */
+            display: block; /* 讓 opacity 和 transform 應用在非 display: none 的元素上 */
+            visibility: hidden; /* 隱藏但保留空間，方便動畫 */
+            pointer-events: none; /* 讓滑鼠事件穿透，避免佔用空間時影響下方元素 */
             /* ============================== */
         }
 
         /* 當下拉選單顯示時的樣式 */
         .navbar-nav .dropdown-menu.show {
-
             /* ===== 動畫效果 CSS ===== */
-            opacity: 1;
-            /* 顯示時完全不透明 */
-            transform: translateY(0);
-            /* 恢復到原始位置 */
-            visibility: visible;
-            /* 顯示 */
-            pointer-events: auto;
-            /* 恢復滑鼠事件 */
+            opacity: 1; /* 顯示時完全不透明 */
+            transform: translateY(0); /* 恢復到原始位置 */
+            visibility: visible; /* 顯示 */
+            pointer-events: auto; /* 恢復滑鼠事件 */
             /* ============================== */
         }
 
-
         .navbar-nav .dropdown-item {
             color: rgba(255, 255, 255, 0.75);
-            padding: 0.75rem 1.5rem;
-            /* 調整下拉項目內距 */
+            padding: 0.75rem 1.5rem; /* 調整下拉項目內距 */
         }
 
         .navbar-nav .dropdown-item:hover,
         .navbar-nav .dropdown-item:focus {
-            background-color: #495057;
-            /* hover 時的背景色 */
+            background-color: #495057; /* hover 時的背景色 */
             color: white;
         }
-#bannertext{
-    margin-top: 66px;
-}
+
+        .banner-section {
+            position: relative;
+            width: 100vw;
+            height: 500px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 60px; /* 補償 fixed navbar 的高度 */
+        }
+
+        .banner-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(10%) brightness(60%);
+            z-index: -1;
+            object-position: center center;
+        }
+
+        #bannertext {
+            color: white;
+            text-align: center;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        #bannertext h1 {
+            font-size: 3.25rem; /* 使用 rem */
+            margin-bottom: 0;
+            font-weight: bold;
+            position: relative;
+            top: 46px; /* 調整文字位置 */
+        }
+
+        #bannertext p {
+            font-size: 1.125rem; /* 使用 rem */
+            margin-top: 0;
+            position: relative;
+            top: 50px; /* 調整文字位置 */
+        }
+
+        .content-placeholder {
+            height: fit-content;
+            background-color: #f0f0f0;
+            padding: 50px;
+            text-align: center;
+            color: #333;
+        }
+
+        /* 新增按鈕樣式 */
+        .btn-outline-info {
+            display: block; /* 讓按鈕獨佔一行 */
+            margin: 20px auto; /* 居中並提供上下間距 */
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            border-radius: 5px;
+            border: 1px solid #17a2b8;
+            color: #17a2b8;
+            background-color: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-info:hover {
+            background-color: #17a2b8;
+            color: white;
+        }
+
+        /* 內容圖片與文字區塊樣式 */
+        .content-flex-section {
+            display: flex;
+            flex-direction: row; /* 預設為橫向排列 */
+            align-items: center;
+            margin-top: 20px;
+            padding: 20px; /* 增加內邊距 */
+            background-color: beige;
+            gap: 20px; /* 圖片和文字之間的間距 */
+        }
+
+        .content-flex-section img {
+            max-width: 50%; /* 預設圖片最大寬度 */
+            height: auto;
+            display: block; /* 確保圖片不留空白 */
+        }
+
+        .content-flex-section p {
+            margin: 0;
+            flex-grow: 1;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        /* 交替圖片和文字的順序 */
+        .content-flex-section.reverse {
+            flex-direction: row-reverse;
+        }
+
         footer {
             width: 100vw;
             height: 100px;
             background-color: rgb(51, 81, 0);
+            display: flex; /* 使用 flexbox 讓內容垂直居中 */
+            justify-content: center; /* 水平居中 */
+            align-items: center; /* 垂直居中 */
         }
 
         footer p {
             color: whitesmoke;
             text-align: center;
             font-size: medium;
-            justify-items: center;
-            padding-top: 30px;
+            margin: 0; /* 移除預設 margin */
         }
 
+        /* Overlay 樣式 */
+        .overlay {
+            height: 100%;
+            width: 100%;
+            display: none;
+            position: fixed;
+            z-index: 1040; /* 高於 navbar */
+            top: 0;
+            left: 0;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.9);
+            overflow-y: auto; /* 允許滾動 */
+        }
+
+        .overlay-content {
+            position: relative;
+            top: 15%; /* 調整內容位置 */
+            width: 100%;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .overlay a {
+            padding: 8px;
+            text-decoration: none;
+            font-size: 36px;
+            color: #e9e9e9;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .overlay a:hover,
+        .overlay a:focus {
+            color: #f1f1f1;
+        }
+
+      
+
+        .content-flex-section {
+            font-size: 24px;
+            }
+
+            .content-flex-section img {
+            font-size: 24px;
+            }
+
+        /* ============================== RWD 調整 ============================== */
+
+        /* 針對較小的平板和手機 (<= 767.98px) */
+        @media (max-width: 767.98px) {
+            .navbar-brand span {
+                font-size: 0.9rem; /* 縮小導航列品牌字體 */
+            }
+
+            .navbar-brand img {
+                width: 45px;
+                height: 45px;
+            }
+
+            .navbar-nav .nav-link {
+                padding: 0.7rem 0.8rem;
+                font-size: 15px;
+            }
+
+            .banner-section {
+                height: 350px; /* 縮小 Banner 高度 */
+                margin-top: 60px; /* 保持與 fixed navbar 的間距 */
+            }
+
+            #bannertext h1 {
+                font-size: 2.5rem; /* 縮小 Banner 標題字體 */
+                top: 0; /* 調整為相對位置 */
+            }
+
+            #bannertext p {
+                font-size: 1rem; /* 縮小 Banner 段落字體 */
+                top: 0; /* 調整為相對位置 */
+            }
+
+            #bannertext {
+                gap: 5px; /* 縮小間距 */
+            }
+
+            /* 內容區塊在小螢幕上垂直堆疊 */
+            .content-flex-section,
+            .content-flex-section.reverse {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .content-flex-section img {
+                max-width: 100%; /* 圖片佔滿寬度 */
+                margin-bottom: 20px; /* 圖片下方增加間距 */
+            }
+
+            .content-flex-section p {
+                text-align: center; /* 文字居中 */
+            }
+        }
+
+        /* 針對更小的手機 (<= 575.98px) */
         @media (max-width: 575.98px) {
-            .carousel-item img {
-                height: 250px;
-                /* 縮小輪播圖片高度 */
-                object-fit: contain;
-                /* 確保圖片縮放時不會被裁剪太多 */
+            .navbar-brand span {
+                font-size: 0.8rem; /* 進一步縮小品牌字體 */
             }
 
-            .carousel-caption {
-                padding: 5px 10px;
-                /* 縮小輪播說明文字區塊 */
-                bottom: 10px;
+            .navbar-brand img {
+                width: 40px;
+                height: 40px;
             }
 
+            .navbar-nav .nav-link {
+                padding: 0.6rem 0.7rem;
+                font-size: 14px;
+            }
+
+            .banner-section {
+                height: 250px; /* 進一步縮小 Banner 高度 */
+            }
+
+            #bannertext h1 {
+                font-size: 2rem;
+            }
+
+            #bannertext p {
+                font-size: 0.9rem;
+            }
+
+            .content-placeholder {
+                padding: 30px 20px; /* 縮小內距 */
+            }
+
+            .content-flex-section {
+                padding: 15px; /* 縮小內距 */
+                gap: 15px; /* 縮小間距 */
+            }
+
+            .content-flex-section img {
+                margin-bottom: 15px; /* 縮小圖片下方間距 */
+            }
+
+            .content-flex-section p {
+                font-size: 18px; /* 調整字體大小 */
+            }
+
+            .btn-outline-info {
+                font-size: 1rem;
+                padding: 8px 15px;
+            }
+
+            .overlay-content {
+                top: 10%; /* 在小螢幕上調整 overlay 內容位置 */
+            }
+
+            .overlay a {
+                font-size: 28px; /* 縮小 overlay 連結字體 */
+            }
+
+            .overlay .closebtn {
+                font-size: 40px; /* 縮小關閉按鈕 */
+                top: 15px;
+                right: 20px;
+            }
+        }
+
+        /* 針對極低高度的設備 (例如橫向手機) */
+        @media screen and (max-height: 450px) {
+            .overlay a {
+                font-size: 20px;
+            }
+
+            .overlay .closebtn {
+                font-size: 40px;
+                top: 15px;
+                right: 35px;
+            }
         }
     </style>
 </head>
@@ -217,8 +443,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="/mpdept.html">指揮鏈</a></li>
-                            <li><a class="dropdown-item" href="/daily.html">日常勤務</a></li>
-                            <li><a class="dropdown-item" href="/event.html">活動紀錄</a></li>
+                            <li><a class="dropdown-item" href="#">活動</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
@@ -241,7 +466,7 @@
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="/MPDSC.html">勤務支援大隊</a></li>
                             <li><a class="dropdown-item" href="/MPSSC.html">特種勤務大隊</a></li>
-                            <li><a class="dropdown-item" href="#">憲兵訓練中心</a></li>
+                            <li><a class="dropdown-item" href="/MPTC.html">憲兵訓練中心</a></li>
                             <li><a class="dropdown-item" href="/MPIO.html">督察室</a></li>
                             <li><a class="dropdown-item" href="/MPRPC.html">獎懲委員會</a></li>
                         </ul>
@@ -267,12 +492,74 @@
             </div>
         </div>
     </nav>
-    <div class="p-5 bg-primary text-white text-center" id="bannertext">
-        <h1>活動紀錄</h1>
-        <p></p>
+    <div class="banner-section">
+        <img src="/images/image111111155555.png" alt="Banner Image" class="banner-image">
+        <div id="bannertext">
+            <h1>活動</h1>
+            <p>event</p>
+        </div>
     </div>
+    <div id="myNav" class="overlay">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <div class="overlay-content">
+            <a href="#dailytraining">日常訓練</a>
+            <a href="#project">演習</a>
+            <a href="#rej">外交活動</a>
+            <a href="#gamenight">GameNight</a>
+        </div>
+    </div>
+    <button type="button" class="btn btn-outline-info"> <span style="font-size:30px;cursor:pointer;"
+            onclick="openNav()">&#9776; 活動種類</span></button>
+    <div class="content-placeholder">
+        <p style="font-size: 20px;text-align: center;"><strong>辦理活動目的，增加團隊凝聚力、團隊合作、增進實力</strong></p>
+    </div>
+
+    <div class="content-flex-section" id="dailytraining">
+        <img src="/images/image56897.png" alt="特勤隊訓練圖">
+        <p>
+            <strong>日常訓練種類：戰鬥訓練、CQB訓練、射擊訓練...更多</strong>
+        </p>
+    </div>
+    <div class="content-flex-section reverse">
+        <p><strong>訓練提升自我實力，持續參加訓練會有成就感</strong></p>
+        <img src="/images/3773716831_11750841896_1738162830453.png" alt="特勤隊訓練圖">
+    </div>
+    <div class="content-flex-section">
+        <img src="/images/3773716831_11750841896_1738162865563.png" alt="特勤隊訓練圖">
+        <p>
+            <strong>訓練多樣化，等你的加入</strong>
+        </p>
+    </div>
+
+    <div class="content-flex-section reverse" id="project">
+        <p><strong>不定期舉辦演習，演習目的是驗收訓練成效，並實戰訓練</strong></p>
+        <img src="/images/3773716831_11750841896_1741441048514.png" alt="特勤隊訓練圖">
+    </div>
+
+    <div class="content-flex-section" id="rej">
+        <img src="/images/2024-12-28_211122.png" alt="特勤隊訓練圖">
+        <p>
+            <strong>外交護衛，需高專注、隨時注意周遭，保護外賓</strong>
+        </p>
+    </div>
+
+    <div class="content-flex-section reverse" id="gamenight">
+        <p><strong>不定期舉辦GameNight，若有想和大家一起玩的遊戲都能提出來</strong></p>
+        <img src="/images/2714420802_6681647040_1749978384278.png" alt="gamenight">
+    </div>
+
 </body>
 <footer>
     <p>© 2025 中華民國陸軍事基地 憲兵指揮部版權所屬 <br><span style="color:red">嚴禁抄襲，違者必追究</span></p>
 </footer>
+<script>
+    function openNav() {
+        document.getElementById("myNav").style.display = "block";
+    }
+
+    function closeNav() {
+        document.getElementById("myNav").style.display = "none";
+    }
+</script>
+
 </html>
