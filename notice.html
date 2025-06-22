@@ -528,6 +528,32 @@
                 height: 300px; /* Adjust carousel height for landscape */
             }
         }
+        @media (max-width: 767.98px) { /* 或者您 navbar-toggler 觸發的 breakpoint */
+    .navbar-collapse {
+        /* 確保在小螢幕展開時可以滾動 */
+        max-height: calc(100vh - 60px); /* 假設 navbar 高度約 60px，減去它以避免超出螢幕 */
+        overflow-y: auto; /* 允許垂直滾動 */
+        -webkit-overflow-scrolling: touch; /* 改善 iOS 上的滾動體驗 */
+        .navbar-nav {
+        height: auto; /* 讓導覽列項目高度自動調整 */
+    }
+    .navbar-nav .nav-item {
+        height: auto; /* 讓導覽列項目高度自動調整 */
+    }
+    }
+
+    /* 確保下拉菜單在小螢幕展開時有足夠空間 */
+    .navbar-nav .dropdown-menu {
+        position: static; /* 在手機模式下通常將下拉菜單設為靜態定位，使其在流中顯示 */
+        width: 100%; /* 讓它佔滿寬度 */
+        box-shadow: none; /* 移除陰影，使其看起來更像導覽列的一部分 */
+        border-top: 1px solid rgba(255, 255, 255, 0.1); /* 添加分隔線 */
+    }
+
+    .navbar-nav .dropdown-item {
+        padding-left: 2.5rem; /* 增加縮進，使其看起來像子選項 */
+    }
+}
     </style>
 
 <body>
