@@ -534,7 +534,7 @@
         max-height: calc(100vh - 60px); /* 假設 navbar 高度約 60px，減去它以避免超出螢幕 */
         overflow-y: auto; /* 允許垂直滾動 */
         -webkit-overflow-scrolling: touch; /* 改善 iOS 上的滾動體驗 */
-        .navbar-nav {
+    .navbar-nav {
         height: auto; /* 讓導覽列項目高度自動調整 */
     }
     .navbar-nav .nav-item {
@@ -589,7 +589,6 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="/mpdept.html">指揮鏈</a></li>
-
                             <li><a class="dropdown-item" href="/event.html">活動</a></li>
                         </ul>
                     </li>
@@ -603,6 +602,7 @@
                             <li><a class="dropdown-item" href="/DCO.html">副指揮官</a></li>
                             <li><a class="dropdown-item" href="/COS.html">參謀長</a></li>
                             <li><a class="dropdown-item" href="/DCOS.html">副參謀長</a></li>
+                            <li><a class="dropdown-item" href="/history.html">歷屆高層</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
@@ -633,6 +633,7 @@
                                     href="https://sites.google.com/view/robloxrocaaasfc/%E9%A6%96%E9%A0%81">陸軍航空特戰指揮部</a>
                             </li>
                             <li><a class="dropdown-item" href="https://sites.google.com/view/roca2022">ROCA官方網站</a></li>
+                                <li><a class="dropdown-item" href="/creater.html">製作名單</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -652,18 +653,16 @@
         <p style="font-size: 18px;">這裡將發佈對外公告</p>
         <p style="font-size: 18px;">加入我們了解更多</p>
         <div class="row mb-3">
-            <div class="col-6 col-md-3">
+            <div class="col-6 col-md-4">
                 <button class="tablink w-100" onclick="openPage('notice', this, 'dark')" id="defaultOpen">指揮部公告</button>
             </div>
-            <div class="col-6 col-md-3">
+            <div class="col-6 col-md-4">
                 <button class="tablink w-100" onclick="openPage('conscript', this, 'dark')">招募公告</button>
             </div>
-            <div class="col-6 col-md-3" style="align-items: center;">
+            <div class="col-6 col-md-4" style="align-items: center;">
                 <button class="tablink w-100" onclick="openPage('SSC', this, 'dark')">特勤隊公告</button>
             </div>
-            <div class="col-6 col-md-3" style="align-items: center;">
-                <button class="tablink w-100" onclick="openPage('creater', this, 'dark')">製作人員名單</button>
-            </div>
+        
 
         </div>
 
@@ -704,22 +703,7 @@
                     </li>
                 </ul>
             </div>
-            <div id="creater" class="tabcontent">
-                <ul class="list-unstyled">
-                    <li class="row">
-                        <span class="col-12 col-md-auto">製作人員</span>
-                        <p class="col">Justin_chiu27</p>
-                    </li>
-                    <li class="row">
-                        <span class="col-12 col-md-auto">協作人員</span>
-                        <p class="col">XxChortleKidd</p>
-                    </li>
-                    <li class="row">
-                        <span class="col-12 col-md-auto">協作人員</span>
-                        <p class="col">rockroll901</p>
-                    </li>
-                </ul>
-            </div>
+     
         </div>
     </div>
     </div>
@@ -797,8 +781,10 @@
             <span class="visually-hidden">Next</span>
         </button>
     </div>
+     <img src="/images/2025-06-23213022221.png" alt="" width="100%" height="150" style="object-fit: contain;align-items: center;">
 </body>
 <footer>
+   
     <p>© 2025 中華民國陸軍事基地 憲兵指揮部版權所屬 <br><span style="color:red">嚴禁抄襲，違者必追究</span></p>
 </footer>
 <script>
