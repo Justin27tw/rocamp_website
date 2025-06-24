@@ -756,7 +756,6 @@
     <div id="splash-screen">
         <h1 style="background-color: whitesmoke;opacity: 0.7;width: 100%;text-align: center;">歡迎蒞臨<br>國防部憲兵指揮部網站<br> <i
                 class="fa fa-spinner fa-spin" style="color: red;"></i><span style="color: red;">載入中</span></h1>
-                
     </div>
     <!-- 主內容 -->
     <div id="main-content">
@@ -1059,144 +1058,239 @@
 </div>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        // Navbar active 狀態處理
+        // --- 載入畫面邏輯處理 START ---
         const splashScreen = document.getElementById("splash-screen");
-      
-        const content = document.getElementById("main-content");
-        setTimeout(function () {
-            splashScreen.style.display = "none";
-            content.style.display = "block";
-        }, 4000); // 2秒後隱藏啟動畫面
+        const mainContent = document.getElementById("main-content");
+        const hasVisited = localStorage.getItem('hasVisitedWebsite'); // 檢查 localStorage 中是否有 'hasVisitedWebsite' 標記
+
+        if (hasVisited) {
+            // 如果標記存在，表示不是第一次訪問，立即隱藏載入畫面並顯示主要內容
+            if (splashScreen) {
+                splashScreen.style.display = 'none'; // 直接隱藏，無需淡出
+            }
+            if (mainContent) {
+                mainContent.style.display = 'block'; // 顯示主要內容
+            }
+        } else {
+            // 如果標記不存在，表示是第一次訪問
+            if (splashScreen && mainContent) {
+                // 假設 splashScreen 預設是顯示的，這裡確保它保持顯示直到計時器結束
+                // splashScreen.style.display = 'flex'; // 或 'block' 取決於你的CSS
+
+                // 2 秒後觸發載入畫面淡出，然後徹底隱藏並顯示主要內容
+                setTimeout(function () {
+                    splashScreen.classList.add('hidden'); // 添加 'hidden' class 觸發 CSS 淡出效果 (需要搭配CSS transition)
+                    // 等待淡出動畫完成後，再徹底移除元素或設為 display: none
+                    splashScreen.addEventListener('transitionend', function handleTransitionEnd() {
+                        splashScreen.style.display = 'none';
+                        mainContent.style.display = 'block';
+                        splashScreen.removeEventListener('transitionend', handleTransitionEnd); // 移除事件監聽器，避免重複觸發
+                    }, { once: true }); // 確保事件監聽器只觸發一次
+                }, 2000); // 將時間改為 2000 毫秒 (2 秒)，與註解相符
+
+                // 設定標記到 localStorage，表示使用者已經訪問過一次了
+                localStorage.setItem('hasVisitedWebsite', 'true');
+            } else {
+                // 如果載入畫面或主要內容元素不存在，直接確保主要內容顯示 (以防萬一)
+                if (mainContent) {
+                    mainContent.style.display = 'block';
+                }
+            }
+        }
+        // --- 載入畫面邏輯處理 END ---
+
+
+        // --- Navbar active 狀態處理 START ---
         const currentPath = window.location.pathname;
         const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+
         navLinks.forEach(link => {
             link.classList.remove('active');
             link.removeAttribute('aria-current');
 
             const linkHref = link.getAttribute('href');
 
+            // 處理首頁或根路徑的 active 狀態
             if (
                 (currentPath === '/' || currentPath.endsWith('/index.html') || currentPath.endsWith('/')) &&
                 (linkHref === 'index.html' || linkHref === '#' || linkHref === '/')
             ) {
-                if (link.textContent.trim() === '首頁') {
+                if (link.textContent.trim() === '首頁') { // 確保這是針對首頁連結
                     link.classList.add('active');
                     link.setAttribute('aria-current', 'page');
                 }
-            } else if (linkHref && linkHref !== '#' && currentPath.includes(linkHref)) {
+            }
+            // 處理其他頁面的 active 狀態
+            else if (linkHref && linkHref !== '#' && currentPath.includes(linkHref)) {
                 link.classList.add('active');
                 link.setAttribute('aria-current', 'page');
             }
         });
+        // --- Navbar active 狀態處理 END ---
 
-        // 視差滾動效果
+
+        // --- 視差滾動效果 START ---
         const bannerSection = document.querySelector('.banner-section');
         const bannerImage = document.querySelector('.banner-image');
 
         function parallaxScroll() {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            const rect = bannerSection.getBoundingClientRect();
-            const bannerTop = rect.top;
+            // 只有當元素存在時才執行視差效果
+            if (bannerSection && bannerImage) {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const rect = bannerSection.getBoundingClientRect();
+                const bannerTop = rect.top;
 
-            if (rect.bottom > 0 && bannerTop < window.innerHeight) {
-                const distanceScrolled = Math.max(0, -bannerTop);
-                const parallaxFactor = 0.3;
-                const yPos = distanceScrolled * parallaxFactor;
-                bannerImage.style.transform = `translateY(${yPos}px)`;
-            } else {
-                bannerImage.style.transform = `translateY(0px)`;
+                // 檢查橫幅是否在視窗範圍內，以避免不必要的計算
+                if (rect.bottom > 0 && bannerTop < window.innerHeight) {
+                    const distanceScrolled = Math.max(0, -bannerTop);
+                    const parallaxFactor = 0.3; // 視差滾動的強度
+                    const yPos = distanceScrolled * parallaxFactor;
+                    bannerImage.style.transform = `translateY(${yPos}px)`;
+                } else {
+                    // 當橫幅離開視窗時，重置圖片位置，避免視覺跳動
+                    bannerImage.style.transform = `translateY(0px)`;
+                }
             }
         }
 
-        window.addEventListener('scroll', parallaxScroll);
-        parallaxScroll();
+        // 只有當相關元素存在時才監聽滾動事件
+        if (bannerSection && bannerImage) {
+            window.addEventListener('scroll', parallaxScroll);
+            parallaxScroll(); // 頁面載入時先執行一次，以確保初始位置正確
+        }
+        // --- 視差滾動效果 END ---
 
-        // 垂直新聞快訊跑馬燈 JavaScript
+
+        // --- 垂直新聞快訊跑馬燈 JavaScript START ---
         const newsList = document.querySelector('.news-list');
-        const newsItemsOriginal = Array.from(newsList.querySelectorAll('li')); // 原始新聞項目
-        if (newsItemsOriginal.length === 0) return; // 如果沒有新聞項目則退出
-        // news-ticker 的 JS 已經是動態獲取 itemHeight，所以通常不需要特別調整
-        // 只要確保 CSS 中對 li 的高度調整在媒體查詢中生效即可
-        const itemHeight = newsItemsOriginal[0].offsetHeight; // 獲取單個項目高度
-        let currentIndex = 0; // 當前顯示項目索引
-        let tickerInterval; // 定時器變量
 
-        const slideDuration = 500; // 滑動動畫持續時間 (毫秒)
+        // 重要的檢查：確保新聞列表元素存在，否則後續程式碼會報錯
+        if (!newsList) {
+            console.warn("警告：未找到 '.news-list' 元素。新聞跑馬燈功能將無法啟動。請確認 HTML 結構。");
+            return; // 如果沒有找到必要元素，則提前結束 DOMContentLoaded 函式
+        }
+
+        const newsItemsOriginal = Array.from(newsList.querySelectorAll('li')); // 獲取所有原始新聞項目
+
+        // 重要的檢查：如果沒有新聞項目，跑馬燈也沒有運行的必要
+        if (newsItemsOriginal.length === 0) {
+            console.warn("警告：'.news-list' 中沒有找到新聞項目 (li)。新聞跑馬燈功能將無法啟動。");
+            return;
+        }
+
+        // 獲取單個項目高度。確保在獲取高度時元素已渲染。
+        // 如果 li 元素是動態載入或其樣式導致 height 為 0，這裡會出問題。
+        // 建議在 CSS 中為 li 設定明確的 height 和 line-height。
+        const itemHeight = newsItemsOriginal[0].offsetHeight;
+        if (itemHeight === 0) {
+            console.error("錯誤：新聞項目 (li) 的高度為 0。請檢查 .news-list li 的 CSS 樣式 (例如 height, line-height)。");
+            return;
+        }
+
+        let currentIndex = 0; // 當前顯示項目索引
+        let tickerInterval; // 用於儲存 setInterval 的 ID，以便之後清除
+
+        const slideDuration = 500; // 單次滑動動畫持續時間 (毫秒)
         const pauseDuration = 3000; // 每個項目顯示停留時間 (毫秒)
 
         function showNextNews() {
-            // 如果當前索引已經是原始列表的最後一個，準備無縫循環
+            // 在每次滑動前重新設定 transition，確保動畫效果
+            newsList.style.transition = `transform ${slideDuration / 1000}s ease-in-out`;
+
             if (currentIndex >= newsItemsOriginal.length - 1) {
-                // 複製第一個項目並添加到列表末尾，實現平滑過渡
+                // 當前是最後一個項目時，準備無縫循環
+                // 複製第一個項目並添加到列表末尾，視覺上創造無限滾動的效果
                 const firstItemClone = newsItemsOriginal[0].cloneNode(true);
                 newsList.appendChild(firstItemClone);
 
-                // 設定目標轉換位置為複製的第一個項目 (即總高度的一半)
+                // 設定目標轉換位置，使其滑動到複製的第一個項目
                 newsList.style.transform = `translateY(-${(currentIndex + 1) * itemHeight}px)`;
 
-                // 在動畫結束後立即重置位置並移除複製的項目
+                // 在動畫結束後，立即重置位置並移除複製的項目
                 setTimeout(() => {
-                    newsList.style.transition = 'none'; // 暫時禁用過渡
+                    newsList.style.transition = 'none'; // 暫時禁用過渡，以便瞬移
                     newsList.style.transform = `translateY(0px)`; // 瞬移回頂部
-                    newsList.removeChild(firstItemClone); // 移除複製的項目
-                    currentIndex = 0; // 重置索引
-                    // 強制瀏覽器重繪，確保 transition 禁用生效
-                    newsList.offsetHeight;
-                    // 重新啟用過渡
-                    newsList.style.transition = `transform ${slideDuration / 1000}s ease-in-out`;
+                    if (newsList.lastChild === firstItemClone) { // 安全檢查，確保移除的是複製的節點
+                        newsList.removeChild(firstItemClone);
+                    }
+                    currentIndex = 0; // 重置索引到第一個項目
+
+                    // 強制瀏覽器重繪 (Reflow/Repaint)，確保 transition 的 'none' 生效
+                    // 這是確保在下一輪動畫前，transform 屬性已經被瀏覽器更新的常用技巧
+                    newsList.offsetHeight; // 讀取一個會觸發重繪的屬性
+                    // 不需要在此重新啟用過渡，因為 showNextNews 每次開始都會設定它
                 }, slideDuration);
 
             } else {
+                // 如果不是最後一個項目，則正常滑動到下一個項目
                 currentIndex++; // 移到下一個項目
                 newsList.style.transform = `translateY(-${currentIndex * itemHeight}px)`;
             }
         }
 
         function startTicker() {
-            // 避免重複設定 setInterval
+            // 避免重複啟動定時器
             if (tickerInterval) clearInterval(tickerInterval);
-            // 初始顯示第一個項目
-            // 設置定時器，在每個項目停留一段時間後，觸發下一個動畫
+            // 設定定時器，每隔一段時間（滑動時間 + 停留時間）觸發一次 showNextNews
             tickerInterval = setInterval(showNextNews, slideDuration + pauseDuration);
         }
 
         function pauseTicker() {
-            clearInterval(tickerInterval);
+            clearInterval(tickerInterval); // 清除定時器，停止跑馬燈
         }
 
         // 監聽鼠標懸停事件以暫停/繼續跑馬燈
         const newsTickerContainer = document.querySelector('.news-ticker-container');
-        newsTickerContainer.addEventListener('mouseenter', pauseTicker);
-        newsTickerContainer.addEventListener('mouseleave', startTicker);
+        if (newsTickerContainer) { // 確保跑馬燈容器存在
+            newsTickerContainer.addEventListener('mouseenter', pauseTicker);
+            newsTickerContainer.addEventListener('mouseleave', startTicker);
+        } else {
+            console.warn("警告：未找到 '.news-ticker-container' 元素。鼠標懸停暫停功能將失效。");
+        }
+
 
         // 確保至少有兩個項目才啟動滾動，否則沒有滾動的必要
+        // (因為只有一個項目時，它不會移動)
         if (newsItemsOriginal.length > 1) {
-            startTicker();
+            startTicker(); // 啟動跑馬燈
         }
+        // --- 垂直新聞快訊跑馬燈 JavaScript END ---
     });
+
+    // --- Tab 頁籤切換功能 START ---
+    // openPage 函式不屬於 DOMContentLoaded 的範圍，所以放在外面是正確的
     function openPage(pageName, elmnt, color) {
-        // Hide all elements with class="tabcontent" by default */
         var i, tabcontent, tablinks;
+
+        // 隱藏所有帶有 class="tabcontent" 的元素
         tabcontent = document.getElementsByClassName("tabcontent");
         for (i = 0; i < tabcontent.length; i++) {
             tabcontent[i].style.display = "none";
         }
 
-        // Remove the background color of all tablinks/buttons
+        // 移除所有 tablinks/按鈕的背景顏色
         tablinks = document.getElementsByClassName("tablink");
         for (i = 0; i < tablinks.length; i++) {
             tablinks[i].style.backgroundColor = "";
         }
 
-        // Show the specific tab content
+        // 顯示指定的頁籤內容
         document.getElementById(pageName).style.display = "block";
 
-        // Add the specific color to the button used to open the tab content
+        // 為用於開啟此頁籤內容的按鈕添加指定的背景顏色
         elmnt.style.backgroundColor = color;
     }
 
-    // Get the element with id="defaultOpen" and click on it
-    document.getElementById("defaultOpen").click();
+    // 在 DOM 載入完成後自動點擊預設開啟的頁籤
+    document.addEventListener('DOMContentLoaded', function() {
+        const defaultOpenElement = document.getElementById("defaultOpen");
+        if (defaultOpenElement) {
+            defaultOpenElement.click(); // 模擬點擊操作
+        } else {
+            console.warn("警告：未找到 id 為 'defaultOpen' 的元素，無法自動點擊。");
+        }
+    });
+    // --- Tab 頁籤切換功能 END ---
 </script>
 
 </html>
