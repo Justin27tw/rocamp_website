@@ -10,31 +10,49 @@
     <title>ROCA MP</title>
     <link rel="icon" type="image/png" href="/images/Png.png">
     <style>
-        #splash-screen {
+               /* 確保載入畫面預設是顯示的 */
+               #splash-screen {
+            display: flex; /* 或 block，取決於你的設計，flex 常用於居中內容 */
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: #fff;
-            display: flex;
+            background-color: rgba(255, 255, 255, 0.95); /* 半透明白色背景 */
             justify-content: center;
             align-items: center;
-            flex-direction: column;
-            object-fit: cover;
-            z-index: 999;
-            /* 確保在最上層 */
-            background-image: url(/images/ROCAMP_logo2.png);
-            filter: grayscale(5%) brightness(90%);
-            background-repeat: no-repeat;
-            color: black;
+            z-index: 9999; /* 確保在最上層 */
+            transition: opacity 0.5s ease-out, visibility 0.5s ease-out; /* 淡出動畫效果 */
+            flex-direction: column; /* 讓內容垂直排列 */
+            gap: 20px; /* 元素之間的間距 */
         }
 
+        /* 載入畫面隱藏時的樣式 */
+        #splash-screen.hidden {
+            opacity: 0; /* 完全透明 */
+            visibility: hidden; /* 隱藏元素，使其不可交互 */
+            pointer-events: none; /* 確保完全無法點擊或選擇 */
+        }
 
+        /* 載入動畫 (簡單的旋轉圖示) */
+        .spinner {
+            border: 8px solid #f3f3f3;
+            border-top: 8px solid #3498db;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* 主要內容預設隱藏 */
         #main-content {
             display: none;
         }
-
         /* 移除 Bootstrap 預設的一些邊距，使內容更緊湊 */
         body {
             margin: 0;
@@ -754,6 +772,7 @@
 <body>
     <!-- 載入畫面 -->
     <div id="splash-screen">
+        <div class="spinner"></div>
         <h1 style="background-color: whitesmoke;opacity: 0.7;width: 100%;text-align: center;">歡迎蒞臨<br>國防部憲兵指揮部網站<br> <i
                 class="fa fa-spinner fa-spin" style="color: red;"></i><span style="color: red;">載入中</span></h1>
     </div>
@@ -1057,46 +1076,53 @@
 </footer>
 </div>
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // --- 載入畫面邏輯處理 START ---
-        const splashScreen = document.getElementById("splash-screen");
-        const mainContent = document.getElementById("main-content");
-        const hasVisited = localStorage.getItem('hasVisitedWebsite'); // 檢查 localStorage 中是否有 'hasVisitedWebsite' 標記
+   document.addEventListener('DOMContentLoaded', function() {
+            const splashScreen = document.getElementById("splash-screen");
+            const mainContent = document.getElementById("main-content");
+            const hasVisited = localStorage.getItem('hasVisitedWebsite'); // 檢查是否已訪問過
 
-        if (hasVisited) {
-            // 如果標記存在，表示不是第一次訪問，立即隱藏載入畫面並顯示主要內容
-            if (splashScreen) {
-                splashScreen.style.display = 'none'; // 直接隱藏，無需淡出
-            }
-            if (mainContent) {
-                mainContent.style.display = 'block'; // 顯示主要內容
-            }
-        } else {
-            // 如果標記不存在，表示是第一次訪問
-            if (splashScreen && mainContent) {
-                // 假設 splashScreen 預設是顯示的，這裡確保它保持顯示直到計時器結束
-                // splashScreen.style.display = 'flex'; // 或 'block' 取決於你的CSS
-
-                // 2 秒後觸發載入畫面淡出，然後徹底隱藏並顯示主要內容
-                setTimeout(function () {
-                    splashScreen.classList.add('hidden'); // 添加 'hidden' class 觸發 CSS 淡出效果 (需要搭配CSS transition)
-                    // 等待淡出動畫完成後，再徹底移除元素或設為 display: none
-                    splashScreen.addEventListener('transitionend', function handleTransitionEnd() {
-                        splashScreen.style.display = 'none';
-                        mainContent.style.display = 'block';
-                        splashScreen.removeEventListener('transitionend', handleTransitionEnd); // 移除事件監聽器，避免重複觸發
-                    }, { once: true }); // 確保事件監聽器只觸發一次
-                }, 2000); // 將時間改為 2000 毫秒 (2 秒)，與註解相符
-
-                // 設定標記到 localStorage，表示使用者已經訪問過一次了
-                localStorage.setItem('hasVisitedWebsite', 'true');
-            } else {
-                // 如果載入畫面或主要內容元素不存在，直接確保主要內容顯示 (以防萬一)
+            if (hasVisited) {
+                // 如果已訪問過，直接隱藏載入畫面，顯示主要內容
+                if (splashScreen) {
+                    splashScreen.style.display = 'none';
+                }
                 if (mainContent) {
                     mainContent.style.display = 'block';
                 }
+            } else {
+                // 第一次訪問
+                if (splashScreen && mainContent) {
+                    // 確保載入畫面顯示
+                    splashScreen.style.display = 'flex'; // 或 'block'，根據你的 CSS 設計
+
+                    // 在預設時間（例如 2 秒）後開始淡出載入畫面
+                    setTimeout(function() {
+                        splashScreen.classList.add('hidden'); // 添加 'hidden' class 觸發 CSS 淡出
+
+                        // 等待 CSS 淡出動畫完成後，徹底隱藏載入畫面並顯示主要內容
+                        splashScreen.addEventListener('transitionend', function handleTransitionEnd() {
+                            splashScreen.style.display = 'none';
+                            if (mainContent) {
+                                mainContent.style.display = 'block';
+                            }
+                            // 移除事件監聽器，避免重複觸發
+                            splashScreen.removeEventListener('transitionend', handleTransitionEnd);
+                        }, { once: true }); // { once: true } 確保監聽器只觸發一次
+
+                        // 設定標記到 localStorage，表示使用者已看過載入畫面
+                        localStorage.setItem('hasVisitedWebsite', 'true');
+
+                    }, 2000); // 載入畫面顯示 2 秒後開始淡出
+
+                } else {
+                    // 如果找不到載入畫面或主內容元素，直接顯示主內容（備用）
+                    if (mainContent) {
+                        mainContent.style.display = 'block';
+                    }
+                    console.warn("警告：未找到 'splash-screen' 或 'main-content' 元素。載入畫面邏輯可能無法正常運作。");
+                }
             }
-        }
+    
         // --- 載入畫面邏輯處理 END ---
 
 
