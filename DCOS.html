@@ -18,6 +18,7 @@
             /* 防止水平滾動條 */
             /* 設置基礎字體大小，以便 rem 單位進行計算 */
             font-size: 16px;
+            background-color:whitesmoke;
 
             /* 基準字體大小 */
         }
@@ -110,6 +111,18 @@
             color: white;
         }
 
+        .hicomnav {
+            width: 100%;
+            height: 50px; /* 增加高度以容納按鈕並提供間距 */
+            padding-top: 90px; /* 這裡的 padding-top 讓它從 navbar 下方開始 */
+            background-color: whitesmoke; /* 為按鈕區域設定一個背景色 */
+        }
+/* 新增的內容區域樣式 */
+#highnav button a{
+    
+color:whitesmoke;
+text-decoration: none;
+}
         /* 新增的內容區域樣式 */
         .content-section {
             padding-top: 80px;
@@ -215,20 +228,24 @@
         #dcos p{
 
             text-align: center;
-            margin-top: 30px;font-size: 20px;
+            margin-top: 30px;
+            font-size: 24px;
 
         }
 
-        #profilehistory p strong{
+        #profilehhistory p strong{
             font-size: 24px;
             font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 
         }   
 
-        #profilehistory.ul li{
+        #profilehhistory.ul li{
             font-size: 20px;
             gap: 10px;
             font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+        #profilehhistory ul li p span{
+          color:darkgoldenrod;
         }
 
         /* 新增的按鈕和可展開區塊樣式 */
@@ -251,7 +268,7 @@
         .expandable-content p {
             font-size: 1.05rem;
             line-height: 1.7;
-            color: #495057;
+           color: #000;
             margin-bottom: 10px;
         }
 
@@ -399,7 +416,12 @@
             </div>
         </div>
     </nav>
-
+</div>
+<div class="hicomnav d-flex justify-content-center align-items-center gap-5"id="highnav">
+    <button type="button" class="btn btn-warning"><a href="/CO.html" >指揮官</a></button>
+    <button type="button" class="btn btn-primary"><a href="/DCO.html" >副指揮官</a></button>
+    <button type="button" class="btn btn-success" ><a href="/COS.html" >參謀長</a></button>
+</div>
     <div class="content-section">
         <div class="container profile-card">
             <div class="row g-0">
@@ -409,21 +431,26 @@
                     </div>
                     <div class="profile-image-container" id="dcos">
                         <img src="/images/dcos.png" alt="副參謀長Justin_chiu27" class="img-fluid">
-                        <p><strong>副參謀長</strong><br>Justin_chiu27 (少尉)</p>
+                        <p><strong>副參謀長</strong><br>Justin_chiu27</p>
                     </div>
                 </div>
                 <div class="col-md-8 text-col" id="profilehhistory">
                     <p><strong>經歷：</strong></p>
                     <ul>
-                        <li><p>憲兵指揮部 副參謀長</p></li>
                             
-                        <li><p>陸軍官校 文書官</p></li>
+                        <li><p>憲兵指揮部 副參謀長<span>(現任)</span></p></li>
+
+                        <li><p>陸軍官校 文書官<span>(現任)</span></p></li>
                             
+                        <li><p>教準部 入伍訓指導員<span>(現任)</span></p></li>
+
+                        <li><p>國防部高等軍事法庭-法制委員會 第二屆憲兵代表 委員<span>(現任)</span></p></li>    
+
+                        <li><p>憲兵指揮部 獎懲委員會 委員<span>(現任)</span></p></li>
+                       
+                        <li><p>革命解放陣線 新進陣線成員<span>(現任)</span></p></li>
+
                         <li><p>憲兵指揮部 督導</p></li>
-                            
-                        <li><p>教準部 入伍訓指導員</p></li>
-                            
-                        <li><p>革命解放陣線 新進成員</p></li>
                             
                         <li><p>憲兵指揮部 勤務支援大隊 大隊長</p></li>
                             
@@ -440,8 +467,8 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-12 col-md-8 text-center">
-                    <button class="btn btn-primary btn-lg" type="button" data-bs-toggle="collapse" data-bs-target="#collapseText" aria-expanded="false" aria-controls="collapseText">
-                       了解副參謀長更多
+                    <button type="button" class="btn btn-warning btn-lg"data-bs-toggle="collapse" data-bs-target="#collapseText" aria-expanded="false" aria-controls="collapseText">
+                       了解更多關於副參謀長
                     </button>
                     <div class="collapse" id="collapseText">
                         <div class="expandable-content mt-3">
