@@ -18,8 +18,7 @@
             /* 防止水平滾動條 */
             /* 設置基礎字體大小，以便 rem 單位進行計算 */
             font-size: 16px;
-            background-color:whitesmoke;
-
+            background-color: whitesmoke;
             /* 基準字體大小 */
         }
 
@@ -111,18 +110,56 @@
             color: white;
         }
 
+
+        /* 下拉選單樣式 (Bootstrap 5) */
+        .navbar-nav .dropdown-menu {
+            background-color: #343330;
+            border: none;
+            border-radius: 0;
+            padding: 0;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+            display: block;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .navbar-nav .dropdown-menu.show {
+            opacity: 1;
+            transform: translateY(0);
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        .navbar-nav .dropdown-item {
+            color: rgba(255, 255, 255, 0.75);
+            padding: 0.75rem 1.5rem;
+        }
+
+        .navbar-nav .dropdown-item:hover,
+        .navbar-nav .dropdown-item:focus {
+            background-color: #495057;
+            color: white;
+        }
+
         .hicomnav {
             width: 100%;
-            height: 50px; /* 增加高度以容納按鈕並提供間距 */
-            padding-top: 90px; /* 這裡的 padding-top 讓它從 navbar 下方開始 */
-            background-color: whitesmoke; /* 為按鈕區域設定一個背景色 */
+            height: 50px;
+            /* 增加高度以容納按鈕並提供間距 */
+            padding-top: 90px;
+            /* 這裡的 padding-top 讓它從 navbar 下方開始 */
+            background-color: whitesmoke;
+            /* 為按鈕區域設定一個背景色 */
         }
-/* 新增的內容區域樣式 */
-#highnav button a{
-    
-color:whitesmoke;
-text-decoration: none;
-}
+
+        /* 新增的內容區域樣式 */
+        #highnav button a {
+
+            color: whitesmoke;
+            text-decoration: none;
+        }
+
         /* 新增的內容區域樣式 */
         .content-section {
             padding-top: 80px;
@@ -134,7 +171,8 @@ text-decoration: none;
             /* 使用 Flexbox 確保內容垂直居中 */
             align-items: center;
             /* 垂直居中對齊 */
-            padding-bottom: 20px; /* 給底部留些空間 */
+            padding-bottom: 20px;
+            /* 給底部留些空間 */
         }
 
         .profile-card {
@@ -204,7 +242,7 @@ text-decoration: none;
             /* 文字列的背景色，與圖片背景相同 */
             color: #333;
             background-position: top right;
-            
+
             background-repeat: no-repeat;
             /* 文字顏色 */
         }
@@ -216,8 +254,8 @@ text-decoration: none;
             /* **調整這裡：增加字體大小** */
             line-height: 1.8;
             /* **調整這裡：增加行高** */
-        
-        
+
+
         }
 
         .text-col strong {
@@ -225,7 +263,7 @@ text-decoration: none;
             /* 加粗文字顏色更深 */
         }
 
-        #cos p{
+        #cos p {
 
             text-align: center;
             margin-top: 30px;
@@ -233,27 +271,32 @@ text-decoration: none;
 
         }
 
-        #profilehhistory p strong{
+        #profilehhistory p strong {
             font-size: 24px;
             font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 
-        }   
+        }
 
-        #profilehhistory.ul li{
+        #profilehhistory.ul li {
             font-size: 20px;
             gap: 10px;
             font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
         }
-        #profilehhistory ul li p span{
-          color:darkgoldenrod;
+
+        #profilehhistory ul li p span {
+            color: darkgoldenrod;
         }
 
         /* 新增的按鈕和可展開區塊樣式 */
         .expandable-section {
-            background-color: #f8f9fa; /* 輕微的背景色 */
-            padding: 30px 0; /* 上下內邊距 */
-            margin-top: 30px; /* 與上方內容的間距 */
-            border-top: 1px solid #dee2e6; /* 上方加一條線 */
+            background-color: #f8f9fa;
+            /* 輕微的背景色 */
+            padding: 30px 0;
+            /* 上下內邊距 */
+            margin-top: 30px;
+            /* 與上方內容的間距 */
+            border-top: 1px solid #dee2e6;
+            /* 上方加一條線 */
         }
 
         .expandable-content {
@@ -262,13 +305,13 @@ text-decoration: none;
             border-radius: 8px;
             padding: 25px;
             margin-top: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
         }
 
         .expandable-content p {
             font-size: 1.05rem;
             line-height: 1.7;
-           color: #000;
+            color: #000;
             margin-bottom: 10px;
         }
 
@@ -277,6 +320,7 @@ text-decoration: none;
             margin-bottom: 20px;
             font-size: 1.5rem;
         }
+
         footer {
             width: 100vw;
             height: 100px;
@@ -290,8 +334,9 @@ text-decoration: none;
             justify-items: center;
             padding-top: 30px;
         }
-  /* 響應式調整 */
-  @media (max-width: 767.98px) {
+
+        /* 響應式調整 */
+        @media (max-width: 767.98px) {
             .content-section {
                 padding-top: 70px;
                 /* 小螢幕時調整上邊距 */
@@ -323,6 +368,43 @@ text-decoration: none;
                 max-width: 140px;
                 /* 小螢幕時 Logo 更小 */
             }
+            .navbar-collapse {
+                /* 確保在小螢幕展開時可以滾動 */
+                max-height: calc(100vh - 60px);
+                /* 假設 navbar 高度約 60px，減去它以避免超出螢幕 */
+                overflow-y: auto;
+                /* 允許垂直滾動 */
+                -webkit-overflow-scrolling: touch;
+
+                /* 改善 iOS 上的滾動體驗 */
+                .navbar-nav {
+                    height: auto;
+                    /* 讓導覽列項目高度自動調整 */
+                }
+
+                .navbar-nav .nav-item {
+                    height: auto;
+                    /* 讓導覽列項目高度自動調整 */
+                }
+            }
+
+            /* 確保下拉菜單在小螢幕展開時有足夠空間 */
+            .navbar-nav .dropdown-menu {
+                position: static;
+                /* 在手機模式下通常將下拉菜單設為靜態定位，使其在流中顯示 */
+                width: 100%;
+                /* 讓它佔滿寬度 */
+                box-shadow: none;
+                /* 移除陰影，使其看起來更像導覽列的一部分 */
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                /* 添加分隔線 */
+            }
+
+            .navbar-nav .dropdown-item {
+                padding-left: 2.5rem;
+                /* 增加縮進，使其看起來像子選項 */
+            }
+
         }
     </style>
 
@@ -416,18 +498,18 @@ text-decoration: none;
             </div>
         </div>
     </nav>
-</div>
-<div class="hicomnav d-flex justify-content-center align-items-center gap-5"id="highnav">
-    <button type="button" class="btn btn-warning"><a href="/CO.html" >指揮官</a></button>
-    <button type="button" class="btn btn-primary"><a href="/DCO.html" >副指揮官</a></button>
-    <button type="button" class="btn btn-success" ><a href="/DCOS.html" >副參謀長</a></button>
-</div>
+    </div>
+    <div class="hicomnav d-flex justify-content-center align-items-center gap-5" id="highnav">
+        <button type="button" class="btn btn-warning"><a href="/CO.html">指揮官</a></button>
+        <button type="button" class="btn btn-primary"><a href="/DCO.html">副指揮官</a></button>
+        <button type="button" class="btn btn-success"><a href="/DCOS.html">副參謀長</a></button>
+    </div>
     <div class="content-section">
         <div class="container profile-card">
             <div class="row g-0">
                 <div class="col-md-4 image-col">
                     <div class="logo-image-container">
-                                       
+
                     </div>
                     <div class="profile-image-container" id="cos">
                         <img src="/images/cos.png" alt="參謀長rockroll901" class="img-fluid">
@@ -436,38 +518,70 @@ text-decoration: none;
                 </div>
                 <div class="col-md-8 text-col" id="profilehhistory">
                     <p><strong>經歷：</strong></p>
-                    <ul>    
-                        <li><p>憲兵指揮部 參謀長<span>(現任)</span></p></li>
+                    <ul>
+                        <li>
+                            <p>憲兵指揮部 參謀長<span>(現任)</span></p>
+                        </li>
 
-                        <li><p>憲兵指揮部 獎懲委員會 主席<span>(現任)</span></p></li>
-                         
-                        <li><p>憲兵指揮部 督察室副主任<span>(現任)</span></p></li>
+                        <li>
+                            <p>憲兵指揮部 獎懲委員會 主席<span>(現任)</span></p>
+                        </li>
 
-                         <li><p>革命解放陣線 新進陣線成員<span>(現任)</span></p></li>
-                        
-                         <li><p>陸軍官校 專科班科長<span>(現任)</span></p></li>
-                        
-                         <li><p>教準部 入伍訓指導員<span>(現任)</span></p></li>
-                        
-                         <li><p>陸軍儀隊 排長<span>(現任)</span></p></li>
-                         
-                         <li><p>教準部 職員</p></li>
+                        <li>
+                            <p>憲兵指揮部 督察室副主任<span>(現任)</span></p>
+                        </li>
 
-                         <li><p>教準部 行政綜合部 副主任</p></li>
-                        
-                         <li><p>國防部高等軍事法庭-法制委員會 第一屆憲兵代表 委員</p></li> 
+                        <li>
+                            <p>革命解放陣線 新進陣線成員<span>(現任)</span></p>
+                        </li>
 
-                         <li><p>陸軍官校 專科班教官</p></li>
-                         
-                         <li><p>憲兵指揮部 獎懲委員會 委員</p></li>
-                         
-                         <li><p>憲兵指揮部 督導</p></li>
+                        <li>
+                            <p>陸軍官校 專科班科長<span>(現任)</span></p>
+                        </li>
 
-                         <li><p>憲兵指揮部 特勤隊中隊長</p></li>
-                            
-                        <li><p>憲兵指揮部 營訓練官</p></li>
-                            
-                        <li><p>憲兵指揮部 第三班班長</p></li>
+                        <li>
+                            <p>教準部 入伍訓指導員<span>(現任)</span></p>
+                        </li>
+
+                        <li>
+                            <p>陸軍儀隊 排長<span>(現任)</span></p>
+                        </li>
+
+                        <li>
+                            <p>教準部 職員</p>
+                        </li>
+
+                        <li>
+                            <p>教準部 行政綜合部 副主任</p>
+                        </li>
+
+                        <li>
+                            <p>國防部高等軍事法庭-法制委員會 第一屆憲兵代表 委員</p>
+                        </li>
+
+                        <li>
+                            <p>陸軍官校 專科班教官</p>
+                        </li>
+
+                        <li>
+                            <p>憲兵指揮部 獎懲委員會 委員</p>
+                        </li>
+
+                        <li>
+                            <p>憲兵指揮部 督導</p>
+                        </li>
+
+                        <li>
+                            <p>憲兵指揮部 特勤隊中隊長</p>
+                        </li>
+
+                        <li>
+                            <p>憲兵指揮部 營訓練官</p>
+                        </li>
+
+                        <li>
+                            <p>憲兵指揮部 第三班班長</p>
+                        </li>
                     </ul>
                     <p><strong>勳章&獎章</strong></p>
                     <p>干城獎章</p>
@@ -534,5 +648,6 @@ text-decoration: none;
         });
         // --- Navbar active 狀態處理 END ---
     });
-    </script>
+</script>
+
 </html>

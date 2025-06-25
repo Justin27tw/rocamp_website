@@ -18,8 +18,7 @@
             /* 防止水平滾動條 */
             /* 設置基礎字體大小，以便 rem 單位進行計算 */
             font-size: 16px;
-            background-color:whitesmoke;
-
+            background-color: whitesmoke;
             /* 基準字體大小 */
         }
 
@@ -113,16 +112,21 @@
 
         .hicomnav {
             width: 100%;
-            height: 50px; /* 增加高度以容納按鈕並提供間距 */
-            padding-top: 90px; /* 這裡的 padding-top 讓它從 navbar 下方開始 */
-            background-color: whitesmoke; /* 為按鈕區域設定一個背景色 */
+            height: 50px;
+            /* 增加高度以容納按鈕並提供間距 */
+            padding-top: 90px;
+            /* 這裡的 padding-top 讓它從 navbar 下方開始 */
+            background-color: whitesmoke;
+            /* 為按鈕區域設定一個背景色 */
         }
-/* 新增的內容區域樣式 */
-#highnav button a{
-    
-color:whitesmoke;
-text-decoration: none;
-}
+
+        /* 新增的內容區域樣式 */
+        #highnav button a {
+
+            color: whitesmoke;
+            text-decoration: none;
+        }
+
         /* 新增的內容區域樣式 */
         .content-section {
             padding-top: 80px;
@@ -134,7 +138,8 @@ text-decoration: none;
             /* 使用 Flexbox 確保內容垂直居中 */
             align-items: center;
             /* 垂直居中對齊 */
-            padding-bottom: 20px; /* 給底部留些空間 */
+            padding-bottom: 20px;
+            /* 給底部留些空間 */
         }
 
         .profile-card {
@@ -204,7 +209,7 @@ text-decoration: none;
             /* 文字列的背景色，與圖片背景相同 */
             color: #333;
             background-position: top right;
-            
+
             background-repeat: no-repeat;
             /* 文字顏色 */
         }
@@ -216,8 +221,8 @@ text-decoration: none;
             /* **調整這裡：增加字體大小** */
             line-height: 1.8;
             /* **調整這裡：增加行高** */
-        
-        
+
+
         }
 
         .text-col strong {
@@ -225,7 +230,7 @@ text-decoration: none;
             /* 加粗文字顏色更深 */
         }
 
-        #dcos p{
+        #dcos p {
 
             text-align: center;
             margin-top: 30px;
@@ -233,27 +238,32 @@ text-decoration: none;
 
         }
 
-        #profilehhistory p strong{
+        #profilehhistory p strong {
             font-size: 24px;
             font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 
-        }   
+        }
 
-        #profilehhistory.ul li{
+        #profilehhistory.ul li {
             font-size: 20px;
             gap: 10px;
             font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
         }
-        #profilehhistory ul li p span{
-          color:darkgoldenrod;
+
+        #profilehhistory ul li p span {
+            color: darkgoldenrod;
         }
 
         /* 新增的按鈕和可展開區塊樣式 */
         .expandable-section {
-            background-color: #f8f9fa; /* 輕微的背景色 */
-            padding: 30px 0; /* 上下內邊距 */
-            margin-top: 30px; /* 與上方內容的間距 */
-            border-top: 1px solid #dee2e6; /* 上方加一條線 */
+            background-color: #f8f9fa;
+            /* 輕微的背景色 */
+            padding: 30px 0;
+            /* 上下內邊距 */
+            margin-top: 30px;
+            /* 與上方內容的間距 */
+            border-top: 1px solid #dee2e6;
+            /* 上方加一條線 */
         }
 
         .expandable-content {
@@ -262,13 +272,13 @@ text-decoration: none;
             border-radius: 8px;
             padding: 25px;
             margin-top: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
         }
 
         .expandable-content p {
             font-size: 1.05rem;
             line-height: 1.7;
-           color: #000;
+            color: #000;
             margin-bottom: 10px;
         }
 
@@ -277,6 +287,7 @@ text-decoration: none;
             margin-bottom: 20px;
             font-size: 1.5rem;
         }
+
         footer {
             width: 100vw;
             height: 100px;
@@ -290,8 +301,9 @@ text-decoration: none;
             justify-items: center;
             padding-top: 30px;
         }
-  /* 響應式調整 */
-  @media (max-width: 767.98px) {
+
+        /* 響應式調整 */
+        @media (max-width: 767.98px) {
             .content-section {
                 padding-top: 70px;
                 /* 小螢幕時調整上邊距 */
@@ -323,6 +335,44 @@ text-decoration: none;
                 max-width: 140px;
                 /* 小螢幕時 Logo 更小 */
             }
+
+            .navbar-collapse {
+                /* 確保在小螢幕展開時可以滾動 */
+                max-height: calc(100vh - 60px);
+                /* 假設 navbar 高度約 60px，減去它以避免超出螢幕 */
+                overflow-y: auto;
+                /* 允許垂直滾動 */
+                -webkit-overflow-scrolling: touch;
+
+                /* 改善 iOS 上的滾動體驗 */
+                .navbar-nav {
+                    height: auto;
+                    /* 讓導覽列項目高度自動調整 */
+                }
+
+                .navbar-nav .nav-item {
+                    height: auto;
+                    /* 讓導覽列項目高度自動調整 */
+                }
+            }
+
+            /* 確保下拉菜單在小螢幕展開時有足夠空間 */
+            .navbar-nav .dropdown-menu {
+                position: static;
+                /* 在手機模式下通常將下拉菜單設為靜態定位，使其在流中顯示 */
+                width: 100%;
+                /* 讓它佔滿寬度 */
+                box-shadow: none;
+                /* 移除陰影，使其看起來更像導覽列的一部分 */
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                /* 添加分隔線 */
+            }
+
+            .navbar-nav .dropdown-item {
+                padding-left: 2.5rem;
+                /* 增加縮進，使其看起來像子選項 */
+            }
+
         }
     </style>
 
@@ -416,18 +466,18 @@ text-decoration: none;
             </div>
         </div>
     </nav>
-</div>
-<div class="hicomnav d-flex justify-content-center align-items-center gap-5"id="highnav">
-    <button type="button" class="btn btn-warning"><a href="/CO.html" >指揮官</a></button>
-    <button type="button" class="btn btn-primary"><a href="/DCO.html" >副指揮官</a></button>
-    <button type="button" class="btn btn-success" ><a href="/COS.html" >參謀長</a></button>
-</div>
+    </div>
+    <div class="hicomnav d-flex justify-content-center align-items-center gap-5" id="highnav">
+        <button type="button" class="btn btn-warning"><a href="/CO.html">指揮官</a></button>
+        <button type="button" class="btn btn-primary"><a href="/DCO.html">副指揮官</a></button>
+        <button type="button" class="btn btn-success"><a href="/COS.html">參謀長</a></button>
+    </div>
     <div class="content-section">
         <div class="container profile-card">
             <div class="row g-0">
                 <div class="col-md-4 image-col">
                     <div class="logo-image-container">
-                                       
+
                     </div>
                     <div class="profile-image-container" id="dcos">
                         <img src="/images/dcos.png" alt="副參謀長Justin_chiu27" class="img-fluid">
@@ -437,24 +487,42 @@ text-decoration: none;
                 <div class="col-md-8 text-col" id="profilehhistory">
                     <p><strong>經歷：</strong></p>
                     <ul>
-                            
-                        <li><p>憲兵指揮部 副參謀長<span>(現任)</span></p></li>
 
-                        <li><p>陸軍官校 文書官<span>(現任)</span></p></li>
-                            
-                        <li><p>教準部 入伍訓指導員<span>(現任)</span></p></li>
+                        <li>
+                            <p>憲兵指揮部 副參謀長<span>(現任)</span></p>
+                        </li>
 
-                        <li><p>國防部高等軍事法庭-法制委員會 第二屆憲兵代表 委員<span>(現任)</span></p></li>    
+                        <li>
+                            <p>陸軍官校 文書官<span>(現任)</span></p>
+                        </li>
 
-                        <li><p>憲兵指揮部 獎懲委員會 委員<span>(現任)</span></p></li>
-                       
-                        <li><p>革命解放陣線 新進陣線成員<span>(現任)</span></p></li>
+                        <li>
+                            <p>教準部 入伍訓指導員<span>(現任)</span></p>
+                        </li>
 
-                        <li><p>憲兵指揮部 督導</p></li>
-                            
-                        <li><p>憲兵指揮部 勤務支援大隊 大隊長</p></li>
-                            
-                        <li><p>憲兵指揮部 第二班班長</p></li>
+                        <li>
+                            <p>國防部高等軍事法庭-法制委員會 第二屆憲兵代表 委員<span>(現任)</span></p>
+                        </li>
+
+                        <li>
+                            <p>憲兵指揮部 獎懲委員會 委員<span>(現任)</span></p>
+                        </li>
+
+                        <li>
+                            <p>革命解放陣線 新進陣線成員<span>(現任)</span></p>
+                        </li>
+
+                        <li>
+                            <p>憲兵指揮部 督導</p>
+                        </li>
+
+                        <li>
+                            <p>憲兵指揮部 勤務支援大隊 大隊長</p>
+                        </li>
+
+                        <li>
+                            <p>憲兵指揮部 第二班班長</p>
+                        </li>
                     </ul>
                     <p><strong>勳章&獎章</strong></p>
                     <p>無</p>
@@ -467,18 +535,23 @@ text-decoration: none;
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-12 col-md-8 text-center">
-                    <button type="button" class="btn btn-warning btn-lg"data-bs-toggle="collapse" data-bs-target="#collapseText" aria-expanded="false" aria-controls="collapseText">
-                       了解更多關於副參謀長
+                    <button type="button" class="btn btn-warning btn-lg" data-bs-toggle="collapse"
+                        data-bs-target="#collapseText" aria-expanded="false" aria-controls="collapseText">
+                        了解更多關於副參謀長
                     </button>
                     <div class="collapse" id="collapseText">
                         <div class="expandable-content mt-3">
                             <h3>To 正在看的你</h3>
-                            <p style="text-align: justify;">我是Justin目前就讀大學，加入ROCA的時間是2024/11/25，參軍後第一個進到的單位就是憲兵，在當時憲兵正經歷低潮，指揮鏈很常調動大家都不好受，再加上部隊內活躍低迷，而自從時任營長的sjkhortj升至代理參謀長，再加上hgjk66ll、zhuy1126回來支援管理憲兵，有sjkhortj的改革再加上hgjk66ll的執行力，憲兵開始恢復活躍，憲兵內部開始推動許多改革簡化不必地流程以及推動紀律，時任的代理參謀長sjkhortj親自監督站崗情況，在當時憲兵內部紀律真的不行，在不斷推動各式加強成員的紀律後，紀律也好轉了。我自從加入憲兵後就沒有退單位過，一直待在憲兵，連低潮我們也熬過來了，目前ROCA經歷過多次的被封地圖、單位內低迷，我也相信我們能夠挺過這次的難關。</p>
+                            <p style="text-align: justify;">
+                                我是Justin目前就讀大學，加入ROCA的時間是2024/11/25，參軍後第一個進到的單位就是憲兵，在當時憲兵正經歷低潮，指揮鏈很常調動大家都不好受，再加上部隊內活躍低迷，而自從時任營長的sjkhortj升至代理參謀長，再加上hgjk66ll、zhuy1126回來支援管理憲兵，有sjkhortj的改革再加上hgjk66ll的執行力，憲兵開始恢復活躍，憲兵內部開始推動許多改革簡化不必地流程以及推動紀律，時任的代理參謀長sjkhortj親自監督站崗情況，在當時憲兵內部紀律真的不行，在不斷推動各式加強成員的紀律後，紀律也好轉了。我自從加入憲兵後就沒有退單位過，一直待在憲兵，連低潮我們也熬過來了，目前ROCA經歷過多次的被封地圖、單位內低迷，我也相信我們能夠挺過這次的難關。
+                            </p>
                             <h3 style="text-align: center;">給想加入憲兵的你</h3>
-                            <p style="text-align: justify;">只要有心還有認真的態度就算槍法在差，只要有心願意待在憲兵長久，憲兵歡迎您，能在憲兵學習到很多知識以及交到好朋友，GameNight一起玩、一起值勤，雖然憲兵每周都有規定要值勤一定的時數，但其實很好達標每天都加減值勤30分鐘，7天也就210分鐘(三個半小時)，本人最高在一周內值勤30小時，那時我很閒有很多時間可以值勤。若對憲兵有興趣或想加入我們都可以聯繫憲兵任何一位幹部。</p>
+                            <p style="text-align: justify;">
+                                只要有心還有認真的態度就算槍法在差，只要有心願意待在憲兵長久，憲兵歡迎您，能在憲兵學習到很多知識以及交到好朋友，GameNight一起玩、一起值勤，雖然憲兵每周都有規定要值勤一定的時數，但其實很好達標每天都加減值勤30分鐘，7天也就210分鐘(三個半小時)，本人最高在一周內值勤30小時，那時我很閒有很多時間可以值勤。若對憲兵有興趣或想加入我們都可以聯繫憲兵任何一位幹部。
+                            </p>
                             <p>等你加入憲兵大家庭:></p>
                             <p style="text-align: right;">副參謀長Justin_chiu27上</p>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -521,5 +594,6 @@ text-decoration: none;
         });
         // --- Navbar active 狀態處理 END ---
     });
-    </script>
+</script>
+
 </html>
