@@ -10,8 +10,8 @@
     <title>副參謀長</title>
     <link rel="icon" type="image/png" href="/images/Png.png">
     <style>
-  /* 移除 Bootstrap 預設的一些邊距，使內容更緊湊 */
-  body {
+        /* 移除 Bootstrap 預設的一些邊距，使內容更緊湊 */
+        body {
             margin: 0;
             padding: 0;
             overflow-x: hidden;
@@ -109,6 +109,204 @@
             background-color: #495057;
             color: white;
         }
+
+        /* 新增的內容區域樣式 */
+        .content-section {
+            padding-top: 80px;
+            /* 留出 Navbar 的高度 */
+            background-color: #e6edf4;
+            /* 接近圖片的背景色 */
+            /* 移除 min-height: calc(100vh - 60px); 以便內容自然延伸 */
+            display: flex;
+            /* 使用 Flexbox 確保內容垂直居中 */
+            align-items: center;
+            /* 垂直居中對齊 */
+            padding-bottom: 20px; /* 給底部留些空間 */
+        }
+
+        .profile-card {
+            background-color: #ffffff;
+            /* 卡片背景色，與圖片背景形成對比 */
+            border-radius: 8px;
+            /* 圓角 */
+            overflow: hidden;
+            /* 確保內容不溢出圓角 */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            /* 輕微陰影 */
+            margin: 20px auto;
+            /* 上下邊距，左右自動居中 */
+            max-width: 1100px;
+            /* **調整這裡：增加卡片最大寬度** */
+        }
+
+        .image-col {
+            background-color: #ced9e3;
+            /* 圖片列的背景色 */
+            padding: 30px;
+            /* **調整這裡：增加內邊距** */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile-image-container {
+            width: 100%;
+            /* 容器寬度 */
+            max-width: 280px;
+            /* **調整這裡：增加圖片最大寬度** */
+            margin-bottom: 20px;
+            /* **調整這裡：增加圖片下方間距** */
+        }
+
+        .profile-image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            /* 移除圖片底部間隙 */
+            border-radius: 4px;
+            /* 圖片輕微圓角 */
+        }
+
+        .logo-image-container {
+            width: 100%;
+            max-width: 180px;
+            /* **調整這裡：增加 Logo 圖片的最大寬度** */
+            margin-bottom: 15px;
+            /* **調整這裡：增加 Logo 下方間距** */
+        }
+
+        .logo-image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+
+        .text-col {
+            padding: 40px;
+            padding-left: 90px;
+            /* **調整這裡：增加文字內容的內邊距** */
+            background-color: #e6edf4;
+            /* 文字列的背景色，與圖片背景相同 */
+            color: #333;
+            background-position: top right;
+            
+            background-repeat: no-repeat;
+            /* 文字顏色 */
+        }
+
+        .text-col p {
+            margin-bottom: 12px;
+            /* **調整這裡：增加每行文字間距** */
+            font-size: 1.15rem;
+            /* **調整這裡：增加字體大小** */
+            line-height: 1.8;
+            /* **調整這裡：增加行高** */
+        
+        
+        }
+
+        .text-col strong {
+            color: #000;
+            /* 加粗文字顏色更深 */
+        }
+
+        #dcos p{
+
+            text-align: center;
+            margin-top: 30px;font-size: 20px;
+
+        }
+
+        #profilehistory p strong{
+            font-size: 24px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+        }   
+
+        #profilehistory.ul li{
+            font-size: 20px;
+            gap: 10px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
+        /* 新增的按鈕和可展開區塊樣式 */
+        .expandable-section {
+            background-color: #f8f9fa; /* 輕微的背景色 */
+            padding: 30px 0; /* 上下內邊距 */
+            margin-top: 30px; /* 與上方內容的間距 */
+            border-top: 1px solid #dee2e6; /* 上方加一條線 */
+        }
+
+        .expandable-content {
+            background-color: #ffffff;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 25px;
+            margin-top: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .expandable-content p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #495057;
+            margin-bottom: 10px;
+        }
+
+        .expandable-content h3 {
+            color: #343a40;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        footer {
+            width: 100vw;
+            height: 100px;
+            background-color: rgb(51, 81, 0);
+        }
+
+        footer p {
+            color: whitesmoke;
+            text-align: center;
+            font-size: medium;
+            justify-items: center;
+            padding-top: 30px;
+        }
+  /* 響應式調整 */
+  @media (max-width: 767.98px) {
+            .content-section {
+                padding-top: 70px;
+                /* 小螢幕時調整上邊距 */
+                align-items: flex-start;
+                /* 小螢幕時內容靠頂部對齊 */
+            }
+
+            .profile-card {
+                margin: 15px;
+                /* 小螢幕時調整卡片邊距 */
+            }
+
+            .image-col {
+                padding: 20px;
+                /* 小螢幕時調整圖片列內邊距 */
+            }
+
+            .text-col {
+                padding: 25px;
+                /* 小螢幕時調整文字列內邊距 */
+            }
+
+            .profile-image-container {
+                max-width: 220px;
+                /* 小螢幕時圖片更小 */
+            }
+
+            .logo-image-container {
+                max-width: 140px;
+                /* 小螢幕時 Logo 更小 */
+            }
+        }
     </style>
 
 </head>
@@ -145,7 +343,7 @@
                             認識憲兵
                         </a>
                         <ul class="dropdown-menu">
-                            
+
                             <li><a class="dropdown-item" href="/mp.html">憲兵簡介</a></li>
                             <li><a class="dropdown-item" href="/mpdept.html">指揮鏈</a></li>
                             <li><a class="dropdown-item" href="/event.html">活動</a></li>
@@ -202,6 +400,99 @@
         </div>
     </nav>
 
-</body>
+    <div class="content-section">
+        <div class="container profile-card">
+            <div class="row g-0">
+                <div class="col-md-4 image-col">
+                    <div class="logo-image-container">
+                                       
+                    </div>
+                    <div class="profile-image-container" id="dcos">
+                        <img src="/images/dcos.png" alt="副參謀長Justin_chiu27" class="img-fluid">
+                        <p><strong>副參謀長</strong><br>Justin_chiu27 (少尉)</p>
+                    </div>
+                </div>
+                <div class="col-md-8 text-col" id="profilehhistory">
+                    <p><strong>經歷：</strong></p>
+                    <ul>
+                        <li><p>憲兵指揮部 副參謀長</p></li>
+                            
+                        <li><p>陸軍官校 文書官</p></li>
+                            
+                        <li><p>憲兵指揮部 督導</p></li>
+                            
+                        <li><p>教準部 入伍訓指導員</p></li>
+                            
+                        <li><p>革命解放陣線 新進成員</p></li>
+                            
+                        <li><p>憲兵指揮部 勤務支援大隊 大隊長</p></li>
+                            
+                        <li><p>憲兵指揮部 第二班班長</p></li>
+                    </ul>
+                    <p><strong>勳章&獎章</strong></p>
+                    <p>無</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <div class="expandable-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-8 text-center">
+                    <button class="btn btn-primary btn-lg" type="button" data-bs-toggle="collapse" data-bs-target="#collapseText" aria-expanded="false" aria-controls="collapseText">
+                       了解副參謀長更多
+                    </button>
+                    <div class="collapse" id="collapseText">
+                        <div class="expandable-content mt-3">
+                            <h3>To 正在看的你</h3>
+                            <p style="text-align: justify;">我是Justin目前就讀大學，加入ROCA的時間是2024/11/25，參軍後第一個進到的單位就是憲兵，在當時憲兵正經歷低潮，指揮鏈很常調動大家都不好受，再加上部隊內活躍低迷，而自從時任營長的sjkhortj升至代理參謀長，再加上hgjk66ll、zhuy1126回來支援管理憲兵，有sjkhortj的改革再加上hgjk66ll的執行力，憲兵開始恢復活躍，憲兵內部開始推動許多改革簡化不必地流程以及推動紀律，時任的代理參謀長sjkhortj親自監督站崗情況，在當時憲兵內部紀律真的不行，在不斷推動各式加強成員的紀律後，紀律也好轉了。我自從加入憲兵後就沒有退單位過，一直待在憲兵，連低潮我們也熬過來了，目前ROCA經歷過多次的被封地圖、單位內低迷，我也相信我們能夠挺過這次的難關。</p>
+                            <h3 style="text-align: center;">給想加入憲兵的你</h3>
+                            <p style="text-align: justify;">只要有心還有認真的態度就算槍法在差，只要有心願意待在憲兵長久，憲兵歡迎您，能在憲兵學習到很多知識以及交到好朋友，GameNight一起玩、一起值勤，雖然憲兵每周都有規定要值勤一定的時數，但其實很好達標每天都加減值勤30分鐘，7天也就210分鐘(三個半小時)，本人最高在一周內值勤30小時，那時我很閒有很多時間可以值勤。若對憲兵有興趣或想加入我們都可以聯繫憲兵任何一位幹部。</p>
+                            <p>等你加入憲兵大家庭:></p>
+                            <p style="text-align: right;">副參謀長Justin_chiu27上</p>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <img src="/images/22211111.png" alt="" width="100%" height="200" style="object-fit: contain;align-items: center;">
+</body>
+<footer>
+    <p>© 2025 中華民國陸軍事基地 憲兵指揮部版權所屬 <br><span style="color:red">嚴禁抄襲，違者必追究</span></p>
+</footer>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+        // --- Navbar active 狀態處理 START ---
+        const currentPath = window.location.pathname;
+        const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            link.removeAttribute('aria-current');
+
+            const linkHref = link.getAttribute('href');
+
+            // 處理首頁或根路徑的 active 狀態
+            if (
+                (currentPath === '/' || currentPath.endsWith('/index.html') || currentPath.endsWith('/')) &&
+                (linkHref === 'index.html' || linkHref === '#' || linkHref === '/')
+            ) {
+                if (link.textContent.trim() === '首頁') { // 確保這是針對首頁連結
+                    link.classList.add('active');
+                    link.setAttribute('aria-current', 'page');
+                }
+            }
+            // 處理其他頁面的 active 狀態
+            else if (linkHref && linkHref !== '#' && currentPath.includes(linkHref)) {
+                link.classList.add('active');
+                link.setAttribute('aria-current', 'page');
+            }
+        });
+        // --- Navbar active 狀態處理 END ---
+    });
+    </script>
 </html>
