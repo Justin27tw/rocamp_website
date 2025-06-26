@@ -298,6 +298,11 @@ line-height: 30px;}
             #mpcontent h5{
                 font-size: 16px;
             }
+            footer {
+            width: 100vw;
+            height: 130px;
+            background-color: rgb(51, 81, 0);
+        }
         }
 
         @media (max-width: 767.98px) {
@@ -496,9 +501,44 @@ line-height: 30px;}
     </div>
 </body>
 <footer>
-    <p>© 2025 中華民國陸軍事基地 憲兵指揮部版權所屬 <br><span style="color:red">嚴禁抄襲，違者必追究</span></p>
+    <p> Copyright © 2025, Republic of China Army Military Police Command - Roblox.& Credits Justin_chiu27
+        All Rights Reserved.<br><span style="color:red">嚴禁抄襲，違者必追究</span>
+    <br>
+    </p>
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    
+        // --- Navbar active 狀態處理 START ---
+        const currentPath = window.location.pathname;
+        const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+    
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            link.removeAttribute('aria-current');
+    
+            const linkHref = link.getAttribute('href');
+    
+            // 處理首頁或根路徑的 active 狀態
+            if (
+                (currentPath === '/' || currentPath.endsWith('/index.html') || currentPath.endsWith('/')) &&
+                (linkHref === 'index.html' || linkHref === '#' || linkHref === '/')
+            ) {
+                if (link.textContent.trim() === '首頁') { // 確保這是針對首頁連結
+                    link.classList.add('active');
+                    link.setAttribute('aria-current', 'page');
+                }
+            }
+            // 處理其他頁面的 active 狀態
+            else if (linkHref && linkHref !== '#' && currentPath.includes(linkHref)) {
+                link.classList.add('active');
+                link.setAttribute('aria-current', 'page');
+            }
+        });
+        // --- Navbar active 狀態處理 END ---
+    });
+    </script>
 <script>
     // 導覽列下拉選單動畫 (取代 data-bs-animation)
     document.querySelectorAll('.navbar-nav .dropdown').forEach(dropdown => {

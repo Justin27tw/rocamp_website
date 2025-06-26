@@ -480,7 +480,11 @@
                 font-size: 14px;
                 /* 橫向時文字可以稍微小一點 */
                 flex-grow: 1;
-            }
+            } footer {
+            width: 100vw;
+            height: 130px;
+            background-color: rgb(51, 81, 0);
+        }
         }
 
         /* 中小型螢幕橫向模式：(min-width: 375px) and (max-width: 767.98px) and (orientation: landscape) */
@@ -520,6 +524,11 @@
             .image-text-section p {
                 font-size: 16px;
             }
+            footer {
+            width: 100vw;
+            height: 130px;
+            background-color: rgb(51, 81, 0);
+        }
         }
         @media (max-width: 767.98px) { /* 或者您 navbar-toggler 觸發的 breakpoint */
     .navbar-collapse {
@@ -703,7 +712,41 @@
     <img src="/images/2025-06-23213022221-Photoroom.png" alt="" width="100%" height="150" style="object-fit: contain;align-items: center;">
 </body>
 <footer>
-    <p>© 2025 中華民國陸軍事基地 憲兵指揮部版權所屬 <br><span style="color:red">嚴禁抄襲，違者必追究</span></p>
+    <p> Copyright © 2025, Republic of China Army Military Police Command - Roblox.& Credits Justin_chiu27
+        All Rights Reserved.<br><span style="color:red">嚴禁抄襲，違者必追究</span>
+    <br>
+    </p>
 </footer>
-
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    
+        // --- Navbar active 狀態處理 START ---
+        const currentPath = window.location.pathname;
+        const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+    
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            link.removeAttribute('aria-current');
+    
+            const linkHref = link.getAttribute('href');
+    
+            // 處理首頁或根路徑的 active 狀態
+            if (
+                (currentPath === '/' || currentPath.endsWith('/index.html') || currentPath.endsWith('/')) &&
+                (linkHref === 'index.html' || linkHref === '#' || linkHref === '/')
+            ) {
+                if (link.textContent.trim() === '首頁') { // 確保這是針對首頁連結
+                    link.classList.add('active');
+                    link.setAttribute('aria-current', 'page');
+                }
+            }
+            // 處理其他頁面的 active 狀態
+            else if (linkHref && linkHref !== '#' && currentPath.includes(linkHref)) {
+                link.classList.add('active');
+                link.setAttribute('aria-current', 'page');
+            }
+        });
+        // --- Navbar active 狀態處理 END ---
+    });
+    </script>
 </html>

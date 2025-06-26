@@ -16,7 +16,7 @@
             overflow-x: hidden;
             background-color: beige;
             /* 防止水平滾動條 */
-        }                                                                                
+        }
 
         /* Navbar 樣式調整 */
         .navbar {
@@ -219,10 +219,10 @@
             color: #333;
         }
 
-       
+
         .carousel-item img {
             height: 400px;
-            object-fit:contain;
+            object-fit: contain;
             /* 保持圖片比例，可能出現留白 */
             width: 100%;
             /* 確保佔滿寬度 */
@@ -235,14 +235,14 @@
             bottom: 20px;
         }
 
- 
+
 
         .carousel-control-prev-icon,
         .carousel-control-next-icon {
             filter: invert(1);
         }
 
-footer {
+        footer {
             width: 100vw;
             height: 100px;
             background-color: rgb(51, 81, 0);
@@ -255,11 +255,13 @@ footer {
             justify-items: center;
             padding-top: 30px;
         }
-        #bottomimg  p{
+
+        #bottomimg p {
             font-size: 24px;
             display: block;
-        
+
         }
+
         @media (max-width: 575.98px) {
             .carousel-item img {
                 height: 250px;
@@ -273,47 +275,70 @@ footer {
                 /* 縮小輪播說明文字區塊 */
                 bottom: 10px;
             }
-            #bottomimg img{
-height: 200px;
-object-fit: contain;
+
+            #bottomimg img {
+                height: 200px;
+                object-fit: contain;
             }
-            #bottomimg  p{
+
+            #bottomimg p {
                 font-size: 16px;
                 gap: 5px;
             }
-            #mprpc{
+
+            #mprpc {
                 font-size: 16px;
-                letter-spacing:0.05cm;
-                
+                letter-spacing: 0.05cm;
+
             }
 
+            footer {
+                width: 100vw;
+                height: 130px;
+                background-color: rgb(51, 81, 0);
+            }
         }
-        @media (max-width: 767.98px) { /* 或者您 navbar-toggler 觸發的 breakpoint */
-    .navbar-collapse {
-        /* 確保在小螢幕展開時可以滾動 */
-        max-height: calc(100vh - 60px); /* 假設 navbar 高度約 60px，減去它以避免超出螢幕 */
-        overflow-y: auto; /* 允許垂直滾動 */
-        -webkit-overflow-scrolling: touch; /* 改善 iOS 上的滾動體驗 */
-        .navbar-nav {
-        height: auto; /* 讓導覽列項目高度自動調整 */
-    }
-    .navbar-nav .nav-item {
-        height: auto; /* 讓導覽列項目高度自動調整 */
-    }
-    }
 
-    /* 確保下拉菜單在小螢幕展開時有足夠空間 */
-    .navbar-nav .dropdown-menu {
-        position: static; /* 在手機模式下通常將下拉菜單設為靜態定位，使其在流中顯示 */
-        width: 100%; /* 讓它佔滿寬度 */
-        box-shadow: none; /* 移除陰影，使其看起來更像導覽列的一部分 */
-        border-top: 1px solid rgba(255, 255, 255, 0.1); /* 添加分隔線 */
-    }
+        @media (max-width: 767.98px) {
 
-    .navbar-nav .dropdown-item {
-        padding-left: 2.5rem; /* 增加縮進，使其看起來像子選項 */
-    }
-}
+            /* 或者您 navbar-toggler 觸發的 breakpoint */
+            .navbar-collapse {
+                /* 確保在小螢幕展開時可以滾動 */
+                max-height: calc(100vh - 60px);
+                /* 假設 navbar 高度約 60px，減去它以避免超出螢幕 */
+                overflow-y: auto;
+                /* 允許垂直滾動 */
+                -webkit-overflow-scrolling: touch;
+
+                /* 改善 iOS 上的滾動體驗 */
+                .navbar-nav {
+                    height: auto;
+                    /* 讓導覽列項目高度自動調整 */
+                }
+
+                .navbar-nav .nav-item {
+                    height: auto;
+                    /* 讓導覽列項目高度自動調整 */
+                }
+            }
+
+            /* 確保下拉菜單在小螢幕展開時有足夠空間 */
+            .navbar-nav .dropdown-menu {
+                position: static;
+                /* 在手機模式下通常將下拉菜單設為靜態定位，使其在流中顯示 */
+                width: 100%;
+                /* 讓它佔滿寬度 */
+                box-shadow: none;
+                /* 移除陰影，使其看起來更像導覽列的一部分 */
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                /* 添加分隔線 */
+            }
+
+            .navbar-nav .dropdown-item {
+                padding-left: 2.5rem;
+                /* 增加縮進，使其看起來像子選項 */
+            }
+        }
     </style>
 
 <body>
@@ -411,22 +436,23 @@ object-fit: contain;
             </p>
         </div>
     </div>
-    <div id="mprpc"style="text-align: center;font-size:24px;">
+    <div id="mprpc" style="text-align: center;font-size:24px;">
         <p><strong>確保憲兵內部的懲處制度公平、透明、公正</strong></p>
         <p><strong>透過討論與表決，維持部隊內部的紀律與秩序</strong></p>
-   </div>
-   <div style="display: flex; flex-direction: row; align-items: center; margin-top: 20px; padding: 20px;background-color:whitesmoke" id="bottomimg">
-    <img src="/images/4864031195_119975147089070_1750670438453.png" alt="特勤隊訓練圖"
-        style="margin-right: 20px; max-width: 50%;">
-    <p style="margin: 0; flex-grow: 1; text-align:center">
-        <strong>為有功或違紀成員提供適當的獎勵或懲處</strong>
-    <br>
-    <br>
-    職位：主席、副主席、秘書、委員
-    </p>
+    </div>
+    <div style="display: flex; flex-direction: row; align-items: center; margin-top: 20px; padding: 20px;background-color:whitesmoke"
+        id="bottomimg">
+        <img src="/images/4864031195_119975147089070_1750670438453.png" alt="特勤隊訓練圖"
+            style="margin-right: 20px; max-width: 50%;">
+        <p style="margin: 0; flex-grow: 1; text-align:center">
+            <strong>為有功或違紀成員提供適當的獎勵或懲處</strong>
+            <br>
+            <br>
+            職位：主席、副主席、秘書、委員
+        </p>
 
-        
-</div>
+
+    </div>
 
     <br>
     <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
@@ -448,36 +474,36 @@ object-fit: contain;
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <img src="/images/2024-12-29_170442.png" class="d-block w-100" alt="憲兵檢閱">
-      
+
             </div>
             <div class="carousel-item">
                 <img src="/images/image.png" class="d-block w-100" alt="憲兵檢閱">
-        
+
             </div>
             <div class="carousel-item">
                 <img src="/images/ROCAMP_logo2.png" class="d-block w-100" alt="憲兵檢閱">
-             
+
             </div>
             <div class="carousel-item">
                 <img src="/images/RobloxScreenShot20241010_201354145.png" class="d-block w-100" alt="憲兵檢閱">
-           
+
             </div>
 
             <div class="carousel-item">
                 <img src="/images/2025-02-02_014136.png" class="d-block w-100" alt="特勤監控">
-          
+
             </div>
             <div class="carousel-item">
                 <img src="/images/7646713684_133920583594452_1744973518340.png" class="d-block w-100" alt="站崗照">
-           
+
             </div>
             <div class="carousel-item">
                 <img src="/images/image-31.png" class="d-block w-100" alt="站崗照">
-              
+
             </div>
             <div class="carousel-item">
                 <img src="/images/2025-02-02_013927.png" class="d-block w-100" alt="站崗照">
-            
+
             </div>
             <div class="carousel-item">
                 <img src="/images/3773716831_11750841896_1738080053333.png" class="d-block w-100" alt="站崗照">
@@ -502,9 +528,45 @@ object-fit: contain;
             <span class="visually-hidden">Next</span>
         </button>
     </div>
-    <img src="/images/2025-06-23213022221-Photoroom.png" alt="" width="100%" height="150" style="object-fit: contain;align-items: center;">
+    <img src="/images/2025-06-23213022221-Photoroom.png" alt="" width="100%" height="150"
+        style="object-fit: contain;align-items: center;">
 </body>
 <footer>
-    <p>© 2025 中華民國陸軍事基地 憲兵指揮部版權所屬 <br><span style="color:red">嚴禁抄襲，違者必追究</span></p>
+    <p> Copyright © 2025, Republic of China Army Military Police Command - Roblox.& Credits Justin_chiu27
+        All Rights Reserved.<br><span style="color:red">嚴禁抄襲，違者必追究</span>
+        <br>
+    </p>
 </footer>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    // --- Navbar active 狀態處理 START ---
+    const currentPath = window.location.pathname;
+    const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        link.removeAttribute('aria-current');
+
+        const linkHref = link.getAttribute('href');
+
+        // 處理首頁或根路徑的 active 狀態
+        if (
+            (currentPath === '/' || currentPath.endsWith('/index.html') || currentPath.endsWith('/')) &&
+            (linkHref === 'index.html' || linkHref === '#' || linkHref === '/')
+        ) {
+            if (link.textContent.trim() === '首頁') { // 確保這是針對首頁連結
+                link.classList.add('active');
+                link.setAttribute('aria-current', 'page');
+            }
+        }
+        // 處理其他頁面的 active 狀態
+        else if (linkHref && linkHref !== '#' && currentPath.includes(linkHref)) {
+            link.classList.add('active');
+            link.setAttribute('aria-current', 'page');
+        }
+    });
+    // --- Navbar active 狀態處理 END ---
+});
+</script>
 </html>
