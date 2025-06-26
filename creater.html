@@ -3,9 +3,1041 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>製作名單</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <title>製作人員名單</title>
+    <link rel="icon" type="image/png" href="/images/Png.png">
+    <style>
+        /* 載入畫面樣式 */
+        #splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #282c34; /* 深色背景 */
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 1;
+            transition: opacity 1s ease-out;
+        }
+
+        #splash-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        #splash-screen h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        #splash-screen p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+
+        #splash-screen button {
+            padding: 10px 25px;
+            font-size: 1.1em;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #61dafb;
+            color: #282c34;
+            transition: background-color 0.3s ease;
+        }
+
+        #splash-screen button:hover {
+            background-color: #4dc4e6;
+        }
+
+
+        /* 移除 Bootstrap 預設的一些邊距，使內容更緊湊 */
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            /* 防止水平滾動條 */
+            padding-top: 60px; /* Add padding-top to the body to prevent content from being hidden behind the fixed navbar */
+        }
+
+        /* Navbar 樣式調整 */
+        .navbar {
+            position: fixed;
+            /* Changed from sticky to fixed */
+            top: 0;
+            width: 100%;
+            /* Add width: 100% for fixed positioning */
+            background-color: #343a40;
+            /* 深灰色背景，接近圖片效果 */
+            padding: 0;
+            /* 將 navbar 的 padding 設為 0 */
+            min-height: 60px;
+            /* 設定一個最小高度，確保有足夠空間垂直居中 */
+            z-index: 1030;
+            /* 確保 Navbar 在其他內容上方 */
+        }
+
+        .navbar-brand {
+            padding: 0.5rem 1rem;
+            /* 與 nav-link 保持一致的垂直 padding */
+            display: flex;
+            /* 使 brand 內部元素也能 flex 排列 */
+            align-items: center;
+            /* 垂直居中品牌圖標和文字 */
+            height: 100%;
+            /* 確保 brand 佔滿 navbar 垂直空間 */
+        }
+
+        .navbar-brand img {
+            margin-right: 5px;
+            /* 標誌和文字之間的間距 */
+        }
+
+        .navbar-brand span {
+            color: white;
+            letter-spacing: 2px;
+            font-size: 1rem;
+            /* 調整字體大小以適應導航列 */
+        }
+
+        /* 導航項目容器 */
+        .navbar-nav {
+            height: 100%;
+            /* 確保 nav-nav 佔滿 navbar 垂直空間 */
+            align-items: center;
+            /* 垂直居中所有 nav-item */
+        }
+
+        .navbar-nav .nav-item {
+            height: 100%;
+            /* 確保 nav-item 佔滿父元素垂直空間 */
+            display: flex;
+            /* 使 nav-item 內部元素也能 flex 排列 */
+            align-items: center;
+            /* 垂直居中 nav-link */
+        }
+
+        .navbar-nav .nav-link {
+            color: rgba(255, 255, 255, 0.75);
+            /* 淺色文字，hover 時變亮 */
+            padding: 0.8rem 1rem;
+            /* 增加垂直 padding 以調整高度和居中 */
+            font-size: 16px;
+            /* 保留你設定的字體大小 */
+            height: 100%;
+            /* 讓 nav-link 填充 nav-item 的高度 */
+            display: flex;
+            /* 再次使用 flexbox 確保內部文字垂直居中 */
+            align-items: center;
+            /* 垂直居中文字 */
+        }
+
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active {
+            color: white;
+            /* hover 或 active 時變為白色 */
+        }
+
+        /* 下拉選單樣式 (Bootstrap 5) */
+        .navbar-nav .dropdown-menu {
+            background-color: #343330;
+            /* 與導航列接近的深色背景 */
+            border: none;
+            border-radius: 0;
+            /* 移除圓角 */
+            padding: 0;
+            /* 移除預設內距 */
+
+            /* ===== 動畫效果 CSS ===== */
+            opacity: 0;
+            /* 初始狀態為透明 */
+            transform: translateY(10px);
+            /* 初始狀態向下位移一點 */
+            transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+            /* 過渡動畫 */
+            display: block;
+            /* 讓 opacity 和 transform 應用在非 display: none 的元素上 */
+            visibility: hidden;
+            /* 隱藏但保留空間，方便動畫 */
+            pointer-events: none;
+            /* 讓滑鼠事件穿透，避免佔用空間時影響下方元素 */
+            /* ============================== */
+        }
+
+        /* 當下拉選單顯示時的樣式 */
+        .navbar-nav .dropdown-menu.show {
+
+            /* ===== 動畫效果 CSS ===== */
+            opacity: 1;
+            /* 顯示時完全不透明 */
+            transform: translateY(0);
+            /* 恢復到原始位置 */
+            visibility: visible;
+            /* 顯示 */
+            pointer-events: auto;
+            /* 恢復滑鼠事件 */
+            /* ============================== */
+        }
+
+
+        .navbar-nav .dropdown-item {
+            color: rgba(255, 255, 255, 0.75);
+            padding: 0.75rem 1.5rem;
+            /* 調整下拉項目內距 */
+        }
+
+        .navbar-nav .dropdown-item:hover,
+        .navbar-nav .dropdown-item:focus {
+            background-color: #495057;
+            /* hover 時的背景色 */
+            color: white;
+        }
+
+        /* Banner 區塊調整 */
+        .banner-section {
+            position: relative;
+            width: 100vw;
+            /* 佔滿整個寬度 */
+            height: 500px;
+            /* 圖片高度 */
+            overflow: hidden;
+            display: flex;
+            /* 使用 flexbox 居中內容 */
+            justify-content: center;
+            align-items: center;
+        }
+
+        .banner-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 89%;
+            /* 根據您給的圖片調整，確保圖像內容能被看見 */
+            object-fit: cover;
+            /* 確保圖片覆蓋整個容器 */
+            filter: grayscale(15%) brightness(60%);
+            /* 灰階 亮度 */
+            z-index: -1;
+            /* 確保圖片在文字下方 */
+            object-position: center center;
+            /* 將圖片內容置於容器中央 */
+        }
+
+        #bannertext {
+            color: white;
+            text-align: center;
+            z-index: 1;
+            /* 確保文字在圖片上方 */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            /* 文字間距 */
+        }
+
+        #bannertext h1 {
+            font-size: 52px;
+            margin-bottom: 0;
+            /* 移除 h1 的底部預設邊距 */
+            font-weight: bold;
+            /* 讓字體更粗一點，接近圖片效果 */
+        }
+
+        #bannertext p {
+            font-size: 18px;
+            margin-top: 0;
+            /* 移除 p 的頂部預設邊距 */
+        }
+
+        /* 為了演示滾動效果，我們需要一些下方內容 */
+        body,
+        html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial;
+        }
+
+        /* 為了演示滾動效果，我們需要一些下方內容 */
+        .content-placeholder {
+            height: fit-content;
+            background-color: #f0f0f0;
+            padding: 50px;
+            text-align: center;
+            color: #333;
+        }
+
+        .content-placeholder:nth-of-type(odd) {
+            background-color: #e9e9e9;
+        }
+
+
+        .carousel-item img {
+            height: 400px;
+            object-fit: contain;
+            /* 保持圖片比例，可能出現留白 */
+            width: 100%;
+            /* 確保佔滿寬度 */
+        }
+
+        .carousel-caption {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px 20px;
+            border-radius: 5px;
+            bottom: 20px;
+        }
+
+
+
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            filter: invert(1);
+        }
+
+        footer {
+            width: 100vw;
+            height: 100px;
+            background-color: rgb(51, 81, 0);
+        }
+
+        footer p {
+            color: whitesmoke;
+            text-align: center;
+            font-size: medium;
+            justify-items: center;
+            padding-top: 30px;
+        }
+
+
+        /* 新增：製作人員卡片樣式 */
+        .profile-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            text-align: center;
+            margin-bottom: 30px; /* 卡片間距 */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%; /* 確保卡片高度一致 */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* 頭像和簡介分開 */
+        }
+
+        .profile-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .profile-card img {
+            width: 200px; /* 頭像大小 */
+            height: 200px; /* 頭像大小 */
+             /* 圓形頭像 */
+            object-fit: cover; /* 圖片填充 */
+            margin: 0 auto 20px auto; /* 居中並留出下方間距 */
+             /* 頭像邊框 */
+        }
+
+        .profile-card h3 {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .profile-card p {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+   
+        .survey-container {
+            background-color: #cffdff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            align-items: center;
+        }
+
+        .survey-container h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            color: #555;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        /* 針對單選按鈕的樣式 */
+        .radio-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            cursor: pointer;
+        }
+
+        .radio-group input[type="radio"] {
+            margin-right: 8px;
+        }
+
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 14px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 19px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-button:hover {
+            background-color: #218838;
+        }
+        #snackbar {
+            visibility: hidden;
+            min-width: 250px;
+            margin-left: -125px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 2px;
+            padding: 16px;
+            position: fixed;
+            z-index: 1;
+            left: 50%;
+            bottom: 30px;
+            font-size: 17px;
+        }
+        #snackbar.show {
+            visibility: visible;
+            -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+            animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        }
+
+        @-webkit-keyframes fadein {
+            from {
+                bottom: 0;
+                opacity: 0;
+            }
+
+            to {
+                bottom: 30px;
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadein {
+            from {
+                bottom: 0;
+                opacity: 0;
+            }
+
+            to {
+                bottom: 30px;
+                opacity: 1;
+            }
+        }
+
+        @-webkit-keyframes fadeout {
+            from {
+                bottom: 30px;
+                opacity: 1;
+            }
+
+            to {
+                bottom: 0;
+                opacity: 0;
+            }
+        }
+
+        @keyframes fadeout {
+            from {
+                bottom: 30px;
+                opacity: 1;
+            }
+
+            to {
+                bottom: 0;
+                opacity: 0;
+            }
+        }
+        /* Mobile devices (portrait and landscape) */
+        @media (max-width: 767.98px) {
+            .navbar-brand span {
+                font-size: 0.9rem;
+            }
+
+            .navbar-brand img {
+                width: 45px;
+                height: 45px;
+            }
+
+            .navbar-nav .nav-link {
+                padding: 0.5rem 1rem;
+            }
+
+            .banner-section {
+                height: 350px;
+            }
+
+            #bannertext h1 {
+                font-size: 38px;
+            }
+
+            #bannertext p {
+                font-size: 16px;
+            }
+
+
+            .carousel-item img {
+                height: 250px;
+                object-fit: contain;
+            }
+
+            .carousel-caption {
+                padding: 5px 10px;
+                bottom: 10px;
+            }
+
+            /* 載入畫面在小螢幕的字體調整 */
+            #splash-screen h1 {
+                font-size: 2em;
+            }
+            #splash-screen p {
+                font-size: 1em;
+            }
+
+            /* profile card adjust for small screen */
+            .profile-card img {
+                width: 120px;
+                height: 120px;
+            }
+            .profile-card h3 {
+                font-size: 1.5rem;
+            }
+            .profile-card p {
+                font-size: 1rem;
+            }
+        }
+
+
+        /* Extra small devices (portrait, up to 575.98px) */
+        @media (max-width: 575.98px) {
+            .navbar-brand span {
+                font-size: 0.8rem;
+            }
+
+            .navbar-brand img {
+                width: 40px;
+                height: 40px;
+            }
+
+            .banner-section {
+                height: 300px;
+            }
+
+            #bannertext h1 {
+                font-size: 32px;
+            }
+
+            #bannertext p {
+                font-size: 14px;
+            }
+
+            /* 載入畫面在更小螢幕的字體調整 */
+            #splash-screen h1 {
+                font-size: 1.8em;
+            }
+            #splash-screen p {
+                font-size: 0.9em;
+            }
+
+            /* profile card adjust for extra small screen */
+            .profile-card img {
+                width: 100px;
+                height: 100px;
+            }
+            .profile-card h3 {
+                font-size: 1.3rem;
+            }
+            .profile-card p {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Small to medium devices (portrait, 375px to 767.98px) - Your existing rule, adjusted for general use */
+        @media (min-width: 375px) and (max-width: 767.98px) {
+            .banner-section {
+                height: 350px;
+            }
+
+            #bannertext h1 {
+                font-size: 38px;
+            }
+
+            #bannertext p {
+                font-size: 16px;
+            }
+        }
+
+
+        /* Specific Landscape Media Queries */
+
+        /* For a specific landscape tablet/large phone (e.g., 608x360 landscape) */
+        @media (width: 608px) and (height: 360px) and (orientation: landscape) {
+            .navbar-brand span {
+                font-size: 1rem;
+            }
+
+            .navbar-brand img {
+                width: 50px;
+                height: 50px;
+            }
+
+            .banner-section {
+                height: 400px;
+            }
+
+            #bannertext h1 {
+                font-size: 44px;
+            }
+
+            #bannertext p {
+                font-size: 18px;
+            }
+
+            .carousel-item img {
+                height: 300px;
+            }
+        }
+
+        /* For a specific landscape tablet (e.g., 1024x768 landscape) */
+        @media (width: 1024px) and (height: 768px) and (orientation: landscape) {
+            .navbar-brand span {
+                font-size: 1.1rem;
+            }
+
+            .navbar-brand img {
+                width: 55px;
+                height: 55px;
+            }
+
+            .banner-section {
+                height: 500px;
+            }
+
+            #bannertext h1 {
+                font-size: 52px;
+            }
+
+            #bannertext p {
+                font-size: 20px;
+            }
+
+            .carousel-item img {
+                height: 400px;
+            }
+        }
+
+        /* General adjustments for all handheld devices in landscape mode */
+        @media screen and (orientation: landscape) and (max-width: 991.98px) {
+            body {
+                padding-top: 60px;
+                /* Ensure body padding respects fixed navbar */
+            }
+            .navbar-brand span {
+                font-size: 0.95rem;
+                /* Slightly larger than small portrait */
+            }
+
+            .navbar-brand img {
+                width: 48px;
+                height: 48px;
+            }
+
+            .banner-section {
+                height: 400px;
+                /* Increase banner height for landscape */
+            }
+
+            #bannertext h1 {
+                font-size: 40px;
+            }
+
+            #bannertext p {
+                font-size: 17px;
+            }
+
+
+            .carousel-item img {
+                height: 300px;
+                /* Adjust carousel height for landscape */
+            }
+        }
+
+        @media (max-width: 767.98px) {
+            /* 或者您 navbar-toggler 觸發的 breakpoint */
+            .navbar-collapse {
+                /* 確保在小螢幕展開時可以滾動 */
+                max-height: calc(100vh - 60px);
+                /* 假設 navbar 高度約 60px，減去它以避免超出螢幕 */
+                overflow-y: auto;
+                /* 允許垂直滾動 */
+                -webkit-overflow-scrolling: touch;
+                /* 改善 iOS 上的滾動體驗 */
+                .navbar-nav {
+                    height: auto;
+                    /* 讓導覽列項目高度自動調整 */
+                }
+                .navbar-nav .nav-item {
+                    height: auto;
+                    /* 讓導覽列項目高度自動調整 */
+                }
+            }
+
+            /* 確保下拉菜單在小螢幕展開時有足夠空間 */
+            .navbar-nav .dropdown-menu {
+                position: static;
+                /* 在手機模式下通常將下拉菜單設為靜態定位，使其在流中顯示 */
+                width: 100%;
+                /* 讓它佔滿寬度 */
+                box-shadow: none;
+                /* 移除陰影，使其看起來更像導覽列的一部分 */
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                /* 添加分隔線 */
+            }
+
+            .navbar-nav .dropdown-item {
+                padding-left: 2.5rem;
+                /* 增加縮進，使其看起來像子選項 */
+            }
+        }
+    </style>
 </head>
 <body>
-    
+    <div id="splash-screen">
+        <h1>歡迎來到製作人員名單</h1>
+        <p>正在載入中...</p>
+        <button id="continue-button">進入網站</button>
+    </div>
+
+    <nav class="navbar navbar-expand-md navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/index.html">
+                <img src="/images/Png.png" alt="" width="50" height="50" class="d-inline-block align-text-middle">
+                <span>憲兵指揮部</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/index.html">首頁</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            最新資訊
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/notice.html">指揮部公告</a></li>
+                            <li><a class="dropdown-item" href="/joinus.html">加入我們</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            認識憲兵
+                        </a>
+                        <ul class="dropdown-menu">
+
+                            <li><a class="dropdown-item" href="/mp.html">憲兵簡介</a></li>
+                            <li><a class="dropdown-item" href="/mpdept.html">指揮鏈</a></li>
+                            <li><a class="dropdown-item" href="/event.html">活動</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            認識高層
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/CO.html">指揮官</a></li>
+                            <li><a class="dropdown-item" href="/DCO.html">副指揮官</a></li>
+                            <li><a class="dropdown-item" href="/COS.html">參謀長</a></li>
+                            <li><a class="dropdown-item" href="/DCOS.html">副參謀長</a></li>
+                            <li><a class="dropdown-item" href="/history.html">歷屆高層</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            轄下單位
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/MPDSC.html">勤務支援大隊</a></li>
+                            <li><a class="dropdown-item" href="/MPSSC.html">特種勤務大隊</a></li>
+                            <li><a class="dropdown-item" href="/MPTC.html">憲兵訓練中心</a></li>
+                            <li><a class="dropdown-item" href="/MPIO.html">督察室</a></li>
+                            <li><a class="dropdown-item" href="/MPRPC.html">獎懲委員會</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" aria-current="page" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            更多資訊
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item"
+                                    href="https://sites.google.com/view/law-roca/%E9%A6%96%E9%A0%81?authuser=0">法規資料庫</a>
+                            </li>
+                            <li><a class="dropdown-item"
+                                    href="https://sites.google.com/view/roca-584/%E9%A6%96%E9%A0%81">陸軍裝甲第五八四旅</a>
+                            </li>
+                            <li><a class="dropdown-item"
+                                    href="https://sites.google.com/view/robloxrocaaasfc/%E9%A6%96%E9%A0%81">陸軍航空特戰指揮部</a>
+                            </li>
+                            <li><a class="dropdown-item" href="https://sites.google.com/view/roca2022">ROCA官方網站</a>
+                            </li>
+                            <li><a class="dropdown-item active" aria-current="page" href="/#">製作名單</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main id="main-content">
+        <section class="banner-section">
+            <img src="/images/2024-12-29_170700.png" alt="Banner Image" class="banner-image">
+            <div id="bannertext">
+                <h1>製作人員</h1>
+                <p>感謝這些夥伴的貢獻！</p>
+            </div>
+        </section>
+
+        <div class="container my-5">
+            <div class="row row-cols-1 row-cols-md-3 g-4 justify-content-center">
+                <div class="col">
+                    <div class="profile-card">
+                        <img src="/images/dcos.png" alt="Profile 1">
+                        <h3>Justin_chiu27</h3>
+                        <p>網站負責人，負責整體製作及維護</p>
+                        <br>
+                        
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="profile-card">
+                        <img src="/images/cos.png" alt="Profile 2">
+                        <h3>rockroll901</h3>
+                        <p>最初推新網站計畫者，協助測試，提供改良意見</p>
+                        <br>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="profile-card">
+                        <img src="/images/Xx_sup.png" alt="Profile 3">
+                        <h3>XxChortleKidd</h3>
+                        <p>協助測試，提供影像支援、改良意見</p>
+                       <br>
+                    </div>
+                </div>
+
+                </div>
+        </div>
+       
+      
+    </main>
+    <div class="survey-container mt-5 " style="text-align: center;">
+        <h2>網站滿意度調查</h2>
+        <form name="MPwebsite" method="POST" data-netlify="true">
+            <div class="form-group">
+                <label>您對於本網站整體使用的滿意度如何？</label>
+                <div class="radio-group">
+                    <input type="radio" id="satisfaction-very-satisfied" name="satisfaction_level" value="非常滿意"
+                        required>
+                    <label for="satisfaction-very-satisfied">非常滿意</label><br>
+
+                    <input type="radio" id="satisfaction-satisfied" name="satisfaction_level" value="滿意">
+                    <label for="satisfaction-satisfied">滿意</label><br>
+
+                    <input type="radio" id="satisfaction-neutral" name="satisfaction_level" value="普通" checked>
+                    <label for="satisfaction-neutral">普通</label><br>
+
+                    <input type="radio" id="satisfaction-dissatisfied" name="satisfaction_level" value="不滿意">
+                    <label for="satisfaction-dissatisfied">不滿意</label><br>
+
+                    <input type="radio" id="satisfaction-very-dissatisfied" name="satisfaction_level" value="非常不滿意">
+                    <label for="satisfaction-very-dissatisfied">非常不滿意</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="improvements">您認為本網站有哪些可以改進的地方？ (選填)</label>
+                <textarea id="improvements" name="suggested_improvements" placeholder="請留下您的寶貴建議..."></textarea>
+            </div>
+
+            <button type="submit" onclick="myFunction()" class="submit-button">提交調查</button>
+            <div id="snackbar">已提交，謝謝填問卷</div>
+        </form>
+    </div>
+    <img src="/images/22211111.png" alt="" width="100%" height="200" style="object-fit: contain;align-items: center;">
+    <footer>
+        <p>版權所有 &copy; 2025 憲兵指揮部</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const splashScreen = document.getElementById('splash-screen');
+            const mainContent = document.getElementById('main-content');
+            const continueButton = document.getElementById('continue-button');
+
+            // --- 載入畫面 (Splash Screen) 邏輯 ---
+            const hasVisited = sessionStorage.getItem('hasVisitedCreditsPage'); // 為此頁面使用專屬的 sessionStorage 鍵
+
+            if (hasVisited) {
+                // 如果已經訪問過，則直接隱藏載入畫面，顯示主要內容
+                splashScreen.style.display = 'none';
+                mainContent.style.display = 'block';
+                document.body.style.overflow = ''; // 恢復滾動條
+
+                // 在主要內容顯示後，初始化頁面功能
+                // 這裡的頁面沒有 tab 或新聞跑馬燈，所以只調用 parallaxScroll
+                parallaxScroll();
+            } else {
+                // 如果是第一次訪問，則顯示載入畫面
+                document.body.style.overflow = 'hidden'; // 初始時禁用滾動條
+                splashScreen.style.display = 'flex'; // 確保載入畫面顯示
+                mainContent.style.display = 'none'; // 確保主要內容隱藏
+
+                continueButton.addEventListener('click', function() {
+                    hideSplashScreen();
+                    // 在用戶點擊按鈕進入後，設定 'hasVisitedCreditsPage' 標記
+                    sessionStorage.setItem('hasVisitedCreditsPage', 'true');
+                });
+
+                // 或者選擇自動隱藏，但仍然要設定標記
+                /*
+                setTimeout(function() {
+                    hideSplashScreen();
+                    sessionStorage.setItem('hasVisitedCreditsPage', 'true');
+                }, 3000); // 3 秒後自動隱藏
+                */
+            }
+
+            function hideSplashScreen() {
+                splashScreen.classList.add('hidden');
+
+                setTimeout(function() {
+                    splashScreen.style.display = 'none';
+                    mainContent.style.display = 'block';
+                    document.body.style.overflow = '';
+
+                    // 確保在主要內容顯示後，這些功能才初始化
+                    parallaxScroll();
+                }, 1000); // 與 CSS transition 時間一致
+            }
+
+
+            // --- 原有頁面功能 JavaScript (僅保留與本頁相關的部分) ---
+
+            // Navbar active 狀態處理
+            // 這段應該在所有頁面通用，所以保留
+            const currentPath = window.location.pathname;
+            const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                link.removeAttribute('aria-current');
+
+                const linkHref = link.getAttribute('href');
+                // 處理 /index.html 和 / 路徑
+                if (linkHref === '/index.html' && (currentPath === '/' || currentPath === '/index.html' || currentPath.endsWith('/'))) {
+                    link.classList.add('active');
+                    link.setAttribute('aria-current', 'page');
+                }
+                // 處理 /credits.html
+                else if (linkHref === '/credits.html' && currentPath.endsWith('/credits.html')) {
+                    link.classList.add('active');
+                    link.setAttribute('aria-current', 'page');
+                }
+                // 通用處理其他頁面
+                else if (linkHref && linkHref !== '#' && currentPath.includes(linkHref)) {
+                    link.classList.add('active');
+                    link.setAttribute('aria-current', 'page');
+                }
+            });
+
+
+            // 視差滾動效果
+            const bannerSection = document.querySelector('.banner-section');
+            const bannerImage = document.querySelector('.banner-image');
+
+            function parallaxScroll() {
+                if (!bannerSection || !bannerImage) return;
+
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const rect = bannerSection.getBoundingClientRect();
+                const bannerTop = rect.top;
+
+                if (rect.bottom > 0 && bannerTop < window.innerHeight) {
+                    const distanceScrolled = Math.max(0, -bannerTop);
+                    const parallaxFactor = 0.3;
+                    const yPos = distanceScrolled * parallaxFactor;
+                    bannerImage.style.transform = `translateY(${yPos}px)`;
+                } else {
+                    bannerImage.style.transform = `translateY(0px)`;
+                }
+            }
+            // 監聽滾動事件以觸發視差效果
+            window.addEventListener('scroll', parallaxScroll);
+
+
+            // 由於這是 "製作人員名單" 頁面，通常沒有新聞跑馬燈和 Tab 功能
+            // 所以我移除了 news ticker 和 tab 相關的 JavaScript 函數調用
+            // 如果這些功能在其他頁面，請確保它們在對應的頁面腳本中。
+        });
+        function myFunction() {
+        var x = document.getElementById("snackbar");
+        x.className = "show";
+        setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+    }
+    </script>
 </body>
 </html>

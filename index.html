@@ -353,73 +353,7 @@
             color: darkgoldenrod;
         }
 
-        .survey-container {
-            background-color: #cffdff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 500px;
-            align-items: center;
-        }
-
-        .survey-container h2 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 25px;
-        }
-
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 10px;
-            color: #555;
-            font-weight: bold;
-            font-size: 1.1em;
-        }
-
-        /* 針對單選按鈕的樣式 */
-        .radio-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: #555;
-            cursor: pointer;
-        }
-
-        .radio-group input[type="radio"] {
-            margin-right: 8px;
-        }
-
-        .form-group textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            box-sizing: border-box;
-            font-size: 16px;
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .submit-button {
-            width: 100%;
-            padding: 14px;
-            background-color: #28a745;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 19px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .submit-button:hover {
-            background-color: #218838;
-        }
-
+       
         footer {
             width: 100vw;
             height: 100px;
@@ -440,75 +374,7 @@
             padding-top: 60px;
         }
 
-        #snackbar {
-            visibility: hidden;
-            min-width: 250px;
-            margin-left: -125px;
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            border-radius: 2px;
-            padding: 16px;
-            position: fixed;
-            z-index: 1;
-            left: 50%;
-            bottom: 30px;
-            font-size: 17px;
-        }
-
-        #snackbar.show {
-            visibility: visible;
-            -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-            animation: fadein 0.5s, fadeout 0.5s 2.5s;
-        }
-
-        @-webkit-keyframes fadein {
-            from {
-                bottom: 0;
-                opacity: 0;
-            }
-
-            to {
-                bottom: 30px;
-                opacity: 1;
-            }
-        }
-
-        @keyframes fadein {
-            from {
-                bottom: 0;
-                opacity: 0;
-            }
-
-            to {
-                bottom: 30px;
-                opacity: 1;
-            }
-        }
-
-        @-webkit-keyframes fadeout {
-            from {
-                bottom: 30px;
-                opacity: 1;
-            }
-
-            to {
-                bottom: 0;
-                opacity: 0;
-            }
-        }
-
-        @keyframes fadeout {
-            from {
-                bottom: 30px;
-                opacity: 1;
-            }
-
-            to {
-                bottom: 0;
-                opacity: 0;
-            }
-        }
+      
 
         /* 小型裝置: 360*608, 375*608 */
         @media (max-width: 575.98px) {
@@ -1117,43 +983,11 @@
             <span class="visually-hidden">Next</span>
         </button>
     </div>
-    <div class="survey-container mt-5">
-        <h2>網站滿意度調查</h2>
-        <form name="MPwebsite" method="POST" data-netlify="true">
-            <div class="form-group">
-                <label>您對於本網站整體使用的滿意度如何？</label>
-                <div class="radio-group">
-                    <input type="radio" id="satisfaction-very-satisfied" name="satisfaction_level" value="非常滿意"
-                        required>
-                    <label for="satisfaction-very-satisfied">非常滿意</label><br>
-
-                    <input type="radio" id="satisfaction-satisfied" name="satisfaction_level" value="滿意">
-                    <label for="satisfaction-satisfied">滿意</label><br>
-
-                    <input type="radio" id="satisfaction-neutral" name="satisfaction_level" value="普通" checked>
-                    <label for="satisfaction-neutral">普通</label><br>
-
-                    <input type="radio" id="satisfaction-dissatisfied" name="satisfaction_level" value="不滿意">
-                    <label for="satisfaction-dissatisfied">不滿意</label><br>
-
-                    <input type="radio" id="satisfaction-very-dissatisfied" name="satisfaction_level" value="非常不滿意">
-                    <label for="satisfaction-very-dissatisfied">非常不滿意</label>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="improvements">您認為本網站有哪些可以改進的地方？ (選填)</label>
-                <textarea id="improvements" name="suggested_improvements" placeholder="請留下您的寶貴建議..."></textarea>
-            </div>
-
-            <button type="submit" onclick="myFunction()" class="submit-button">提交調查</button>
-            <div id="snackbar">已提交，謝謝填問卷</div>
-        </form>
-    </div>
+   
     <img src="/images/22211111.png" alt="" width="100%" height="200" style="object-fit: contain;align-items: center;">
 </body>
 <footer>
-    <p> Copyright © 2025, Republic of China Army Military Police Command - Roblox.
+    <p> Copyright © 2025, Republic of China Army Military Police Command - Roblox. & Justin_chiu27
         All Rights Reserved.<br><span style="color:red">嚴禁抄襲，違者必追究</span>
     <br>
     <p></p>
@@ -1162,6 +996,7 @@
 
 </footer>
 <script>
+    
     document.addEventListener('DOMContentLoaded', function () {
 
         // --- Navbar active 狀態處理 START ---
@@ -1355,11 +1190,7 @@
         }
     });
     // --- Tab 頁籤切換功能 END ---
-    function myFunction() {
-        var x = document.getElementById("snackbar");
-        x.className = "show";
-        setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
-    }
+ 
 </script>
 
 </html>
