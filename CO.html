@@ -10,15 +10,15 @@
     <title>指揮官</title>
     <link rel="icon" type="image/png" href="/images/Png.png">
     <style>
-  /* 移除 Bootstrap 預設的一些邊距，使內容更緊湊 */
-  body {
+        /* 移除 Bootstrap 預設的一些邊距，使內容更緊湊 */
+        body {
             margin: 0;
             padding: 0;
             overflow-x: hidden;
             /* 防止水平滾動條 */
             /* 設置基礎字體大小，以便 rem 單位進行計算 */
             font-size: 16px;
-
+            background-color: whitesmoke;
             /* 基準字體大小 */
         }
 
@@ -109,6 +109,271 @@
             background-color: #495057;
             color: white;
         }
+
+        .hicomnav {
+            width: 100%;
+            height: 50px;
+            /* 增加高度以容納按鈕並提供間距 */
+            padding-top: 90px;
+            /* 這裡的 padding-top 讓它從 navbar 下方開始 */
+            background-color: whitesmoke;
+            /* 為按鈕區域設定一個背景色 */
+        }
+
+        /* 新增的內容區域樣式 */
+        #highnav button a {
+
+            color: whitesmoke;
+            text-decoration: none;
+        }
+
+        /* 新增的內容區域樣式 */
+        .content-section {
+            padding-top: 80px;
+            /* 留出 Navbar 的高度 */
+            background-color: #e6edf4;
+            /* 接近圖片的背景色 */
+            /* 移除 min-height: calc(100vh - 60px); 以便內容自然延伸 */
+            display: flex;
+            /* 使用 Flexbox 確保內容垂直居中 */
+            align-items: center;
+            /* 垂直居中對齊 */
+            padding-bottom: 20px;
+            /* 給底部留些空間 */
+        }
+
+        .profile-card {
+            background-color: #ffffff;
+            /* 卡片背景色，與圖片背景形成對比 */
+            border-radius: 8px;
+            /* 圓角 */
+            overflow: hidden;
+            /* 確保內容不溢出圓角 */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            /* 輕微陰影 */
+            margin: 20px auto;
+            /* 上下邊距，左右自動居中 */
+            max-width: 1100px;
+            /* **調整這裡：增加卡片最大寬度** */
+        }
+
+        .image-col {
+            background-color: #ced9e3;
+            /* 圖片列的背景色 */
+            padding: 30px;
+            /* **調整這裡：增加內邊距** */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile-image-container {
+            width: 100%;
+            /* 容器寬度 */
+            max-width: 280px;
+            /* **調整這裡：增加圖片最大寬度** */
+            margin-bottom: 20px;
+            /* **調整這裡：增加圖片下方間距** */
+        }
+
+        .profile-image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            /* 移除圖片底部間隙 */
+            border-radius: 4px;
+            /* 圖片輕微圓角 */
+        }
+
+        .logo-image-container {
+            width: 100%;
+            max-width: 180px;
+            /* **調整這裡：增加 Logo 圖片的最大寬度** */
+            margin-bottom: 15px;
+            /* **調整這裡：增加 Logo 下方間距** */
+        }
+
+        .logo-image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+
+        .text-col {
+            padding: 40px;
+            padding-left: 90px;
+            /* **調整這裡：增加文字內容的內邊距** */
+            background-color: #e6edf4;
+            /* 文字列的背景色，與圖片背景相同 */
+            color: #333;
+            background-position: top right;
+
+            background-repeat: no-repeat;
+            /* 文字顏色 */
+        }
+
+        .text-col p {
+            margin-bottom: 12px;
+            /* **調整這裡：增加每行文字間距** */
+            font-size: 1.15rem;
+            /* **調整這裡：增加字體大小** */
+            line-height: 1.8;
+            /* **調整這裡：增加行高** */
+
+
+        }
+
+        .text-col strong {
+            color: #000;
+            /* 加粗文字顏色更深 */
+        }
+
+        #co p {
+font-weight: bold;
+            text-align: center;
+            margin-top: 30px;
+            font-size: 24px;
+
+        }
+
+        #profilehhistory p strong {
+            font-size: 24px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+        }
+
+        #profilehhistory.ul li {
+            font-size: 20px;
+            gap: 10px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
+        #profilehhistory ul li p span {
+            color: darkgoldenrod;
+        }
+
+        /* 新增的按鈕和可展開區塊樣式 */
+        .expandable-section {
+            background-color: #f8f9fa;
+            /* 輕微的背景色 */
+            padding: 30px 0;
+            /* 上下內邊距 */
+            margin-top: 30px;
+            /* 與上方內容的間距 */
+            border-top: 1px solid #dee2e6;
+            /* 上方加一條線 */
+        }
+
+        .expandable-content {
+            background-color: #ffffff;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 25px;
+            margin-top: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .expandable-content p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #000;
+            margin-bottom: 10px;
+        }
+
+        .expandable-content h3 {
+            color: #343a40;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        footer {
+            width: 100vw;
+            height: 100px;
+            background-color: rgb(51, 81, 0);
+        }
+
+        footer p {
+            color: whitesmoke;
+            text-align: center;
+            font-size: medium;
+            justify-items: center;
+            padding-top: 30px;
+        }
+
+        /* 響應式調整 */
+        @media (max-width: 767.98px) {
+            .content-section {
+                padding-top: 70px;
+                /* 小螢幕時調整上邊距 */
+                align-items: flex-start;
+                /* 小螢幕時內容靠頂部對齊 */
+            }
+
+            .profile-card {
+                margin: 15px;
+                /* 小螢幕時調整卡片邊距 */
+            }
+
+            .image-col {
+                padding: 20px;
+                /* 小螢幕時調整圖片列內邊距 */
+            }
+
+            .text-col {
+                padding: 25px;
+                /* 小螢幕時調整文字列內邊距 */
+            }
+
+            .profile-image-container {
+                max-width: 220px;
+                /* 小螢幕時圖片更小 */
+            }
+
+            .logo-image-container {
+                max-width: 140px;
+                /* 小螢幕時 Logo 更小 */
+            }
+
+            .navbar-collapse {
+                /* 確保在小螢幕展開時可以滾動 */
+                max-height: calc(100vh - 60px);
+                /* 假設 navbar 高度約 60px，減去它以避免超出螢幕 */
+                overflow-y: auto;
+                /* 允許垂直滾動 */
+                -webkit-overflow-scrolling: touch;
+
+                /* 改善 iOS 上的滾動體驗 */
+                .navbar-nav {
+                    height: auto;
+                    /* 讓導覽列項目高度自動調整 */
+                }
+
+                .navbar-nav .nav-item {
+                    height: auto;
+                    /* 讓導覽列項目高度自動調整 */
+                }
+            }
+
+            /* 確保下拉菜單在小螢幕展開時有足夠空間 */
+            .navbar-nav .dropdown-menu {
+                position: static;
+                /* 在手機模式下通常將下拉菜單設為靜態定位，使其在流中顯示 */
+                width: 100%;
+                /* 讓它佔滿寬度 */
+                box-shadow: none;
+                /* 移除陰影，使其看起來更像導覽列的一部分 */
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                /* 添加分隔線 */
+            }
+
+            .navbar-nav .dropdown-item {
+                padding-left: 2.5rem;
+                /* 增加縮進，使其看起來像子選項 */
+            }
+
+        }
     </style>
 
 </head>
@@ -116,7 +381,7 @@
 <body>
     <nav class="navbar navbar-expand-md navbar-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="/index.html">
                 <img src="/images/Png.png" alt="" width="50" height="50" class="d-inline-block align-text-middle">
                 <span>憲兵指揮部</span>
             </a>
@@ -145,7 +410,7 @@
                             認識憲兵
                         </a>
                         <ul class="dropdown-menu">
-                            
+
                             <li><a class="dropdown-item" href="/mp.html">憲兵簡介</a></li>
                             <li><a class="dropdown-item" href="/mpdept.html">指揮鏈</a></li>
                             <li><a class="dropdown-item" href="/event.html">活動</a></li>
@@ -201,7 +466,134 @@
             </div>
         </div>
     </nav>
+    </div>
+    <div class="hicomnav d-flex justify-content-center align-items-center gap-5" id="highnav">
+        <button type="button" class="btn btn-warning"><a href="/DCO.html">副指揮官</a></button>
+        <button type="button" class="btn btn-primary"><a href="/COS.html">參謀長</a></button>
+        <button type="button" class="btn btn-success"><a href="/DCOS.html">副參謀長</a></button>
+    </div>
+    <div class="content-section">
+        <div class="container profile-card">
+            <div class="row g-0">
+                <div class="col-md-4 image-col">
+                    <div class="logo-image-container">
 
+                    </div>
+                    <div class="profile-image-container" id="co">
+                        <img src="/images/co.png" alt="指揮官sjkhortj" class="img-fluid">
+                        <p><strong>指揮官</strong><br>sjkhortj</p>
+                    </div>
+                </div>
+                <div class="col-md-8 text-col" id="profilehhistory">
+                    <p><strong>經歷：</strong></p>
+                    <ul>
+                        <li>
+                            <p>國防部憲兵指揮部-指揮官<span>(現任)</span></p>
+                        </li>
+                        
+                        <li>
+                            <p>國防部技術部門-DEV<span>(現任)</span></p>
+                        </li>
+
+                        <li>
+                            <p>國防部軍官評估委員會-委員<span>(現任)</span></p>
+                        </li>
+                        <li>
+                            <p>陸軍教育訓練暨準則發展指揮部-學務處主任<span>(現任)</span></p>
+                        </li>
+                        <li>
+                            <p>國防部憲兵指揮部-參謀長</p>
+                        </li>
+                        <li>
+                            <p>國防部憲兵指揮部-糾察主任</p>
+                        </li>
+                        <li>
+                            <p>國防部憲兵指揮部-營長</p>
+                        </li>
+                        <li>
+                            <p>國防部憲兵指揮部-副營長</p>
+                        </li>
+                        <li>
+                            <p>國防部憲兵指揮部-特勤部隊隊長</p>
+                        </li>
+                        <li>
+                            <p>國防部憲兵指揮部-營訓練官</p>
+                        </li>
+
+                     
+                    </ul>
+                    <p><strong><span style="color:darkorange">勳章&獎章</span></strong></p>
+                    <ul style="font-weight: bold;font-size: 24px;">
+                        <li><p>中正獎章</p></li>
+                         <li><p>楷模獎章</p></li>
+                         <li><p>ROCA建軍二周年閱兵紀念獎章</p></li>
+                         <li><p>寶星一星獎章</p></li>
+                    </ul>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="expandable-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-8 text-center">
+                    <button type="button" class="btn btn-info btn-lg" data-bs-toggle="collapse"
+                        data-bs-target="#collapseText" aria-expanded="false" aria-controls="collapseText">
+                     
+                    </button>
+                    <div class="collapse" id="collapseText">
+                        <div class="expandable-content mt-3">
+                            <h3>To </h3>
+                            <p style="text-align: justify;">
+                             
+                            </p>
+                            
+                            <p style="text-align: right;"></p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <img src="/images/22211111.png" alt="" width="100%" height="200" style="object-fit: contain;align-items: center;">
 </body>
+<footer>
+    <p>© 2025 中華民國陸軍事基地 憲兵指揮部版權所屬 <br><span style="color:red">嚴禁抄襲，違者必追究</span></p>
+</footer>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+        // --- Navbar active 狀態處理 START ---
+        const currentPath = window.location.pathname;
+        const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            link.removeAttribute('aria-current');
+
+            const linkHref = link.getAttribute('href');
+
+            // 處理首頁或根路徑的 active 狀態
+            if (
+                (currentPath === '/' || currentPath.endsWith('/index.html') || currentPath.endsWith('/')) &&
+                (linkHref === 'index.html' || linkHref === '#' || linkHref === '/')
+            ) {
+                if (link.textContent.trim() === '首頁') { // 確保這是針對首頁連結
+                    link.classList.add('active');
+                    link.setAttribute('aria-current', 'page');
+                }
+            }
+            // 處理其他頁面的 active 狀態
+            else if (linkHref && linkHref !== '#' && currentPath.includes(linkHref)) {
+                link.classList.add('active');
+                link.setAttribute('aria-current', 'page');
+            }
+        });
+        // --- Navbar active 狀態處理 END ---
+    });
+</script>
 
 </html>
