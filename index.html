@@ -299,9 +299,15 @@
             margin: 0;
             font-family: Arial;
         }
-#ahref a{
+#ahrefDSC a{
     text-decoration: none;
     color: darkmagenta;
+    font-weight: bold;
+}
+#ahrefSSC a{
+    text-decoration: none;
+    color:dodgerblue;
+    font-weight: bold;
 }
         /* Style tab links */
         .tablink {
@@ -382,13 +388,13 @@
 text-decoration: none;
 
 }
-#ahrefcredt button {
+/* #ahrefcredt button {
             margin-left: 45%;
             font-size: 14px;
         }
         #ahrefcredt button span a {
         text-align: center;
-        }
+        } */
         /* 小型裝置: 360*608, 375*608 */
         @media (max-width: 575.98px) {
             /* Bootstrap xs breakpoint */
@@ -477,12 +483,12 @@ text-decoration: none;
             height: 130px;
             background-color: rgb(51, 81, 0);
         }
-        #ahrefcredt button span {
+        /* #ahrefcredt button span {
             margin-left: 40;
         }
         #ahrefcredt button span a {
         text-align: left;
-        }
+        } */
 
         }
 
@@ -857,7 +863,7 @@ text-decoration: none;
         <h1>憲兵 </h1>
         <p style="font-size: 16px;">Military Police</p>
         <p style="font-size: 18px;">憲兵為營區執法單位，負責維持營區內秩序、打擊突襲者，執行外交勤務保護外賓，保護首長</p>
-        <p style="font-size: 18px;">指揮部轄下部隊分為：<span id="ahref"><a href="/MPDSC.html">勤務支援大隊</a>、<a href="/MPSSC.html">特種勤務大隊</a></span></p>
+        <p style="font-size: 18px;">指揮部轄下部隊分為：<span id="ahrefDSC"><a href="/MPDSC.html">勤務支援大隊</a></span>、<span id="ahrefSSC" style="color: dodgerblue;"><a href="/MPSSC.html">特種勤務大隊</a></span></p>
 
         <div class="row mb-3">
             <div class="col-6 col-md-3">
@@ -934,9 +940,23 @@ text-decoration: none;
             </div>
         </div>
     </div>
-    <div id="ahrefcredt" style="width: 100%;height:fit-content;  margin-bottom: 10px;"> <button type="button" class="btn btn-warning btn-lg"  > <span style="font-size:24px;cursor:pointer; display: block; "
-        ><a href="/creater.html" style="text-decoration: none;color:#343a40"> 網站滿意度調查</a></span></button></div>
-   
+    <div class="row mb-3 mt-3" style="background-color:rgba(229, 229, 229, 0.934);">
+        <div class="col-12 col-md-4 mb-2" style="margin-top: 5px;">  <span style="font-size:18px; cursor:pointer; display: block;">
+                    <a href="https://www.roblox.com/games/119975147089070/Republic-of-China-Army-Military-Base" style="text-decoration: none;color: rgb(255, 255, 255);"class="btn btn-info btn-lg w-100">中華民國軍事基地Roblox連結</a>
+                </span>
+          
+        </div>
+        <div class="col-12 col-md-4 mb-2"style="margin-top: 5px;">  <span style="font-size:20px; cursor:pointer; display: block;">
+                    <a href="/creater.html"class="btn btn-success btn-lg w-100" style="text-decoration: none;color: rgb(255, 255, 255);">網站滿意度調查</a>
+                </span>
+          
+        </div>
+        <div class="col-12 col-md-4 mb-2"style="margin-top: 5px;"> <span style="font-size:20px; cursor:pointer; display: block;">
+                    <a href="https://www.roblox.com/communities/13549943/ROCA-Military-Police#!/about"  class="btn btn-warning btn-lg w-100"style="text-decoration: none;color: rgb(255, 255, 255);">憲兵Roblox群組</a>
+                </span>
+            
+        </div>
+    </div>
     <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#imageCarousel" data-bs-slide-to="0" class="active"
@@ -952,6 +972,7 @@ text-decoration: none;
             <button type="button" data-bs-target="#imageCarousel" data-bs-slide-to="9" aria-label="Slide 10"></button>
             <button type="button" data-bs-target="#imageCarousel" data-bs-slide-to="10" aria-label="Slide 11"></button>
             <button type="button" data-bs-target="#imageCarousel" data-bs-slide-to="11" aria-label="Slide 12"></button>
+            <button type="button" data-bs-target="#imageCarousel" data-bs-slide-to="12" aria-label="Slide 13"></button>
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active">
@@ -980,24 +1001,27 @@ text-decoration: none;
 
             </div>
             <div class="carousel-item">
-                <img src="/images/image-31.png" class="d-block w-100" alt="站崗照">
+                <img src="/images/image-31.png" class="d-block w-100" alt="打擊突襲照">
 
             </div>
             <div class="carousel-item">
-                <img src="/images/2025-02-02_013927.png" class="d-block w-100" alt="站崗照">
+                <img src="/images/2025-02-02_013927.png" class="d-block w-100" alt="狙擊照">
 
             </div>
             <div class="carousel-item">
-                <img src="/images/3773716831_11750841896_1738080053333.png" class="d-block w-100" alt="站崗照">
+                <img src="/images/3773716831_11750841896_1738080053333.png" class="d-block w-100" alt="外交車隊">
             </div>
             <div class="carousel-item">
-                <img src="/images/2025-03-26_202453.png" class="d-block w-100" alt="站崗照">
+                <img src="/images/2025-03-26_202453.png" class="d-block w-100" alt="進攻照">
             </div>
             <div class="carousel-item">
-                <img src="/images/3773716831_11750841896_1739627904425.png" class="d-block w-100" alt="站崗照">
+                <img src="/images/3773716831_11750841896_1739627904425.png" class="d-block w-100" alt="憲特基地">
             </div>
             <div class="carousel-item">
-                <img src="/images/2025-02-02_013801.png" class="d-block w-100" alt="站崗照">
+                <img src="/images/2025-02-02_013801.png" class="d-block w-100" alt="狙擊照">
+            </div>
+            <div class="carousel-item">
+                <img src="/images/image11345.png" class="d-block w-100" alt="站崗背影照">
             </div>
 
         </div>

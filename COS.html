@@ -144,21 +144,25 @@
         }
 
         .hicomnav {
-            width: 100%;
-            height: 50px;
-            /* 增加高度以容納按鈕並提供間距 */
-            padding-top: 90px;
-            /* 這裡的 padding-top 讓它從 navbar 下方開始 */
-            background-color: whitesmoke;
-            /* 為按鈕區域設定一個背景色 */
-        }
+           
+           width: 100%;
+           height: 50px;
+           /* 增加高度以容納按鈕並提供間距 */
+           padding-top: 90px;
+           /* 這裡的 padding-top 讓它從 navbar 下方開始 */
+           background-color: whitesmoke;
+           
+           /* 為按鈕區域設定一個背景色 */
+       }
 
-        /* 新增的內容區域樣式 */
-        #highnav button a {
+       /* 新增的內容區域樣式 */
+       #highnav  a {
+           width: 100%;
+           font-size: 20px;
+           color: whitesmoke;
+           text-decoration: none;
+       }
 
-            color: whitesmoke;
-            text-decoration: none;
-        }
 
         /* 新增的內容區域樣式 */
         .content-section {
@@ -506,9 +510,9 @@
     </nav>
     </div>
     <div class="hicomnav d-flex justify-content-center align-items-center gap-5" id="highnav">
-        <button type="button" class="btn btn-warning"><a href="/CO.html">指揮官</a></button>
-        <button type="button" class="btn btn-primary"><a href="/DCO.html">副指揮官</a></button>
-        <button type="button" class="btn btn-success"><a href="/DCOS.html">副參謀長</a></button>
+       <a href="/CO.html"class="btn btn-warning">指揮官</a>
+        <a href="/DCO.html"class="btn btn-primary">副指揮官</a>
+       <a href="/DCOS.html"class="btn btn-success">副參謀長</a>
     </div>
     <div class="content-section">
         <div class="container profile-card">
