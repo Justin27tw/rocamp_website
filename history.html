@@ -3,9 +3,955 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>歷屆高層</title>
+    <link rel="icon" type="image/png" href="/images/Png.png">
+    <style>
+        /* 移除 Bootstrap 預設的一些邊距，使內容更緊湊 */
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            /* 防止水平滾動條 */
+            /* 設置基礎字體大小，以便 rem 單位進行計算 */
+            font-size: 16px;
+            /* 基準字體大小 */
+        }
+
+        /* Navbar 樣式調整 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #343a40;
+            padding: 0;
+            min-height: 60px;
+            z-index: 1030;
+        }
+
+        .navbar-brand {
+            padding: 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+
+        .navbar-brand img {
+            margin-right: 5px;
+        }
+
+        .navbar-brand span {
+            color: white;
+            letter-spacing: 2px;
+            font-size: 1rem;
+            /* 使用 rem */
+        }
+
+        /* 導航項目容器 */
+        .navbar-nav {
+            height: 100%;
+            align-items: center;
+        }
+
+        .navbar-nav .nav-item {
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-nav .nav-link {
+            color: rgba(255, 255, 255, 0.75);
+            padding: 0.8rem 1rem;
+            font-size: 1rem;
+            /* 使用 rem */
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active {
+            color: white;
+        }
+
+        /* 下拉選單樣式 (Bootstrap 5) */
+        .navbar-nav .dropdown-menu {
+            background-color: #343330;
+            border: none;
+            border-radius: 0;
+            padding: 0;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+            display: block;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .navbar-nav .dropdown-menu.show {
+            opacity: 1;
+            transform: translateY(0);
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        .navbar-nav .dropdown-item {
+            color: rgba(255, 255, 255, 0.75);
+            padding: 0.75rem 1.5rem;
+        }
+
+        .navbar-nav .dropdown-item:hover,
+        .navbar-nav .dropdown-item:focus {
+            background-color: #495057;
+            color: white;
+        }
+
+        /* Banner 區塊調整 */
+        .banner-section {
+            position: relative;
+            width: 100vw;
+            height: 500px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* 增加一個 top 值來補償 fixed navbar 的高度 */
+            /* 匹配 navbar 的 min-height */
+        }
+
+        .banner-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100%;
+            /* 使用 100% 確保填充父容器 */
+            object-fit: cover;
+            filter: grayscale(10%) brightness(60%);
+            z-index: -1;
+            object-position: center center;
+            size: 80%;
+        }
+
+        #bannertext {
+            color: white;
+            text-align: center;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        #bannertext h1 {
+            font-size: 3.25rem;
+            /* 使用 rem */
+            margin-bottom: 0;
+            font-weight: bold;
+            position: relative;
+            top: 46px;
+
+        }
+
+        #bannertext p {
+            font-size: 1.125rem;
+            /* 使用 rem */
+            margin-top: 0;
+            position: relative;
+            top: 50px;
+        }
+
+        /* 為了演示滾動效果，我們需要一些下方內容 */
+        .content-placeholder {
+            height: fit-content;
+            background-color: #f0f0f0;
+            padding: 50px;
+            text-align: center;
+            color: #333;
+        }
+
+        .content-placeholder:nth-of-type(odd) {
+            background-color: #e9e9e9;
+        }
+
+
+        /* === 輪播圖片樣式 START === */
+        .carousel-item img {
+            height: 400px;
+            object-fit: contain;
+            /* 保持圖片比例，可能出現留白 */
+            width: 100%;
+            /* 確保佔滿寬度 */
+        }
+
+        .carousel-caption {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px 20px;
+            border-radius: 5px;
+            bottom: 20px;
+        }
+
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            filter: invert(1);
+        }
+
+        body,
+        html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial;
+        }
+
+        /* IMPORTANT: Remove .tablink styles as they are no longer needed for switching */
+        /* .tablink {
+            background-color: #555;
+            color: white;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            font-size: 1.0625rem;
+        }
+
+        .tablink:hover {
+            background-color: #777;
+        } */
+
+        /* Style the tab content (now always visible and in columns) */
+        .tabcontent {
+            color: black;
+            display: block; /* Make them always visible */
+            padding: 20px 12px;
+            /* height: 400px; */ /* Remove fixed height */
+            height: auto; /* Allow content to dictate height */
+            background-color: #ffffffe5;
+            border: 1px solid #ddd; /* Add a border for separation */
+            margin-bottom: 20px; /* Space between content blocks on smaller screens */
+        }
+
+        .tabcontent ul li {
+            margin-bottom: 5px;
+            font-size: 1.125rem;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+        }
+
+        .tabcontent ul li:last-child {
+            border-bottom: none; /* Remove border for the last item in each list */
+        }
+
+        .tabcontent ul {
+            text-align: left;
+            padding-left: 0; /* Remove default ul padding */
+        }
+
+        .tabcontent ul li span {
+            letter-spacing: 2px;
+            margin-right: 60px;
+            color: darkgoldenrod;
+            font-weight: bold; /* Make the rank stand out */
+            font-size: 20px;
+            margin-top: 6px;
+        }
+        .tabcontent ul li p{
+            font-weight: bold; /* Make the rank stand out */
+            font-size: 18px;
+            padding-top: 4px;
+            margin-top: 4px;
+            font-family: system-ui;
+        }
+#now{
+    color:darkblue;
+}
+        footer {
+            width: 100vw;
+            height: 100px;
+            background-color: rgb(51, 81, 0);
+        }
+
+        footer p {
+            color: whitesmoke;
+            text-align: center;
+            font-size: medium;
+            justify-items: center;
+            padding-top: 30px;
+        }
+
+        /* Add padding-top to the body to prevent content from being hidden behind the fixed navbar */
+        body {
+            padding-top: 60px;
+        }
+
+        /* Adjust layout for tab content to be side-by-side on medium and larger screens */
+        .content-vertab {
+            display: flex;
+            flex-wrap: wrap; /* Allow wrapping to next line */
+            gap: 20px; /* Space between columns */
+            justify-content: center; /* Center the columns if they don't fill the row */
+        }
+
+        .content-vertab > div {
+            flex: 1; /* Allow items to grow and shrink */
+            min-width: 280px; /* Minimum width for each column before wrapping */
+            max-width: 23%; /* Approximately 1/4th width minus gap */
+            box-sizing: border-box; /* Include padding and border in the width */
+        }
+
+
+        /* Media Queries for Responsiveness */
+
+        /* 小型裝置: 360*608, 375*608 */
+        @media (max-width: 575.98px) {
+            /* Bootstrap xs breakpoint */
+            .navbar-brand span {
+                font-size: 0.8rem;
+                /* 縮小導航列品牌字體 */
+            }
+
+            .navbar-brand img {
+                width: 40px;
+                /* 縮小品牌圖標 */
+                height: 40px;
+            }
+
+            .banner-section {
+                height: 300px;
+                /* 縮小 Banner 高度 */
+
+            }
+
+            #bannertext h1 {
+                font-size: 32px;
+                /* 縮小 Banner 標題字體 */
+            }
+
+            #bannertext p {
+                font-size: 14px;
+                /* 縮小 Banner 段落字體 */
+            }
+
+            /* .tablink {
+                font-size: 14px;
+                padding: 10px 12px;
+                margin-bottom: 3px;
+            } */ /* No longer needed */
+
+            .tabcontent {
+                padding: 30px 10px;
+                /* 縮小 Tab 內容內距 */
+                height: auto;
+                /* 讓內容高度自動適應 */
+            }
+
+            .tabcontent ul li {
+                font-size: 15px;
+                /* 縮小 Tab 內容列表字體 */
+            }
+
+            .tabcontent ul li span {
+                margin-right: 10px;
+                /* 調整間距 */
+                display: block;
+                /* 讓日期換行 */
+                margin-bottom: 5px;
+            }
+
+            .carousel-item img {
+                height: 250px;
+                /* 縮小輪播圖片高度 */
+                object-fit: contain;
+                /* 確保圖片縮放時不會被裁剪太多 */
+            }
+
+            .carousel-caption {
+                padding: 5px 10px;
+                /* 縮小輪播說明文字區塊 */
+                bottom: 10px;
+            }
+
+            footer {
+                width: 100vw;
+                height: 130px;
+                background-color: rgb(51, 81, 0);
+            }
+
+            .content-vertab > div {
+                max-width: 100%; /* Each column takes full width on extra small screens */
+            }
+        }
+
+        /* 中型裝置: 375*608 - 通常與小型裝置處理方式類似，或者可以做微調 */
+        /* 由於 375x608 與 360x608 差異不大，可以與 max-width: 575.98px 共用，或在這裡進行微調 */
+        @media (min-width: 375px) and (max-width: 767.98px) {
+
+            /* 例如，如果覺得 375px 以上可以稍微放大一點點 */
+            .banner-section {
+                height: 350px;
+            }
+
+            #bannertext h1 {
+                font-size: 38px;
+            }
+
+            #bannertext p {
+                font-size: 16px;
+            }
+
+            .content-vertab > div {
+                max-width: 48%; /* Two columns per row on small screens */
+            }
+        }
+
+        @media (max-width: 767.98px) {
+
+            /* 或者您 navbar-toggler 觸發的 breakpoint */
+            .navbar-collapse {
+                /* 確保在小螢幕展開時可以滾動 */
+                max-height: calc(100vh - 60px);
+                /* 假設 navbar 高度約 60px，減去它以避免超出螢幕 */
+                overflow-y: auto;
+                /* 允許垂直滾動 */
+                -webkit-overflow-scrolling: touch;
+
+                /* 改善 iOS 上的滾動體驗 */
+                .navbar-nav {
+                    height: auto;
+                    /* 讓導覽列項目高度自動調整 */
+                }
+
+                .navbar-nav .nav-item {
+                    height: auto;
+                    /* 讓導覽列項目高度自動調整 */
+                }
+            }
+
+            /* 確保下拉菜單在小螢幕展開時有足夠空間 */
+            .navbar-nav .dropdown-menu {
+                position: static;
+                /* 在手機模式下通常將下拉菜單設為靜態定位，使其在流中顯示 */
+                width: 100%;
+                /* 讓它佔滿寬度 */
+                box-shadow: none;
+                /* 移除陰影，使其看起來更像導覽列的一部分 */
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                /* 添加分隔線 */
+            }
+
+            .navbar-nav .dropdown-item {
+                padding-left: 2.5rem;
+                /* 增加縮進，使其看起來像子選項 */
+            }
+        }
+
+        /* 平板電腦: 768*608 (通常是 Bootstrap 的 sm 或 md breakpoint) */
+        @media (min-width: 768px) and (max-width: 991.98px) {
+
+            /* Bootstrap md breakpoint */
+            .navbar-brand span {
+                font-size: 1rem;
+            }
+
+            .navbar-brand img {
+                width: 50px;
+                height: 50px;
+            }
+
+            .banner-section {
+                height: 400px;
+            }
+
+            #bannertext h1 {
+                font-size: 42px;
+            }
+
+            #bannertext p {
+                font-size: 17px;
+            }
+
+            /* .tablink {
+                font-size: 16px;
+                padding: 12px 14px;
+            } */ /* No longer needed */
+
+            .tabcontent {
+                padding: 50px 15px;
+                height: auto; /* Allow content to dictate height */
+            }
+
+            .tabcontent ul li {
+                font-size: 17px;
+            }
+
+            .tabcontent ul li span {
+                margin-right: 30px;
+                display: inline;
+                /* 日期可以不換行 */
+            }
+
+            .carousel-item img {
+                height: 350px;
+            }
+
+            .content-vertab > div {
+                max-width: 48%; /* Two columns per row on medium screens */
+            }
+        }
+
+        /* 筆記型電腦: 1024*811 (通常是 Bootstrap 的 lg breakpoint) */
+        @media (min-width: 992px) and (max-width: 1199.98px) {
+
+            /* Bootstrap lg breakpoint */
+            /* 在此可以針對 1024px 左右的筆記本進行微調 */
+            .banner-section {
+                height: 450px;
+            }
+
+            #bannertext h1 {
+                font-size: 48px;
+            }
+        }
+
+        /* 大型電腦: 1440*1014 (通常是 Bootstrap 的 xl 或 xxl breakpoint) */
+        @media (min-width: 1200px) {
+
+            /* Bootstrap xl/xxl breakpoint 及以上 */
+            /* 對於大型螢幕，可以恢復或稍微放大一些元素 */
+            .banner-section {
+                height: 500px;
+                /* 保持原樣或更大 */
+            }
+
+            #bannertext h1 {
+                font-size: 52px;
+            }
+
+            #bannertext p {
+                font-size: 18px;
+            }
+
+            .carousel-item img {
+                height: 400px;
+                /* 保持原樣或更大 */
+            }
+        }
+
+        /* 橫向模式 (Landscape Mode) */
+        /* 針對所有手持設備橫向模式的通用調整 */
+        @media screen and (orientation: landscape) and (max-width: 991.98px) {
+
+            /* 針對手機和平板的橫向模式 */
+            .banner-section {
+                height: 300px;
+                /* 橫向時減少 Banner 高度，避免佔用太多垂直空間 */
+            }
+
+            #bannertext h1 {
+                font-size: 38px;
+            }
+
+            #bannertext p {
+                font-size: 16px;
+            }
+
+            .navbar-brand span {
+                font-size: 0.9rem;
+            }
+
+            .navbar-brand img {
+                width: 45px;
+                height: 45px;
+            }
+
+            /* .tablink {
+                width: 100%;
+                float: none;
+                margin-bottom: 5px;
+            } */ /* No longer needed */
+
+            .tabcontent {
+                padding: 20px 10px;
+                /* 減少內距 */
+                height: auto;
+                /* 確保內容能完整顯示 */
+            }
+
+            .tabcontent ul li {
+                font-size: 16px;
+            }
+
+            .tabcontent ul li span {
+                display: inline;
+                /* 橫向時可能空間足夠，讓日期和內容同行 */
+                margin-right: 20px;
+                margin-bottom: 0;
+            }
+
+            .carousel-item img {
+                height: 300px;
+                /* 橫向時調整輪播圖高度 */
+            }
+            .content-vertab > div {
+                max-width: 48%; /* Two columns per row in landscape mode for small/medium devices */
+            }
+        }
+
+        /* 針對特定尺寸橫向模式的微調 */
+        /* 例如：手機橫向 608x360 */
+        @media (width: 608px) and (height: 360px) and (orientation: landscape) {
+            /* 這裡可以做更精細的調整，但通常通用橫向規則就夠了 */
+        }
+
+        /* 例如：平板橫向 1024x768 */
+        @media (width: 1024px) and (height: 768px) and (orientation: landscape) {
+            /* 這裡可以做更精細的調整，但通常通用橫向規則就夠了 */
+        }
+    </style>
 </head>
 <body>
+    <nav class="navbar navbar-expand-md navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/index.html">
+                <img src="/images/Png.png" alt="" width="50" height="50" class="d-inline-block align-text-middle">
+                <span>憲兵指揮部</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/index.html">首頁</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            最新資訊
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/notice.html">指揮部公告</a></li>
+                            <li><a class="dropdown-item" href="/joinus.html">加入我們</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            認識憲兵
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="mp.html">憲兵簡介</a></li>
+                            <li><a class="dropdown-item" href="/mpdept.html">指揮鏈</a></li>
+                            <li><a class="dropdown-item" href="/event.html">活動</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            認識高層
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/CO.html">指揮官</a></li>
+                            <li><a class="dropdown-item" href="/DCO.html">副指揮官</a></li>
+                            <li><a class="dropdown-item" href="/COS.html">參謀長</a></li>
+                            <li><a class="dropdown-item" href="/DCOS.html">副參謀長</a></li>
+                            <li><a class="dropdown-item" href="#">歷屆高層</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            轄下單位
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/MPDSC.html">勤務支援大隊</a></li>
+                            <li><a class="dropdown-item" href="/MPSSC.html">特種勤務大隊</a></li>
+                            <li><a class="dropdown-item" href="/MPTC.html">憲兵訓練中心</a></li>
+                            <li><a class="dropdown-item" href="/MPIO.html">督察室</a></li>
+                            <li><a class="dropdown-item" href="/MPRPC.html">獎懲委員會</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            更多資訊
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item"
+                                    href="https://sites.google.com/view/law-roca/%E9%A6%96%E9%A0%81?authuser=0">法規資料庫</a>
+                            </li>
+                            <li><a class="dropdown-item"
+                                    href="https://sites.google.com/view/roca-584/%E9%A6%96%E9%A0%81">陸軍裝甲第五八四旅</a>
+                            </li>
+                            <li><a class="dropdown-item"
+                                    href="https://sites.google.com/view/robloxrocaaasfc/%E9%A6%96%E9%A0%81">陸軍航空特戰指揮部</a>
+                            </li>
+                            <li><a class="dropdown-item" href="https://sites.google.com/view/roca2022">ROCA官方網站</a>
+                            </li>
+                            <li><a class="dropdown-item" href="/creater.html">製作名單</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="banner-section">
+        <img src="/images/2025-01-07_221946.png" alt="Banner Image" class="banner-image">
+        <div id="bannertext">
+            <h1>歷屆高層</h1>
+            <p style="font-size: 24px;"></p>
+        </div>
+    </div>
+    <div class="content-placeholder" id="mpcontent">
+        <h1>感謝歷屆高層的付出</h1>
+        <p style="font-size: 18px;">沒有前人的創造，不會有今日的憲兵指揮部</p>
+        <div class="content-vertab row justify-content-center">
+            <div id="co" class="tabcontent col-12 col-sm-6 col-md-6 col-lg-3">
+                <h3>指揮官 <br><small>Commander</small> <hr></h3>
+                <ul class="list-unstyled">
+                   
+                    <li class="row">
+                        <span class="col-12 col-md-auto">首&nbsp;&nbsp;任</span>
+                        <p class="col">Gameplayer13546</p>
+                    </li>
+                    <li class="row">
+                        <span class="col-12 col-md-auto">第二任</span>
+                        <p class="col">fhfhfhrip</p>
+                    </li>
+                    <li class="row">
+                        <span class="col-12 col-md-auto">第四任</span>
+                        <p class="col">fhfhfhrip</p>
+                    </li>
+                    <li class="row">
+                        <span class="col-12 col-md-auto">第五任</span>
+                        <p class="col">firefire9681</p>
+                    </li>
+                    <li class="row">
+                        <span class="col-12 col-md-auto">第六任</span>
+                        <p class="col">zhuy1126</p>
+                    </li>
+                    <li class="row">
+                        <span class="col-12 col-md-auto">第七任</span>
+                        <p class="col">hgjk66ll</p>
+                    </li>
+                          
+                    <li class="row">
+                        <span class="col-12 col-md-auto">第八任</span>
+                        <p class="col">fywww4</p>
+                    </li>
+                    <li class="row">
+                        <span class="col-12 col-md-auto">第八任</span>
+                        <p class="col"> ALONE12y</p>
+                    </li>
+                  
+                    <li class="row">
+                        <span class="col-12 col-md-auto">第九任</span>
+                        <p class="col">xbox666123</p>
+                    </li>
+                    <li class="row">
+                        <span class="col-12 col-md-auto" id="now">現&nbsp;&nbsp;&nbsp;任</span>
+                        <p class="col">sjkhortj</p>
+                    </li>
+                    <!-- now -->
+                </ul>
+            </div>
+            <div id="dco" class="tabcontent col-12 col-sm-6 col-md-6 col-lg-3">
+                <h3>副指揮官 <br><small>Deputy Commander</small><hr></h3>
+                
+                <ul class="list-unstyled">
+                   
+                    <li class="row">
+                        <span class="col-12 col-md-auto">首&nbsp;&nbsp;&nbsp;任</span>
+                        <p class="col">fhfhfhrip</p>
+                    </li>
+                    <li class="row">
+                        <span class="col-12 col-md-auto">第二任</span>
+                        <p class="col">zhuy1126</p>
+                    </li>
+                    <li class="row">
+                        <span class="col-12 col-md-auto">第三任</span>
+                        <p class="col">kmhkuo</p>
+                    </li>
+                         
+                    <li class="row">
+                        <span class="col-12 col-md-auto" id="now">現&nbsp;&nbsp;&nbsp;任</span>
+                        <p class="col">hgjk66ll</p>
+                    </li>
+                    <!-- now -->
+                </ul>
+            </div>
+            <div id="cos" class="tabcontent col-12 col-sm-6 col-md-6 col-lg-3">
+                <h3>參謀長 <br><small>Chief of Staff</small><hr></h3>
+                <ul class="list-unstyled">
+                   
+                    <li class="row">
+                        <span class="col-12 col-md-auto">首&nbsp;&nbsp;任</span>
+                        <p class="col">Gameplayer13546</p>
+                    </li>
+                    <li class="row">
+                        <span class="col-12 col-md-auto">第二任</span>
+                        <p class="col">fhfhfhrip</p>
+                    </li>
+                    <li class="row">
+                        <span class="col-12 col-md-auto">第四任</span>
+                        <p class="col">zhuy1126</p>
+                    </li>
+                    <li class="row">
+                        <span class="col-12 col-md-auto">第四任</span>
+                        <p class="col">hgjk66ll</p>
+                    </li>
+                    <li class="row">
+                        <span class="col-12 col-md-auto">第五任</span>
+                        <p class="col">gjhygjjj</p>
+                    </li>
+                          
+                    <li class="row">
+                        <span class="col-12 col-md-auto">第六任</span>
+                        <p class="col">yaya_uen</p>
+                    </li>
+                    <li class="row">
+                        <span class="col-12 col-md-auto">第七任</span>
+                        <p class="col">Htbridisj</p>
+                    </li>
+                    <li class="row">
+                        <span class="col-12 col-md-auto">第八任</span>
+                        <p class="col">sjkhortj</p>
+                    </li>
     
+                    <li class="row">
+                        <span class="col-12 col-md-auto"id="now">現&nbsp;&nbsp;&nbsp;任</span>
+                        <p class="col">rockroll901</p>
+                    </li>
+                    <!-- now -->
+                </ul>
+            </div>
+            <div id="dcos" class="tabcontent col-12 col-sm-6 col-md-6 col-lg-3">
+                <h3>副參謀長 <br><small>Deputy Chief of Staff</small><hr></h3>
+                <ul class="list-unstyled">
+                   
+                    <li class="row">
+                        <span class="col-12 col-md-auto">首&nbsp;&nbsp;&nbsp;任</span>
+                        <p class="col">Kylelgj</p>
+                    </li>
+                    <li class="row">
+                        <span class="col-12 col-md-auto">第二任</span>
+                        <p class="col">Kylelgj </p>
+                    </li>
+                    <li class="row">
+                        <span class="col-12 col-md-auto">第三任</span>
+                        <p class="col">zhuy1126</p>
+                    </li>
+                    <li class="row">
+                        <span class="col-12 col-md-auto">第四任</span>
+                        <p class="col">firefire9681</p>
+                    </li>
+                    <li class="row">
+                        <span class="col-12 col-md-auto">第五任</span>
+                        <p class="col">hgjk66ll</p>
+                    </li>
+                    <li class="row">
+                        <span class="col-12 col-md-auto">第六任</span>
+                        <p class="col">gjhygjjj</p>
+                    </li>
+                    <li class="row">
+                        <span class="col-12 col-md-auto">第七任</span>
+                        <p class="col">cskmdd</p>
+                    </li>
+                    <li class="row">
+                        <span class="col-12 col-md-auto">第八任</span>
+                        <p class="col">ROC_Alan</p>
+                    </li>
+                    <li class="row">
+                        <span class="col-12 col-md-auto">第九任</span>
+                        <p class="col">ROC_Alan</p>
+                    </li>
+                    <li class="row">
+                        <span class="col-12 col-md-auto">第十任</span>
+                        <p class="col">hgjk66ll</p>
+                    </li>
+                    <li class="row">
+                        <span class="col-12 col-md-auto" id="now">現&nbsp;&nbsp;&nbsp;任</span>
+                        <p class="col">Justin_chiu27</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <img src="/images/22211111.png" alt="" width="100%" height="200" style="object-fit: contain;align-items: center;">
 </body>
+<footer>
+    <p> Copyright © 2025, Republic of China Army Military Police Command - Roblox.& Credits Justin_chiu27
+        All Rights Reserved.<br><span style="color:red">嚴禁抄襲，違者必追究</span>
+    <br>
+    </p>
+</footer>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+        // --- Navbar active 狀態處理 START ---
+        const currentPath = window.location.pathname;
+        const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            link.removeAttribute('aria-current');
+
+            const linkHref = link.getAttribute('href');
+
+            // 處理首頁或根路徑的 active 狀態
+            if (
+                (currentPath === '/' || currentPath.endsWith('/index.html') || currentPath.endsWith('/')) &&
+                (linkHref === 'index.html' || linkHref === '#' || linkHref === '/')
+            ) {
+                if (link.textContent.trim() === '首頁') { // 確保這是針對首頁連結
+                    link.classList.add('active');
+                    link.setAttribute('aria-current', 'page');
+                }
+            }
+            // 處理其他頁面的 active 狀態
+            else if (linkHref && linkHref !== '#' && currentPath.includes(linkHref)) {
+                link.classList.add('active');
+                link.setAttribute('aria-current', 'page');
+            }
+        });
+        // --- Navbar active 狀態處理 END ---
+
+
+        // --- 視差滾動效果 START ---
+        const bannerSection = document.querySelector('.banner-section');
+        const bannerImage = document.querySelector('.banner-image');
+
+        function parallaxScroll() {
+            // 只有當元素存在時才執行視差效果
+            if (bannerSection && bannerImage) {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const rect = bannerSection.getBoundingClientRect();
+                const bannerTop = rect.top;
+
+                // 檢查橫幅是否在視窗範圍內，以避免不必要的計算
+                if (rect.bottom > 0 && bannerTop < window.innerHeight) {
+                    const distanceScrolled = Math.max(0, -bannerTop);
+                    const parallaxFactor = 0.3; // 視差滾動的強度
+                    const yPos = distanceScrolled * parallaxFactor;
+                    bannerImage.style.transform = `translateY(${yPos}px)`;
+                } else {
+                    // 當橫幅離開視窗時，重置圖片位置，避免視覺跳動
+                    bannerImage.style.transform = `translateY(0px)`;
+                }
+            }
+        }
+
+        // 只有當相關元素存在時才監聽滾動事件
+        if (bannerSection && bannerImage) {
+            window.addEventListener('scroll', parallaxScroll);
+            parallaxScroll(); // 頁面載入時先執行一次，以確保初始位置正確
+        }
+        // --- 視差滾動效果 END ---
+    });
+
+    // Removed the openPage function and its DOMContentLoaded listener
+</script>
 </html>

@@ -120,7 +120,7 @@
             justify-content: center;
             align-items: center;
             /* 增加一個 top 值來補償 fixed navbar 的高度 */
-            margin-top: 20px;
+        
             /* 匹配 navbar 的 min-height */
         }
 
@@ -299,7 +299,10 @@
             margin: 0;
             font-family: Arial;
         }
-
+#ahref a{
+    text-decoration: none;
+    color: darkmagenta;
+}
         /* Style tab links */
         .tablink {
             background-color: #555;
@@ -375,7 +378,17 @@
         }
 
       
+#more a{
+text-decoration: none;
 
+}
+#ahrefcredt button {
+            margin-left: 45%;
+            font-size: 14px;
+        }
+        #ahrefcredt button span a {
+        text-align: center;
+        }
         /* 小型裝置: 360*608, 375*608 */
         @media (max-width: 575.98px) {
             /* Bootstrap xs breakpoint */
@@ -463,6 +476,12 @@
             width: 100vw;
             height: 130px;
             background-color: rgb(51, 81, 0);
+        }
+        #ahrefcredt button span {
+            margin-left: 40;
+        }
+        #ahrefcredt button span a {
+        text-align: left;
         }
 
         }
@@ -802,15 +821,13 @@
         <div class="news-ticker-header">訊息公告</div>
         <div class="news-ticker-viewport">
             <ul class="news-list">
-                <li><a href="/creater.html">系統公告：網站滿意度調查，
-                    <span style="text-decoration: underline; color:blue">了解更多</span></a></li>
+        
                 <li>
                     <p>指揮部公告：加入憲兵方式，由招聘改回招募</p>
                 </li>
-                <li><a href="/joinus.html">指揮部公告：歡迎加入憲兵大家庭，<span
-                            style="text-decoration: underline; color:blue">了解更多</span></a></li>
                 <li>
-               
+                    <p>指揮部公告：歡迎加入憲兵大家庭</p></li>
+                <li>               
                     <p>恭賀升遷：hgjk66ll升至副指揮官</p>
                 </li>
                 <li>
@@ -840,7 +857,7 @@
         <h1>憲兵 </h1>
         <p style="font-size: 16px;">Military Police</p>
         <p style="font-size: 18px;">憲兵為營區執法單位，負責維持營區內秩序、打擊突襲者，執行外交勤務保護外賓，保護首長</p>
-        <p style="font-size: 18px;">指揮部轄下部隊分為：勤務支援大隊、特種勤務大隊</p>
+        <p style="font-size: 18px;">指揮部轄下部隊分為：<span id="ahref"><a href="/MPDSC.html">勤務支援大隊</a>、<a href="/MPSSC.html">特種勤務大隊</a></span></p>
 
         <div class="row mb-3">
             <div class="col-6 col-md-3">
@@ -885,7 +902,7 @@
                 <ul class="list-unstyled">
                     <li class="row">
                         <span class="col-12 col-md-auto">2025-06-19</span>
-                        <p class="col">暫無公告</p>
+                        <p class="col">加入憲兵方式由招聘改回招募，<span id="more"><a href="/joinus.html">了解更多</a></p>
                     </li>
                 </ul>
             </div>
@@ -917,7 +934,9 @@
             </div>
         </div>
     </div>
-
+    <div id="ahrefcredt" style="width: 100%;height:fit-content;  margin-bottom: 10px;"> <button type="button" class="btn btn-warning btn-lg"  > <span style="font-size:24px;cursor:pointer; display: block; "
+        ><a href="/creater.html" style="text-decoration: none;color:#343a40"> 網站滿意度調查</a></span></button></div>
+   
     <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#imageCarousel" data-bs-slide-to="0" class="active"
