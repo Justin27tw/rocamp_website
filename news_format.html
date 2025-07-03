@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="icon" type="image/png" href="/images/Png.png">
+    <style>
+        /* 移除 Bootstrap 預設的一些邊距，使內容更緊湊 */
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            background-color:#f0f0f5;
+            /* 防止水平滾動條 */
+        }
+
+        /* Navbar 樣式調整 */
+        .navbar {
+            position: fixed;
+            /* Changed from sticky to fixed */
+            top: 0;
+            width: 100%;
+            /* Add width: 100% for fixed positioning */
+            background-color: #343a40;
+            /* 深灰色背景，接近圖片效果 */
+            padding: 0;
+            /* 將 navbar 的 padding 設為 0 */
+            min-height: 60px;
+            /* 設定一個最小高度，確保有足夠空間垂直居中 */
+            z-index: 1030;
+            /* 確保 Navbar 在其他內容上方 */
+        }
+
+        .navbar-brand {
+            padding: 0.5rem 1rem;
+            /* 與 nav-link 保持一致的垂直 padding */
+            display: flex;
+            /* 使 brand 內部元素也能 flex 排列 */
+            align-items: center;
+            /* 垂直居中品牌圖標和文字 */
+            height: 100%;
+            /* 確保 brand 佔滿 navbar 垂直空間 */
+        }
+
+        .navbar-brand img {
+            margin-right: 5px;
+            /* 標誌和文字之間的間距 */
+        }
+
+        .navbar-brand span {
+            color: white;
+            letter-spacing: 2px;
+            font-size: 1rem;
+            /* 調整字體大小以適應導航列 */
+        }
+
+        /* 導航項目容器 */
+        .navbar-nav {
+            height: 100%;
+            /* 確保 nav-nav 佔滿 navbar 垂直空間 */
+            align-items: center;
+            /* 垂直居中所有 nav-item */
+        }
+
+        .navbar-nav .nav-item {
+            height: 100%;
+            /* 確保 nav-item 佔滿父元素垂直空間 */
+            display: flex;
+            /* 使 nav-item 內部元素也能 flex 排列 */
+            align-items: center;
+            /* 垂直居中 nav-link */
+        }
+
+        .navbar-nav .nav-link {
+            color: rgba(255, 255, 255, 0.75);
+            /* 淺色文字，hover 時變亮 */
+            padding: 0.8rem 1rem;
+            /* 增加垂直 padding 以調整高度和居中 */
+            font-size: 16px;
+            /* 保留你設定的字體大小 */
+            height: 100%;
+            /* 讓 nav-link 填充 nav-item 的高度 */
+            display: flex;
+            /* 再次使用 flexbox 確保內部文字垂直居中 */
+            align-items: center;
+            /* 垂直居中文字 */
+        }
+
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active {
+            color: white;
+            /* hover 或 active 時變為白色 */
+        }
+
+        /* 下拉選單樣式 (Bootstrap 5) */
+        .navbar-nav .dropdown-menu {
+            background-color: #343330;
+            /* 與導航列接近的深色背景 */
+            border: none;
+            border-radius: 0;
+            /* 移除圓角 */
+            padding: 0;
+            /* 移除預設內距 */
+
+            /* ===== 動畫效果 CSS ===== */
+            opacity: 0;
+            /* 初始狀態為透明 */
+            transform: translateY(10px);
+            /* 初始狀態向下位移一點 */
+            transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+            /* 過渡動畫 */
+            display: block;
+            /* 讓 opacity 和 transform 應用在非 display: none 的元素上 */
+            visibility: hidden;
+            /* 隱藏但保留空間，方便動畫 */
+            pointer-events: none;
+            /* 讓滑鼠事件穿透，避免佔用空間時影響下方元素 */
+            /* ============================== */
+        }
+
+        /* 當下拉選單顯示時的樣式 */
+        .navbar-nav .dropdown-menu.show {
+
+            /* ===== 動畫效果 CSS ===== */
+            opacity: 1;
+            /* 顯示時完全不透明 */
+            transform: translateY(0);
+            /* 恢復到原始位置 */
+            visibility: visible;
+            /* 顯示 */
+            pointer-events: auto;
+            /* 恢復滑鼠事件 */
+            /* ============================== */
+        }
+
+
+        .navbar-nav .dropdown-item {
+            color: rgba(255, 255, 255, 0.75);
+            padding: 0.75rem 1.5rem;
+            /* 調整下拉項目內距 */
+        }
+
+        .navbar-nav .dropdown-item:hover,
+        .navbar-nav .dropdown-item:focus {
+            background-color: #495057;
+            /* hover 時的背景色 */
+            color: white;
+        }
+
+        /* Banner 區塊調整 */
+        .banner-section {
+            position: relative;
+            width: 100vw;
+            /* 佔滿整個寬度 */
+            height: 500px;
+            /* 圖片高度 */
+            overflow: hidden;
+            display: flex;
+            /* 使用 flexbox 居中內容 */
+            justify-content: center;
+            align-items: center;
+            /* 調整 Navbar 佔用空間，確保內容不會被 Navbar 遮擋 */
+            margin-top: 60px;
+            /* 假設 navbar 高度為 60px */
+        }
+
+        .banner-image {
+            position: absolute;
+            top: 5;
+            left: 0;
+            width: 100vw;
+            height: 80%;
+            /* 調整為 100% 以便在小螢幕時能更好地縮放 */
+            object-fit: cover;
+            /* 確保圖片覆蓋整個容器 */
+            filter: grayscale(0%) brightness(100%);
+            /* 灰階 亮度 */
+            z-index: -1;
+            /* 確保圖片在文字下方 */
+            object-position: center center;
+            /* 將圖片內容置於容器中央 */
+        }
+
+        #bannertext {
+            color: white;
+            text-align: center;
+            z-index: 1;
+            /* 確保文字在圖片上方 */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            /* 文字間距 */
+        }
+
+        #bannertext h1 {
+            font-size: 52px;
+            margin-bottom: 0;
+            /* 移除 h1 的底部預設邊距 */
+            font-weight: bold;
+            /* 讓字體更粗一點，接近圖片效果 */
+        }
+
+        #bannertext p {
+            font-size: 18px;
+            margin-top: 0;
+            /* 移除 p 的頂部預設邊距 */
+        }
+
+        /* 為了演示滾動效果，我們需要一些下方內容 */
+        .content-placeholder {
+            height: fit-content;
+            /* 增加高度以產生滾動條 */
+            background-color: #f0f0f0;
+            padding: 25px;
+            text-align: center;
+            color: #333;
+        }
+
+      .NTitle h2{
+        margin-top: 5px;
+        text-align: center;
+        color: black;
+        font-weight: bold;
+        font-size: 36px;
+        margin-bottom: 5px;
+      }
+#htmlpath a{
+    text-decoration: none;
+    color: chocolate;
+}
+#info {
+    background-color: lightgray;
+    width: fit-content;
+    height: fit-content;
+}
+
+#info p{
+    text-align: justify;
+    margin-top: 5px;
+    margin-left: 5px;
+    margin-left: 5px;
+    font-size: 20px;
+}
+#newsdate p{
+    padding-top: 5px;
+    padding-right: 5px;
+    text-align: right;
+    color: blue;
+    
+}
+#newsediter p{
+    text-align: right;
+    font-weight: bold;
+    color:rgb(255, 157, 29);
+}
+footer {
+            width: 100vw;
+            height: 100px;
+            background-color: rgb(51, 81, 0);
+        }
+        footer p {
+            color: whitesmoke;
+            text-align: center;
+            font-size: medium;
+            justify-items: center;
+            padding-top: 30px;
+        }
+
+        /* 小型裝置 RWD: max-width: 575.98px */
+        @media (max-width: 575.98px) {
+
+            /* Bootstrap xs breakpoint */
+            .navbar-brand span {
+                font-size: 0.8rem;
+                /* 縮小導航列品牌字體 */
+            }
+
+            .navbar-brand img {
+                width: 40px;
+                /* 縮小品牌圖標 */
+                height: 40px;
+            }
+
+            .banner-section {
+                height: 250px;
+                /* 縮小 Banner 高度，給圖片更多空間 */
+            }
+
+            .banner-image {
+                /* object-fit 保持為 cover，但調整高度為 auto 讓圖片基於寬度自適應高度 */
+                height: auto;
+                width: 100%;
+                /* 確保寬度為 100% */
+                object-fit: contain;
+                /* 關鍵：使用 contain 讓圖片完整顯示，不裁剪 */
+            }
+
+            #bannertext h1 {
+                font-size: 32px;
+                /* 縮小 Banner 標題字體 */
+            }
+
+            #bannertext p {
+                font-size: 14px;
+                /* 縮小 Banner 段落字體 */
+            }
+
+            #mpcontent h5{
+                font-size: 16px;
+            }
+            footer {
+            width: 100vw;
+            height: 130px;
+            background-color: rgb(51, 81, 0);
+        }
+        .NTitle h2{
+        margin-top: 5px;
+        text-align: center;
+        color: black;
+        font-weight: bold;
+        font-size: 24px;
+        margin-bottom: 5px;
+      }
+#htmlpath a{
+    text-decoration: none;
+    color: chocolate;
+}
+#info {
+    background-color: lightgray;
+    width: fit-content;
+    height: fit-content;
+}
+
+#info p{
+    
+    margin-top: 5px;
+    margin-left: 5px;
+    margin-left: 5px;
+    font-size: 18px;
+}
+#newsdate p{
+    padding-top: 5px;
+    padding-right: 5px;
+    text-align: right;
+    color: blue;
+    
+}
+#newsediter p{
+    text-align: right;
+    font-weight: bold;
+    color:rgb(255, 157, 29);
+}
+        }
+
+        @media (max-width: 767.98px) {
+
+            /* 或者您 navbar-toggler 觸發的 breakpoint */
+            .navbar-collapse {
+                /* 確保在小螢幕展開時可以滾動 */
+                max-height: calc(100vh - 60px);
+                /* 假設 navbar 高度約 60px，減去它以避免超出螢幕 */
+                overflow-y: auto;
+                /* 允許垂直滾動 */
+                -webkit-overflow-scrolling: touch;
+                /* 改善 iOS 上的滾動體驗 */
+            }
+
+            .navbar-nav {
+                height: auto;
+                /* 讓導覽列項目高度自動調整 */
+            }
+
+            .navbar-nav .nav-item {
+                height: auto;
+                /* 讓導覽列項目高度自動調整 */
+            }
+
+
+            /* 確保下拉菜單在小螢幕展開時有足夠空間 */
+            .navbar-nav .dropdown-menu {
+                position: static;
+                /* 在手機模式下通常將下拉菜單設為靜態定位，使其在流中顯示 */
+                width: 100%;
+                /* 讓它佔滿寬度 */
+                box-shadow: none;
+                /* 移除陰影，使其看起來更像導覽列的一部分 */
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                /* 添加分隔線 */
+            }
+
+            .navbar-nav .dropdown-item {
+                padding-left: 2.5rem;
+                /* 增加縮進，使其看起來像子選項 */
+            }
+        }
+        </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/index.html">
+                <img src="/images/Png.png" alt="" width="50" height="50" class="d-inline-block align-text-middle">
+                <span>憲兵指揮部</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/index.html">首頁</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            最新資訊
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/notice.html">指揮部公告</a></li>
+                            <li><a class="dropdown-item" href="/joinus.html">加入我們</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            認識憲兵
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/mp.html">憲兵簡介</a></li>
+                            <li><a class="dropdown-item" href="/mpdept.html">指揮鏈</a></li>
+                            <li><a class="dropdown-item" href="/event.html">活動</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            認識高層
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/CO.html">指揮官</a></li>
+                            <li><a class="dropdown-item" href="/DCO.html">副指揮官</a></li>
+                            <li><a class="dropdown-item" href="/COS.html">參謀長</a></li>
+                            <li><a class="dropdown-item" href="/DCOS.html">副參謀長</a></li>
+                            <li><a class="dropdown-item" href="/history.html">歷屆高層</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            轄下單位
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/MPDSC.html">勤務支援大隊</a></li>
+                            <li><a class="dropdown-item" href="/MPSSC.html">特種勤務大隊</a></li>
+                            <li><a class="dropdown-item" href="/MPTC.html">憲兵訓練中心</a></li>
+                            <li><a class="dropdown-item" href="/MPIO.html">督察室</a></li>
+                            <li><a class="dropdown-item" href="/MPRPC.html">獎懲委員會</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            更多資訊
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item"
+                                    href="https://sites.google.com/view/law-roca/%E9%A6%96%E9%A0%81?authuser=0">法規資料庫</a>
+                            </li>
+                            <li><a class="dropdown-item"
+                                    href="https://sites.google.com/view/roca-584/%E9%A6%96%E9%A0%81">陸軍裝甲第五八四旅</a>
+                            </li>
+                            <li><a class="dropdown-item"
+                                    href="https://sites.google.com/view/robloxrocaaasfc/%E9%A6%96%E9%A0%81">陸軍航空特戰指揮部</a>
+                            </li>
+                            <li><a class="dropdown-item" href="https://sites.google.com/view/roca2022">ROCA官方網站</a>
+                            </li>
+                            <li><a class="dropdown-item" href="/creater.html">製作名單</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="banner-section">
+        <img src="/images/22211111.png" alt="Banner Image" class="banner-image">
+        <div id="bannertext">
+            <h1> </h1>
+            <p style="font-size: 24px;">
+
+            </p>
+        </div>
+    </div>
+    <!-- 路徑 -->
+    <div class="container">
+        <div class="htmlpath">
+            <h4 id="htmlpath">路徑：<a href="/index.html">首頁</a>><a href="/notice.html">最新資訊</a>></span></h4>
+        </div>
+    </div>
+    <!--資訊頁的標題 -->
+    <div class="container">
+        <div class="NTitle">
+            <h2>Test</h2>
+        </div>
+    </div>
+    <div class="container " id="info" >
+        <span id="newsdate"> <p>發布日期：中華民國/年/月/日</p></span>
+        <p>
+
+        </p>
+        <span id="newsediter"><p>編輯者：Justin_chiu27</p></span>
+    </div>
+</body>
+<footer>
+    <p> Copyright © 2025, Republic of China Army Military Police Command - Roblox.& Credits Justin_chiu27
+        All Rights Reserved.<br><span style="color:red">嚴禁抄襲，違者必追究</span>
+    <br>
+    </p>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    
+        // --- Navbar active 狀態處理 START ---
+        const currentPath = window.location.pathname;
+        const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+    
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            link.removeAttribute('aria-current');
+    
+            const linkHref = link.getAttribute('href');
+    
+            // 處理首頁或根路徑的 active 狀態
+            if (
+                (currentPath === '/' || currentPath.endsWith('/index.html') || currentPath.endsWith('/')) &&
+                (linkHref === 'index.html' || linkHref === '#' || linkHref === '/')
+            ) {
+                if (link.textContent.trim() === '首頁') { // 確保這是針對首頁連結
+                    link.classList.add('active');
+                    link.setAttribute('aria-current', 'page');
+                }
+            }
+            // 處理其他頁面的 active 狀態
+            else if (linkHref && linkHref !== '#' && currentPath.includes(linkHref)) {
+                link.classList.add('active');
+                link.setAttribute('aria-current', 'page');
+            }
+        });
+        // --- Navbar active 狀態處理 END ---
+    });
+    </script>
+<script>
+    // 導覽列下拉選單動畫 (取代 data-bs-animation)
+    document.querySelectorAll('.navbar-nav .dropdown').forEach(dropdown => {
+        dropdown.addEventListener('show.bs.dropdown', function () {
+            this.querySelector('.dropdown-menu').classList.add('show');
+        });
+        dropdown.addEventListener('hide.bs.dropdown', function () {
+            this.querySelector('.dropdown-menu').classList.remove('show');
+        });
+    });
+
+    // 視差滾動效果 (Parallax Scrolling)
+    window.addEventListener('scroll', function () {
+        const bannerImage = document.querySelector('.banner-image');
+        if (bannerImage) {
+            let scrollPosition = window.pageYOffset;
+            bannerImage.style.transform = 'translateY(' + scrollPosition * 0.5 + 'px)'; // 調整 0.5 來改變視差速度
+        }
+    });
+</script>
+</html>
