@@ -120,7 +120,7 @@
             justify-content: center;
             align-items: center;
             /* 增加一個 top 值來補償 fixed navbar 的高度 */
-        
+
             /* 匹配 navbar 的 min-height */
         }
 
@@ -299,16 +299,19 @@
             margin: 0;
             font-family: Arial;
         }
-#ahrefDSC a{
-    text-decoration: none;
-    color: darkmagenta;
-    font-weight: bold;
-}
-#ahrefSSC a{
-    text-decoration: none;
-    color:dodgerblue;
-    font-weight: bold;
-}
+
+        #ahrefDSC a {
+            text-decoration: none;
+            color: darkmagenta;
+            font-weight: bold;
+        }
+
+        #ahrefSSC a {
+            text-decoration: none;
+            color: dodgerblue;
+            font-weight: bold;
+        }
+
         /* Style tab links */
         .tablink {
             background-color: #555;
@@ -362,7 +365,7 @@
             color: darkgoldenrod;
         }
 
-       
+
         footer {
             width: 100vw;
             height: 100px;
@@ -383,12 +386,13 @@
             padding-top: 60px;
         }
 
-      
-#more a{
-text-decoration: none;
 
-}
-/* #ahrefcredt button {
+        #more a {
+            text-decoration: none;
+
+        }
+
+        /* #ahrefcredt button {
             margin-left: 45%;
             font-size: 14px;
         }
@@ -397,6 +401,7 @@ text-decoration: none;
         } */
         /* 小型裝置: 360*608, 375*608 */
         @media (max-width: 575.98px) {
+
             /* Bootstrap xs breakpoint */
             .navbar-brand span {
                 font-size: 0.8rem;
@@ -478,12 +483,14 @@ text-decoration: none;
                 /* 縮小輪播說明文字區塊 */
                 bottom: 10px;
             }
+
             footer {
-            width: 100vw;
-            height: 130px;
-            background-color: rgb(51, 81, 0);
-        }
-        /* #ahrefcredt button span {
+                width: 100vw;
+                height: 130px;
+                background-color: rgb(51, 81, 0);
+            }
+
+            /* #ahrefcredt button span {
             margin-left: 40;
         }
         #ahrefcredt button span a {
@@ -592,7 +599,7 @@ text-decoration: none;
             }
 
             .tabcontent {
-                padding: 50px 15px; 
+                padding: 50px 15px;
                 height: 400px;
                 /* 平板上可能仍希望保持一定高度 */
             }
@@ -730,6 +737,12 @@ text-decoration: none;
         @media (width: 1024px) and (height: 768px) and (orientation: landscape) {
             /* 這裡可以做更精細的調整，但通常通用橫向規則就夠了 */
         }
+
+       
+
+
+
+
     </style>
 </head>
 
@@ -827,7 +840,7 @@ text-decoration: none;
         <div class="news-ticker-header">訊息公告</div>
         <div class="news-ticker-viewport">
             <ul class="news-list">
-        
+
                 <li>
                     <p>指揮部公告：加入憲兵方式，由招聘改回招募</p>
                 </li>
@@ -861,8 +874,10 @@ text-decoration: none;
         <h1>憲兵 </h1>
         <p style="font-size: 16px;">Military Police</p>
         <p style="font-size: 18px;">憲兵為營區執法單位，負責維持營區內秩序、打擊突襲者，執行外交勤務保護外賓，保護首長</p>
-        <p style="font-size: 18px;">指揮部轄下部隊分為：<span id="ahrefDSC"><a href="/MPDSC.html">勤務支援大隊</a></span>、<span id="ahrefSSC" style="color: dodgerblue;"><a href="/MPSSC.html">特種勤務大隊</a></span></p>
-
+        <p style="font-size: 18px;">指揮部轄下部隊分為：
+            <span id="ahrefDSC"><a href="/MPDSC.html">勤務支援大隊</a></span>、<span
+                id="ahrefSSC" style="color: dodgerblue;"><a href="/MPSSC.html">特種勤務大隊</a></span></p>
+    
         <div class="row mb-3">
             <div class="col-6 col-md-3">
                 <button class="tablink w-100" onclick="openPage('notice', this, 'dark')" id="defaultOpen">指揮部公告</button>
@@ -881,19 +896,23 @@ text-decoration: none;
         <div class="content-vertab table">
             <!-- 指揮部公告 -->
             <div id="notice" class="tabcontent">
-                <ul class="list-unstyled"> 
+                <ul class="list-unstyled">
                     <li class="row">
                         <span class="col-12 col-md-auto">2025-08-10</span>
-                        <p class="col">[交流公告]憲兵x航特x大韓民國陸軍(ROKA)交流戰 &nbsp;<span id="more"><a class="button" href="/MPnews250810.html">查看全文</a></p>
+                        <p class="col">[交流公告]憲兵x航特x大韓民國陸軍(ROKA)交流戰 &nbsp;<span id="more"><a class="button"
+                                    href="/MPnews250810.html">查看全文</a></p>
                     </li>
                     <li class="row">
                         <span class="col-12 col-md-auto">2025-08-02</span>
-                        <p class="col">[一般公告]中華民國陸軍事基地ROCA主地圖恢復 &nbsp;<span id="more"><a class="button" href="https://www.roblox.com/games/11750841896/ROCA-Republic-of-China-Army-Base">進入地圖</a></p>
+                        <p class="col">[一般公告]中華民國陸軍事基地ROCA主地圖恢復 &nbsp;<span id="more"><a class="button"
+                                    href="https://www.roblox.com/games/11750841896/ROCA-Republic-of-China-Army-Base">進入地圖</a>
+                        </p>
                     </li>
-                  
+
                     <li class="row">
                         <span class="col-12 col-md-auto">2025-07-05</span>
-                        <p class="col">[交流公告]我方與淮安營區憲兵交流 &nbsp;<span id="more"><a class="button" href="/news250705.html">查看全文</a></p>
+                        <p class="col">[交流公告]我方與淮安營區憲兵交流 &nbsp;<span id="more"><a class="button"
+                                    href="/news250705.html">查看全文</a></p>
                     </li>
                     <li class="row">
                         <span class="col-12 col-md-auto">2025-06-21</span>
@@ -905,12 +924,10 @@ text-decoration: none;
                     </li>
                     <li class="row">
                         <span class="col-12 col-md-auto">2025-06-01</span>
-                        <p class="col">[人事調動]新高層名單，有五位幹部升遷，帶領憲兵前進&nbsp;<span id="more"><a class="button" href="/new_personal06.html">查看全文</a></p>
+                        <p class="col">[人事調動]新高層名單，有五位幹部升遷，帶領憲兵前進&nbsp;<span id="more"><a class="button"
+                                    href="/new_personal06.html">查看全文</a></p>
                     </li>
-                    <li class="row">
-                        <span class="col-12 col-md-auto">2025-06-01</span>
-                        <p class="col">指揮官：昨日(5/31)，外交活動順利結束，參與者都表現出色，給予肯定</p>
-                    </li>
+
                     <li class="row">
                         <span class="col-12 col-md-auto">系統&nbsp;提醒&nbsp;您</span>
                         <p class="col">更多資訊 &nbsp;<span id="more"><a class="button" href="/notice.html">前往</a></p>
@@ -922,16 +939,19 @@ text-decoration: none;
                 <ul class="list-unstyled">
                     <li class="row">
                         <span class="col-12 col-md-auto">2025-06-19</span>
-                        <p class="col">加入憲兵方式由招聘改回招募 &nbsp;<span id="more"><a class="button" href="/joinus.html">了解更多</a></p>
+                        <p class="col">加入憲兵方式由招聘改回招募 &nbsp;<span id="more"><a class="button"
+                                    href="/joinus.html">了解更多</a></p>
                     </li>
                 </ul>
-            </div>
+            
+              
+            </div>  
             <!-- 特勤隊公告 -->
             <div id="SSC" class="tabcontent">
                 <ul class="list-unstyled">
                     <li class="row">
-                        <span class="col-12 col-md-auto">2025-06-19</span>
-                        <p class="col">暫無公告</p>
+                        <span class="col-12 col-md-auto">2025-08-23</span>
+                        <p class="col">加入特勤隊，請由憲兵招募</p>
                     </li>
                 </ul>
             </div>
@@ -955,20 +975,28 @@ text-decoration: none;
         </div>
     </div>
     <div class="row mb-3 mt-3" style="background-color:rgba(229, 229, 229, 0.934);">
-        <div class="col-12 col-md-4 mb-2" style="margin-top: 5px;">  <span style="font-size:18px; cursor:pointer; display: block;">
-                    <a href="https://www.roblox.com/games/11750841896/ROCA-Republic-of-China-Army-Base" style="text-decoration: none;color: rgb(255, 255, 255);"class="btn btn-info btn-lg w-100">中華民國軍事基地Roblox連結</a>
-                </span>
-          
+        <div class="col-12 col-md-4 mb-2" style="margin-top: 5px;"> <span
+                style="font-size:18px; cursor:pointer; display: block;">
+                <a href="https://www.roblox.com/games/11750841896/ROCA-Republic-of-China-Army-Base"
+                    style="text-decoration: none;color: rgb(255, 255, 255);"
+                    class="btn btn-info btn-lg w-100">中華民國軍事基地Roblox連結</a>
+            </span>
+
         </div>
-        <div class="col-12 col-md-4 mb-2"style="margin-top: 5px;">  <span style="font-size:20px; cursor:pointer; display: block;">
-                    <a href="/creater.html"class="btn btn-success btn-lg w-100" style="text-decoration: none;color: rgb(255, 255, 255);">網站滿意度調查</a>
-                </span>
-          
+        <div class="col-12 col-md-4 mb-2" style="margin-top: 5px;"> <span
+                style="font-size:20px; cursor:pointer; display: block;">
+                <a href="/creater.html" class="btn btn-success btn-lg w-100"
+                    style="text-decoration: none;color: rgb(255, 255, 255);">網站滿意度調查</a>
+            </span>
+
         </div>
-        <div class="col-12 col-md-4 mb-2"style="margin-top: 5px;"> <span style="font-size:20px; cursor:pointer; display: block;">
-                    <a href="https://www.roblox.com/communities/13549943/ROCA-Military-Police#!/about"  class="btn btn-warning btn-lg w-100"style="text-decoration: none;color: rgb(255, 255, 255);">憲兵Roblox群組</a>
-                </span>
-            
+        <div class="col-12 col-md-4 mb-2" style="margin-top: 5px;"> <span
+                style="font-size:20px; cursor:pointer; display: block;">
+                <a href="https://www.roblox.com/communities/13549943/ROCA-Military-Police#!/about"
+                    class="btn btn-warning btn-lg w-100"
+                    style="text-decoration: none;color: rgb(255, 255, 255);">憲兵Roblox群組</a>
+            </span>
+
         </div>
     </div>
     <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
@@ -1048,17 +1076,17 @@ text-decoration: none;
             <span class="visually-hidden">Next</span>
         </button>
     </div>
-   
+
     <img src="/images/22211111.png" alt="" width="100%" height="200" style="object-fit: contain;align-items: center;">
 </body>
 <footer>
     <p> Copyright © 2025, Republic of China Army Military Police Command - Roblox.& Credits Justin_chiu27
         All Rights Reserved.<br><span style="color:red">嚴禁抄襲，違者必追究</span>
-    <br>
+        <br>
     </p>
 </footer>
 <script>
-    
+
     document.addEventListener('DOMContentLoaded', function () {
 
         // --- Navbar active 狀態處理 START ---
@@ -1252,7 +1280,9 @@ text-decoration: none;
         }
     });
     // --- Tab 頁籤切換功能 END ---
- 
+  
+
+
 </script>
 
 </html>
