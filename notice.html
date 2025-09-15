@@ -229,7 +229,17 @@
         .content-placeholder:nth-of-type(odd) {
             background-color: #e9e9e9;
         }
-
+        .content-vertab {
+    /* 設置一個固定的最大高度 */
+    max-height: 400px; /* 你可以根據需要調整這個值 */
+    
+    /* 讓內容超出時顯示垂直滾動條 */
+    overflow-y: auto; 
+    
+    /* 其他現有樣式，例如邊框、內距等... */
+    border: 1px solid #ccc;
+    padding: 15px;
+}
         /* Style tab links */
         .tablink {
             background-color: #555;

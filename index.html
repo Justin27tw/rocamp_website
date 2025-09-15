@@ -400,6 +400,26 @@
         text-align: center;
         } */
         /* 小型裝置: 360*608, 375*608 */
+
+        .circle {
+  width: 40px; /* 設定寬度 */
+  height: 40px; /* 設定高度，與寬度相同 */
+  background-color: rgba(45, 232, 12, 0.664); /* 設定背景顏色 */
+  border-radius: 50%; /* 將邊框設置為50%，使其成為正圓形 */
+  position: relative;
+  margin-bottom: 5px;
+}
+.content-vertab {
+    /* 設置一個固定的最大高度 */
+    max-height: 400px; /* 你可以根據需要調整這個值 */
+    
+    /* 讓內容超出時顯示垂直滾動條 */
+    overflow-y: auto; 
+    
+    /* 其他現有樣式，例如邊框、內距等... */
+    border: 1px solid #ccc;
+    padding: 15px;
+}
         @media (max-width: 575.98px) {
 
             /* Bootstrap xs breakpoint */
@@ -874,12 +894,16 @@
     </div>
     <div class="content-placeholder">
         <h1>憲兵 </h1>
-        <p style="font-size: 16px;">Military Police</p>
+        <p style="font-size: 18px;">Military Police</p>
         <p style="font-size: 18px;">憲兵為營區執法單位，負責維持營區內秩序、打擊突襲者，執行外交勤務保護外賓，保護首長</p>
         <p style="font-size: 18px;">指揮部轄下部隊分為：
             <span id="ahrefDSC"><a href="/MPDSC.html">勤務支援大隊</a></span>、<span
                 id="ahrefSSC" style="color: dodgerblue;"><a href="/MPSSC.html">特種勤務大隊</a></span></p>
-    
+                <div class="d-flex justify-content-center align-items-center mt-2" style="font-size: 
+                30px;">
+                    <div class="circle"></div>
+                    <div class="ms-2">招募中</div>
+                </div>
         <div class="row mb-3">
             <div class="col-6 col-md-3">
                 <button class="tablink w-100" onclick="openPage('notice', this, 'dark')" id="defaultOpen">指揮部公告</button>
