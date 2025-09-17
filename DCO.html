@@ -111,24 +111,24 @@
         }
 
         .hicomnav {
-           
-           width: 100%;
-           height: 50px;
-           /* 增加高度以容納按鈕並提供間距 */
-           padding-top: 90px;
-           /* 這裡的 padding-top 讓它從 navbar 下方開始 */
-           background-color: whitesmoke;
-           
-           /* 為按鈕區域設定一個背景色 */
-       }
 
-       /* 新增的內容區域樣式 */
-       #highnav  a {
-           width: 100%;
-           font-size: 20px;
-           color: whitesmoke;
-           text-decoration: none;
-       }
+            width: 100%;
+            height: 50px;
+            /* 增加高度以容納按鈕並提供間距 */
+            padding-top: 90px;
+            /* 這裡的 padding-top 讓它從 navbar 下方開始 */
+            background-color: whitesmoke;
+
+            /* 為按鈕區域設定一個背景色 */
+        }
+
+        /* 新增的內容區域樣式 */
+        #highnav a {
+            width: 100%;
+            font-size: 20px;
+            color: whitesmoke;
+            text-decoration: none;
+        }
 
         /* 新增的內容區域樣式 */
         .content-section {
@@ -204,18 +204,31 @@
         }
 
 
-        .text-col {
+        .text-col,
+        .text-col img {
             padding: 40px;
             padding-left: 90px;
             /* **調整這裡：增加文字內容的內邊距** */
-            background-color: #e6edf4;
-            /* 文字列的背景色，與圖片背景相同 */
-            color: #333;
-            background-position: top right;
+            background-color: #f1f6fb;
+            /* 新增背景色 */
+            color: #222;
+            /* 新增字體顏色 */
 
+            /* 新增的背景Logo樣式 */
+            background-image: url('/images/Png.png');
+            /* 將此處路徑替換成您的Logo圖片路徑 */
+            background-position: center;
+            /* 讓圖片置中 */
             background-repeat: no-repeat;
-            /* 文字顏色 */
+            /* 圖片不重複 */
+            background-size: 80%;
+            /* 圖片大小，可依需求調整 */
+            background-blend-mode: overlay;
+            /* 混合模式，讓圖片與背景色融合 */
+            opacity: 1;
+            /* 調整透明度，讓圖片更淡 */
         }
+
 
         .text-col p {
             margin-bottom: 12px;
@@ -224,7 +237,7 @@
             /* **調整這裡：增加字體大小** */
             line-height: 1.8;
             /* **調整這裡：增加行高** */
-
+            font-weight: bold;
 
         }
 
@@ -375,11 +388,12 @@
                 padding-left: 2.5rem;
                 /* 增加縮進，使其看起來像子選項 */
             }
+
             footer {
-            width: 100vw;
-            height: 130px;
-            background-color: rgb(51, 81, 0);
-        }
+                width: 100vw;
+                height: 130px;
+                background-color: rgb(51, 81, 0);
+            }
 
         }
     </style>
@@ -476,9 +490,9 @@
     </nav>
     </div>
     <div class="hicomnav d-flex justify-content-center align-items-center gap-5" id="highnav">
-        <a href="/CO.html"class="btn btn-warning">指揮官</a>
-        <a href="/COS.html"class="btn btn-primary">參謀長</a>
-        <a href="/DCOS.html"class="btn btn-success">副參謀長</a>
+        <a href="/CO.html" class="btn btn-warning">指揮官</a>
+        <a href="/COS.html" class="btn btn-primary">參謀長</a>
+        <a href="/DCOS.html" class="btn btn-success">副參謀長</a>
     </div>
     <div class="content-section">
         <div class="container profile-card">
@@ -504,7 +518,7 @@
                         <li>
                             <p>國防部憲兵指揮部-獎懲委員會主席<span>(現任)</span></p>
                         </li>
-                       
+
                         <li>
                             <p>政治作戰局-文宣部<span>(現任)</span></p>
                         </li>
@@ -611,7 +625,7 @@
 <footer>
     <p> Copyright © 2025, Republic of China Army Military Police Command - Roblox.& Credits Justin_chiu27
         All Rights Reserved.<br><span style="color:red">嚴禁抄襲，違者必追究</span>
-    <br>
+        <br>
     </p>
 </footer>
 <script>
