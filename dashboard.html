@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>憲兵指揮部儀表板</title>
+  <link rel="icon" type="image/png" href="/images/Png.png">
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+    body {
+      font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+      background-color: #f4f7f9;
+      color: #333;
+    }
+    
+    .navbar {
+      background-color: #1a237e;
+      border-radius: 0;
+      border: 0;
+    }
+    
+    .navbar-brand, .nav > li > a {
+      color: #e3f2fd !important;
+      font-weight: normal;
+    }
+    
+    .navbar-inverse .navbar-nav > .active > a, 
+    .navbar-inverse .navbar-nav > .active > a:hover, 
+    .navbar-inverse .navbar-nav > .active > a:focus {
+      background-color: #0d1b54;
+      color: #fff !important;
+    }
+
+    .row.content {
+      height: 100vh;
+      margin-top: -20px;
+    }
+    
+    .sidenav {
+      background-color: #2c3e50;
+      height: 100%;
+      color: #ecf0f1;
+      padding-top: 20px;
+      border-right: 1px solid #34495e;
+    }
+
+    .sidenav h2 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    .sidenav img {
+      width: 80px;
+      height: auto;
+      margin-bottom: 10px;
+    }
+    
+    .nav-pills > li.active > a, .nav-pills > li.active > a:hover {
+      background-color: #3498db;
+      color: #fff;
+    }
+    
+    .nav-pills > li > a {
+      color: #ecf0f1;
+      border-radius: 0;
+      padding: 15px;
+      font-weight: 500;
+    }
+
+    .nav-pills > li > a:hover {
+      background-color: #34495e;
+    }
+
+    .well {
+      background-color: #ffffff;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+      min-height: 120px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    
+    .well h4 {
+      color: #1a237e;
+      font-weight: 700;
+      margin-top: 0;
+    }
+    
+    .well p {
+      font-size: 24px;
+      font-weight: bold;
+      color: #333;
+      margin-top: 10px;
+    }
+    
+    .well p:last-child {
+      margin-bottom: 0;
+    }
+    
+    .well.member-list {
+      min-height: 250px;
+    }
+    
+    .well.member-list p {
+      font-size: 16px;
+      font-weight: normal;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    .well.recruit-info p {
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    @media screen and (max-width: 767px) {
+      .row.content {
+        height: auto;
+      }
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .well {
+        min-height: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse visible-xs">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">憲兵儀表板</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">憲兵總覽</a></li>
+        <li><a href="#">待開發</a></li>
+        <li><a href="#">待開發</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <div class="row content">
+    <div class="col-sm-3 sidenav hidden-xs">
+      <h2><img src="/images/Png.png" alt="Logo">憲兵指揮部</h2>
+      <ul class="nav nav-pills nav-stacked">
+        <li class="active"><a href="#section1">憲兵總覽</a></li>
+        <li><a href="/index.html">回首頁</a></li>
+        <li><a href="#">待開發</a></li>
+      </ul>
+      <br>
+    </div>
+    
+    <div class="col-sm-9">
+      <div class="well">
+        <h4><br>憲兵總人數</h4>
+        <p>28人</p>
+      </div>
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="well">
+            <h4>勤務支援大隊</h4>
+            <p>11人</p> 
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="well">
+            <h4>特種勤務大隊</h4>
+            <p>9人</p> 
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="well">
+            <h4>高層</h4>
+            <p>4人</p> 
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="well">
+            <h4>盟友單位</h4>
+            <p>淮安營區憲兵</p> 
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="well member-list">
+            <h4>勤務支援大隊幹部</h4> 
+            <p>nollihj</p> 
+            <p>aplkjjsffh</p> 
+            <p>XxChortleKidd</p>
+            <p><br></p>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="well member-list">
+            <h4>特種勤務大隊幹部</h4> 
+            <p>yaya_yen</p> 
+            <p>Leosergo</p>
+            <p>dammy526</p>
+            <p>zhuy1126</p> 
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="well member-list">
+            <h4>高層幹部</h4> 
+            <p>sjkhortj</p> 
+            <p>hgjk66ll</p> 
+            <p>rockroll901</p> 
+            <p>Justin_chiu27</p> 
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="well recruit-info">
+            <p>本月招募人數： 8人</p> 
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="well recruit-info">
+            <p>本月退出人數： 2人</p> 
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
