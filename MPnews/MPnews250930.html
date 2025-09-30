@@ -5,77 +5,94 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>副參謀長</title>
+    <title>格式</title>
     <link rel="icon" type="image/png" href="/images/Png.png">
     <style>
-        /* 移除 Bootstrap 預設的一些邊距，使內容更緊湊 */
-        body {
+         /* 移除 Bootstrap 預設的一些邊距，使內容更緊湊 */
+         body {
             margin: 0;
             padding: 0;
-            overflow-x: hidden;
+            background-color: #f0f0f5;
             /* 防止水平滾動條 */
-            /* 設置基礎字體大小，以便 rem 單位進行計算 */
-            font-size: 16px;
-            background-color: whitesmoke;
-            /* 基準字體大小 */
         }
 
         /* Navbar 樣式調整 */
         .navbar {
             position: fixed;
+            /* Changed from sticky to fixed */
             top: 0;
             width: 100%;
+            /* Add width: 100% for fixed positioning */
             background-color: #343a40;
+            /* 深灰色背景，接近圖片效果 */
             padding: 0;
+            /* 將 navbar 的 padding 設為 0 */
             min-height: 60px;
+            /* 設定一個最小高度，確保有足夠空間垂直居中 */
             z-index: 1030;
+            /* 確保 Navbar 在其他內容上方 */
         }
 
         .navbar-brand {
             padding: 0.5rem 1rem;
+            /* 與 nav-link 保持一致的垂直 padding */
             display: flex;
+            /* 使 brand 內部元素也能 flex 排列 */
             align-items: center;
+            /* 垂直居中品牌圖標和文字 */
             height: 100%;
+            /* 確保 brand 佔滿 navbar 垂直空間 */
         }
 
         .navbar-brand img {
             margin-right: 5px;
+            /* 標誌和文字之間的間距 */
         }
 
         .navbar-brand span {
             color: white;
             letter-spacing: 2px;
             font-size: 1rem;
-            /* 使用 rem */
+            /* 調整字體大小以適應導航列 */
         }
 
         /* 導航項目容器 */
         .navbar-nav {
             height: 100%;
+            /* 確保 nav-nav 佔滿 navbar 垂直空間 */
             align-items: center;
+            /* 垂直居中所有 nav-item */
         }
 
         .navbar-nav .nav-item {
             height: 100%;
+            /* 確保 nav-item 佔滿父元素垂直空間 */
             display: flex;
+            /* 使 nav-item 內部元素也能 flex 排列 */
             align-items: center;
+            /* 垂直居中 nav-link */
         }
 
         .navbar-nav .nav-link {
             color: rgba(255, 255, 255, 0.75);
+            /* 淺色文字，hover 時變亮 */
             padding: 0.8rem 1rem;
-            font-size: 1rem;
-            /* 使用 rem */
+            /* 增加垂直 padding 以調整高度和居中 */
+            font-size: 16px;
+            /* 保留你設定的字體大小 */
             height: 100%;
+            /* 讓 nav-link 填充 nav-item 的高度 */
             display: flex;
+            /* 再次使用 flexbox 確保內部文字垂直居中 */
             align-items: center;
+            /* 垂直居中文字 */
         }
 
         .navbar-nav .nav-link:hover,
         .navbar-nav .nav-link.active {
             color: white;
+            /* hover 或 active 時變為白色 */
         }
 
         /* 下拉選單樣式 (Bootstrap 5) */
@@ -88,6 +105,7 @@
             transform: translateY(10px);
             transition: opacity 0.3s ease-out, transform 0.3s ease-out;
             display: block;
+            /* 讓 CSS 動畫生效 */
             visibility: hidden;
             pointer-events: none;
         }
@@ -102,206 +120,133 @@
         .navbar-nav .dropdown-item {
             color: rgba(255, 255, 255, 0.75);
             padding: 0.75rem 1.5rem;
+            /* 調整下拉項目內距 */
         }
 
         .navbar-nav .dropdown-item:hover,
         .navbar-nav .dropdown-item:focus {
             background-color: #495057;
+            /* hover 時的背景色 */
             color: white;
         }
 
-        /* 新增的內容區域樣式 */
-        .hicomnav {
-
-            width: 100%;
-            height: 50px;
-            /* 增加高度以容納按鈕並提供間距 */
-            padding-top: 90px;
-            /* 這裡的 padding-top 讓它從 navbar 下方開始 */
-            background-color: whitesmoke;
-
-            /* 為按鈕區域設定一個背景色 */
-        }
-
-        /* 新增的內容區域樣式 */
-        #highnav a {
-            width: 100%;
-            font-size: 20px;
-            color: whitesmoke;
-            text-decoration: none;
-        }
-
-        /* 新增的內容區域樣式 */
-        .content-section {
-            padding-top: 80px;
-            /* 留出 Navbar 的高度 */
-            background-color: #e6edf4;
-            /* 接近圖片的背景色 */
-            /* 移除 min-height: calc(100vh - 60px); 以便內容自然延伸 */
-            display: flex;
-            /* 使用 Flexbox 確保內容垂直居中 */
-            align-items: center;
-            /* 垂直居中對齊 */
-            padding-bottom: 20px;
-            /* 給底部留些空間 */
-        }
-
-        .profile-card {
-            background-color: #ffffff;
-            /* 卡片背景色，與圖片背景形成對比 */
-            border-radius: 8px;
-            /* 圓角 */
+        /* Banner 區塊調整 */
+        .banner-section {
+            position: relative;
+            width: 100vw;
+            /* 佔滿整個寬度 */
+            height: 500px;
+            /* 圖片高度 */
             overflow: hidden;
-            /* 確保內容不溢出圓角 */
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            /* 輕微陰影 */
-            margin: 20px auto;
-            /* 上下邊距，左右自動居中 */
-            max-width: 1100px;
-            /* **調整這裡：增加卡片最大寬度** */
+            display: flex;
+            /* 使用 flexbox 居中內容 */
+            justify-content: center;
+            align-items: center;
+            /* 調整 Navbar 佔用空間，確保內容不會被 Navbar 遮擋 */
+            margin-top: 60px;
+            /* 假設 navbar 高度為 60px */
         }
 
-        .image-col {
-            background-color: #ced9e3;
-            /* 圖片列的背景色 */
-            padding: 30px;
-            /* **調整這裡：增加內邊距** */
+        .banner-image {
+            position: absolute;
+            top: 0;
+            /* 修正 top 屬性值 */
+            left: 0;
+            width: 100vw;
+            height: 100%;
+            /* 調整為 100% 以便在小螢幕時能更好地縮放 */
+            object-fit: contain;
+            /* 確保圖片覆蓋整個容器 */
+            filter: grayscale(0%) brightness(100%);
+            /* 灰階 亮度 */
+            z-index: -1;
+            /* 確保圖片在文字下方 */
+            object-position: center center;
+            /* 將圖片內容置於容器中央 */
+        }
+
+        #bannertext {
+            color: white;
+            text-align: center;
+            z-index: 1;
+            /* 確保文字在圖片上方 */
             display: flex;
             flex-direction: column;
-            align-items: center;
             justify-content: center;
-        }
-
-        .profile-image-container {
-            width: 100%;
-            /* 容器寬度 */
-            max-width: 280px;
-            /* **調整這裡：增加圖片最大寬度** */
-            margin-bottom: 20px;
-            /* **調整這裡：增加圖片下方間距** */
-        }
-
-        .profile-image-container img {
-            width: 100%;
-            height: auto;
-            display: block;
-            /* 移除圖片底部間隙 */
-            border-radius: 4px;
-            /* 圖片輕微圓角 */
-        }
-
-        .logo-image-container {
-            width: 100%;
-            max-width: 180px;
-            /* **調整這裡：增加 Logo 圖片的最大寬度** */
-            margin-bottom: 15px;
-            /* **調整這裡：增加 Logo 下方間距** */
-        }
-
-        .logo-image-container img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .text-col,
-        .text-col img {
-            padding: 40px;
-            padding-left: 90px;
-            /* **調整這裡：增加文字內容的內邊距** */
-            background-color: #f1f6fb;
-            /* 新增背景色 */
-            color: #222;
-            /* 新增字體顏色 */
-
-            /* 新增的背景Logo樣式 */
-            background-image: url('/images/Png.png');
-            /* 將此處路徑替換成您的Logo圖片路徑 */
-            background-position: center;
-            /* 讓圖片置中 */
-            background-repeat: no-repeat;
-            /* 圖片不重複 */
-            background-size: 80%;
-            /* 圖片大小，可依需求調整 */
-            background-blend-mode: overlay;
-            /* 混合模式，讓圖片與背景色融合 */
-            opacity: 1;
-            /* 調整透明度，讓圖片更淡 */
-        }
-
-
-        .text-col p {
-            margin-bottom: 12px;
-            /* **調整這裡：增加每行文字間距** */
-            font-size: 1.15rem;
-            /* **調整這裡：增加字體大小** */
-            line-height: 1.8;
-            /* **調整這裡：增加行高** */
-            font-weight: bold;
-
-        }
-
-        .text-col strong {
-            color: #000;
-            /* 加粗文字顏色更深 */
-        }
-
-        #dcos p {
-            font-weight: bold;
-            text-align: center;
-            margin-top: 30px;
-            font-size: 24px;
-
-        }
-
-        #profilehhistory p strong {
-            font-size: 24px;
-            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-
-        }
-
-        #profilehhistory.ul li {
-            font-size: 20px;
+            align-items: center;
             gap: 10px;
-            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            /* 文字間距 */
         }
 
-        #profilehhistory ul li p span {
-            color: darkgoldenrod;
+        #bannertext h1 {
+            font-size: 52px;
+            margin-bottom: 0;
+            /* 移除 h1 的底部預設邊距 */
+            font-weight: bold;
+            /* 讓字體更粗一點，接近圖片效果 */
         }
 
-        /* 新增的按鈕和可展開區塊樣式 */
-        .expandable-section {
-            background-color: #f8f9fa;
-            /* 輕微的背景色 */
-            padding: 30px 0;
-            /* 上下內邊距 */
-            margin-top: 30px;
-            /* 與上方內容的間距 */
-            border-top: 1px solid #dee2e6;
-            /* 上方加一條線 */
+        #bannertext p {
+            font-size: 18px;
+            margin-top: 0;
+            /* 移除 p 的頂部預設邊距 */
         }
 
-        .expandable-content {
-            background-color: #ffffff;
-            border: 1px solid #e9ecef;
-            border-radius: 8px;
+        /* 為了演示滾動效果，我們需要一些下方內容 */
+        .content-placeholder {
+            height: fit-content;
+            /* 增加高度以產生滾動條 */
+            background-color: #f0f0f0;
             padding: 25px;
-            margin-top: 20px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            color: #333;
         }
 
-        .expandable-content p {
-            font-size: 1.05rem;
-            line-height: 1.7;
-            color: #000;
-            margin-bottom: 10px;
+        .NTitle h2 {
+            margin-top: 5px;
+            text-align: center;
+            color: black;
+            font-weight: bold;
+            font-size: 36px;
+            margin-bottom: 5px;
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
         }
 
-        .expandable-content h3 {
-            color: #343a40;
-            margin-bottom: 20px;
-            font-size: 1.5rem;
+        #htmlpath a {
+            text-decoration: none;
+            color: chocolate;
+        }
+
+        #info {
+            background-color: lightgray;
+            width: 100%; /* Make it take full width of its container */
+            max-height: 400px; /* Set a max-height to enable scrolling */
+            overflow-y: auto; /* Enable vertical scrollbar when content overflows */
+            padding: 15px; /* Add some padding inside the scrollable area */
+            box-sizing: border-box; /* Include padding in the width/height calculation */
+        }
+
+
+        #info p {
+            margin-top: 5px;
+            margin-left: 5px;
+            margin-right: 5px;
+            /* 修正這裡，原為兩個 margin-left */
+            font-size: 20px;
+        }
+
+        #newsdate p {
+            padding-top: 5px;
+            padding-right: 5px;
+            text-align: right;
+            color: blue;
+
+        }
+
+        #newsediter p {
+            text-align: right;
+            font-weight: bold;
+            color: rgb(255, 157, 29);
         }
 
         footer {
@@ -318,40 +263,94 @@
             padding-top: 30px;
         }
 
-        /* 響應式調整 */
+        /* 小型裝置 RWD: max-width: 575.98px */
+        @media (max-width: 575.98px) {
+
+            /* Bootstrap xs breakpoint */
+            .navbar-brand span {
+                font-size: 0.8rem;
+                /* 縮小導航列品牌字體 */
+            }
+
+            .navbar-brand img {
+                width: 40px;
+                /* 縮小品牌圖標 */
+                height: 40px;
+            }
+
+            .banner-section {
+                height: 300px;
+                /* 縮小 Banner 高度 */
+
+            }
+
+            #bannertext h1 {
+                font-size: 32px;
+                /* 縮小 Banner 標題字體 */
+            }
+
+            #bannertext p {
+                font-size: 14px;
+                /* 縮小 Banner 段落字體 */
+            }
+
+            #mpcontent h5 {
+                font-size: 16px;
+            }
+
+            footer {
+                width: 100vw;
+                height: 130px;
+                background-color: rgb(51, 81, 0);
+            }
+
+            .NTitle h2 {
+                margin-top: 5px;
+                text-align: center;
+                color: black;
+                font-weight: bold;
+                font-size: 24px;
+                margin-bottom: 5px;
+            }
+
+            #htmlpath a {
+                text-decoration: none;
+                color: chocolate;
+            }
+
+            #info {
+                background-color: lightgray;
+                width: 100%; /* Make it take full width of its container */
+                max-height: 300px; /* Adjust max-height for smaller screens */
+                overflow-y: auto; /* Ensure scrolling is still enabled */
+            }
+
+            #info p {
+                margin-top: 5px;
+                margin-left: 5px;
+                margin-right: 5px;
+                /* 修正這裡 */
+                font-size: 18px;
+            }
+
+            #newsdate p {
+                padding-top: 5px;
+                padding-right: 5px;
+                text-align: right;
+                color: blue;
+
+            }
+
+            #newsediter p {
+                text-align: right;
+                font-weight: bold;
+                color: rgb(255, 157, 29);
+            }
+        }
+
         @media (max-width: 767.98px) {
-            .content-section {
-                padding-top: 70px;
-                /* 小螢幕時調整上邊距 */
-                align-items: flex-start;
-                /* 小螢幕時內容靠頂部對齊 */
-            }
 
-            .profile-card {
-                margin: 15px;
-                /* 小螢幕時調整卡片邊距 */
-            }
-
-            .image-col {
-                padding: 20px;
-                /* 小螢幕時調整圖片列內邊距 */
-            }
-
-            .text-col {
-                padding: 25px;
-                /* 小螢幕時調整文字列內邊距 */
-            }
-
-            .profile-image-container {
-                max-width: 220px;
-                /* 小螢幕時圖片更小 */
-            }
-
-            .logo-image-container {
-                max-width: 140px;
-                /* 小螢幕時 Logo 更小 */
-            }
-
+            /* 或者您 navbar-toggler 觸發的 breakpoint */
             .navbar-collapse {
                 /* 確保在小螢幕展開時可以滾動 */
                 max-height: calc(100vh - 60px);
@@ -359,18 +358,19 @@
                 overflow-y: auto;
                 /* 允許垂直滾動 */
                 -webkit-overflow-scrolling: touch;
-
                 /* 改善 iOS 上的滾動體驗 */
-                .navbar-nav {
-                    height: auto;
-                    /* 讓導覽列項目高度自動調整 */
-                }
-
-                .navbar-nav .nav-item {
-                    height: auto;
-                    /* 讓導覽列項目高度自動調整 */
-                }
             }
+
+            .navbar-nav {
+                height: auto;
+                /* 讓導覽列項目高度自動調整 */
+            }
+
+            .navbar-nav .nav-item {
+                height: auto;
+                /* 讓導覽列項目高度自動調整 */
+            }
+
 
             /* 確保下拉菜單在小螢幕展開時有足夠空間 */
             .navbar-nav .dropdown-menu {
@@ -388,21 +388,14 @@
                 padding-left: 2.5rem;
                 /* 增加縮進，使其看起來像子選項 */
             }
-
-            footer {
-                width: 100vw;
-                height: 130px;
-                background-color: rgb(51, 81, 0);
-            }
         }
     </style>
-
 </head>
 
 <body>
     <nav class="navbar navbar-expand-md navbar-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/index.html">
+            <a class="navbar-brand" href="#">
                 <img src="/images/Png.png" alt="" width="50" height="50" class="d-inline-block align-text-middle">
                 <span>憲兵指揮部</span>
             </a>
@@ -446,7 +439,7 @@
                             <li><a class="dropdown-item" href="/CO.html">指揮官</a></li>
                             <li><a class="dropdown-item" href="/DCO.html">副指揮官</a></li>
                             <li><a class="dropdown-item" href="/COS.html">參謀長</a></li>
-                            <li><a class="dropdown-item" href="#">副參謀長</a></li>
+                            <li><a class="dropdown-item" href="/DCOS.html">副參謀長</a></li>
                             <li><a class="dropdown-item" href="/history.html">歷屆高層</a></li>
                         </ul>
                     </li>
@@ -487,73 +480,60 @@
             </div>
         </div>
     </nav>
-    </div>
-    <div class="hicomnav d-flex justify-content align-items-center gap-5" id="highnav">
-        <a href="/CO.html" class="btn btn-warning">指揮官</a>
-        <a href="/DCO.html" class="btn btn-primary">副指揮官</a>
-        <a href="/COS.html" class="btn btn-success">參謀長</a>
-    </div>
-    <div class="content-section">
-        <div class="container profile-card">
-            <div class="row g-0">
-                <div class="col-md-4 image-col">
-                    <div class="logo-image-container">
+    <div class="banner-section">
+        <img src="/images/22211111.png" alt="Banner Image" class="banner-image">
+        <div id="bannertext">
+            <h1> </h1>
+            <p style="font-size: 24px;">
 
-                    </div>
-                    <div class="profile-image-container" id="dcos">
-                        <img src="/images/user_empty.png" alt="副參謀長職缺" class="img-fluid">
-                        <p><strong>副參謀長</strong><br>職缺</p>
-                    </div>
-                </div>
-                <div class="col-md-8 text-col" id="profilehhistory">
-                    <p><strong>經歷：</strong></p>
-                    <ul>
-
-                        <!-- <li>
-                            <p>國防部憲兵指揮部-副參謀長<span>(現任)</span></p>
-                        </li>
-                        <li>
-                            <p>國防部軍官評鑑委員會-委員<span>(現任)</span></p>
-                        </li>
-                        <li>
-                            <p>陸軍官校-文書官<span>(現任)</span></p>
-                        </li>
-
-                        <li>
-                            <p>教育暨準則發展指揮部-入伍訓指導員<span>(現任)</span></p>
-                        </li> -->
-
-                      
-                    </ul>
-                    <p><strong><span style="color:darkorange">勳章&獎章</span></strong></p>
-                    <ul style="font-weight: bold;font-size: 24px;">
-                        <!-- <li>
-                            <p>ROCA建軍三周年閱兵紀念獎章</p>
-                        </li> -->
-                    </ul>
-                </div>
-            </div>
+            </p>
         </div>
     </div>
-
-    <div class="expandable-section">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-12 col-md-8 text-center">
-                    <button type="button" class="btn btn-warning btn-lg" data-bs-toggle="collapse"
-                        data-bs-target="#collapseText" aria-expanded="false" aria-controls="collapseText">
-                        <!-- 了解更多關於副參謀長 -->
-                    </button>
-                    <div class="collapse" id="collapseText">
-                        <div class="expandable-content mt-3">
-                           
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="container">
+        <div class="htmlpath">
+            <h4 id="htmlpath">路徑：<a href="/index.html">首頁</a>><a href="/notice.html">最新資訊</a>>  <!-- 文章位置 --> </h4>
         </div>
     </div>
-    <img src="/images/22211111.png" alt="" width="100%" height="200" style="object-fit: contain;align-items: center;">
+    
+    <div class="container">
+        <div class="NTitle">
+            <h2>9/29憲兵人事異動</h2>
+        </div>
+    </div>
+    <!-- 內文 -->
+    <div class="container" id="info">
+        <span id="newsdate">
+            <p>發布日期：中華民國114年9月30日</p>
+        </span>
+        <p>昨日(9/29)晚間憲兵高層進行內部人事會議，本次會議主要是因近期憲兵內部紀律問題，且根據國防部的活動收到的許多投訴，指揮官sjkhortj召開臨時高層會議，在各高層及幹部討論決議結果如下：</p>
+    <pre>
+        —中華民國憲兵指揮部 公告—
+        發文日期：中華民國114年9月29日
+        
+        主旨：人員異動 | Personnel Changes
+        
+        依據：憲兵內部組織調整
+        
+        一、升任事項：
+        
+        Justin_chiu27 升任 副指揮官。
+        
+        wayne11087 升任 特勤隊幹部。
+        
+        二、任命事項：
+        
+        督察室成員新增兩位，負責日常巡查，確保所有成員行為符合紀律要求，並且每月將進行更換以確保監察權力公正。
+        
+        三、降任事項：
+        
+        hgjk66ll 擔任副指揮官期間，多次違反紀律，造成內部混亂，予以降任為 勤務支援中隊幹部。
+        
+       </pre>
+       <p> 請各位同仁嚴守紀律，確實履行職責，共同維護憲兵榮譽。</p>
+        <span id="newsediter">
+            <p>編輯者：Justin_chiu27</p>
+        </span>
+    </div>
 </body>
 <footer>
     <p> Copyright © 2025, Republic of China Army Military Police Command - Roblox.& Credits Justin_chiu27
@@ -561,6 +541,7 @@
         <br>
     </p>
 </footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
 
@@ -591,6 +572,15 @@
             }
         });
         // --- Navbar active 狀態處理 END ---
+
+        // 視差滾動效果 (Parallax Scrolling)
+        window.addEventListener('scroll', function () {
+            const bannerImage = document.querySelector('.banner-image');
+            if (bannerImage) {
+                let scrollPosition = window.pageYOffset;
+                bannerImage.style.transform = 'translateY(' + scrollPosition * 0.5 + 'px)'; // 調整 0.5 來改變視差速度
+            }
+        });
     });
 </script>
 
