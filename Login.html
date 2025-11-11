@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+    <script src="https://cdn.jsdelivr.net/npm/appwrite@11.0.0/dist/sdk.js"></script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -228,80 +228,80 @@
     </div>
 
     <script>
+        // --- Appwrite 客戶端初始化 START ---
+        const client = new Appwrite.Client();
+        
+        // !!! 請務必將 YOUR_ENDPOINT 和 YOUR_PROJECT_ID 替換為您的實際金鑰 !!!
+        client
+            .setEndpoint('YOUR_ENDPOINT') // 例如: 'https://cloud.appwrite.io/v1'
+            .setProject('YOUR_PROJECT_ID'); // 您的專案 ID
+    
+        const account = new Appwrite.Account(client);
+        // --- Appwrite 客戶端初始化 END ---
+    
         const form = document.getElementById('loginForm');
         const robloxNameInput = document.getElementById('robloxNameInput');
         const passwordInput = document.getElementById('passwordInput');
         const messageElement = document.getElementById('message');
-
+    
         form.addEventListener('submit', handleLogin);
-
-        // 簡單的訊息提示功能 (用於顯示登入結果)
+    
+        // 簡單的訊息提示功能
         function alertMessage(message, type = 'info') {
             messageElement.className = `mt-3 alert alert-${type}`;
             messageElement.innerHTML = `<i class="fa fa-info-circle me-2"></i> ${message}`;
         }
-
-        // 處理登入邏輯：透過 Fetch API 發送請求到後端
-        function handleLogin(event) {
-            event.preventDefault(); // 阻止表單的默認提交行為
-
+    
+        // 處理登入邏輯：透過 Appwrite SDK 進行驗證
+        async function handleLogin(event) {
+            event.preventDefault(); 
+    
             const robloxName = robloxNameInput.value.trim();
             const password = passwordInput.value.trim();
-
-            // 清空舊訊息
+    
             messageElement.innerHTML = '';
             messageElement.className = 'mt-3';
-
-            // 檢查輸入是否為空
+    
             if (!robloxName || !password) {
                 alertMessage('請輸入完整的帳號和密碼。', 'danger');
                 return;
             }
-
-            // 發送 POST 請求到後端 API 進行驗證
-            fetch('/api/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    robloxName: robloxName,
-                    password: password
-                }),
-            })
-                .then(response => {
-                    if (!response.ok) {
-                        // 處理 HTTP 錯誤狀態 (例如 401 Unauthorized, 500 Internal Server Error)
-                        throw new Error(`HTTP Error: ${response.status}`);
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    if (data.success) {
-                        // 登入成功：後端回傳 success: true 和使用者資訊
-                        alertMessage(`登入成功！歡迎回來，${data.robloxName}！`, 'success');
-
-                        // 將必要的資訊 (帳號和職位) 儲存到本地儲存
-                        const userData = {
-                            robloxName: data.robloxName, // 來自後端
-                            rank: data.position            // 來自後端
-                        };
-                        localStorage.setItem('loggedInUser', JSON.stringify(userData));
-
-                        // 導向系統首頁
-                        setTimeout(() => {
-                            window.location.href = '/MPHome.html';
-                        }, 1000);
-
-                    } else {
-                        // 登入失敗：後端回傳 success: false 和錯誤訊息
-                        alertMessage(`登入失敗：${data.message || '帳號或密碼錯誤。'}`, 'danger');
-                    }
-                })
-                .catch(error => {
-                    console.error("連線錯誤:", error);
-                    alertMessage('連線錯誤或伺服器未回應，請聯繫管理員。', 'danger');
-                });
+    
+            try {
+                // 嘗試創建 Appwrite 登入會話 (Session)
+                // Appwrite 登入使用 Email (這裡用 robloxName) 和 Password
+                await account.createEmailPasswordSession(robloxName, password);
+    
+                // 如果成功，Appwrite 會自動設置安全的 Session Cookie
+                // 接著獲取使用者的詳細資訊 (例如顯示名稱)
+                const user = await account.get();
+    
+                // 登入成功：後端回傳 success: true 和使用者資訊
+                alertMessage(`登入成功！歡迎回來，${user.name}！`, 'success');
+    
+                // 將必要的資訊 (帳號 ID 和名稱) 儲存到本地儲存，供 MPHome.html 顯示
+                const userData = {
+                    // Appwrite 的 User ID
+                    userId: user.$id, 
+                    // Appwrite 的 Name 欄位 (您可以讓它與 robloxName 相同)
+                    robloxName: user.name, 
+                    // 由於 Appwrite 沒有內建 Rank 欄位，這裡假設您會將其儲存在 Appwrite 的 Custom Extensions 或其他位置。
+                    // 為了程式碼能運作，這裡暫時使用一個預設值，實際應從 Appwrite 的資料庫或延伸屬性中獲取。
+                    rank: '憲兵官兵' 
+                };
+                localStorage.setItem('loggedInUser', JSON.stringify(userData));
+    
+                // 導向系統首頁
+                setTimeout(() => {
+                    window.location.href = '/MPHome.html';
+                }, 1000);
+    
+            } catch (error) {
+                console.error("登入錯誤:", error);
+                // 處理 Appwrite 的特定錯誤代碼，例如 401（未授權/帳密錯誤）
+                const message = error.message || '帳號或密碼錯誤。';
+                alertMessage(`登入失敗：${message}`, 'danger');
+            }
         }
     </script>
 
