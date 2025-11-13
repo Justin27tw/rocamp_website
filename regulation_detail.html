@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>憲兵指揮部 - 內部首頁</title>
+    <title>憲兵指揮部 - 規範內容</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" type="image/png" href="/images/Png.png">
     <style>
-       /* 基礎樣式與版面調整 */
-       body {
+      /* 基礎樣式與版面調整 */
+      body {
             font-family: 'Inter', sans-serif;
             background-color: #ffffff;
             /* 輕微的灰色背景 */
@@ -155,7 +155,65 @@
             margin-top: 30px;
             max-width: 1000px;
         }
+        .content-container {
+            /* 移除頂部大標題後，調整邊距讓內容更貼合 */
+            margin-top: 15px; 
+            max-width: 1000px;
+            padding-bottom: 50px;
+        }
+
+        /* 錨點目標調整 (防止被固定 Navbar 遮擋) */
+        .doc-anchor {
+            padding-top: 5rem;
+            margin-top: -5rem;
+            display: block;
+            visibility: hidden;
+            pointer-events: none;
+        }
         
+        /* 嵌入容器樣式 */
+        .doc-container {
+            margin-bottom: 50px;
+        }
+
+        /* 簡報 (Slides) 使用 16:9 比例容器，確保 RWD 效果 (已優化) */
+        .embed-responsive-slides {
+            position: relative;
+            display: block;
+            width: 100%;
+            overflow: hidden;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        /* 文件 (Doc) 和 表單 (Form) 設為響應式固定高度，並允許滾動 */
+        .embed-responsive-doc, .embed-responsive-form {
+            height: 80vh; 
+            min-height: 600px;
+            width: 100%;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .embed-responsive-slides iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .embed-responsive-doc iframe,
+        .embed-responsive-form iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            border-radius: 8px;
+        }
+
         /* 調整 RWD: 手機上儀表板上邊距縮小 */
         @media (max-width: 767px) {
             .dashboard-container {
@@ -201,56 +259,27 @@
         }
 
 
-        /* 卡片樣式 */
-        .card-custom {
-            border-left: 5px solid;
-            border-radius: 8px;
-            overflow: hidden;
-            transition: transform 0.2s;
-        }
-
-        .card-custom:hover {
-            transform: translateY(-3px);
-            /* 輕微上浮效果 */
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        /* 數據卡片顏色 (法規專用) */
-        .card-info {
-            border-left-color: #0dcaf0;
-        }
-
-        /* 警告區塊樣式 - 極度明顯版本 */
-        .alert-security {
-            border: 4px solid #a00010;
-            background-color: #a00000;
-            color: #ffffff;
-            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.7);
-            padding: 20px;
-            animation: pulse-danger 1.5s infinite alternate;
-            border-radius: 8px;
-        }
-
-        /* 定義閃爍動畫 */
-        @keyframes pulse-danger {
-            from {
-                box-shadow: 0 4px 15px rgb(228, 0, 0);
-            }
-
-            to {
-                box-shadow: 0 4px 20px rgb(248, 0, 25);
+      
+        /* RWD 優化：針對小螢幕設備 (手機) 調整文件/表單的最小高度 */
+        @media (max-width: 767.98px) {
+            .embed-responsive-doc, .embed-responsive-form {
+                height: 70vh; /* 在手機上高度略微縮小 */
+                min-height: 400px; /* 在手機上允許更小的最小高度 */
             }
         }
 
-        /* 內部關鍵文字強調高對比 (僅限黑名單) */
-        .alert-security .highlight {
-            color: #ffeb3b;
-            /* 亮黃色強調 */
+        /* 快速選單樣式 */
+        .toc-menu {
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            background-color: #ffffff;
         }
     </style>
 </head>
 
 <body>
+   
+    
     <nav class="navbar navbar-expand-md navbar-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="/index.html">
@@ -334,6 +363,11 @@
                             <li><a class="dropdown-item" href="/creater.html">製作名單</a></li>
                         </ul>
                         <li class="nav-item">
+                            <a class="nav-link fw-bold" href="/MPHome.html" id="backToMenuBtn">
+                                <i class="fa fa-list-alt me-1"></i> 返回選單
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link text-danger fw-bold" href="/index.html" id="logoutBtn">
                                 <i class="fa fa-sign-out me-1"></i> 登出
                             </a>
@@ -343,184 +377,167 @@
             </div>
         </div>
     </nav>
- 
-
-    <div class="container dashboard-container">
+    <div class="container content-container">
+        
         <div class="row">
-
-            <div class="col-12">
-                <div class="mb-4 p-3 p-md-4 bg-white shadow-sm rounded-3">
-                    <h1 class="h3 fw-bold text-dark">
-                        <i class="fa fa-user-secret me-2 text-primary"> </i> 歡迎回來 <span id="userRankDisplay"
-                            class="text-warning fw-bolder"></span> <span id="userNameDisplay"></span>！
-                    </h1>
-                    <p class="text-muted">這是您的憲兵指揮部內部法規與規範查詢頁面。</p>
+            
+            <div class="col-md-3 mb-4">
+                <div class="toc-menu p-3 shadow-sm sticky-top" style="top: 80px;"> <h6 class="fw-bold mb-2 text-dark"><i class="fa fa-map-signs me-1"></i> 文件快速導航</h6>
+                    <nav class="nav nav-pills flex-column"> 
+                        <a class="nav-link link-primary mb-1" href="#doc-d4">憲兵行政規程</a>
+                        <a class="nav-link link-primary mb-1" href="#doc-d1">內部升階與點數辦法</a>
+                        <a class="nav-link link-primary mb-1" href="#doc-d2">駕駛課程</a>
+                        <a class="nav-link link-primary mb-1" href="#doc-f1">駕照考試</a>
+                        <a class="nav-link link-success mb-1" href="#doc-p1">檢閱須知</a>
+                        <a class="nav-link link-success mb-1" href="#doc-p2">車輛使用權限</a>
+                        <a class="nav-link link-warning mb-1" href="#doc-d6">Administrative Regulations</a>
+                        <a class="nav-link link-warning mb-1" href="#doc-d5">Leave Application Form</a>
+                        <a class="nav-link link-secondary mb-1" href="#doc-d3">Newcomer's manual</a>
+                        <a class="nav-link link-secondary mb-1" href="#doc-d7">懲罰法及懲處評議會組成細則</a>
+                    </nav>
                 </div>
-                <div class="alert alert-security fw-bold mb-2 text-center" role="alert">
-                    <h5 class="fa fa-exclamation-triangle fa-2x text-white fw-bolder">
-                        警告！嚴禁將憲兵資料公開、分享、複製給非憲兵人員
-                    </h5>
-                    <p class="mb-1 lead fw-bold">
-                        <strong></strong>
-                    </p>
-                    <h5 class="mb-0 fw-bolder">
-                        <strong>不遵守將依懲處，並列入 <span class="highlight">中華民國憲兵永久黑名單!</span></strong>
-                    </h5>
-                </div>
+            </div>
 
-
-                <div class="row">
-                    <div class="col-12 mb-4">
-                        <div class="card shadow">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 fw-bold text-primary">📜 法規與內部規範查閱</h6>
-                            </div>
-                            <div class="card-body p-5">
-                                <h4 class="mb-4 text-center fw-bold">請選擇您要查閱的規範類型</h4>
-                                <div class="row g-4">
-                                    <div class="col-md-6">
-                                        <div class="card card-custom card-info shadow-sm h-100">
-                                            <div class="card-body text-center">
-                                                <i class="fa fa-balance-scale fa-3x text-info mb-3"></i>
-                                                <h5 class="fw-bold mb-3">外部法規資料庫</h5>
-                                                <p class="text-muted">查閱ROCA法規，檢視法條。</p>
-                                                <a href="https://sites.google.com/view/law-roca/%E9%A6%96%E9%A0%81?authuser=0"
-                                                    target="_blank" class="btn btn-info w-75 mt-3">
-                                                    <i class="fa fa-external-link me-2"></i> 前往查閱 (外部連結)
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div class="card card-custom shadow-sm h-100"
-                                            style="border-left-color: #6c757d;">
-                                            <div class="card-body text-center">
-                                                <i class="fa fa-book fa-3x text-secondary mb-3"></i>
-                                                <h5 class="fw-bold mb-3">憲兵內部規範</h5>
-                                                <p class="text-muted">查閱憲兵指揮部內部作業標準流程與紀律規範。</p>
-                                                <a href="/regulation_detail.html" class="btn btn-secondary w-75 mt-3">
-                                                    <i class="fa fa-search me-2"></i> 內部規範選單
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+            <div class="col-md-9">
+                
+                <a class="doc-anchor" id="doc-d4"></a>
+                <div class="doc-container">
+                    <h4 class="fw-bold mb-3 text-primary"><i class="fa fa-file-word-o me-2"></i> 文件一：憲兵行政規程</h4>
+                    <div class="embed-responsive embed-responsive-doc">
+                        <iframe src="https://docs.google.com/document/d/1_14aivkevYTaiE70TWUY81caGdGbIk9Ydd3T3_HGDnY/view?rm=minimal"></iframe>
                     </div>
-                   
-                    <div class="col-12 mb-4">
-                        <div class="card shadow">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 fw-bold text-danger"><i class="fa fa-info-circle me-2"></i> 系統資訊</h6>
-                            </div>
-                            <div class="card-body p-4">
-                                <p>本系統維護由Justin_chiu27進行維護，對於內部規範有疑問歡迎詢問憲兵幹部</p>
-                                <p class="text-danger fw-bold">注意：本網站僅供Roblox中華民國陸軍事基地使用，與現實中之中華民國法律並無任何關係。</p>
-                            </div>
-                        </div>
-                    </div>
+                    <a href="https://docs.google.com/document/d/1_14aivkevYTaiE70TWUY81caGdGbIk9Ydd3T3_HGDnY/edit" target="_blank" class="btn btn-sm btn-outline-secondary mt-2">在新視窗開啟文件</a>
                 </div>
+                <a class="doc-anchor" id="doc-d1"></a>
+                <div class="doc-container">
+                    <h4 class="fw-bold mb-3 text-primary"><i class="fa fa-file-word-o me-2"></i> 文件一：內部升階與點數辦法</h4>
+                    <div class="embed-responsive embed-responsive-doc">
+                        <iframe src="https://docs.google.com/document/d/16pYOQE7i6zit2YUxr8z1a7sf2qojqQQ9zaPV4VxR3TQ/view?rm=minimal"></iframe>
+                    </div>
+                    <a href="https://docs.google.com/document/d/16pYOQE7i6zit2YUxr8z1a7sf2qojqQQ9zaPV4VxR3TQ/edit" target="_blank" class="btn btn-sm btn-outline-secondary mt-2">在新視窗開啟文件</a>
+                </div>
+                
+                <a class="doc-anchor" id="doc-d2"></a>
+                <div class="doc-container">
+                    <h4 class="fw-bold mb-3 text-primary"><i class="fa fa-file-word-o me-2"></i> 文件二：駕駛課程</h4>
+                    <div class="embed-responsive embed-responsive-doc">
+                        <iframe src="https://docs.google.com/document/d/18sCV92Bhpbg39X8WevFGD_GrYHZci1ufa_d25cF4DoE/view?rm=minimal"></iframe>
+                    </div>
+                    <a href="https://docs.google.com/document/d/18sCV92Bhpbg39X8WevFGD_GrYHZci1ufa_d25cF4DoE/edit" target="_blank" class="btn btn-sm btn-outline-secondary mt-2">在新視窗開啟文件</a>
+                </div>
+
+                <a class="doc-anchor" id="doc-f1"></a>
+                <div class="doc-container">
+                    <h4 class="fw-bold mb-3 text-danger"><i class="fa fa-wpforms me-2"></i> 駕照考試：筆試題目</h4>
+                    <div class="embed-responsive embed-responsive-form">
+                        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfG01qY-EZKzXgkIFZ7UDwv0AzK_1K9CENhLxCsyoyaQNcGUw/viewform?embedded=true" 
+                                frameborder="0" marginheight="0" marginwidth="0">載入中…</iframe>
+                    </div>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfG01qY-EZKzXgkIFZ7UDwv0AzK_1K9CENhLxCsyoyaQNcGUw/viewform" target="_blank" class="btn btn-sm btn-outline-secondary mt-2">在新視窗開啟表單</a>
+                </div>
+
+                <a class="doc-anchor" id="doc-p1"></a>
+                <div class="doc-container">
+                    <h4 class="fw-bold mb-3 text-success"><i class="fa fa-file-powerpoint-o me-2"></i> 簡報一：檢閱須知</h4>
+                    <div class="embed-responsive embed-responsive-slides">
+                        <iframe src="https://docs.google.com/presentation/d/1kPsl1BaOVBwAbevIhem9nNtAwW1z-2gy5-P2MWhyQ_Y/embed?start=false&loop=false&delayms=3000&rm=minimal" 
+                                allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+                    </div>
+                    <a href="https://docs.google.com/presentation/d/1kPsl1BaOVBwAbevIhem9nNtAwW1z-2gy5-P2MWhyQ_Y/edit" target="_blank" class="btn btn-sm btn-outline-secondary mt-2">在新視窗開啟簡報</a>
+                </div>
+
+                <a class="doc-anchor" id="doc-p2"></a>
+                <div class="doc-container">
+                    <h4 class="fw-bold mb-3 text-success"><i class="fa fa-file-powerpoint-o me-2"></i> 簡報二：車輛使用權限</h4>
+                    <div class="embed-responsive embed-responsive-slides">
+                        <iframe src="https://docs.google.com/presentation/d/1_iZbrnBrLqDDMx3sllvleeq_Ml_zT9WXpVn5N32zqoA/embed?start=false&loop=false&delayms=3000&rm=minimal" 
+                                allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+                    </div>
+                    <a href="https://docs.google.com/presentation/d/1_iZbrnBrLqDDMx3sllvleeq_Ml_zT9WXpVn5N32zqoA/edit" target="_blank" class="btn btn-sm btn-outline-secondary mt-2">在新視窗開啟簡報</a>
+                </div>
+
+                <a class="doc-anchor" id="doc-d6"></a>
+                <div class="doc-container">
+                    <h4 class="fw-bold mb-3 text-warning"><i class="fa fa-language me-2"></i> 文件三：Administrative Regulations of the Military Police Command.</h4>
+                    <div class="embed-responsive embed-responsive-doc">
+                        <iframe src="https://docs.google.com/document/d/1hhf1rnAGryE9oLRIPtlQ_7lBz-P_yQgCIvwglpL6tZ0/view?rm=minimal"></iframe>
+                    </div>
+                    <a href="https://docs.google.com/document/d/1hhf1rnAGryE9oLRIPtlQ_7lBz-P_yQgCIvwglpL6tZ0/edit" target="_blank" class="btn btn-sm btn-outline-secondary mt-2">在新視窗開啟文件</a>
+                </div>
+
+                <a class="doc-anchor" id="doc-d5"></a>
+                <div class="doc-container">
+                    <h4 class="fw-bold mb-3 text-warning"><i class="fa fa-language me-2"></i> 文件四：Military Police Command Leave Application Form</h4>
+                    <div class="embed-responsive embed-responsive-doc">
+                        <iframe src="https://docs.google.com/document/d/1iwFzZMd6TwTlzhtd_uVFpGI5kUj0kHB-eJJ4TudnLcw/view?rm=minimal"></iframe>
+                    </div>
+                    <a href="https://docs.google.com/document/d/1iwFzZMd6TwTlzhtd_uVFpGI5kUj0kHB-eJJ4TudnLcw/edit" target="_blank" class="btn btn-sm btn-outline-secondary mt-2">在新視窗開啟文件</a>
+                </div>
+
+                <a class="doc-anchor" id="doc-d3"></a>
+                <div class="doc-container">
+                    <h4 class="fw-bold mb-3 text-secondary"><i class="fa fa-file-text-o me-2"></i> 文件五：[ROCA]新進人員手冊Military Police Command Newcomer's manual</h4>
+                    <div class="embed-responsive embed-responsive-doc">
+                        <iframe src="https://docs.google.com/document/d/1ImjPRy4_XTbC4pGwAch0_r2tSSTFBlSg8QDuk-jgiJI/view?rm=minimal"></iframe>
+                    </div>
+                    <a href="https://docs.google.com/document/d/1ImjPRy4_XTbC4pGwAch0_r2tSSTFBlSg8QDuk-jgiJI/edit" target="_blank" class="btn btn-sm btn-outline-secondary mt-2">在新視窗開啟文件</a>
+                </div>
+
+                <a class="doc-anchor" id="doc-d7"></a>
+                <div class="doc-container">
+                    <h4 class="fw-bold mb-3 text-secondary"><i class="fa fa-file-text-o me-2"></i> 文件六：國防部憲兵指揮部懲罰法及懲處評議會組成細則
+                    </h4>
+                    <div class="embed-responsive embed-responsive-doc">
+                        <iframe src="https://docs.google.com/document/d/1SzrVbs_d1z11G_LShrUR9KTZGMLdtWj1l2LQhIgSXlg/view?rm=minimal"></iframe>
+                    </div>
+                    <a href="https://docs.google.com/document/d/1SzrVbs_d1z11G_LShrUR9KTZGMLdtWj1l2LQhIgSXlg/edit" target="_blank" class="btn btn-sm btn-outline-secondary mt-2">在新視窗開啟文件</a>
+                </div>
+
+
             </div>
         </div>
     </div>
 
     <script>
+        // JavaScript 登入檢查和登出邏輯 (與 regulation_menu.html 保持一致)
         document.addEventListener('DOMContentLoaded', () => {
-            // 1. 設置登出功能 (已啟用並修改導向路徑為 /index.html)
             setupLogout();
-
-            // 2. 檢查登入狀態並取得使用者資訊
             checkLoginStatus();
 
-            // 登出功能：只清除 localStorage 並導向首頁 (/index.html)
             function setupLogout() {
                 const logoutBtn = document.getElementById('logoutBtn');
                 if (!logoutBtn) return;
 
                 logoutBtn.addEventListener('click', (e) => {
                     e.preventDefault();
-
-                    // 清除本地儲存的登入狀態
                     localStorage.removeItem('loggedInUser');
-
-                    // 導向使用者指定的首頁
                     setTimeout(() => {
-                        window.location.href = '/index.html';
+                        window.location.href = '/index.html'; // 導向首頁
                     }, 500);
                 });
             }
 
-            // 檢查登入狀態與顯示資訊：純粹從 localStorage 讀取
             function checkLoginStatus() {
-                const userNameDisplay = document.getElementById('userNameDisplay');
-                const userRankDisplay = document.getElementById('userRankDisplay');
-
                 const storedUserData = localStorage.getItem('loggedInUser');
-
-                if (storedUserData) {
-                    try {
-                        const userData = JSON.parse(storedUserData);
-
-                        // 成功從 localStorage 讀取到資料 (RobloxName 和 Postion)
-                        if (userNameDisplay) {
-                            userNameDisplay.textContent = userData.robloxName;
-                        }
-                        if (userRankDisplay) {
-                            // rank 鍵名儲存的是 Postion (職位/階級)
-                            userRankDisplay.textContent = userData.rank;
-                        }
-                        // 成功讀取並顯示，不需要進一步的伺服器檢查
-
-                    } catch (e) {
-                        console.error("解析本地儲存資料錯誤:", e);
-                        // 如果資料解析失敗，則視為未登入
+                if (!storedUserData) {
+                    forceLogout();
+                    return;
+                }
+                
+                try {
+                    const userData = JSON.parse(storedUserData);
+                    if (!userData.robloxName || !userData.rank) {
                         forceLogout();
                     }
-                } else {
-                    // localStorage 中沒有資料，視為未登入
+                } catch (e) {
                     forceLogout();
                 }
             }
 
-            // 強制導向登出頁面 (已修改為 /index.html)
             function forceLogout() {
                 localStorage.removeItem('loggedInUser');
                 alert("您尚未登入或會話已過期，請重新登入。");
                 window.location.href = '/index.html'; // 導向首頁
-            }
-
-            // 簡單的訊息提示功能 (雖然純前端使用較少，但保留)
-            function alertMessage(message, type = 'info') {
-                const container = document.querySelector('.dashboard-container');
-                const existingAlert = document.getElementById('tempAlert');
-                if (existingAlert) existingAlert.remove();
-
-                const alertDiv = document.createElement('div');
-                alertDiv.id = 'tempAlert';
-                // RWD 修正: 將 w-50 改為 w-75 w-md-50, 讓手機上佔用更多空間
-                alertDiv.className = `alert alert-${type} alert-dismissible fade show fixed-top mx-auto mt-3` +
-                    ` shadow-lg w-75 w-md-50`;
-                alertDiv.role = 'alert';
-                alertDiv.innerHTML = `
-                    <div class="d-flex align-items-center">
-                        <i class="fa fa-info-circle me-2"></i>
-                        <span>${message}</span>
-                    </div>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                `;
-                container.prepend(alertDiv);
-
-                // 自動關閉
-                setTimeout(() => {
-                    if (typeof bootstrap !== 'undefined' && bootstrap.Alert) {
-                        const bsAlert = new bootstrap.Alert(alertDiv);
-                        bsAlert.close();
-                    } else {
-                        alertDiv.remove();
-                    }
-                }, 3000);
             }
         });
     </script>

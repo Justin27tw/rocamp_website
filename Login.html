@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    <script src="https://cdn.jsdelivr.net/npm/appwrite@11.0.0/dist/sdk.js"></script>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,26 +17,97 @@
             /* 輕微的灰色背景 */
             padding-top: 80px;
             /* 為 Navbar 留白 */
+            position: relative;
+            /* 確保偽元素能相對於 body 定位 */
+            min-height: 100vh;
+            /* 確保 body 至少佔據整個視窗高度 */
+            display: flex; /* 使用 Flexbox 進行垂直置中 (RWD 優化) */
+            flex-direction: column;
         }
+
+        /* --- START: RWD 浮水印背景設定 (重大修正) --- */
+        body::before {
+            content: '';
+            /* 偽元素必須有 content 屬性 */
+            position: fixed;
+            /* 固定在視窗背景 */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('/images/MP.png');
+            /* 您的憲兵圖片路徑 */
+            background-position: center center;
+            /* 圖片置中 */
+            background-repeat: no-repeat;
+            /* 不重複圖片 */
+            background-attachment: fixed;
+            /* 圖片固定不動 */
+            opacity: 0.15;
+            /* 稍微提高透明度到 0.15 */
+            filter: grayscale(10%);
+            /* 輕微去色 */
+            z-index: -1;
+            /* 將偽元素放到最底層 */
+            
+            /* RWD 浮水印大小調整：小螢幕時包含，大螢幕時覆蓋 */
+            background-size: contain; 
+        }
+
+        /* 大螢幕時，讓背景圖片覆蓋整個視窗，看起來更大氣 */
+        @media (min-width: 992px) {
+            body::before {
+                background-size: cover;
+                opacity: 0.1; /* 在大螢幕上可稍微降低透明度，以防太干擾 */
+            }
+        }
+        /* --- END: RWD 浮水印背景設定 --- */
+
 
         /* Navbar 樣式，複製 index.html 以保持一致性 */
         .navbar {
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            /* 輕微陰影 */
+            z-index: 10;
+        }
+        
+        /* RWD 登入容器優化：確保內容在 Navbar 下方垂直置中 */
+        .rwd-content-wrapper {
+            flex-grow: 1; /* 讓內容容器佔據剩餘空間 */
+            display: flex;
+            align-items: center; /* 垂直居中 */
+            justify-content: center; /* 水平居中 */
+            padding-top: 20px; /* 額外調整空間 */
+            padding-bottom: 20px;
         }
 
         /* 登入卡片置中和樣式 */
         .login-card {
             max-width: 450px;
             /* 卡片最大寬度 */
+            width: 90%; /* 手機上寬度為 90% */
             padding: 30px;
             margin: auto;
-            /* 垂直置中 */
+            /* 垂直置中 (舊方法，現在用 flexbox) */
             background: #fff;
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             /* 更明顯的陰影 */
+            position: relative;
+            /* 確保內容顯示在浮水印之上 */
+            z-index: 2;
+            /* 確保登入卡片在 Navbar 下方，浮水印上方 */
         }
+        
+        /* 調整手機上的登入卡片內距，使其更緊湊 */
+        @media (max-width: 576px) {
+            .login-card {
+                padding: 20px;
+            }
+            .alert-security h4 {
+                font-size: 1rem;
+            }
+        }
+
 
         .login-header {
             text-align: center;
@@ -57,37 +128,31 @@
             background-color: #0056b3;
         }
 
-        /* !!! 警告區塊樣式 - 已移除動畫並調整為內縮樣式 !!! */
+        /* 警告區塊樣式 */
         .alert-security {
-            /* 調整上下的距離 */
+            margin-left: 0;
+            margin-right: 0;
             margin-top: 0;
-            /* 讓 login-header 的 margin-bottom 生效 */
             margin-bottom: 20px;
-            /* 距離下方表單 */
-
             padding: 20px;
-            /* 內部內邊距 */
             border: 4px solid #a00010;
             background-color: #a00000;
             color: #ffffff;
-            /* 靜態陰影 */
+            box-shadow: 0 4px 15px rgb(228, 0, 0);
             border-radius: 8px;
-            /* 恢復圓角 */
             font-size: 0.85rem;
-            /* 保持字體較小 */
+            z-index: 3;
         }
 
         /* 警告區塊標題 */
         .alert-security h4 {
             font-size: 1.25rem;
-            /* 縮小 h4 標題 */
             margin-bottom: 10px;
         }
 
         /* 警告區塊內文字段落 */
         .alert-security p {
             margin-bottom: 5px !important;
-            /* 縮小段落間距 */
         }
 
         /* 內部關鍵文字強調高對比 (僅限黑名單) */
@@ -100,11 +165,11 @@
 
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
                 <img src="/images/Png.png" alt="" width="50" height="50" class="d-inline-block align-text-middle">
-                <span>ROCA憲兵指揮部</span>
+                <span>憲兵指揮部</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -166,7 +231,7 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li><a class="dropdown-item"
-                                    href="https://sites.google.com/view/law-roca/%E9%A6%96%E9%80%81?authuser=0">法規資料庫</a>
+                                    href="https://sites.google.com/view/law-roca/%E9%A6%96%E9%A0%81?authuser=0">法規資料庫</a>
                             </li>
                             <li><a class="dropdown-item"
                                     href="https://sites.google.com/view/roca-584/%E9%A6%96%E9%80%81">陸軍裝甲第五八四旅</a></li>
@@ -179,128 +244,124 @@
             </div>
         </div>
     </nav>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-10">
-                <div class="login-card mt-5">
-                    <div class="login-header">
-                        <img src="/images/Png.png" alt="Logo">
-                        <h2 class="h4 fw-bold text-dark mt-2">ROCA憲兵內部管理系統</h2>
-                        <p class="text-muted">忘記密碼請與副指揮官Justin_chiu27聯絡</p>
-                    </div>
+    
+    <div class="rwd-content-wrapper">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="login-card">
+                        <div class="login-header">
+                            <img src="/images/Png.png" alt="Logo">
+                            <h2 class="h4 fw-bold text-dark mt-2">憲兵內部管理系統</h2>
+                            <p class="text-muted">請使用您的 Roblox 名稱與 Discord 名稱登入</p>
+                        </div>
 
-                    <div class="alert alert-security fw-bold text-center" role="alert">
-                        <h4 class="fa fa-exclamation-triangle fa-lg text-white fw-bolder">
-                            警告！嚴禁公開帳號密碼
-                        </h4>
-                        <p class="mb-1 fw-bold">
-                            <strong>憲兵內部系統非相關官兵，不得登入。</strong>
-                        </p>
-                        <p class="mb-0 fw-bolder">
-                            <strong>不遵守將依懲處，並列入 "中華民國憲兵"<span class="highlight">永久黑名單</span>！</strong>
-                        </p>
-                    </div>
-                    <form id="loginForm">
-                        <div class="mb-3">
-                            <label for="robloxNameInput" class="form-label fw-bold">帳號</label>
-                            <input type="text" class="form-control" id="robloxNameInput" required
-                                placeholder="請輸入您的帳號(區分大小寫)">
+                        <div class="alert alert-security fw-bold text-center" role="alert">
+                            <h4 class="fa fa-exclamation-triangle fa-lg text-white fw-bolder">
+                                警告！嚴禁公開帳號密碼
+                            </h4>
+                            <p class="mb-1 fw-bold">
+                                <strong>憲兵內部系統非相關官兵，不得登入。</strong>
+                            </p>
+                            <p class="mb-0 fw-bolder">
+                                <strong>不遵守將依懲處，並列入 "中華民國憲兵"<span class="highlight">永久黑名單</span>！</strong>
+                            </p>
                         </div>
-                        <div class="mb-4">
-                            <label for="passwordInput" class="form-label fw-bold">密碼</label>
-                            <input type="password" class="form-control" id="passwordInput" required
-                                placeholder="請輸入您的密碼">
-                        </div>
-                        <div class="text-center mt-3">
-                            <a href="/joinus.html" class="text-secondary small">還不是憲兵成員？了解如何加入我們</a>
-                        </div>
-                        <br>
-                        <button type="submit" class="btn login-btn text-white w-100 fw-bold">
-                            <i class="fa fa-sign-in me-2"></i> 登入Login
-                        </button>
-                    </form>
+                        <form id="loginForm">
+                            <div class="mb-3">
+                                <label for="robloxNameInput" class="form-label fw-bold">ROBLOX NAME</label>
+                                <input type="text" class="form-control" id="robloxNameInput" required
+                                    placeholder="請輸入您的 ROBLOX 名稱 (區分大小寫)">
+                            </div>
+                            <div class="mb-4">
+                                <label for="discordNameInput" class="form-label fw-bold">DISCORD NAME (小寫)</label>
+                                <input type="text" class="form-control" id="discordNameInput" required
+                                    placeholder="請輸入您的 Discord 名稱 (全部小寫)">
+                            </div>
+                            <div class="modal-footer justify-content-center">
+                                <a href="/joinus.html" class="text-muted">還沒有帳號？了解如何加入我們</a>
+                            </div>
+                            <br>
+                            <button type="submit" class="btn login-btn text-white w-100 fw-bold">
+                                <i class="fa fa-sign-in me-2"></i> 登 入
+                            </button>
+                        </form>
 
-                    <div id="message" class="mt-3">
+                        <div id="message" class="mt-3">
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
+
+    <script src="credentials.js"></script>
+
     <script>
-        // --- Appwrite 客戶端初始化 START ---
-        const client = new Appwrite.Client();
-        
-        // !!! 請務必將 YOUR_ENDPOINT 和 YOUR_PROJECT_ID 替換為您的實際金鑰 !!!
-        client
-            .setEndpoint('YOUR_ENDPOINT') // 例如: 'https://cloud.appwrite.io/v1'
-            .setProject('YOUR_PROJECT_ID'); // 您的專案 ID
-    
-        const account = new Appwrite.Account(client);
-        // --- Appwrite 客戶端初始化 END ---
-    
         const form = document.getElementById('loginForm');
         const robloxNameInput = document.getElementById('robloxNameInput');
-        const passwordInput = document.getElementById('passwordInput');
+        const discordNameInput = document.getElementById('discordNameInput');
         const messageElement = document.getElementById('message');
-    
+
         form.addEventListener('submit', handleLogin);
-    
-        // 簡單的訊息提示功能
-        function alertMessage(message, type = 'info') {
-            messageElement.className = `mt-3 alert alert-${type}`;
-            messageElement.innerHTML = `<i class="fa fa-info-circle me-2"></i> ${message}`;
-        }
-    
-        // 處理登入邏輯：透過 Appwrite SDK 進行驗證
-        async function handleLogin(event) {
-            event.preventDefault(); 
-    
-            const robloxName = robloxNameInput.value.trim();
-            const password = passwordInput.value.trim();
-    
+
+        function handleLogin(event) {
+            event.preventDefault(); // 阻止表單的默認提交行為
+
+            const robloxNameInput = document.getElementById('robloxNameInput').value.trim();
+            const discordNameInput = document.getElementById('discordNameInput').value.trim();
+
+            // 清空舊訊息
             messageElement.innerHTML = '';
             messageElement.className = 'mt-3';
-    
-            if (!robloxName || !password) {
-                alertMessage('請輸入完整的帳號和密碼。', 'danger');
-                return;
-            }
-    
+
             try {
-                // 嘗試創建 Appwrite 登入會話 (Session)
-                // Appwrite 登入使用 Email (這裡用 robloxName) 和 Password
-                await account.createEmailPasswordSession(robloxName, password);
-    
-                // 如果成功，Appwrite 會自動設置安全的 Session Cookie
-                // 接著獲取使用者的詳細資訊 (例如顯示名稱)
-                const user = await account.get();
-    
-                // 登入成功：後端回傳 success: true 和使用者資訊
-                alertMessage(`登入成功！歡迎回來，${user.name}！`, 'success');
-    
-                // 將必要的資訊 (帳號 ID 和名稱) 儲存到本地儲存，供 MPHome.html 顯示
-                const userData = {
-                    // Appwrite 的 User ID
-                    userId: user.$id, 
-                    // Appwrite 的 Name 欄位 (您可以讓它與 robloxName 相同)
-                    robloxName: user.name, 
-                    // 由於 Appwrite 沒有內建 Rank 欄位，這裡假設您會將其儲存在 Appwrite 的 Custom Extensions 或其他位置。
-                    // 為了程式碼能運作，這裡暫時使用一個預設值，實際應從 Appwrite 的資料庫或延伸屬性中獲取。
-                    rank: '憲兵官兵' 
-                };
-                localStorage.setItem('loggedInUser', JSON.stringify(userData));
-    
-                // 導向系統首頁
-                setTimeout(() => {
-                    window.location.href = '/MPHome.html';
-                }, 1000);
-    
+                // 檢查 ROBLOX NAME 是否存在於白名單
+                const userInfo = USER_CREDENTIALS[robloxNameInput];
+
+                if (userInfo) {
+                    // 確保 userInfo 結構正確：檢查 discordname 和 Postion 鍵名
+                    if (userInfo.discordname && userInfo.Postion) {
+                        // 檢查 Discord Name 是否匹配
+                        if (userInfo.discordname.toLowerCase() === discordNameInput.toLowerCase()) {
+                            // 登入成功
+                            messageElement.className = 'mt-3 alert alert-success';
+                            messageElement.innerHTML = `<i class="fa fa-check-circle me-2"></i> 登入成功！歡迎回來，${robloxNameInput}！`;
+
+                            // --- START 傳遞資料至 MPHome.html 的新邏輯 ---
+                            const userData = {
+                                robloxName: robloxNameInput,   // 儲存帳號名稱
+                                rank: userInfo.Postion         // 儲存職位/階級 (Postion)
+                            };
+                            // 將物件轉換為 JSON 字串後儲存到 localStorage
+                            localStorage.setItem('loggedInUser', JSON.stringify(userData));
+                            // --- END 傳遞資料至 MPHome.html 的新邏輯 ---
+
+                            // 實際操作：延遲後導向使用者頁面
+                            setTimeout(() => {
+                                window.location.href = '/MPHome.html'; // 導向系統首頁
+                            }, 1000);
+
+                        } else {
+                            // ROBLOX NAME 正確，但 Discord Name 錯誤
+                            messageElement.className = 'mt-3 alert alert-danger';
+                            messageElement.innerHTML = '<i class="fa fa-times-circle me-2"></i> 登入失敗：Discord Name 錯誤。';
+                        }
+                    } else {
+                        // 數據結構錯誤 (credentials.js 內缺少 discordname 或 Postion)
+                        messageElement.className = 'mt-3 alert alert-danger';
+                        messageElement.innerHTML = '<i class="fa fa-times-circle me-2"></i> 系統錯誤：用戶資料結構異常。';
+                    }
+                } else {
+                    // ROBLOX NAME 不存在
+                    messageElement.className = 'mt-3 alert alert-danger';
+                    messageElement.innerHTML = '<i class="fa fa-times-circle me-2"></i> 登入失敗：ROBLOX NAME 錯誤或您未在白名單內。';
+                }
             } catch (error) {
-                console.error("登入錯誤:", error);
-                // 處理 Appwrite 的特定錯誤代碼，例如 401（未授權/帳密錯誤）
-                const message = error.message || '帳號或密碼錯誤。';
-                alertMessage(`登入失敗：${message}`, 'danger');
+                console.error("Login error:", error);
+                messageElement.className = 'mt-3 alert alert-danger';
+                messageElement.innerHTML = '<i class="fa fa-times-circle me-2"></i> 系統錯誤，請聯繫管理員。';
             }
         }
     </script>
