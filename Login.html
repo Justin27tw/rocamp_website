@@ -253,7 +253,7 @@
                         <div class="login-header">
                             <img src="/images/Png.png" alt="Logo">
                             <h2 class="h4 fw-bold text-dark mt-2">憲兵內部管理系統</h2>
-                            <p class="text-muted">請使用您的 Roblox 名稱與 Discord 名稱登入</p>
+                            <p class="text-muted">忘記密碼請聯絡副指揮官Justin_chiu27</p>
                         </div>
 
                         <div class="alert alert-security fw-bold text-center" role="alert">
@@ -269,14 +269,14 @@
                         </div>
                         <form id="loginForm">
                             <div class="mb-3">
-                                <label for="robloxNameInput" class="form-label fw-bold">ROBLOX NAME</label>
+                                <label for="robloxNameInput" class="form-label fw-bold">帳號</label>
                                 <input type="text" class="form-control" id="robloxNameInput" required
-                                    placeholder="請輸入您的 ROBLOX 名稱 (區分大小寫)">
+                                    placeholder="請輸入您的帳號名稱 (區分大小寫)">
                             </div>
                             <div class="mb-4">
-                                <label for="discordNameInput" class="form-label fw-bold">DISCORD NAME (小寫)</label>
+                                <label for="discordNameInput" class="form-label fw-bold">密碼 (小寫)</label>
                                 <input type="text" class="form-control" id="discordNameInput" required
-                                    placeholder="請輸入您的 Discord 名稱 (全部小寫)">
+                                    placeholder="請輸入您的密碼名稱 (全部小寫)">
                             </div>
                             <div class="modal-footer justify-content-center">
                                 <a href="/joinus.html" class="text-muted">還沒有帳號？了解如何加入我們</a>
@@ -317,13 +317,13 @@
             messageElement.className = 'mt-3';
 
             try {
-                // 檢查 ROBLOX NAME 是否存在於白名單
+                // 檢查 R是否存在於白名單
                 const userInfo = USER_CREDENTIALS[robloxNameInput];
 
                 if (userInfo) {
-                    // 確保 userInfo 結構正確：檢查 discordname 和 Postion 鍵名
+                    // 確保 userInfo 結構正確：檢查 d 和 Postion 鍵名
                     if (userInfo.discordname && userInfo.Postion) {
-                        // 檢查 Discord Name 是否匹配
+                        // 檢查 D是否匹配
                         if (userInfo.discordname.toLowerCase() === discordNameInput.toLowerCase()) {
                             // 登入成功
                             messageElement.className = 'mt-3 alert alert-success';
@@ -344,19 +344,19 @@
                             }, 1000);
 
                         } else {
-                            // ROBLOX NAME 正確，但 Discord Name 錯誤
+                            // R正確，但 D 錯誤
                             messageElement.className = 'mt-3 alert alert-danger';
-                            messageElement.innerHTML = '<i class="fa fa-times-circle me-2"></i> 登入失敗：Discord Name 錯誤。';
+                            messageElement.innerHTML = '<i class="fa fa-times-circle me-2"></i> 登入失敗：密碼錯誤。';
                         }
                     } else {
-                        // 數據結構錯誤 (credentials.js 內缺少 discordname 或 Postion)
+                        // 數據結構錯誤 (credentials.js 內缺少 d 或 Postion)
                         messageElement.className = 'mt-3 alert alert-danger';
                         messageElement.innerHTML = '<i class="fa fa-times-circle me-2"></i> 系統錯誤：用戶資料結構異常。';
                     }
                 } else {
-                    // ROBLOX NAME 不存在
+                    // R 不存在
                     messageElement.className = 'mt-3 alert alert-danger';
-                    messageElement.innerHTML = '<i class="fa fa-times-circle me-2"></i> 登入失敗：ROBLOX NAME 錯誤或您未在白名單內。';
+                    messageElement.innerHTML = '<i class="fa fa-times-circle me-2"></i> 登入失敗：帳號錯誤或您未在白名單內。';
                 }
             } catch (error) {
                 console.error("Login error:", error);
