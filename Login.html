@@ -53,6 +53,93 @@
             /* RWD 浮水印大小調整：小螢幕時包含，大螢幕時覆蓋 */
             background-size: contain; 
         }
+     /* Navbar 樣式調整 */
+     .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #343a40;
+            padding: 0;
+            min-height: 60px;
+            z-index: 1030;
+        }
+
+        .navbar-brand {
+            padding: 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+
+        .navbar-brand img {
+            margin-right: 5px;
+        }
+
+        .navbar-brand span {
+            color: white;
+            letter-spacing: 2px;
+            font-size: 1rem;
+            /* 使用 rem */
+        }
+
+        /* 導航項目容器 */
+        .navbar-nav {
+            height: 100%;
+            align-items: center;
+        }
+
+        .navbar-nav .nav-item {
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-nav .nav-link {
+            color: rgba(255, 255, 255, 0.75);
+            padding: 0.8rem 1rem;
+            font-size: 1rem;
+            /* 使用 rem */
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active {
+            color: white;
+        }
+
+        /* 下拉選單樣式 (Bootstrap 5) */
+        .navbar-nav .dropdown-menu {
+            background-color: #343330;
+            border: none;
+            border-radius: 0;
+            padding: 0;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+            display: block;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .navbar-nav .dropdown-menu.show {
+            opacity: 1;
+            transform: translateY(0);
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        .navbar-nav .dropdown-item {
+            color: rgba(255, 255, 255, 0.75);
+            padding: 0.75rem 1.5rem;
+        }
+
+        .navbar-nav .dropdown-item:hover,
+        .navbar-nav .dropdown-item:focus {
+            background-color: #495057;
+            color: white;
+        }
 
         /* 大螢幕時，讓背景圖片覆蓋整個視窗，看起來更大氣 */
         @media (min-width: 992px) {
@@ -105,6 +192,43 @@
             }
             .alert-security h4 {
                 font-size: 1rem;
+            }
+                /* 或者您 navbar-toggler 觸發的 breakpoint */
+                .navbar-collapse {
+                /* 確保在小螢幕展開時可以滾動 */
+                max-height: calc(100vh - 60px);
+                /* 假設 navbar 高度約 60px，減去它以避免超出螢幕 */
+                overflow-y: auto;
+                /* 允許垂直滾動 */
+                -webkit-overflow-scrolling: touch;
+
+                /* 改善 iOS 上的滾動體驗 */
+                .navbar-nav {
+                    height: auto;
+                    /* 讓導覽列項目高度自動調整 */
+                }
+
+                .navbar-nav .nav-item {
+                    height: auto;
+                    /* 讓導覽列項目高度自動調整 */
+                }
+            }
+
+            /* 確保下拉菜單在小螢幕展開時有足夠空間 */
+            .navbar-nav .dropdown-menu {
+                position: static;
+                /* 在手機模式下通常將下拉菜單設為靜態定位，使其在流中顯示 */
+                width: 100%;
+                /* 讓它佔滿寬度 */
+                box-shadow: none;
+                /* 移除陰影，使其看起來更像導覽列的一部分 */
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                /* 添加分隔線 */
+            }
+
+            .navbar-nav .dropdown-item {
+                padding-left: 2.5rem;
+                /* 增加縮進，使其看起來像子選項 */
             }
         }
 
@@ -164,11 +288,10 @@
 </head>
 
 <body>
-
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <nav class="navbar navbar-expand-md navbar-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
-                <img src="/images/Png.png" alt="" width="50" height="50" class="d-inline-block align-text-middle">
+                <img src="/images/MP.png" alt="" width="50" height="50" class="d-inline-block align-text-middle">
                 <span>憲兵指揮部</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -178,7 +301,7 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/index.html">首頁</a>
+                        <a class="nav-link active" aria-current="page" href="/index.html">返回首頁</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -196,8 +319,9 @@
                             認識憲兵
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/mpdept.html">憲兵部門介紹</a></li>
-                            <li><a class="dropdown-item" href="/daily.html">日常勤務</a></li>
+
+                            <li><a class="dropdown-item" href="/mp.html">憲兵簡介</a></li>
+                            <li><a class="dropdown-item" href="/mpdept.html">指揮鏈</a></li>
                             <li><a class="dropdown-item" href="/event.html">活動</a></li>
                         </ul>
                     </li>
@@ -211,6 +335,7 @@
                             <li><a class="dropdown-item" href="/DCO.html">副指揮官</a></li>
                             <li><a class="dropdown-item" href="/COS.html">參謀長</a></li>
                             <li><a class="dropdown-item" href="/DCOS.html">副參謀長</a></li>
+                            <li><a class="dropdown-item" href="/history.html">歷屆高層</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
@@ -222,6 +347,8 @@
                             <li><a class="dropdown-item" href="/MPDSC.html">勤務支援大隊</a></li>
                             <li><a class="dropdown-item" href="/MPSSC.html">特種勤務大隊</a></li>
                             <li><a class="dropdown-item" href="/MPTC.html">憲兵訓練中心</a></li>
+                            <li><a class="dropdown-item" href="/MPIO.html">督察室</a></li>
+                            <li><a class="dropdown-item" href="/MPRPC.html">獎懲委員會</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
@@ -234,16 +361,22 @@
                                     href="https://sites.google.com/view/law-roca/%E9%A6%96%E9%A0%81?authuser=0">法規資料庫</a>
                             </li>
                             <li><a class="dropdown-item"
-                                    href="https://sites.google.com/view/roca-584/%E9%A6%96%E9%80%81">陸軍裝甲第五八四旅</a></li>
+                                    href="https://sites.google.com/view/roca-584/%E9%A6%96%E9%A0%81">陸軍裝甲第五八四旅</a>
+                            </li>
                             <li><a class="dropdown-item"
-                                    href="https://sites.google.com/view/robloxrocaaasfc/%E9%A6%96%E9%80%81">陸軍航空特戰指揮部</a></li>
-                            <li><a class="dropdown-item" href="https://sites.google.com/view/roca2022">ROCA官方網站</a></li>
+                                    href="https://sites.google.com/view/robloxrocaaasfc/%E9%A6%96%E9%A0%81">陸軍航空特戰指揮部</a>
+                            </li>
+                            <li><a class="dropdown-item" href="https://sites.google.com/view/roca2022">ROCA官方網站</a>
+                            </li>
+                            <li><a class="dropdown-item" href="/creater.html">製作名單</a></li>
                         </ul>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
+
+   
     
     <div class="rwd-content-wrapper">
         <div class="container">
