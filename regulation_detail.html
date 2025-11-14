@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" type="image/png" href="/images/Png.png">
     <style>
-      /* 基礎樣式與版面調整 */
-      body {
+        /* 基礎樣式與版面調整 */
+        body {
             font-family: 'Inter', sans-serif;
             background-color: #ffffff;
             /* 輕微的灰色背景 */
@@ -21,7 +21,8 @@
             /* 確保偽元素能相對於 body 定位 */
             min-height: 100vh;
             /* 確保 body 至少佔據整個視窗高度 */
-            display: flex; /* 使用 Flexbox 進行垂直置中 (RWD 優化) */
+            display: flex;
+            /* 使用 Flexbox 進行垂直置中 (RWD 優化) */
             flex-direction: column;
         }
 
@@ -49,21 +50,23 @@
             /* 輕微去色 */
             z-index: -1;
             /* 將偽元素放到最底層 */
-            
+
             /* RWD 浮水印大小調整：小螢幕時包含，大螢幕時覆蓋 */
-            background-size: contain; 
+            background-size: contain;
         }
 
         /* 大螢幕時，讓背景圖片覆蓋整個視窗，看起來更大氣 */
         @media (min-width: 992px) {
             body::before {
                 background-size: cover;
-                opacity: 0.1; /* 在大螢幕上可稍微降低透明度，以防太干擾 */
+                opacity: 0.1;
+                /* 在大螢幕上可稍微降低透明度，以防太干擾 */
             }
         }
+
         /* --- END: RWD 浮水印背景設定 --- */
-              /* Navbar 樣式調整 */
-              .navbar {
+        /* Navbar 樣式調整 */
+        .navbar {
             position: fixed;
             top: 0;
             width: 100%;
@@ -155,9 +158,10 @@
             margin-top: 30px;
             max-width: 1000px;
         }
+
         .content-container {
             /* 移除頂部大標題後，調整邊距讓內容更貼合 */
-            margin-top: 15px; 
+            margin-top: 15px;
             max-width: 1000px;
             padding-bottom: 50px;
         }
@@ -170,7 +174,7 @@
             visibility: hidden;
             pointer-events: none;
         }
-        
+
         /* 嵌入容器樣式 */
         .doc-container {
             margin-bottom: 50px;
@@ -182,15 +186,17 @@
             display: block;
             width: 100%;
             overflow: hidden;
-            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            padding-top: 56.25%;
+            /* 16:9 Aspect Ratio */
             height: 0;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
         }
 
         /* 文件 (Doc) 和 表單 (Form) 設為響應式固定高度，並允許滾動 */
-        .embed-responsive-doc, .embed-responsive-form {
-            height: 80vh; 
+        .embed-responsive-doc,
+        .embed-responsive-form {
+            height: 80vh;
             min-height: 600px;
             width: 100%;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -219,8 +225,9 @@
             .dashboard-container {
                 margin-top: 15px;
             }
-              /* 或者您 navbar-toggler 觸發的 breakpoint */
-              .navbar-collapse {
+
+            /* 或者您 navbar-toggler 觸發的 breakpoint */
+            .navbar-collapse {
                 /* 確保在小螢幕展開時可以滾動 */
                 max-height: calc(100vh - 60px);
                 /* 假設 navbar 高度約 60px，減去它以避免超出螢幕 */
@@ -259,12 +266,16 @@
         }
 
 
-      
+
         /* RWD 優化：針對小螢幕設備 (手機) 調整文件/表單的最小高度 */
         @media (max-width: 767.98px) {
-            .embed-responsive-doc, .embed-responsive-form {
-                height: 70vh; /* 在手機上高度略微縮小 */
-                min-height: 400px; /* 在手機上允許更小的最小高度 */
+
+            .embed-responsive-doc,
+            .embed-responsive-form {
+                height: 70vh;
+                /* 在手機上高度略微縮小 */
+                min-height: 400px;
+                /* 在手機上允許更小的最小高度 */
             }
         }
 
@@ -273,13 +284,86 @@
             border: 1px solid #dee2e6;
             border-radius: 8px;
             background-color: #ffffff;
+            /* 新增：設置最大高度並啟用滾動 */
+            max-height: calc(100vh - 120px);
+            /* 100vh 減去 Navbar 高度 (約 60px) 和上下邊距 (約 60px) */
+            overflow-y: auto;
+            /* 啟用垂直滾動 */
+            padding: 0;
+            /* 移除容器 padding，讓內容列表控制間距 */
+        }
+
+        /* 導航列表的內部間距 */
+        .toc-menu-list {
+            padding: 0.5rem;
+            /* 給列表一個內部邊距 */
+        }
+
+        /* 調整導航鏈接的樣式，使其更緊湊 */
+        .toc-menu-list .nav-link {
+            padding: 0.5rem 0.75rem;
+            /* 縮小上下 padding */
+            font-size: 0.95rem;
+            /* 稍微縮小字體 */
+            margin-bottom: 2px !important;
+            /* 確保連結間距不會太大 */
+            border-radius: 5px;
+            /* 圓角更柔和 */
+        }
+
+        /* 標題樣式調整 */
+        .toc-menu h6 {
+            padding: 0.75rem 1rem;
+            margin-bottom: 0;
+            border-bottom: 1px solid #dee2e6;
+            background-color: #f8f9fa;
+            /* 淺灰色背景，使其更突出 */
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            /* 避免標題被滾動 */
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        /* 滾動條樣式優化 (可選，但推薦) */
+        .toc-menu::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .toc-menu::-webkit-scrollbar-thumb {
+            background-color: #ced4da;
+            border-radius: 10px;
+        }
+
+        /* 定義閃爍動畫 */
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1;
+                /* 完全不透明 (亮) */
+            }
+
+            50% {
+                opacity: 0.2;
+                /* 半透明或幾乎透明 (暗) */
+            }
+        }
+
+        /* 應用閃爍動畫到警告標題 */
+        .blinking-warning {
+            animation: blink 1.5s step-end infinite;
+            /* 應用動畫：1秒為周期，無限重複，使用 step-end 實現閃爍效果 */
+            display: inline-block;
+            /* 確保動畫能應用在文字上 */
         }
     </style>
 </head>
 
 <body>
-   
-    
+
+
     <nav class="navbar navbar-expand-md navbar-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="/index.html">
@@ -362,135 +446,285 @@
                             </li>
                             <li><a class="dropdown-item" href="/creater.html">製作名單</a></li>
                         </ul>
-                        <li class="nav-item">
-                            <a class="nav-link fw-bold" href="/MPHome.html" id="backToMenuBtn">
-                                <i class="fa fa-list-alt me-1"></i> 返回選單
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-danger fw-bold" href="/index.html" id="logoutBtn">
-                                <i class="fa fa-sign-out me-1"></i> 登出
-                            </a>
-                        </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold" href="/MPHome.html" id="backToMenuBtn">
+                            <i class="fa fa-list-alt me-1"></i> 返回選單
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-danger fw-bold" href="/index.html" id="logoutBtn">
+                            <i class="fa fa-sign-out me-1"></i> 登出
+                        </a>
+                    </li>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
     <div class="container content-container">
-        
+
         <div class="row">
-            
+
             <div class="col-md-3 mb-4">
-                <div class="toc-menu p-3 shadow-sm sticky-top" style="top: 80px;"> <h6 class="fw-bold mb-2 text-dark"><i class="fa fa-map-signs me-1"></i> 文件快速導航</h6>
-                    <nav class="nav nav-pills flex-column"> 
-                        <a class="nav-link link-primary mb-1" href="#doc-d4">憲兵行政規程</a>
-                        <a class="nav-link link-primary mb-1" href="#doc-d1">內部升階與點數辦法</a>
-                        <a class="nav-link link-primary mb-1" href="#doc-d2">駕駛課程</a>
-                        <a class="nav-link link-primary mb-1" href="#doc-f1">駕照考試</a>
-                        <a class="nav-link link-success mb-1" href="#doc-p1">檢閱須知</a>
-                        <a class="nav-link link-success mb-1" href="#doc-p2">車輛使用權限</a>
-                        <a class="nav-link link-warning mb-1" href="#doc-d6">Administrative Regulations</a>
-                        <a class="nav-link link-warning mb-1" href="#doc-d5">Leave Application Form</a>
-                        <a class="nav-link link-secondary mb-1" href="#doc-d3">Newcomer's manual</a>
-                        <a class="nav-link link-secondary mb-1" href="#doc-d7">懲罰法及懲處評議會組成細則</a>
-                    </nav>
+                <div class="toc-menu shadow-sm sticky-top" style="top: 80px;">
+                    <h6 class="fw-bold text-dark"><i class="fa fa-map-signs me-1"></i> 規範快速導航</h6>
+                    <div class="toc-menu-list p-2">
+                        <div class="dropdown mb-2">
+                            <button class="btn btn-primary w-100 dropdown-toggle text-start" type="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-file-text me-1"></i> 行政規範與值勤系統
+                            </button>
+                            <ul class="dropdown-menu w-100">
+                                <li><a class="dropdown-item link-primary" href="#doc-d4">憲兵行政規程</a></li>
+                                <li><a class="dropdown-item link-primary" href="#doc-d1">內部升階與點數辦法</a></li>
+                                <li><a class="dropdown-item link-primary" href="#doc-dp1">值勤系統使用手冊</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="dropdown mb-2">
+                            <button class="btn btn-danger w-100 dropdown-toggle text-start" type="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                駕駛課程與考試
+                            </button>
+                            <ul class="dropdown-menu w-100">
+                                <li><a class="dropdown-item link-danger" href="#doc-d2">駕駛課程</a></li>
+                                <li><a class="dropdown-item link-danger" href="#doc-f1">駕照考試：筆試題目</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="dropdown mb-2">
+                            <button class="btn btn-success w-100 dropdown-toggle text-start" type="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                簡報：車輛/服儀規定
+                            </button>
+                            <ul class="dropdown-menu w-100">
+                                <li><a class="dropdown-item link-success" href="#doc-p1">檢閱須知</a></li>
+                                <li><a class="dropdown-item link-success" href="#doc-p2">車輛使用權限</a></li>
+                                <li><a class="dropdown-item link-success" href="#doc-p3">各單位服儀</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="dropdown mb-2">
+                            <button class="btn btn-warning w-100 dropdown-toggle text-start" type="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                英文版文件
+                            </button>
+                            <ul class="dropdown-menu w-100">
+                                <li><a class="dropdown-item link-warning" href="#doc-d6">Administrative Regulations</a>
+                                </li>
+                                <li><a class="dropdown-item link-warning" href="#doc-d5">Leave Application Form</a></li>
+                                <li><a class="dropdown-item link-warning" href="#doc-d3">Newcomer's manual</a></li>
+                                <li><a class="dropdown-item link-warning" href="#doc-d8">driving lessons</a></li>
+                                <li><a class="dropdown-item link-warning" href="#doc-f3">Driver's Basic Test</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="dropdown mb-2">
+                            <button class="btn btn-secondary w-100 dropdown-toggle text-start" type="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-balance-scale me-1"></i>懲處與人事考績
+                            </button>
+                            <ul class="dropdown-menu w-100">
+                                <li><a class="dropdown-item link-secondary" href="#doc-d7">懲罰法及懲處評議會細則</a></li>
+                                <li><a class="dropdown-item link-secondary" href="#doc-d9">憲兵指揮部人員考績規定</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-danger p-2 mx-2 mt-3 mb-2" role="alert" style="font-size: 0.85rem;">
+                        <h6 style="text-align: center;padding:8px;margin-bottom: 3px;font-size:18px;">
+                            <i class="fa fa-exclamation-triangle me-1"></i>
+                            <strong class="text-danger blinking-warning">警告!</strong>
+                        </h6>
+                        <div style="text-align: center; font-weight: bold; color: #842029;"> 
+                            嚴禁將本系統資料（文件、簡報、表單、連結）複製、分享、或公開給非憲兵人員，經發現將懲處並列入永久黑名單!
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
             <div class="col-md-9">
-                
+
                 <a class="doc-anchor" id="doc-d4"></a>
                 <div class="doc-container">
                     <h4 class="fw-bold mb-3 text-primary"><i class="fa fa-file-word-o me-2"></i> 文件一：憲兵行政規程</h4>
                     <div class="embed-responsive embed-responsive-doc">
-                        <iframe src="https://docs.google.com/document/d/1_14aivkevYTaiE70TWUY81caGdGbIk9Ydd3T3_HGDnY/view?rm=minimal"></iframe>
+                        <iframe
+                            src="https://docs.google.com/document/d/1_14aivkevYTaiE70TWUY81caGdGbIk9Ydd3T3_HGDnY/view?rm=minimal"></iframe>
                     </div>
-                    <a href="https://docs.google.com/document/d/1_14aivkevYTaiE70TWUY81caGdGbIk9Ydd3T3_HGDnY/edit" target="_blank" class="btn btn-sm btn-outline-secondary mt-2">在新視窗開啟文件</a>
+                    <a href="https://docs.google.com/document/d/1_14aivkevYTaiE70TWUY81caGdGbIk9Ydd3T3_HGDnY/edit"
+                        target="_blank" class="btn btn-sm btn-outline-secondary mt-2">在新視窗開啟文件</a>
                 </div>
                 <a class="doc-anchor" id="doc-d1"></a>
                 <div class="doc-container">
-                    <h4 class="fw-bold mb-3 text-primary"><i class="fa fa-file-word-o me-2"></i> 文件一：內部升階與點數辦法</h4>
+                    <h4 class="fw-bold mb-3 text-primary"><i class="fa fa-file-word-o me-2"></i> 文件二：內部升階與點數辦法</h4>
                     <div class="embed-responsive embed-responsive-doc">
-                        <iframe src="https://docs.google.com/document/d/16pYOQE7i6zit2YUxr8z1a7sf2qojqQQ9zaPV4VxR3TQ/view?rm=minimal"></iframe>
+                        <iframe
+                            src="https://docs.google.com/document/d/16pYOQE7i6zit2YUxr8z1a7sf2qojqQQ9zaPV4VxR3TQ/view?rm=minimal"></iframe>
                     </div>
-                    <a href="https://docs.google.com/document/d/16pYOQE7i6zit2YUxr8z1a7sf2qojqQQ9zaPV4VxR3TQ/edit" target="_blank" class="btn btn-sm btn-outline-secondary mt-2">在新視窗開啟文件</a>
+                    <a href="https://docs.google.com/document/d/16pYOQE7i6zit2YUxr8z1a7sf2qojqQQ9zaPV4VxR3TQ/edit"
+                        target="_blank" class="btn btn-sm btn-outline-secondary mt-2">在新視窗開啟文件</a>
                 </div>
-                
+
+                <a class="doc-anchor" id="doc-dp1"></a>
+                <div class="doc-container">
+                    <h4 class="fw-bold mb-3 text-primary"><i class="fa fa-file-word-o me-2"></i> 文件三：值勤系統(Melonly)基本使用手冊</h4>
+                    <div class="embed-responsive embed-responsive-doc">
+                        <iframe
+                            src="https://docs.google.com/document/d/1Ef79RMffss3wAQSub-9xKsLQdR_Akyd8IP2QRkaltSc/view?rm=minimal"></iframe>
+                    </div>
+                    <!-- 使用手冊 -->
+                    <a href="https://docs.google.com/document/d/1Ef79RMffss3wAQSub-9xKsLQdR_Akyd8IP2QRkaltSc/edit"
+                        target="_blank" class="btn btn-sm btn-outline-secondary mt-2">在新視窗開啟文件</a>
+                        <!--進入 Melonly -->
+                    <a href="https://melonly.xyz/dashboard?joinCode=DCNZTF"
+                        target="_blank" class="btn btn-sm btn-outline-success mt-2">點擊加入值勤系統Melonly(外部)</a>
+                    <a href="#"
+                        target="_blank" class="btn btn-sm btn-warning mt-2">若有操作問題請詢問幹部</a>
+                </div>
                 <a class="doc-anchor" id="doc-d2"></a>
                 <div class="doc-container">
-                    <h4 class="fw-bold mb-3 text-primary"><i class="fa fa-file-word-o me-2"></i> 文件二：駕駛課程</h4>
+                    <h4 class="fw-bold mb-3 text-primary"><i class="fa fa-file-word-o me-2"></i> 文件四：駕駛課程</h4>
                     <div class="embed-responsive embed-responsive-doc">
-                        <iframe src="https://docs.google.com/document/d/18sCV92Bhpbg39X8WevFGD_GrYHZci1ufa_d25cF4DoE/view?rm=minimal"></iframe>
+                        <iframe
+                            src="https://docs.google.com/document/d/18sCV92Bhpbg39X8WevFGD_GrYHZci1ufa_d25cF4DoE/view?rm=minimal"></iframe>
                     </div>
-                    <a href="https://docs.google.com/document/d/18sCV92Bhpbg39X8WevFGD_GrYHZci1ufa_d25cF4DoE/edit" target="_blank" class="btn btn-sm btn-outline-secondary mt-2">在新視窗開啟文件</a>
+                    <a href="https://docs.google.com/document/d/18sCV92Bhpbg39X8WevFGD_GrYHZci1ufa_d25cF4DoE/edit"
+                        target="_blank" class="btn btn-sm btn-outline-secondary mt-2">在新視窗開啟文件</a>
                 </div>
 
                 <a class="doc-anchor" id="doc-f1"></a>
                 <div class="doc-container">
                     <h4 class="fw-bold mb-3 text-danger"><i class="fa fa-wpforms me-2"></i> 駕照考試：筆試題目</h4>
                     <div class="embed-responsive embed-responsive-form">
-                        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfG01qY-EZKzXgkIFZ7UDwv0AzK_1K9CENhLxCsyoyaQNcGUw/viewform?embedded=true" 
-                                frameborder="0" marginheight="0" marginwidth="0">載入中…</iframe>
+                        <iframe
+                            src="https://docs.google.com/forms/d/e/1FAIpQLSfG01qY-EZKzXgkIFZ7UDwv0AzK_1K9CENhLxCsyoyaQNcGUw/viewform?embedded=true"
+                            frameborder="0" marginheight="0" marginwidth="0">載入中…</iframe>
                     </div>
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfG01qY-EZKzXgkIFZ7UDwv0AzK_1K9CENhLxCsyoyaQNcGUw/viewform" target="_blank" class="btn btn-sm btn-outline-secondary mt-2">在新視窗開啟表單</a>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfG01qY-EZKzXgkIFZ7UDwv0AzK_1K9CENhLxCsyoyaQNcGUw/viewform"
+                        target="_blank" class="btn btn-sm btn-outline-secondary mt-2">在新視窗開啟表單</a>
                 </div>
 
                 <a class="doc-anchor" id="doc-p1"></a>
                 <div class="doc-container">
                     <h4 class="fw-bold mb-3 text-success"><i class="fa fa-file-powerpoint-o me-2"></i> 簡報一：檢閱須知</h4>
                     <div class="embed-responsive embed-responsive-slides">
-                        <iframe src="https://docs.google.com/presentation/d/1kPsl1BaOVBwAbevIhem9nNtAwW1z-2gy5-P2MWhyQ_Y/embed?start=false&loop=false&delayms=3000&rm=minimal" 
-                                allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+                        <iframe
+                            src="https://docs.google.com/presentation/d/1kPsl1BaOVBwAbevIhem9nNtAwW1z-2gy5-P2MWhyQ_Y/embed?start=false&loop=false&delayms=3000&rm=minimal"
+                            allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
                     </div>
-                    <a href="https://docs.google.com/presentation/d/1kPsl1BaOVBwAbevIhem9nNtAwW1z-2gy5-P2MWhyQ_Y/edit" target="_blank" class="btn btn-sm btn-outline-secondary mt-2">在新視窗開啟簡報</a>
+                    <a href="https://docs.google.com/presentation/d/1kPsl1BaOVBwAbevIhem9nNtAwW1z-2gy5-P2MWhyQ_Y/edit"
+                        target="_blank" class="btn btn-sm btn-outline-secondary mt-2">在新視窗開啟簡報</a>
                 </div>
 
                 <a class="doc-anchor" id="doc-p2"></a>
                 <div class="doc-container">
                     <h4 class="fw-bold mb-3 text-success"><i class="fa fa-file-powerpoint-o me-2"></i> 簡報二：車輛使用權限</h4>
                     <div class="embed-responsive embed-responsive-slides">
-                        <iframe src="https://docs.google.com/presentation/d/1_iZbrnBrLqDDMx3sllvleeq_Ml_zT9WXpVn5N32zqoA/embed?start=false&loop=false&delayms=3000&rm=minimal" 
-                                allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+                        <iframe
+                            src="https://docs.google.com/presentation/d/1_iZbrnBrLqDDMx3sllvleeq_Ml_zT9WXpVn5N32zqoA/embed?start=false&loop=false&delayms=3000&rm=minimal"
+                            allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
                     </div>
-                    <a href="https://docs.google.com/presentation/d/1_iZbrnBrLqDDMx3sllvleeq_Ml_zT9WXpVn5N32zqoA/edit" target="_blank" class="btn btn-sm btn-outline-secondary mt-2">在新視窗開啟簡報</a>
+                    <a href="https://docs.google.com/presentation/d/1_iZbrnBrLqDDMx3sllvleeq_Ml_zT9WXpVn5N32zqoA/edit"
+                        target="_blank" class="btn btn-sm btn-outline-secondary mt-2">在新視窗開啟簡報</a>
+                </div>
+
+                <a class="doc-anchor" id="doc-p3"></a>
+                <div class="doc-container">
+                    <h4 class="fw-bold mb-3 text-success"><i class="fa fa-file-powerpoint-o me-2"></i> 簡報三：各單位服儀</h4>
+                    <div class="embed-responsive embed-responsive-slides">
+                        <iframe
+                            src="https://docs.google.com/presentation/d/1-6hzRq_2fAxHx5czrVJXlz79ryeokM533Ntw4itxgYg/embed?start=false&loop=false&delayms=3000&rm=minimal"
+                            allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+                    </div>
+                    <a href="https://docs.google.com/presentation/d/1-6hzRq_2fAxHx5czrVJXlz79ryeokM533Ntw4itxgYg/edit"
+                        target="_blank" class="btn btn-sm btn-outline-secondary mt-2">在新視窗開啟簡報</a>
                 </div>
 
                 <a class="doc-anchor" id="doc-d6"></a>
                 <div class="doc-container">
-                    <h4 class="fw-bold mb-3 text-warning"><i class="fa fa-language me-2"></i> 文件三：Administrative Regulations of the Military Police Command.</h4>
+                    <h4 class="fw-bold mb-3 text-warning"><i class="fa fa-language me-2"></i> 文件五：Administrative
+                        Regulations of the Military Police Command.</h4>
                     <div class="embed-responsive embed-responsive-doc">
-                        <iframe src="https://docs.google.com/document/d/1hhf1rnAGryE9oLRIPtlQ_7lBz-P_yQgCIvwglpL6tZ0/view?rm=minimal"></iframe>
+                        <iframe
+                            src="https://docs.google.com/document/d/1hhf1rnAGryE9oLRIPtlQ_7lBz-P_yQgCIvwglpL6tZ0/view?rm=minimal"></iframe>
                     </div>
-                    <a href="https://docs.google.com/document/d/1hhf1rnAGryE9oLRIPtlQ_7lBz-P_yQgCIvwglpL6tZ0/edit" target="_blank" class="btn btn-sm btn-outline-secondary mt-2">在新視窗開啟文件</a>
+                    <a href="https://docs.google.com/document/d/1hhf1rnAGryE9oLRIPtlQ_7lBz-P_yQgCIvwglpL6tZ0/edit"
+                        target="_blank" class="btn btn-sm btn-outline-secondary mt-2">在新視窗開啟文件</a>
                 </div>
 
                 <a class="doc-anchor" id="doc-d5"></a>
                 <div class="doc-container">
-                    <h4 class="fw-bold mb-3 text-warning"><i class="fa fa-language me-2"></i> 文件四：Military Police Command Leave Application Form</h4>
+                    <h4 class="fw-bold mb-3 text-warning"><i class="fa fa-language me-2"></i> 文件六：Military Police
+                        Command Leave Application Form</h4>
                     <div class="embed-responsive embed-responsive-doc">
-                        <iframe src="https://docs.google.com/document/d/1iwFzZMd6TwTlzhtd_uVFpGI5kUj0kHB-eJJ4TudnLcw/view?rm=minimal"></iframe>
+                        <iframe
+                            src="https://docs.google.com/document/d/1iwFzZMd6TwTlzhtd_uVFpGI5kUj0kHB-eJJ4TudnLcw/view?rm=minimal"></iframe>
                     </div>
-                    <a href="https://docs.google.com/document/d/1iwFzZMd6TwTlzhtd_uVFpGI5kUj0kHB-eJJ4TudnLcw/edit" target="_blank" class="btn btn-sm btn-outline-secondary mt-2">在新視窗開啟文件</a>
+                    <a href="https://docs.google.com/document/d/1iwFzZMd6TwTlzhtd_uVFpGI5kUj0kHB-eJJ4TudnLcw/edit"
+                        target="_blank" class="btn btn-sm btn-outline-secondary mt-2">在新視窗開啟文件</a>
                 </div>
 
                 <a class="doc-anchor" id="doc-d3"></a>
                 <div class="doc-container">
-                    <h4 class="fw-bold mb-3 text-secondary"><i class="fa fa-file-text-o me-2"></i> 文件五：[ROCA]新進人員手冊Military Police Command Newcomer's manual</h4>
+                    <h4 class="fw-bold mb-3 text-warning"><i class="fa fa-file-text-o me-2"></i>
+                        文件七：[ROCA]新進人員手冊Military Police Command Newcomer's manual</h4>
                     <div class="embed-responsive embed-responsive-doc">
-                        <iframe src="https://docs.google.com/document/d/1ImjPRy4_XTbC4pGwAch0_r2tSSTFBlSg8QDuk-jgiJI/view?rm=minimal"></iframe>
+                        <iframe
+                            src="https://docs.google.com/document/d/1ImjPRy4_XTbC4pGwAch0_r2tSSTFBlSg8QDuk-jgiJI/view?rm=minimal"></iframe>
                     </div>
-                    <a href="https://docs.google.com/document/d/1ImjPRy4_XTbC4pGwAch0_r2tSSTFBlSg8QDuk-jgiJI/edit" target="_blank" class="btn btn-sm btn-outline-secondary mt-2">在新視窗開啟文件</a>
+                    <a href="https://docs.google.com/document/d/1ImjPRy4_XTbC4pGwAch0_r2tSSTFBlSg8QDuk-jgiJI/edit"
+                        target="_blank" class="btn btn-sm btn-outline-secondary mt-2">在新視窗開啟文件</a>
                 </div>
 
+                <a class="doc-anchor" id="doc-d8"></a>
+                <div class="doc-container">
+                    <h4 class="fw-bold mb-3 text-warning"><i class="fa fa-file-text-o me-2"></i> 文件八：ROCA MP｜driving
+                        lessons</h4>
+                    <div class="embed-responsive embed-responsive-doc">
+                        <iframe
+                            src="https://docs.google.com/document/d/1MdWNN_h5bpEXcvD_g_Dow7WxHUWDCsiDnWJ7a2JkKyU/view?rm=minimal"></iframe>
+                    </div>
+                    <a href="https://docs.google.com/document/d/1MdWNN_h5bpEXcvD_g_Dow7WxHUWDCsiDnWJ7a2JkKyU/view?"
+                        target="_blank" class="btn btn-sm btn-outline-secondary mt-2">在新視窗開啟文件</a>
+                </div>
+
+                <a class="doc-anchor" id="doc-f3"></a>
+                <div class="doc-container">
+                    <h4 class="fw-bold mb-3 text-warning"><i class="fa fa-wpforms me-2"></i> 文件九:[ROCA MP] Military Police
+                        Driver's Basic Test</h4>
+                    <div class="embed-responsive embed-responsive-form">
+                        <iframe
+                            src="https://docs.google.com/forms/d/e/1FAIpQLSeo7SoqLTLlqwTLeF_DGU47UeJ84GnFZU9WbJxozQq-fS4Z7A/viewform?embedded=true"
+                            frameborder="0" marginheight="0" marginwidth="0">載入中…</iframe>
+                    </div>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSeo7SoqLTLlqwTLeF_DGU47UeJ84GnFZU9WbJxozQq-fS4Z7A/viewform"
+                        target="_blank" class="btn btn-sm btn-outline-secondary mt-2">在新視窗開啟表單</a>
+                </div>
                 <a class="doc-anchor" id="doc-d7"></a>
                 <div class="doc-container">
-                    <h4 class="fw-bold mb-3 text-secondary"><i class="fa fa-file-text-o me-2"></i> 文件六：國防部憲兵指揮部懲罰法及懲處評議會組成細則
+                    <h4 class="fw-bold mb-3 text-secondary"><i class="fa fa-file-text-o me-2"></i>
+                        文件十：國防部憲兵指揮部懲罰法及懲處評議會組成細則
                     </h4>
                     <div class="embed-responsive embed-responsive-doc">
-                        <iframe src="https://docs.google.com/document/d/1SzrVbs_d1z11G_LShrUR9KTZGMLdtWj1l2LQhIgSXlg/view?rm=minimal"></iframe>
+                        <iframe
+                            src="https://docs.google.com/document/d/1SzrVbs_d1z11G_LShrUR9KTZGMLdtWj1l2LQhIgSXlg/view?rm=minimal"></iframe>
                     </div>
-                    <a href="https://docs.google.com/document/d/1SzrVbs_d1z11G_LShrUR9KTZGMLdtWj1l2LQhIgSXlg/edit" target="_blank" class="btn btn-sm btn-outline-secondary mt-2">在新視窗開啟文件</a>
+                    <a href="https://docs.google.com/document/d/1SzrVbs_d1z11G_LShrUR9KTZGMLdtWj1l2LQhIgSXlg/edit"
+                        target="_blank" class="btn btn-sm btn-outline-secondary mt-2">在新視窗開啟文件</a>
+                </div>
+                <a class="doc-anchor" id="doc-d9"></a>
+                <div class="doc-container">
+                    <h4 class="fw-bold mb-3 text-secondary"><i class="fa fa-file-text-o me-2"></i>
+                        文件十一：中華民國國防部憲兵指揮部人員考績作業規定
+                    </h4>
+                    <div class="embed-responsive embed-responsive-doc">
+                        <iframe
+                            src="https://docs.google.com/document/d/1EtRtT6-XK28HBDNCcGScgJxKhrbX0g8aWYEierAOydY/view?rm=minimal"></iframe>
+                    </div>
+                    <a href="https://docs.google.com/document/d/1EtRtT6-XK28HBDNCcGScgJxKhrbX0g8aWYEierAOydY/edit"
+                        target="_blank" class="btn btn-sm btn-outline-secondary mt-2">在新視窗開啟文件</a>
                 </div>
 
 
@@ -523,7 +757,7 @@
                     forceLogout();
                     return;
                 }
-                
+
                 try {
                     const userData = JSON.parse(storedUserData);
                     if (!userData.robloxName || !userData.rank) {
