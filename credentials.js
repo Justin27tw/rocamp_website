@@ -1,172 +1,177 @@
 // 這是儲存所有帳號密碼與軍階的 JavaScript 物件。
 // 鍵 (key) 是您的 ROBLOX NAME (請區分大小寫)。
-// 值 (value) 是一個包含 'discordname' (請全部使用小寫) 和 'Postion' (職位/軍階) 的物件。
+// 值 (value) 是一個包含 'password' (請全部使用小寫) 和 'Postion' (職位/軍階) 的物件。
 USER_CREDENTIALS = {
     // 範例：ROBLOX NAME (區分大小寫)
     "Justin_chiu27": {
-        discordname: "chiu_jia", // 密碼 (全部小寫)
+        password: "e888c2caa52baf644fdf13f768ed1c74ab38292ab1bb25dc7de8bb8c52501e95", // 密碼 (全部小寫)
         Postion: "副指揮官" ,     // 職位/軍階
     }, 
     
     // 新增一個測試帳號
     "sjkhortj": {
-        discordname: "ryan610",
+        password: "6865b200be186ead719a07cf2e644a9b7138e732ce6574f3055e5fdc2b333365",
         Postion: "指揮官", 
     },
     "rockroll901": {
-        discordname: "rock_8964",
+        password: "ed2af18efb2b72ad1a949c142311e8aa73f85496214d4aeb164c145ac6789c58",
         Postion: "參謀長", 
     },
     "zhuy1126": {
-        discordname: "zhuy1126",
+        password: "d5f8184e30577591346143be8cd4e72febd570dbb7a794068a47d0759b39e7ba",
         Postion: "督導", 
     },
     
     "XxChortleKidd": {
-        discordname: "lwlhon_.0957",
+        password: "b5b1c8ce920968b99e4748d5c3dec8e3e25846150b72e98b548fccb8344320d9",
         Postion: "督導", 
     },
     "jianhao0909": {
-        discordname: "haohaosam",
+        password: "87fd6adee5c272a0365772791a831cd681b565f652999dab30075ad6fb3b7b49",
         Postion: "行政人員", 
     },
     
     "nollihj": {
-        discordname: "qaq_128920",
+        password: "857fca9cb8a870be722f0b608c5780eca88dbcef6d90585190a9ef25d89b0fe1",
         Postion: "勤務大隊長", 
     },
     "aplkjjsffh": {
-        discordname: "doughuser0",
+        password: "054566763af48bfcc9a8ea278f1875b7c94f190bc43129efd898694a5353a241",
         Postion: "勤務中隊長", 
     },
     
     "yaya_yen": {
-        discordname: "yayay0253",
+        password: "9ceef33fc7c73f4f3bd31777cee8a88bb1d1b087ed672c7489f06ac9d1aef8ad",
         Postion: "特勤大隊長", 
     },
     
     "Leosergo": {
-        discordname: "maolixiaowuguo",
+        password: "7ab5549236371517aad2aa086b822a6d01dfd7b30a1f804057e05626b00f4ff9",
         Postion: "特勤中隊長", 
     },
     
     "dammy526": {
-        discordname: "dammy526.",
+        password: "586a60951110538e5c2c4bdc2e92e28f809c45d4839014b6a902a2902b92a23c",
         Postion: "特勤幹部", 
     },
     "wayne11087": {
-        discordname: "wayne_11087",
+        password: "65004f5747123fe919afa51d606da9e45ddd6c9290ff5716f7d99244c9094be2",
         Postion: "實習幹部", 
     },
     "hgjk66ll": {
-        discordname: "hgjk66ll",
+        password: "b060218b28b30d6507f4047085b4ecc0d1744aeaed2a49f06f820e634a396ab4",
         Postion: "勤務幹部", 
     },
     "xtrey_yy1": {
-        discordname: "james_99733",
+        password: "2a19652d2e13845fed9f6f2acee3e0d42982095a3ae707f90353110b9107acdf",
         Postion: "榮譽憲兵", 
     },
     "Leokuo1210": {
-        discordname: "cookice",
+        password: "89534db9a3cadbe5a495c2285fb7fab6f2f72c0164287da6f708c75f7d7e8d3c",
         Postion: "技術人員", 
     },
     "jack970411": {
-        discordname: "firstdreamchmng",
+        password: "8cbbb15458af752ab03ed026d9ebd8498ad40b6f2f74a266e546852b9f867e2c",
         Postion: "國防部長", 
     },
     
     "fhfhfhrip": {
-        discordname: "fhfhfhrip",
+        password: "bab51ccfa57758c6d03139c2198bdffdf159d42fa1bdf846f301c11c2d8cd8b6",
         Postion: "國防副部長", 
     },
     "Zahue": {
-        discordname: ".a_han",
+        password: "847e1a7673efb350769c5d5ca088ad1ab723e86853016b537cb1c5b4639d8c5d",
         Postion: "常務次長", 
     },
     
     "JackHuang1020": {
-        discordname: "adolf_1020",
+        password: "980c7b6cd00c1d5db767ca677a323bf485ee64368fe231a110ca8816fb5e50ed",
         Postion: "參謀總長", 
     },
     "Joee0110": {
-        discordname: "eeoj",
+        password: "a14bf48164a681ce375c454d1b4085130bcfdab5fa9f4ec724ab386bfb4dda62",
         Postion: "副參謀總長", 
     },
     "kkchan0119": {
-        discordname: "cdl0119",
+        password: "fb0a3a4922107e791f437fcf2379ce28f7cae2b3d1f349e3228a2710e4fc885c",
         Postion: "工作總監", 
     },
     "rtuhjhhijh": {
-        discordname: "tw102567",
+        password: "766570acc3d3dcf81d90e17486eb7c0d78cb12434d099f4124ac399166debe09",
         Postion: "檢察長", 
     },
     
     "eiuegwgu": {
-        discordname: "eiuegwgu",
+        password: "2dd67b0e310602ffe9822d61833e087ca1fb415dc4068b72d30a4277d5fc891a",
         Postion: "勤務成員", 
     },
     "AOOOHOOOA": {
-        discordname: "hanguo0336",
+        password: "bbb00bbccc8ba8f50a4e598aad8a3b06b84ada7ba9f092daee4614444795c8c3",
         Postion: "勤務成員", 
     },
     "Florentino_2312": {
-        discordname: "zruic7_",
+        password: "e6c46f9bb557565e9e52aa6a82e072aa255fd56deed270c294c739df9d31b3b7",
         Postion: "勤務成員", 
     },
     "hohim64": {
-        discordname: "him06390",
+        password: "01c69509f2492e7007146687bc5d5e808bc2f48c160267905cff006d20055925",
         Postion: "勤務監察官", 
     },
     "D1ndolf": {
-        discordname: "dindolf_san",
+        password: "0ec914fb8710fdf34473452f52e77d7bc0a51661f5cd2133a10e0887cb37fdc5",
         Postion: "勤務成員", 
     },
     "Rain1011103": {
-        discordname: "guojunrain_00947",
+        password: "4593926f92cf3ef961de82a4871e0cb03bd44004eb5867fe3c94ad893728ba8d",
         Postion: "勤務成員", 
     },
     "fighter123456789": {
-        discordname: "fighter_1234789",
+        password: "08bec55d100bf4ae349d65775d7bedc00fb590e23933492f1bd12da58326b7d2",
         Postion: "勤務成員", 
     },
     "lgu9u9s1x1234": {
-        discordname: "yongjin5431",
+        password: "ebfe3a60536ee80139a7eb8fb43ab2ccb70578da2a23d358180529f900fa5ba1",
         Postion: "勤務成員", 
     },
     "djdkdhdek": {
-        discordname: "hki0733_16045",
+        password: "154d012fb9d210a8ce80ac327389c74fbf8c4d11658b4837200a6ec6c506296a",
         Postion: "勤務成員", 
     },
     "TW_cia05": {
-        discordname: "tw_cia05",
+        password: "ddf225b416c902ce277a7d74d6df351af887a0c8deb06dc789dce256c5da4fb4",
         Postion: "勤務成員", 
     },
     "Htbridisj": {
-        discordname: "xhh08168",
+        password: "b0a9243231126e9b67e9a67392f2087bff68eaf4620e14695ba177d9309c0148",
         Postion: "勤務成員", 
     },
     "HGD_kemd": {
-        discordname: "hgd_kemd55",
+        password: "1de6ed7ec15e4b9cbcbdbc31a82d7604e2e4e0ddc5d0b480cef6949c6be578cc",
         Postion: "特勤成員", 
     },
     "WalkTheEarthMyself": {
-        discordname: "4orgotten64",
+        password: "32c0be27f4676dbb1e3a958b41cc5fbac147a80a31cd7954e69de8137ad51238",
         Postion: "特勤成員", 
     },
     "XZPSCA": {
-        discordname: "xzpsca",
+        password: "201e4bfd259b14390a46659d2e06d61f5e9e9e74dcd32b44ec9334f622ace22f",
         Postion: "特勤成員", 
     },
     "ryan00606": {
-        discordname: "limo_60",
+        password: "d3cd97cff4e3d91c8c1b75e56ac7866e5f8c4136acd675ccfaf17e03cb5f36dc",
         Postion: "特勤監察官", 
     },
     "Nck552": {
-        discordname: "mazu5606",
+        password: "cf4f177d9b32f16ecdc9177c7172d376078cff3fc8cdde3a32486a17c542bb70",
         Postion: "特勤成員", 
     },
     "dsaidwiki7487": {
-        discordname: "dincuret",
+        password: "bc832a7af1c2cf456f5b5a3c144aaae4e1450623eed397d2ef4433638ba2f9d6",
+        Postion: "憲兵學員", 
+    },
+    
+    "vrgecnoh4": {
+        password: "ea378e94ca7378935080271397d5ed303ec8d7c3b4187b5d739dbb6ee2adc48a",
         Postion: "憲兵學員", 
     },
     
