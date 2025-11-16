@@ -175,7 +175,7 @@ USER_CREDENTIALS = {
         Postion: "副參謀總長", 
     }, 
     "mbmvjdvr": {
-        password: "e72654f5b0ae48fdf935a92e4003efb5aa64126f3d7ef3e3d4b0dd0f736ab7c5",
+        password: "66666780d3cddbc12e2a4c94097c240bc5015de67335afdf7f65909600608032",
         Postion: "特勤成員", 
     },
     "JOIQ3000": {
