@@ -56,7 +56,7 @@ USER_CREDENTIALS = {
     },
     "wayne11087": {
         password: "65004f5747123fe919afa51d606da9e45ddd6c9290ff5716f7d99244c9094be2",
-        Postion: "實習幹部", 
+        Postion: "特勤成員", 
     },
     "hgjk66ll": {
         password: "b060218b28b30d6507f4047085b4ecc0d1744aeaed2a49f06f820e634a396ab4",
@@ -86,11 +86,11 @@ USER_CREDENTIALS = {
     
     "JackHuang1020": {
         password: "980c7b6cd00c1d5db767ca677a323bf485ee64368fe231a110ca8816fb5e50ed",
-        Postion: "參謀總長", 
+        Postion: "國防部顧問", 
     },
     "Joee0110": {
         password: "a14bf48164a681ce375c454d1b4085130bcfdab5fa9f4ec724ab386bfb4dda62",
-        Postion: "副參謀總長", 
+        Postion: "參謀總長", 
     },
     "kkchan0119": {
         password: "fb0a3a4922107e791f437fcf2379ce28f7cae2b3d1f349e3228a2710e4fc885c",
@@ -137,10 +137,6 @@ USER_CREDENTIALS = {
         password: "154d012fb9d210a8ce80ac327389c74fbf8c4d11658b4837200a6ec6c506296a",
         Postion: "勤務成員", 
     },
-    "TW_cia05": {
-        password: "ddf225b416c902ce277a7d74d6df351af887a0c8deb06dc789dce256c5da4fb4",
-        Postion: "勤務成員", 
-    },
     "Htbridisj": {
         password: "b0a9243231126e9b67e9a67392f2087bff68eaf4620e14695ba177d9309c0148",
         Postion: "勤務成員", 
@@ -174,6 +170,19 @@ USER_CREDENTIALS = {
         password: "ea378e94ca7378935080271397d5ed303ec8d7c3b4187b5d739dbb6ee2adc48a",
         Postion: "憲兵學員", 
     },
+    "Hank8959": {
+        password: "88bdcef1f944178c1a4b4fe98908c2e727c81378f9fbcf2aa15514ca7a6797d6",
+        Postion: "副參謀總長", 
+    }, 
+    "mbmvjdvr": {
+        password: "e72654f5b0ae48fdf935a92e4003efb5aa64126f3d7ef3e3d4b0dd0f736ab7c5",
+        Postion: "特勤成員", 
+    },
+    "JOIQ3000": {
+        password: "b1066ab7404586ca9806b9871b8b58c64c2688f080091048b1e4d5d94b6ae776",
+        Postion: "憲兵學員", 
+    },
+   
     
     // 您可以在此處手動添加更多帳號
 };
