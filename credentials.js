@@ -94,6 +94,11 @@ USER_CREDENTIALS = {
         password: "0ce73ce745bb0762722277d0003f29a775bf31d43b690d7aac2083e5fb582909",
         Postion: "勤務成員", 
     },
+    
+    "dsaidwiki7487": {
+        password: "bc832a7af1c2cf456f5b5a3c144aaae4e1450623eed397d2ef4433638ba2f9d6",
+        Postion: "勤務成員", 
+    },
     //特勤隊MPSSC
     "yaya_yen": {
         password: "9ceef33fc7c73f4f3bd31777cee8a88bb1d1b087ed672c7489f06ac9d1aef8ad",
@@ -141,15 +146,7 @@ USER_CREDENTIALS = {
         Postion: "憲兵學員", 
     },
 
-    "dsaidwiki7487": {
-        password: "bc832a7af1c2cf456f5b5a3c144aaae4e1450623eed397d2ef4433638ba2f9d6",
-        Postion: "憲兵學員", 
-    },
    
-    "JOIQ3000": {
-        password: "b1066ab7404586ca9806b9871b8b58c64c2688f080091048b1e4d5d94b6ae776",
-        Postion: "憲兵學員", 
-    },
   
    
     //國防部(含技術)如下：
