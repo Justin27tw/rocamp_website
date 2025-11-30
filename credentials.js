@@ -145,6 +145,10 @@ USER_CREDENTIALS = {
         password: "ea378e94ca7378935080271397d5ed303ec8d7c3b4187b5d739dbb6ee2adc48a",
         Postion: "憲兵學員", 
     },
+    "ROC_1928": {
+        password: "003961cfebe5912a5747f4a9c78561ff00e4f148b26c7f1256f9f78b03f2e083",
+        Postion: "憲兵學員", 
+    },
 
    
   
