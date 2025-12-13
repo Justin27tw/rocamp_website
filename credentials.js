@@ -38,18 +38,11 @@ USER_CREDENTIALS = {
         password: "054566763af48bfcc9a8ea278f1875b7c94f190bc43129efd898694a5353a241",
         Postion: "勤務中隊長", 
     },
-    
-  
-    "wayne11087": {
-        password: "65004f5747123fe919afa51d606da9e45ddd6c9290ff5716f7d99244c9094be2",
-        Postion: "特勤成員", 
-    },
-    "hgjk66ll": {
+
+     "hgjk66ll": {
         password: "b060218b28b30d6507f4047085b4ecc0d1744aeaed2a49f06f820e634a396ab4",
         Postion: "勤務幹部", 
     },
-
-    
     "eiuegwgu": {
         password: "2dd67b0e310602ffe9822d61833e087ca1fb415dc4068b72d30a4277d5fc891a",
         Postion: "勤務成員", 
@@ -58,20 +51,12 @@ USER_CREDENTIALS = {
         password: "bbb00bbccc8ba8f50a4e598aad8a3b06b84ada7ba9f092daee4614444795c8c3",
         Postion: "勤務成員", 
     },
-    "Florentino_2312": {
-        password: "e6c46f9bb557565e9e52aa6a82e072aa255fd56deed270c294c739df9d31b3b7",
-        Postion: "勤務成員", 
-    },
     "hohim64": {
         password: "01c69509f2492e7007146687bc5d5e808bc2f48c160267905cff006d20055925",
         Postion: "勤務監察官", 
     },
     "D1ndolf": {
         password: "0ec914fb8710fdf34473452f52e77d7bc0a51661f5cd2133a10e0887cb37fdc5",
-        Postion: "勤務成員", 
-    },
-    "Rain1011103": {
-        password: "4593926f92cf3ef961de82a4871e0cb03bd44004eb5867fe3c94ad893728ba8d",
         Postion: "勤務成員", 
     },
     "fighter123456789": {
@@ -131,20 +116,15 @@ USER_CREDENTIALS = {
         password: "d3cd97cff4e3d91c8c1b75e56ac7866e5f8c4136acd675ccfaf17e03cb5f36dc",
         Postion: "特勤監察官", 
     },
-    "Nck552": {
-        password: "cf4f177d9b32f16ecdc9177c7172d376078cff3fc8cdde3a32486a17c542bb70",
-        Postion: "特勤成員", 
-    },
      "mbmvjdvr": {
         password: "66666780d3cddbc12e2a4c94097c240bc5015de67335afdf7f65909600608032",
         Postion: "特勤成員", 
     },
-    
-    //憲兵學校MPTC
-    "vrgecnoh4": {
-        password: "ea378e94ca7378935080271397d5ed303ec8d7c3b4187b5d739dbb6ee2adc48a",
-        Postion: "憲兵學員", 
+        "wayne11087": {
+        password: "65004f5747123fe919afa51d606da9e45ddd6c9290ff5716f7d99244c9094be2",
+        Postion: "特勤成員", 
     },
+    //憲兵學校MPTC
     "ROC_1928": {
         password: "003961cfebe5912a5747f4a9c78561ff00e4f148b26c7f1256f9f78b03f2e083",
         Postion: "憲兵學員", 
