@@ -63,10 +63,7 @@ USER_CREDENTIALS = {
         password: "08bec55d100bf4ae349d65775d7bedc00fb590e23933492f1bd12da58326b7d2",
         Postion: "勤務成員", 
     },
-    "lgu9u9s1x1234": {
-        password: "ebfe3a60536ee80139a7eb8fb43ab2ccb70578da2a23d358180529f900fa5ba1",
-        Postion: "勤務成員", 
-    },
+
     "djdkdhdek": {
         password: "154d012fb9d210a8ce80ac327389c74fbf8c4d11658b4837200a6ec6c506296a",
         Postion: "勤務成員", 
@@ -80,10 +77,11 @@ USER_CREDENTIALS = {
         Postion: "勤務成員", 
     },
     
-    "dsaidwiki7487": {
-        password: "bc832a7af1c2cf456f5b5a3c144aaae4e1450623eed397d2ef4433638ba2f9d6",
+    "stps666451": {
+        password: "8b58a2261ed51568332db59ed16b209dc03cc8b88bb74a680afd7d010a50ddd6",
         Postion: "勤務成員", 
     },
+    
     //特勤隊MPSSC
     "yaya_yen": {
         password: "9ceef33fc7c73f4f3bd31777cee8a88bb1d1b087ed672c7489f06ac9d1aef8ad",
