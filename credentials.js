@@ -81,7 +81,12 @@ USER_CREDENTIALS = {
         password: "8b58a2261ed51568332db59ed16b209dc03cc8b88bb74a680afd7d010a50ddd6",
         Postion: "勤務成員", 
     },
-    
+
+    "ROC_1928": {
+        password: "003961cfebe5912a5747f4a9c78561ff00e4f148b26c7f1256f9f78b03f2e083",
+        Postion: "勤務成員", 
+    },
+
     //特勤隊MPSSC
     "yaya_yen": {
         password: "9ceef33fc7c73f4f3bd31777cee8a88bb1d1b087ed672c7489f06ac9d1aef8ad",
@@ -102,10 +107,6 @@ USER_CREDENTIALS = {
         password: "1de6ed7ec15e4b9cbcbdbc31a82d7604e2e4e0ddc5d0b480cef6949c6be578cc",
         Postion: "特勤成員", 
     },
-    "WalkTheEarthMyself": {
-        password: "32c0be27f4676dbb1e3a958b41cc5fbac147a80a31cd7954e69de8137ad51238",
-        Postion: "特勤成員", 
-    },
     "XZPSCA": {
         password: "201e4bfd259b14390a46659d2e06d61f5e9e9e74dcd32b44ec9334f622ace22f",
         Postion: "特勤成員", 
@@ -118,13 +119,26 @@ USER_CREDENTIALS = {
         password: "66666780d3cddbc12e2a4c94097c240bc5015de67335afdf7f65909600608032",
         Postion: "特勤成員", 
     },
-        "wayne11087": {
+    "wayne11087": {
         password: "65004f5747123fe919afa51d606da9e45ddd6c9290ff5716f7d99244c9094be2",
         Postion: "特勤成員", 
     },
     //憲兵學校MPTC
-    "ROC_1928": {
-        password: "003961cfebe5912a5747f4a9c78561ff00e4f148b26c7f1256f9f78b03f2e083",
+    
+    "CombatCrazyGuY2": {
+        password: "a7337215d8df9551b208493882fa1378fb14b40f1569aeb89a650f97a4a7c704",
+        Postion: "憲兵學員", 
+    },
+    "TAIWAN123859": {
+        password: "9de543756faecc28f4ce5271f588e82b7818bc0b4282d6bd36b576fcc2b60a8f",
+        Postion: "憲兵學員", 
+    },
+    "POLICEKTRY": {
+        password: "f1fd6a21830bdbc48933ab842c3d6c96f917f20d23f404b99f1582aa4103952e",
+        Postion: "憲兵學員", 
+    },
+    "POLICEKTRY": {
+        password: "f1fd6a21830bdbc48933ab842c3d6c96f917f20d23f404b99f1582aa4103952e",
         Postion: "憲兵學員", 
     },
 
