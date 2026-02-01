@@ -137,8 +137,8 @@ USER_CREDENTIALS = {
         password: "f1fd6a21830bdbc48933ab842c3d6c96f917f20d23f404b99f1582aa4103952e",
         Postion: "憲兵學員", 
     },
-    "POLICEKTRY": {
-        password: "f1fd6a21830bdbc48933ab842c3d6c96f917f20d23f404b99f1582aa4103952e",
+    "jacklin038": {
+        password: "18920b1e7611987ed2f8dd3e666723b8ba166e38ea93db3e3c667543908f0757",
         Postion: "憲兵學員", 
     },
 
