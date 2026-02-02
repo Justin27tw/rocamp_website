@@ -86,6 +86,10 @@ USER_CREDENTIALS = {
         password: "003961cfebe5912a5747f4a9c78561ff00e4f148b26c7f1256f9f78b03f2e083",
         Postion: "勤務成員", 
     },
+    "blackforest517": {
+        password: "d2c5a782d5eed19668af66aef64d30576ac51df9210e60c5938f2505d0572a18",
+        Postion: "勤務成員", 
+    },
 
     //特勤隊MPSSC
     "yaya_yen": {
