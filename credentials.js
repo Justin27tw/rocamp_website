@@ -18,30 +18,34 @@ USER_CREDENTIALS = {
     },
     "zhuy1126": {
         password: "d5f8184e30577591346143be8cd4e72febd570dbb7a794068a47d0759b39e7ba",
-        Postion: "督導", 
+        Postion: "行政人員", 
     },
     
-    "XxChortleKidd": {
-        password: "b5b1c8ce920968b99e4748d5c3dec8e3e25846150b72e98b548fccb8344320d9",
-        Postion: "督導", 
-    },
     "jianhao0909": {
         password: "87fd6adee5c272a0365772791a831cd681b565f652999dab30075ad6fb3b7b49",
         Postion: "行政人員", 
     },
-    //勤務MPSDC
+    //營級幹部
+    "XxChortleKidd": {
+        password: "b5b1c8ce920968b99e4748d5c3dec8e3e25846150b72e98b548fccb8344320d9",
+        Postion: "營長", 
+    },
     "nollihj": {
         password: "857fca9cb8a870be722f0b608c5780eca88dbcef6d90585190a9ef25d89b0fe1",
-        Postion: "勤務大隊長", 
+        Postion: "副營長", 
     },
+    //勤務MPSDC
     "aplkjjsffh": {
         password: "054566763af48bfcc9a8ea278f1875b7c94f190bc43129efd898694a5353a241",
+        Postion: "勤務大隊長", 
+    },
+    "hohim64": {
+        password: "01c69509f2492e7007146687bc5d5e808bc2f48c160267905cff006d20055925",
         Postion: "勤務中隊長", 
     },
-
      "hgjk66ll": {
         password: "b060218b28b30d6507f4047085b4ecc0d1744aeaed2a49f06f820e634a396ab4",
-        Postion: "勤務幹部", 
+        Postion: "勤務成員", 
     },
     "eiuegwgu": {
         password: "2dd67b0e310602ffe9822d61833e087ca1fb415dc4068b72d30a4277d5fc891a",
@@ -51,10 +55,7 @@ USER_CREDENTIALS = {
         password: "bbb00bbccc8ba8f50a4e598aad8a3b06b84ada7ba9f092daee4614444795c8c3",
         Postion: "勤務成員", 
     },
-    "hohim64": {
-        password: "01c69509f2492e7007146687bc5d5e808bc2f48c160267905cff006d20055925",
-        Postion: "勤務監察官", 
-    },
+   
     "D1ndolf": {
         password: "0ec914fb8710fdf34473452f52e77d7bc0a51661f5cd2133a10e0887cb37fdc5",
         Postion: "勤務成員", 
@@ -86,8 +87,13 @@ USER_CREDENTIALS = {
         password: "003961cfebe5912a5747f4a9c78561ff00e4f148b26c7f1256f9f78b03f2e083",
         Postion: "勤務成員", 
     },
-    "blackforest517": {
-        password: "d2c5a782d5eed19668af66aef64d30576ac51df9210e60c5938f2505d0572a18",
+    
+    "POLICEKTRY": {
+        password: "f1fd6a21830bdbc48933ab842c3d6c96f917f20d23f404b99f1582aa4103952e",
+        Postion: "勤務成員", 
+    },
+    "jacklin038": {
+        password: "18920b1e7611987ed2f8dd3e666723b8ba166e38ea93db3e3c667543908f0757",
         Postion: "勤務成員", 
     },
 
@@ -101,10 +107,17 @@ USER_CREDENTIALS = {
         password: "7ab5549236371517aad2aa086b822a6d01dfd7b30a1f804057e05626b00f4ff9",
         Postion: "特勤中隊長", 
     },
-    
+    "ryan00606": {
+        password: "d3cd97cff4e3d91c8c1b75e56ac7866e5f8c4136acd675ccfaf17e03cb5f36dc",
+        Postion: "特勤幹部", 
+    },
+     "mbmvjdvr": {
+        password: "66666780d3cddbc12e2a4c94097c240bc5015de67335afdf7f65909600608032",
+        Postion: "特勤幹部", 
+    },
     "dammy526": {
         password: "586a60951110538e5c2c4bdc2e92e28f809c45d4839014b6a902a2902b92a23c",
-        Postion: "特勤幹部", 
+        Postion: "特勤成員", 
     },
 
     "HGD_kemd": {
@@ -115,18 +128,16 @@ USER_CREDENTIALS = {
         password: "201e4bfd259b14390a46659d2e06d61f5e9e9e74dcd32b44ec9334f622ace22f",
         Postion: "特勤成員", 
     },
-    "ryan00606": {
-        password: "d3cd97cff4e3d91c8c1b75e56ac7866e5f8c4136acd675ccfaf17e03cb5f36dc",
-        Postion: "特勤監察官", 
-    },
-     "mbmvjdvr": {
-        password: "66666780d3cddbc12e2a4c94097c240bc5015de67335afdf7f65909600608032",
-        Postion: "特勤成員", 
-    },
+    
     "wayne11087": {
         password: "65004f5747123fe919afa51d606da9e45ddd6c9290ff5716f7d99244c9094be2",
         Postion: "特勤成員", 
     },
+    "blackforest517": {
+        password: "d2c5a782d5eed19668af66aef64d30576ac51df9210e60c5938f2505d0572a18",
+        Postion: "特勤成員", 
+    },
+
     //憲兵學校MPTC
     
     "CombatCrazyGuY2": {
@@ -137,18 +148,8 @@ USER_CREDENTIALS = {
         password: "9de543756faecc28f4ce5271f588e82b7818bc0b4282d6bd36b576fcc2b60a8f",
         Postion: "憲兵學員", 
     },
-    "POLICEKTRY": {
-        password: "f1fd6a21830bdbc48933ab842c3d6c96f917f20d23f404b99f1582aa4103952e",
-        Postion: "憲兵學員", 
-    },
-    "jacklin038": {
-        password: "18920b1e7611987ed2f8dd3e666723b8ba166e38ea93db3e3c667543908f0757",
-        Postion: "憲兵學員", 
-    },
+    
 
-   
-  
-   
     //國防部(含技術)如下：
     "xtrey_yy1": {
         password: "2a19652d2e13845fed9f6f2acee3e0d42982095a3ae707f90353110b9107acdf",
