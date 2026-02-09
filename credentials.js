@@ -43,10 +43,6 @@ USER_CREDENTIALS = {
         password: "01c69509f2492e7007146687bc5d5e808bc2f48c160267905cff006d20055925",
         Postion: "勤務中隊長", 
     },
-     "hgjk66ll": {
-        password: "b060218b28b30d6507f4047085b4ecc0d1744aeaed2a49f06f820e634a396ab4",
-        Postion: "勤務成員", 
-    },
     "eiuegwgu": {
         password: "2dd67b0e310602ffe9822d61833e087ca1fb415dc4068b72d30a4277d5fc891a",
         Postion: "勤務成員", 
@@ -129,10 +125,6 @@ USER_CREDENTIALS = {
         Postion: "特勤成員", 
     },
     
-    "wayne11087": {
-        password: "65004f5747123fe919afa51d606da9e45ddd6c9290ff5716f7d99244c9094be2",
-        Postion: "特勤成員", 
-    },
     "blackforest517": {
         password: "d2c5a782d5eed19668af66aef64d30576ac51df9210e60c5938f2505d0572a18",
         Postion: "特勤成員", 
