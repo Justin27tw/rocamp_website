@@ -56,7 +56,7 @@ USER_CREDENTIALS = {
         password: "0ec914fb8710fdf34473452f52e77d7bc0a51661f5cd2133a10e0887cb37fdc5",
         Postion: "勤務成員", 
     },
-    "fighter123456789": {
+    "fighter1234789": {
         password: "08bec55d100bf4ae349d65775d7bedc00fb590e23933492f1bd12da58326b7d2",
         Postion: "勤務成員", 
     },
