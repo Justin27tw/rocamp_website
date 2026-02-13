@@ -113,7 +113,7 @@ USER_CREDENTIALS = {
     },
     "dammy526": {
         password: "586a60951110538e5c2c4bdc2e92e28f809c45d4839014b6a902a2902b92a23c",
-        Postion: "特勤成員", 
+        Postion: "特勤士官督導長", 
     },
 
     "HGD_kemd": {
@@ -136,11 +136,11 @@ USER_CREDENTIALS = {
         password: "a7337215d8df9551b208493882fa1378fb14b40f1569aeb89a650f97a4a7c704",
         Postion: "憲兵學員", 
     },
-    "TAIWAN123859": {
-        password: "9de543756faecc28f4ce5271f588e82b7818bc0b4282d6bd36b576fcc2b60a8f",
+    "aaa999403": {
+        password: "07f4281d8f06e3832dd2457df3527d02d5c1d6ac1a166667999e5a72c51f6708",
         Postion: "憲兵學員", 
     },
-    
+
 
     //國防部(含技術)如下：
     "xtrey_yy1": {
