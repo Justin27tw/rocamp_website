@@ -140,6 +140,10 @@ USER_CREDENTIALS = {
         password: "07f4281d8f06e3832dd2457df3527d02d5c1d6ac1a166667999e5a72c51f6708",
         Postion: "憲兵學員", 
     },
+    "BrianNataliu": {
+        password: "0495d14de75e641290ec5bbcab05a2d5ee6236eece0216038dc0c3b7c3b1073a",
+        Postion: "憲兵學員", 
+    },
 
 
     //國防部(含技術)如下：
