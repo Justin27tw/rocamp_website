@@ -168,8 +168,7 @@
         .news-list {
             list-style: none;
             margin: 0;
-            padding: 0;
-            padding-top: 7.5px;
+            padding: 0; /* 移除了原本錯誤的 padding-top: 7.5px */
             position: absolute;
             top: 0;
             left: 0;
@@ -177,15 +176,14 @@
             transition: transform 0.5s ease-in-out;
         }
         .news-list li {
-            height: auto;
-            line-height: 20px;
+            height: 40px; /* 強制與外層容器 height: 40px 完全一致 */
+            margin: 0;
             padding: 0 20px;
             box-sizing: border-box;
             text-overflow: ellipsis;
             font-size: 1rem;
-            min-height: 40px;
             display: flex;
-            align-items: center;
+            align-items: center; /* 讓 Flexbox 幫我們完美垂直居中文字 */
         }
         .news-list li p { margin: 0; cursor: pointer; color: #333; }
         .news-list li p:hover { color: black; }
@@ -411,8 +409,8 @@
             .banner-section { height: 300px; }
             #bannertext h1 { font-size: 32px; }
             #bannertext p { font-size: 14px; }
-            .news-ticker-container { height: 45px; }
-            .news-list li { height: 40px; line-height: 20px; font-size: 14px; padding-bottom: 1px; margin-bottom: 1px; }
+            .news-ticker-container { height: 40px; } /* 統一高度 */
+            .news-list li { height: 40px; font-size: 14px; padding: 0 10px; margin: 0; } /* 移除干擾的 padding 和 margin */
             .tablink { font-size: 14px; padding: 10px 12px; }
             .tabcontent { padding: 30px 10px; height: auto; }
             .tabcontent ul li { font-size: 15px; flex-direction: column; align-items: flex-start; }
@@ -446,8 +444,8 @@
             .banner-section { height: 400px; }
             #bannertext h1 { font-size: 42px; }
             #bannertext p { font-size: 17px; }
-            .news-ticker-container { height: 35px; }
-            .news-list li { height: 35px; line-height: 35px; font-size: 15px; }
+            .news-ticker-container { height: 40px; }
+            .news-list li { height: 40px; font-size: 15px; margin: 0; }
             .tablink { font-size: 16px; padding: 12px 14px; }
             .tabcontent { padding: 50px 15px; height: 400px; }
             .tabcontent ul li { font-size: 17px; }
@@ -469,8 +467,8 @@
             #bannertext p { font-size: 16px; }
             .navbar-brand span { font-size: 0.9rem; }
             .navbar-brand img { width: 45px; height: 45px; }
-            .news-ticker-container { height: 35px; }
-            .news-list li { height: 35px; line-height: 35px; font-size: 15px; }
+            .news-ticker-container { height: 40px; }
+            .news-list li { height: 40px; font-size: 15px; margin: 0; }
             .tablink { width: 100%; float: none; margin-bottom: 5px; }
             .tabcontent { padding: 20px 10px; height: auto; }
             .tabcontent ul li { font-size: 16px; }
