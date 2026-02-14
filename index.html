@@ -374,14 +374,16 @@
             filter: brightness(1.1);
         }
 
-        /* ==================== 沉浸式圖片輪播 (類似 584旅 樣式) ==================== */
         .custom-carousel-section {
-            width: 100vw; /* 強制全寬 */
-            background-color: #111; /* 背景塗黑 */
+            width: 100vw; 
+            background-color: #050505; /* 改為極致深黑，讓留白邊界更隱形 */
+        }
+        .carousel-item {
+            background-color: #050505; /* 統一輪播項目的底色 */
         }
         .carousel-item img {
-            height: 600px; /* 增加高度讓畫面更震撼 */
-            object-fit: cover; /* 關鍵：填滿整個容器，不留白邊 */
+            height: 600px; 
+            object-fit: contain; /* 💡【關鍵修改】：從 cover 改為 contain，保證圖片完整不裁切 */
             width: 100%;
             object-position: center center;
         }
@@ -808,7 +810,7 @@
             <button type="button" data-bs-target="#imageCarousel" data-bs-slide-to="14"></button>
         </div>
         <div class="carousel-inner">
-            <div class="carousel-item active"><img src="/images/2024-12-29_170442.png" class="d-block w-100" alt="憲兵檢閱"></div>
+            <div class="carousel-item active"><img src="/images/PARADETRAINING.png" class="d-block w-100" alt="憲兵檢閱"></div>
             <div class="carousel-item"><img src="/images/parade0913_1.png" class="d-block w-100" alt="憲兵檢閱"></div>
             <div class="carousel-item"><img src="/images/parade0913_2.png" class="d-block w-100" alt="憲兵檢閱"></div>
             <div class="carousel-item"><img src="/images/image.png" class="d-block w-100" alt="憲兵檢閱"></div>
