@@ -311,6 +311,7 @@
 
             font-weight: bold;
         }
+
         #ahrefAllMP a {
             text-decoration: none;
             color: rgb(255, 170, 0);
@@ -407,24 +408,86 @@
         /* 小型裝置: 360*608, 375*608 */
 
         .circle {
-  width: 40px; /* 設定寬度 */
-  height: 40px; /* 設定高度，與寬度相同 */
-  background-color: rgba(45, 232, 12, 0.664); /* 設定背景顏色 */
-  border-radius: 50%; /* 將邊框設置為50%，使其成為正圓形 */
-  position: relative;
-  margin-bottom: 5px;
-}
-.content-vertab {
-    /* 設置一個固定的最大高度 */
-    max-height: 400px; /* 你可以根據需要調整這個值 */
-    
-    /* 讓內容超出時顯示垂直滾動條 */
-    overflow-y: auto; 
-    
-    /* 其他現有樣式，例如邊框、內距等... */
-    border: 1px solid #ccc;
-    padding: 15px;
-}
+            width: 40px;
+            /* 設定寬度 */
+            height: 40px;
+            /* 設定高度，與寬度相同 */
+            background-color: rgba(45, 232, 12, 0.664);
+            /* 設定背景顏色 */
+            border-radius: 50%;
+            /* 將邊框設置為50%，使其成為正圓形 */
+            position: relative;
+            margin-bottom: 5px;
+        }
+
+        .content-vertab {
+            /* 設置一個固定的最大高度 */
+            max-height: 400px;
+            /* 你可以根據需要調整這個值 */
+
+            /* 讓內容超出時顯示垂直滾動條 */
+            overflow-y: auto;
+
+            /* 其他現有樣式，例如邊框、內距等... */
+            border: 1px solid #ccc;
+            padding: 15px;
+        }
+
+        /* === 憲兵時間線 (Timeline) 樣式 START === */
+        .timeline {
+            position: relative;
+            margin: 10px 15px 10px 20px;
+            padding-left: 25px;
+            border-left: 3px solid darkgoldenrod;
+            /* 主軸線顏色 */
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+            /* 最後一個項目取消底部間距 */
+        }
+
+        /* 時間軸上的圓點 */
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -34px;
+            /* 根據 padding-left 和 border 粗細調整圓點位置 */
+            top: 3px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: #fff;
+            border: 4px solid darkgoldenrod;
+            box-shadow: 0 0 0 3px rgba(184, 134, 11, 0.2);
+            /* 圓點外圍的微光暈效果 */
+        }
+
+        .timeline-date {
+            font-weight: bold;
+            color: darkgoldenrod;
+            font-size: 1.125rem;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+
+        .timeline-content {
+            color: #333;
+            font-size: 1rem;
+            background-color: #f9f9f9;
+            padding: 10px 15px;
+            border-radius: 5px;
+            border-left: 4px solid #555;
+            /* 內容卡片的左側邊框，增加立體感 */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        /* === 憲兵時間線 (Timeline) 樣式 END === */
         @media (max-width: 575.98px) {
 
             /* Bootstrap xs breakpoint */
@@ -762,12 +825,6 @@
         @media (width: 1024px) and (height: 768px) and (orientation: landscape) {
             /* 這裡可以做更精細的調整，但通常通用橫向規則就夠了 */
         }
-
-       
-
-
-
-
     </style>
 </head>
 
@@ -893,7 +950,7 @@
                 <li>
                     <p>指揮部公告：歡迎加入憲兵大家庭</p>
                 </li>
-                
+
             </ul>
         </div>
     </div>
@@ -912,14 +969,15 @@
         <p style="font-size: 18px;">——===-［一日憲兵 終身憲兵］-===——</p>
         <p style="font-size: 18px;">憲兵為營區執法單位，負責維持營區內秩序、打擊突襲者，執行外交勤務保護外賓，保護首長</p>
         <p style="font-size: 18px;">指揮部轄下部隊分為：
-            <span id="ahrefDSC"><a href="/MPDSC.html">勤務支援大隊</a></span>、<span
-                id="ahrefSSC" style="color: rgb(51, 0, 255);"><a href="/MPSSC.html">特種勤務大隊</a>、<span
-                id="ahrefAllMP" style=" color: rgb(255, 170, 0);"><a href="/dashboard.html">憲兵總覽</a></span></p>
-                <div class="d-flex justify-content-center align-items-center mt-2" style="font-size: 
+            <span id="ahrefDSC"><a href="/MPDSC.html">勤務支援大隊</a></span>、<span id="ahrefSSC"
+                style="color: rgb(51, 0, 255);"><a href="/MPSSC.html">特種勤務大隊</a>、<span id="ahrefAllMP"
+                    style=" color: rgb(255, 170, 0);"><a href="/dashboard.html">憲兵總覽</a></span>
+        </p>
+        <div class="d-flex justify-content-center align-items-center mt-2" style="font-size: 
                 30px;">
-                    <div class="circle"></div>
-                    <div class="ms-2">招募中</div>
-                </div>
+            <div class="circle"></div>
+            <div class="ms-2">招募中</div>
+        </div>
         <div class="row mb-3">
             <div class="col-6 col-md-3">
                 <button class="tablink w-100" onclick="openPage('notice', this, 'dark')" id="defaultOpen">指揮部公告</button>
@@ -931,7 +989,7 @@
                 <button class="tablink w-100" onclick="openPage('SSC', this, 'dark')">特勤隊公告</button>
             </div>
             <div class="col-6 col-md-3">
-                <button class="tablink w-100" onclick="openPage('creater', this, 'dark')">製作名單</button>
+                <button class="tablink w-100" onclick="openPage('timelineTab', this, 'dark')">憲兵時間線</button>
             </div>
         </div>
 
@@ -942,17 +1000,17 @@
                     <li class="row">
                         <span class="col-12 col-md-auto">2026-02-07</span>
                         <p class="col">[人事調動]指揮部公告115年2月人事調動 &nbsp;<span id="more"><a class="button"
-                            href="/MPnews/MPnews260207_2.html">查看全文</a></span></p>
+                                    href="/MPnews/MPnews260207_2.html">查看全文</a></span></p>
                     </li>
                     <li class="row">
                         <span class="col-12 col-md-auto">2026-02-07</span>
                         <p class="col">[指揮部公告]本日(7)晚間八時憲兵召開內部會議 &nbsp;<span id="more"><a class="button"
-                            href="/MPnews/MPnews260207.html">查看全文</a></span></p>
+                                    href="/MPnews/MPnews260207.html">查看全文</a></span></p>
                     </li>
                     <li class="row">
                         <span class="col-12 col-md-auto">2026-01-31</span>
                         <p class="col">ROCA中華民國115年一月檢閱順利結束，憲兵拿下檢閱冠軍&nbsp;<span id="more"><a class="button"
-                            href="/MPnews/MPnews260131.html">查看全文</a></span></p>
+                                    href="/MPnews/MPnews260131.html">查看全文</a></span></p>
                     </li>
                     <li class="row">
                         <span class="col-12 col-md-auto">2025-11-11</span>
@@ -961,12 +1019,12 @@
                     <li class="row">
                         <span class="col-12 col-md-auto">2025-10-10</span>
                         <p class="col">中華民國114年國慶檢閱憲兵冠軍&nbsp;<span id="more"><a class="button"
-                            href="/MPnews/MPnews251010.html">查看全文</a></span></p>
+                                    href="/MPnews/MPnews251010.html">查看全文</a></span></p>
                     </li>
                     <li class="row">
                         <span class="col-12 col-md-auto">2025-09-30</span>
                         <p class="col">[人事異動]昨日(9/29)晚間高層開會決議人事調動&nbsp;<span id="more"><a class="button"
-                            href="/MPnews/MPnews250930.html">查看全文</a></span></p>
+                                    href="/MPnews/MPnews250930.html">查看全文</a></span></p>
                     </li>
                     <li class="row">
                         <span class="col-12 col-md-auto">2025-09-28</span>
@@ -979,7 +1037,7 @@
                     <li class="row">
                         <span class="col-12 col-md-auto">2025-09-13</span>
                         <p class="col">[對外公告]中華民國陸軍事基地[ROCA]三週年閱兵典禮&nbsp;<span id="more"><a class="button"
-                            href="/MPnews/MP250913.html">查看全文</a></p>
+                                    href="/MPnews/MP250913.html">查看全文</a></p>
                     </li>
                     <li class="row">
                         <span class="col-12 col-md-auto">2025-08-27</span>
@@ -996,8 +1054,8 @@
                 <ul class="list-unstyled">
                     <li class="row">
                         <span class="col-12 col-md-auto">2025-08-27</span>
-                        <p class="col">歡迎外國士兵加入憲兵&nbsp;<span id="more"><a class="button"
-                                    href="/joinus.html">Welcome Join MP</a></p>
+                        <p class="col">歡迎外國士兵加入憲兵&nbsp;<span id="more"><a class="button" href="/joinus.html">Welcome
+                                    Join MP</a></p>
                     </li>
                     <li class="row">
                         <span class="col-12 col-md-auto">2025-06-19</span>
@@ -1005,9 +1063,9 @@
                                     href="/joinus.html">了解更多</a></p>
                     </li>
                 </ul>
-            
-              
-            </div>  
+
+
+            </div>
             <!-- 特勤隊公告 -->
             <div id="SSC" class="tabcontent">
                 <ul class="list-unstyled">
@@ -1018,21 +1076,33 @@
                 </ul>
             </div>
             <!-- 製作人員名單 -->
-            <div id="creater" class="tabcontent">
-                <ul class="list-unstyled">
-                    <li class="row">
-                        <span class="col-12 col-md-auto">製作人員</span>
-                        <p class="col">Justin_chiu27</p>
-                    </li>
-                    <li class="row">
-                        <span class="col-12 col-md-auto">協作人員</span>
-                        <p class="col">XxChortleKidd</p>
-                    </li>
-                    <li class="row">
-                        <span class="col-12 col-md-auto">協作人員</span>
-                        <p class="col">rockroll901</p>
-                    </li>
-                </ul>
+            <div id="timelineTab" class="tabcontent">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">2026-02-07</div>
+                        <div class="timeline-content">實施115年2月重要人事調動與內部會議</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2026-01-31</div>
+                        <div class="timeline-content">ROCA 115年一月檢閱順利結束，憲兵奪得檢閱冠軍 (二連霸)</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2025-11-08</div>
+                        <div class="timeline-content">ROCA 新地圖晚間正式啟用</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2025-10-10</div>
+                        <div class="timeline-content">中華民國114年國慶檢閱，憲兵榮獲冠軍</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2025-09-13</div>
+                        <div class="timeline-content">中華民國陸軍事基地 [ROCA] 三週年閱兵典禮</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2025-08-27</div>
+                        <div class="timeline-content">提升憲兵國際化，整備英語文件並開放外國士兵加入</div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -1351,7 +1421,7 @@
         }
     });
     // --- Tab 頁籤切換功能 END ---
-  
+
 
 
 </script>
