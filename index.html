@@ -337,22 +337,43 @@
             background-color: #777;
         }
 
-        /* Style the tab content (and add height:100% for full page content) */
+
+
+        /* 修改現有的容器樣式：統一由外層提供純白背景與柔和陰影 */
+        .content-vertab {
+            background-color: #ffffff;
+            border: none;
+            /* 移除原本生硬的灰色邊框 */
+            border-radius: 10px;
+            /* 增加現代感圓角 */
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+            /* 增加柔和的立體陰影 */
+            max-height: 450px;
+            /* 稍微拉高可視範圍 */
+            overflow-y: auto;
+            padding: 25px;
+            /* 給予內部更舒適的呼吸空間 */
+        }
+
+        /* 移除 .tabcontent 衝突的背景與高度設定 */
         .tabcontent {
             color: black;
             display: none;
-            padding: 20px 12px;
-            height: 400px;
-            background-color: #ffffffe5;
+            padding: 0;
+            /* 移除內距，交給 content-vertab 處理 */
+            background-color: transparent;
+            /* 設為透明，解決雙層白底問題 */
+            height: auto;
+            /* 移除原本寫死的 400px，讓內容自然撐開 */
         }
 
         .tabcontent ul li {
             margin-bottom: 5px;
             font-size: 1.125rem;
-            border-bottom: 1px solid #ddd;
-            /* 添加這一行，您可以調整顏色和粗細 */
-            padding-bottom: 5px;
-            /* 增加一些底部內距，讓橫線和文字之間有空間 */
+            border-bottom: 1px solid #eee;
+            /* 把清單底線改淺一點，看起來更精緻 */
+            padding-bottom: 10px;
+            padding-top: 10px;
         }
 
         /* 如果最後一個 li 不需要底線，可以這樣做 */
@@ -420,71 +441,103 @@
             margin-bottom: 5px;
         }
 
-        .content-vertab {
-            /* 設置一個固定的最大高度 */
-            max-height: 400px;
-            /* 你可以根據需要調整這個值 */
 
-            /* 讓內容超出時顯示垂直滾動條 */
-            overflow-y: auto;
 
-            /* 其他現有樣式，例如邊框、內距等... */
-            border: 1px solid #ccc;
-            padding: 15px;
-        }
-
-        /* === 憲兵時間線 (Timeline) 樣式 START === */
+        /* === 現代化憲兵時間線 (Timeline) 樣式 START === */
         .timeline {
             position: relative;
-            margin: 10px 15px 10px 20px;
-            padding-left: 25px;
-            border-left: 3px solid darkgoldenrod;
-            /* 主軸線顏色 */
+            margin: 10px 0 10px 15px;
+            padding-left: 30px;
+            border-left: 2px solid #e9ecef;
+            /* 改用極淺灰色作為主軸線，視覺更輕盈 */
         }
 
         .timeline-item {
             position: relative;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
+            transition: transform 0.3s ease;
+            /* 增加平滑的動畫過渡 */
+        }
+
+        .timeline-item:hover {
+            transform: translateX(5px);
+            /* 滑鼠停懸時卡片會微幅向右浮動 */
         }
 
         .timeline-item:last-child {
             margin-bottom: 0;
-            /* 最後一個項目取消底部間距 */
         }
 
-        /* 時間軸上的圓點 */
+        /* 時間軸上的動態圓點 */
         .timeline-item::before {
             content: '';
             position: absolute;
-            left: -34px;
-            /* 根據 padding-left 和 border 粗細調整圓點位置 */
-            top: 3px;
-            width: 15px;
-            height: 15px;
+            left: -37px;
+            /* 精準對齊淺灰主軸線 */
+            top: 2px;
+            width: 14px;
+            height: 14px;
             border-radius: 50%;
+            background-color: darkgoldenrod;
+            /* 圓點預設填滿主色 */
+            border: 3px solid #fff;
+            /* 加上白邊營造鏤空感 */
+            box-shadow: 0 0 0 3px rgba(184, 134, 11, 0.15);
+            /* 微光暈 */
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover::before {
             background-color: #fff;
-            border: 4px solid darkgoldenrod;
-            box-shadow: 0 0 0 3px rgba(184, 134, 11, 0.2);
-            /* 圓點外圍的微光暈效果 */
+            border: 3px solid darkgoldenrod;
+            box-shadow: 0 0 0 5px rgba(184, 134, 11, 0.3);
+            /* Hover 時圓點反轉並放大光暈 */
         }
 
+        /* 日期標籤 (改為圓角 Badge 風格) */
         .timeline-date {
-            font-weight: bold;
-            color: darkgoldenrod;
-            font-size: 1.125rem;
-            margin-bottom: 5px;
+            display: inline-block;
+            font-weight: 700;
+            color: #fff;
+            background-color: darkgoldenrod;
+            font-size: 0.85rem;
+            padding: 5px 14px;
+            border-radius: 20px;
+            /* 藥丸形狀的圓角 */
+            margin-bottom: 12px;
             letter-spacing: 1px;
+            box-shadow: 0 3px 6px rgba(184, 134, 11, 0.25);
+            /* 標籤專屬小陰影 */
         }
 
+        /* 內容卡片 (對話泡泡風格) */
         .timeline-content {
-            color: #333;
-            font-size: 1rem;
-            background-color: #f9f9f9;
-            padding: 10px 15px;
-            border-radius: 5px;
-            border-left: 4px solid #555;
-            /* 內容卡片的左側邊框，增加立體感 */
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            color: #495057;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            background-color: #fff;
+            padding: 18px 20px;
+            border-radius: 10px;
+            border: 1px solid #f0f0f0;
+            /* 極細的邊框代替粗線條 */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            /* 輕薄的底部陰影 */
+            position: relative;
+        }
+
+        /* 卡片左側的小三角形 (營造指向日期的視覺感) */
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: 20px;
+            width: 12px;
+            height: 12px;
+            background-color: #fff;
+            border-top: 1px solid #f0f0f0;
+            border-left: 1px solid #f0f0f0;
+            transform: rotate(45deg);
+            /* 將正方形旋轉變成三角形 */
         }
 
         /* === 憲兵時間線 (Timeline) 樣式 END === */
