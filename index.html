@@ -443,104 +443,92 @@
 
 
 
-        /* === 現代化憲兵時間線 (Timeline) 樣式 START === */
-        .timeline {
-            position: relative;
-            margin: 10px 0 10px 15px;
-            padding-left: 30px;
-            border-left: 2px solid #e9ecef;
-            /* 改用極淺灰色作為主軸線，視覺更輕盈 */
-        }
+       /* === 現代化憲兵時間線 (Timeline) 質感優化版 START === */
+.timeline {
+    position: relative;
+    margin: 10px 0 10px 15px;
+    padding-left: 35px; /* 稍微加寬與主軸的距離 */
+    border-left: 2px dashed #ced4da; /* 將實線改為虛線，增加設計感與層次，打破死板 */
+}
 
-        .timeline-item {
-            position: relative;
-            margin-bottom: 30px;
-            transition: transform 0.3s ease;
-            /* 增加平滑的動畫過渡 */
-        }
+.timeline-item {
+    position: relative;
+    margin-bottom: 35px; /* 增加卡片之間的呼吸空間 */
+    transition: transform 0.3s ease;
+}
 
-        .timeline-item:hover {
-            transform: translateX(5px);
-            /* 滑鼠停懸時卡片會微幅向右浮動 */
-        }
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
 
-        .timeline-item:last-child {
-            margin-bottom: 0;
-        }
+/* 時間軸上的動態圓點 */
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -44px; /* 精準對齊虛線 */
+    top: 0px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: #fff; /* 預設白底 */
+    border: 4px solid darkgoldenrod; /* 金色外圈 */
+    box-shadow: 0 0 0 4px rgba(184, 134, 11, 0.1); /* 淡淡的光暈 */
+    transition: all 0.3s ease;
+    z-index: 1; /* 確保圓點覆蓋在虛線上 */
+}
 
-        /* 時間軸上的動態圓點 */
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -37px;
-            /* 精準對齊淺灰主軸線 */
-            top: 2px;
-            width: 14px;
-            height: 14px;
-            border-radius: 50%;
-            background-color: darkgoldenrod;
-            /* 圓點預設填滿主色 */
-            border: 3px solid #fff;
-            /* 加上白邊營造鏤空感 */
-            box-shadow: 0 0 0 3px rgba(184, 134, 11, 0.15);
-            /* 微光暈 */
-            transition: all 0.3s ease;
-        }
+/* Hover 時圓點的變化 */
+.timeline-item:hover::before {
+    background-color: darkgoldenrod; /* Hover 時內部填滿金色 */
+    border-color: #fff;
+    box-shadow: 0 0 0 6px rgba(184, 134, 11, 0.25);
+    transform: scale(1.1);
+}
 
-        .timeline-item:hover::before {
-            background-color: #fff;
-            border: 3px solid darkgoldenrod;
-            box-shadow: 0 0 0 5px rgba(184, 134, 11, 0.3);
-            /* Hover 時圓點反轉並放大光暈 */
-        }
+/* 日期標籤 (微漸變立體質感) */
+.timeline-date {
+    display: inline-block;
+    font-weight: 700;
+    color: #fff;
+    /* 加入微漸變讓藥丸標籤更有立體感 */
+    background: linear-gradient(90deg, darkgoldenrod, #d4af37); 
+    font-size: 0.85rem;
+    padding: 5px 16px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+    box-shadow: 0 3px 8px rgba(184, 134, 11, 0.3);
+    position: relative;
+    top: -2px; /* 微調高度對齊圓點 */
+}
 
-        /* 日期標籤 (改為圓角 Badge 風格) */
-        .timeline-date {
-            display: inline-block;
-            font-weight: 700;
-            color: #fff;
-            background-color: darkgoldenrod;
-            font-size: 0.85rem;
-            padding: 5px 14px;
-            border-radius: 20px;
-            /* 藥丸形狀的圓角 */
-            margin-bottom: 12px;
-            letter-spacing: 1px;
-            box-shadow: 0 3px 6px rgba(184, 134, 11, 0.25);
-            /* 標籤專屬小陰影 */
-        }
+/* 內容卡片 (告別死白，改用淺灰底色 + 金色粗邊框) */
+.timeline-content {
+    color: #333;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    background-color: #f8f9fa; /* 採用 Bootstrap 的極淺灰，與純白背景做出區隔 */
+    padding: 20px 25px;
+    border-radius: 6px 12px 12px 6px; /* 左側圓角縮小，配合粗邊框 */
+    border: 1px solid #eef0f2;
+    border-left: 5px solid darkgoldenrod; /* 增加左側的金色重點邊框，穩住視覺重心 */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+    transition: all 0.3s ease;
+}
 
-        /* 內容卡片 (對話泡泡風格) */
-        .timeline-content {
-            color: #495057;
-            font-size: 1.05rem;
-            line-height: 1.6;
-            background-color: #fff;
-            padding: 18px 20px;
-            border-radius: 10px;
-            border: 1px solid #f0f0f0;
-            /* 極細的邊框代替粗線條 */
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
-            /* 輕薄的底部陰影 */
-            position: relative;
-        }
+/* 移除原本卡片左側的小三角形，改走乾淨的浮動卡片風 */
+.timeline-content::before {
+    display: none; 
+}
 
-        /* 卡片左側的小三角形 (營造指向日期的視覺感) */
-        .timeline-content::before {
-            content: '';
-            position: absolute;
-            top: -6px;
-            left: 20px;
-            width: 12px;
-            height: 12px;
-            background-color: #fff;
-            border-top: 1px solid #f0f0f0;
-            border-left: 1px solid #f0f0f0;
-            transform: rotate(45deg);
-            /* 將正方形旋轉變成三角形 */
-        }
-
-        /* === 憲兵時間線 (Timeline) 樣式 END === */
+/* 卡片 Hover 互動效果 */
+.timeline-content:hover {
+    background-color: #ffffff; /* Hover 時卡片變純白，產生「亮起來」的反差感 */
+    border-left: 5px solid #d4af37; /* 左側邊框變為亮金色 */
+    box-shadow: 0 8px 25px rgba(184, 134, 11, 0.12); /* 帶有金色的專屬陰影 */
+    transform: translateX(6px); /* 往右浮動 */
+}
+/* === 現代化憲兵時間線 (Timeline) 質感優化版 END === */
         @media (max-width: 575.98px) {
 
             /* Bootstrap xs breakpoint */
