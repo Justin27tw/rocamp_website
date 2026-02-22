@@ -60,11 +60,6 @@ USER_CREDENTIALS = {
         password: "08bec55d100bf4ae349d65775d7bedc00fb590e23933492f1bd12da58326b7d2",
         Postion: "勤務成員", 
     },
-
-    "djdkdhdek": {
-        password: "154d012fb9d210a8ce80ac327389c74fbf8c4d11658b4837200a6ec6c506296a",
-        Postion: "勤務成員", 
-    },
     "Htbridisj": {
         password: "b0a9243231126e9b67e9a67392f2087bff68eaf4620e14695ba177d9309c0148",
         Postion: "勤務成員", 
@@ -78,12 +73,6 @@ USER_CREDENTIALS = {
         password: "8b58a2261ed51568332db59ed16b209dc03cc8b88bb74a680afd7d010a50ddd6",
         Postion: "勤務成員", 
     },
-
-    "ROC_1928": {
-        password: "003961cfebe5912a5747f4a9c78561ff00e4f148b26c7f1256f9f78b03f2e083",
-        Postion: "勤務成員", 
-    },
-    
     "POLICEKTRY": {
         password: "f1fd6a21830bdbc48933ab842c3d6c96f917f20d23f404b99f1582aa4103952e",
         Postion: "勤務成員", 
