@@ -401,103 +401,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-md navbar-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="/index.html">
-                <img src="/images/Png.png" alt="" width="50" height="50" class="d-inline-block align-text-middle">
-                <span>憲兵指揮部</span>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/index.html">首頁</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            最新資訊
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/notice.html">指揮部公告</a></li>
-                            <li><a class="dropdown-item" href="/joinus.html">加入我們</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            認識憲兵
-                        </a>
-                        <ul class="dropdown-menu">
-
-                            <li><a class="dropdown-item" href="/mp.html">憲兵簡介</a></li>
-                            <li><a class="dropdown-item" href="/mpdept.html">指揮鏈</a></li>
-                            <li><a class="dropdown-item" href="/event.html">活動</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            認識高層
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/CO.html">指揮官</a></li>
-                            <li><a class="dropdown-item" href="#">副指揮官</a></li>
-                            <li><a class="dropdown-item" href="/COS.html">參謀長</a></li>
-                            <li><a class="dropdown-item" href="/DCOS.html">副參謀長</a></li>
-                            <li><a class="dropdown-item" href="/history.html">歷屆高層</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            營級幹部
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/MPBC.html">營長</a></li>
-                            <li><a class="dropdown-item" href="/MPDBC.html">副營長</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            轄下單位
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/MPDSC.html">勤務支援大隊</a></li>
-                            <li><a class="dropdown-item" href="/MPSSC.html">特種勤務大隊</a></li>
-                            <li><a class="dropdown-item" href="/MPTC.html">憲兵訓練中心</a></li>
-                            <li><a class="dropdown-item" href="/MPIO.html">督察室</a></li>
-                            <li><a class="dropdown-item" href="/MPRPC.html">獎懲委員會</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            更多資訊
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item"
-                                    href="https://sites.google.com/view/law-roca/%E9%A6%96%E9%A0%81?authuser=0">法規資料庫</a>
-                            </li>
-                            <li><a class="dropdown-item"
-                                    href="https://sites.google.com/view/roca-584/%E9%A6%96%E9%A0%81">陸軍裝甲第五八四旅</a>
-                            </li>
-                            <li><a class="dropdown-item"
-                                    href="https://sites.google.com/view/robloxrocaaasfc/%E9%A6%96%E9%A0%81">陸軍航空特戰指揮部</a>
-                            </li>
-                            <li><a class="dropdown-item" href="https://sites.google.com/view/roca2022">ROCA官方網站</a>
-                            </li>
-                            <li><a class="dropdown-item" href="/creater.html">製作名單</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <div id="navbar-placeholder"></div>
     </div>
     <div class="hicomnav d-flex justify-content-center align-items-center gap-5" id="highnav">
         <a href="/CO.html" class="btn btn-warning">指揮官</a>
@@ -617,34 +521,45 @@
 </footer>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
+        // 1. 動態載入外部導覽列 (navbar.html)
+        fetch('/navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-placeholder').innerHTML = data;
 
-        // --- Navbar active 狀態處理 START ---
-        const currentPath = window.location.pathname;
-        const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+                // 2. 導覽列載入後，自動判定並標記目前的「Active」選單項
+                const currentPath = window.location.pathname;
+                const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
 
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            link.removeAttribute('aria-current');
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    link.removeAttribute('aria-current');
 
-            const linkHref = link.getAttribute('href');
+                    const linkHref = link.getAttribute('href');
 
-            // 處理首頁或根路徑的 active 狀態
-            if (
-                (currentPath === '/' || currentPath.endsWith('/index.html') || currentPath.endsWith('/')) &&
-                (linkHref === 'index.html' || linkHref === '#' || linkHref === '/')
-            ) {
-                if (link.textContent.trim() === '首頁') { // 確保這是針對首頁連結
-                    link.classList.add('active');
-                    link.setAttribute('aria-current', 'page');
-                }
-            }
-            // 處理其他頁面的 active 狀態
-            else if (linkHref && linkHref !== '#' && currentPath.includes(linkHref)) {
-                link.classList.add('active');
-                link.setAttribute('aria-current', 'page');
-            }
-        });
-        // --- Navbar active 狀態處理 END ---
+                    // 處理首頁或根路徑
+                    if (
+                        (currentPath === '/' || currentPath.endsWith('/index.html') || currentPath.endsWith('/')) &&
+                        (linkHref === '/index.html' || linkHref === '#' || linkHref === '/')
+                    ) {
+                        if (link.textContent.trim() === '首頁') { 
+                            link.classList.add('active');
+                            link.setAttribute('aria-current', 'page');
+                        }
+                    }
+                    // 處理其他頁面 (例如當網址包含 DCO.html 時，讓「認識高層」或對應連結亮起)
+                    else if (linkHref && linkHref !== '#' && currentPath.includes(linkHref)) {
+                        link.classList.add('active');
+                        link.setAttribute('aria-current', 'page');
+                    }
+                });
+            })
+            .catch(error => console.error('載入 Navbar 出錯:', error));
+
+        // --- 您原本頁面特有的其他腳本 (例如視差滾動) 放在下面 ---
+        const bannerSection = document.querySelector('.banner-section');
+        const bannerImage = document.querySelector('.banner-image');
+        // ... (保留原本的視差滾動邏輯)
     });
 </script>
 
