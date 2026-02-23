@@ -1,610 +1,323 @@
-<!DOCTYPE html>
-<html lang="zh-Hant">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>憲兵指揮部 - 內部首頁</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="icon" type="image/png" href="/images/Png.png">
-    <style>
-        /* 基礎樣式與版面調整 */
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #ffffff;
-            /* 輕微的灰色背景 */
-            padding-top: 80px;
-            /* 為 Navbar 留白 */
-            position: relative;
-            /* 確保偽元素能相對於 body 定位 */
-            min-height: 100vh;
-            /* 確保 body 至少佔據整個視窗高度 */
-            display: flex;
-            /* 使用 Flexbox 進行垂直置中 (RWD 優化) */
-            flex-direction: column;
-        }
-
-        /* --- START: RWD 浮水印背景設定 (重大修正) --- */
-        body::before {
-            content: '';
-            /* 偽元素必須有 content 屬性 */
-            position: fixed;
-            /* 固定在視窗背景 */
-            top: 0;
-            left: 0;
-            width: 100rem;
-            height: 100rem;
-            background-image: url('/images/MP.png');
-            /* 您的憲兵圖片路徑 */
-            background-position: center center;
-            /* 圖片置中 */
-            background-repeat: no-repeat;
-            /* 不重複圖片 */
-            background-attachment: fixed;
-            /* 圖片固定不動 */
-            opacity: 0.05;
-            /* 稍微提高透明度到 0.15 */
-            filter: grayscale(0.5%);
-            /* 輕微去色 */
-            z-index: -1;
-            /* 將偽元素放到最底層 */
-
-            /* RWD 浮水印大小調整：小螢幕時包含，大螢幕時覆蓋 */
-            background-size: contain;
-        }
-
-        /* 大螢幕時，讓背景圖片覆蓋整個視窗，看起來更大氣 */
-        @media (min-width: 992px) {
-            body::before {
-                background-size: cover;
-                opacity: 0.1;
-                /* 在大螢幕上可稍微降低透明度，以防太干擾 */
-            }
-        }
-
-        /* --- END: RWD 浮水印背景設定 --- */
-        /* Navbar 樣式調整 */
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background-color: #343a40;
-            padding: 0;
-            min-height: 60px;
-            z-index: 1030;
-        }
-
-        .navbar-brand {
-            padding: 0.5rem 1rem;
-            display: flex;
-            align-items: center;
-            height: 100%;
-        }
-
-        .navbar-brand img {
-            margin-right: 5px;
-        }
-
-        .navbar-brand span {
-            color: white;
-            letter-spacing: 2px;
-            font-size: 1rem;
-            /* 使用 rem */
-        }
-
-        /* 導航項目容器 */
-        .navbar-nav {
-            height: 100%;
-            align-items: center;
-        }
-
-        .navbar-nav .nav-item {
-            height: 100%;
-            display: flex;
-            align-items: center;
-        }
-
-        .navbar-nav .nav-link {
-            color: rgba(255, 255, 255, 0.75);
-            padding: 0.8rem 1rem;
-            font-size: 1rem;
-            /* 使用 rem */
-            height: 100%;
-            display: flex;
-            align-items: center;
-        }
-
-        .navbar-nav .nav-link:hover,
-        .navbar-nav .nav-link.active {
-            color: white;
-        }
-
-        /* 下拉選單樣式 (Bootstrap 5) */
-        .navbar-nav .dropdown-menu {
-            background-color: #343330;
-            border: none;
-            border-radius: 0;
-            padding: 0;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: opacity 0.3s ease-out, transform 0.3s ease-out;
-            display: block;
-            visibility: hidden;
-            pointer-events: none;
-        }
-
-        .navbar-nav .dropdown-menu.show {
-            opacity: 1;
-            transform: translateY(0);
-            visibility: visible;
-            pointer-events: auto;
-        }
-
-        .navbar-nav .dropdown-item {
-            color: rgba(255, 255, 255, 0.75);
-            padding: 0.75rem 1.5rem;
-        }
-
-        .navbar-nav .dropdown-item:hover,
-        .navbar-nav .dropdown-item:focus {
-            background-color: #495057;
-            color: white;
-        }
-
-        /* 儀表板容器樣式 - 確保居中 */
-        .dashboard-container {
-            margin-top: 30px;
-            max-width: 1000px;
-        }
-
-        /* 調整 RWD: 手機上儀表板上邊距縮小 */
-        @media (max-width: 767px) {
-            .dashboard-container {
-                margin-top: 15px;
-            }
-
-            /* 或者您 navbar-toggler 觸發的 breakpoint */
-            .navbar-collapse {
-                /* 確保在小螢幕展開時可以滾動 */
-                max-height: calc(100vh - 60px);
-                /* 假設 navbar 高度約 60px，減去它以避免超出螢幕 */
-                overflow-y: auto;
-                /* 允許垂直滾動 */
-                -webkit-overflow-scrolling: touch;
-
-                /* 改善 iOS 上的滾動體驗 */
-                .navbar-nav {
-                    height: auto;
-                    /* 讓導覽列項目高度自動調整 */
+        /* 卡片自定義樣式 */
+        <!DOCTYPE html>
+        <html lang="zh-Hant">
+        
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>憲兵指揮部 - 內部首頁</title>
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link rel="icon" type="image/png" href="/images/Png.png">
+            <style>
+                /* 基礎樣式與版面調整 */
+                body {
+                    font-family: 'Inter', sans-serif;
+                    background-color: #ffffff;
+                    padding-top: 80px;
+                    position: relative;
+                    min-height: 100vh;
+                    display: flex;
+                    flex-direction: column;
                 }
-
-                .navbar-nav .nav-item {
-                    height: auto;
-                    /* 讓導覽列項目高度自動調整 */
+        
+                /* RWD 浮水印背景 */
+                body::before {
+                    content: '';
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-image: url('/images/MP.png');
+                    background-position: center center;
+                    background-repeat: no-repeat;
+                    background-attachment: fixed;
+                    opacity: 0.05;
+                    z-index: -1;
+                    background-size: contain;
                 }
-            }
-
-            /* 確保下拉菜單在小螢幕展開時有足夠空間 */
-            .navbar-nav .dropdown-menu {
-                position: static;
-                /* 在手機模式下通常將下拉菜單設為靜態定位，使其在流中顯示 */
-                width: 100%;
-                /* 讓它佔滿寬度 */
-                box-shadow: none;
-                /* 移除陰影，使其看起來更像導覽列的一部分 */
-                border-top: 1px solid rgba(255, 255, 255, 0.1);
-                /* 添加分隔線 */
-            }
-
-            .navbar-nav .dropdown-item {
-                padding-left: 2.5rem;
-                /* 增加縮進，使其看起來像子選項 */
-            }
-        }
-
-
-        /* 卡片樣式 */
-        .card-custom {
-            border-left: 5px solid;
-            border-radius: 8px;
-            overflow: hidden;
-            transition: transform 0.2s;
-        }
-
-        .card-custom:hover {
-            transform: translateY(-3px);
-            /* 輕微上浮效果 */
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        /* 數據卡片顏色 (法規專用) */
-        .card-info {
-            border-left-color: #0dcaf0;
-        }
-
-        /* 警告區塊樣式 - 極度明顯版本 */
-        .alert-security {
-            border: 4px solid #a00010;
-            background-color: #a00000;
-            color: #ffffff;
-            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.7);
-            padding: 20px;
-            animation: pulse-danger 1.5s infinite alternate;
-            border-radius: 8px;
-        }
-
-        .news-ticker-bottom {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            height: 40px;
-            background: #f8f9fa;
-            border-top: 2px solid #003366;
-            display: flex;
-            z-index: 1050;
-            overflow: hidden;
-            /* 隱藏溢出的公告 */
-        }
-
-        .news-ticker-wrapper {
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            position: absolute;
-            width: 100%;
-        }
-
-        .news-item {
-            height: 40px;
-            line-height: 40px;
-            padding-left: 15px;
-        }
-
-        /* 定義閃爍動畫 */
-        @keyframes pulse-danger {
-            from {
-                box-shadow: 0 4px 15px rgb(228, 0, 0);
-            }
-
-            to {
-                box-shadow: 0 4px 20px rgb(248, 0, 25);
-            }
-        }
-
-        /* 內部關鍵文字強調高對比 (僅限黑名單) */
-        .alert-security .highlight {
-            color: #ffeb3b;
-            /* 亮黃色強調 */
-        }
-    </style>
-</head>
-
-<body>
-    <nav class="navbar navbar-expand-md navbar-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="/index.html">
-                <img src="/images/MP.png" alt="" width="50" height="50" class="d-inline-block align-text-middle">
-                <span><strong>憲兵指揮部-內部系統</strong></span>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/index.html">首頁</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            最新資訊
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/notice.html">指揮部公告</a></li>
-                            <li><a class="dropdown-item" href="/joinus.html">加入我們</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            認識憲兵
-                        </a>
-                        <ul class="dropdown-menu">
-
-                            <li><a class="dropdown-item" href="/mp.html">憲兵簡介</a></li>
-                            <li><a class="dropdown-item" href="/mpdept.html">指揮鏈</a></li>
-                            <li><a class="dropdown-item" href="/event.html">活動</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            認識高層
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/CO.html">指揮官</a></li>
-                            <li><a class="dropdown-item" href="/DCO.html">副指揮官</a></li>
-                            <li><a class="dropdown-item" href="/COS.html">參謀長</a></li>
-                            <li><a class="dropdown-item" href="/DCOS.html">副參謀長</a></li>
-                            <li><a class="dropdown-item" href="/history.html">歷屆高層</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            營級幹部
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/MPBC.html">營長</a></li>
-                            <li><a class="dropdown-item" href="/MPDBC.html">副營長</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            轄下單位
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/MPDSC.html">勤務支援大隊</a></li>
-                            <li><a class="dropdown-item" href="/MPSSC.html">特種勤務大隊</a></li>
-                            <li><a class="dropdown-item" href="/MPTC.html">憲兵訓練中心</a></li>
-                            <li><a class="dropdown-item" href="/MPIO.html">督察室</a></li>
-                            <li><a class="dropdown-item" href="/MPRPC.html">獎懲委員會</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            更多資訊
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item"
-                                    href="https://sites.google.com/view/law-roca/%E9%A6%96%E9%A0%81?authuser=0">法規資料庫</a>
+        
+                @media (min-width: 992px) {
+                    body::before {
+                        background-size: cover;
+                        opacity: 0.1;
+                    }
+                }
+        
+                /* Navbar 樣式 */
+                .navbar {
+                    position: fixed;
+                    top: 0;
+                    width: 100%;
+                    background-color: #343a40;
+                    z-index: 1030;
+                }
+        
+                .navbar-brand span {
+                    color: white;
+                    letter-spacing: 2px;
+                    font-size: 1rem;
+                }
+        
+                .navbar-nav .nav-link {
+                    color: rgba(255, 255, 255, 0.75);
+                }
+        
+                .navbar-nav .nav-link:hover,
+                .navbar-nav .nav-link.active {
+                    color: white;
+                }
+        
+                /* 下拉選單樣式 */
+                .navbar-nav .dropdown-menu {
+                    background-color: #343330;
+                    border: none;
+                    display: block;
+                    visibility: hidden;
+                    opacity: 0;
+                    transform: translateY(10px);
+                    transition: all 0.3s ease;
+                }
+        
+                .navbar-nav .dropdown-menu.show {
+                    opacity: 1;
+                    transform: translateY(0);
+                    visibility: visible;
+                }
+        
+                /* 儀表板容器 */
+                .dashboard-container {
+                    margin-top: 30px;
+                    max-width: 1000px;
+                    padding-bottom: 60px; /* 為底部公告留空間 */
+                }
+        
+                /* 警告區塊樣式 */
+                .alert-security {
+                    border: 4px solid #a00010;
+                    background-color: #a00000;
+                    color: #ffffff;
+                    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.7);
+                    padding: 20px;
+                    animation: pulse-danger 1.5s infinite alternate;
+                    border-radius: 8px;
+                }
+        
+                @keyframes pulse-danger {
+                    from { box-shadow: 0 4px 15px rgb(228, 0, 0); }
+                    to { box-shadow: 0 4px 20px rgb(248, 0, 25); }
+                }
+        
+                /* --- 修改後：底部跑馬燈置中樣式 --- */
+                .news-ticker-bottom {
+                    position: fixed;
+                    bottom: 0;
+                    width: 100%;
+                    height: 40px;
+                    background: #f8f9fa;
+                    border-top: 2px solid #003366;
+                    display: flex;
+                    justify-content: center; /* 置中 */
+                    align-items: center;
+                    z-index: 1050;
+                    overflow: hidden;
+                    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+                }
+        
+                .news-ticker-label {
+                    background-color: #003366;
+                    color: white;
+                    padding: 0 15px;
+                    height: 100%;
+                    line-height: 40px;
+                    font-weight: bold;
+                    flex-shrink: 0;
+                    font-size: 0.9rem;
+                }
+        
+                .news-ticker-content {
+                    flex: 0 1 600px; /* 限制寬度在 600px 以內並置中 */
+                    height: 40px;
+                    position: relative;
+                    overflow: hidden;
+                }
+        
+                .news-ticker-wrapper {
+                    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+                    position: absolute;
+                    width: 100%;
+                }
+        
+                .news-item {
+                    height: 40px;
+                    line-height: 40px;
+                    text-align: center; /* 文字置中 */
+                    font-weight: 500;
+                    color: #333;
+                    width: 100%;
+                }
+        
+                /* 卡片自定義樣式 */
+                .card-custom {
+                    border-left: 5px solid;
+                    border-radius: 8px;
+                    transition: transform 0.2s;
+                }
+                .card-custom:hover { transform: translateY(-3px); }
+                .card-info { border-left-color: #0dcaf0; }
+                .alert-security .highlight { color: #ffeb3b; }
+            </style>
+        </head>
+        
+        <body>
+            <nav class="navbar navbar-expand-md navbar-dark">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="/index.html">
+                        <img src="/images/MP.png" alt="" width="50" height="50" class="d-inline-block align-text-middle">
+                        <span><strong>憲兵指揮部-內部系統</strong></span>
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item"><a class="nav-link active" href="/index.html">首頁</a></li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">最新資訊</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="/notice.html">指揮部公告</a></li>
+                                    <li><a class="dropdown-item" href="/joinus.html">加入我們</a></li>
+                                </ul>
                             </li>
-                            <li><a class="dropdown-item"
-                                    href="https://sites.google.com/view/roca-584/%E9%A6%96%E9%A0%81">陸軍裝甲第五八四旅</a>
-                            </li>
-                            <li><a class="dropdown-item"
-                                    href="https://sites.google.com/view/robloxrocaaasfc/%E9%A6%96%E9%A0%81">陸軍航空特戰指揮部</a>
-                            </li>
-                            <li><a class="dropdown-item" href="https://sites.google.com/view/roca2022">ROCA官方網站</a>
-                            </li>
-                            <li><a class="dropdown-item" href="/creater.html">製作名單</a></li>
+                            <li class="nav-item"><a class="nav-link text-danger fw-bold" href="#" id="logoutBtn"><i class="fa fa-sign-out me-1"></i> 登出</a></li>
                         </ul>
-                    <li class="nav-item">
-                        <a class="nav-link text-danger fw-bold" href="/index.html" id="logoutBtn">
-                            <i class="fa fa-sign-out me-1"></i> 登出
-                        </a>
-                    </li>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <div class="news-ticker-bottom">
-        <div class="news-ticker-label"><i class="fa fa-bullhorn"></i> 內部公告</div>
-        <div class="news-ticker-content">
-            <div class="news-ticker-wrapper" id="newsTickerBottom">
-                <div class="news-item">115-02-23 已廢除駕照考試</div>
-                <div class="news-item">115-02-23 行政規程更新內容</div>
-                <div class="news-item">115-02-23 內部升階暨點數規範辦法</div>
-            </div>
-        </div>
-    </div>
-    <div class="container dashboard-container">
-        <div class="row">
-
-            <div class="col-12">
-                <div class="mb-4 p-3 p-md-4 bg-white shadow-sm rounded-3">
-                    <h1 class="h3 fw-bold text-dark">
-                        <i class="fa fa-user-secret me-2 text-primary"> </i> 歡迎回來 <span id="userRankDisplay"
-                            class="text-warning fw-bolder"></span> <span id="userNameDisplay"></span>！
-                    </h1>
-                    <p class="text-muted">這是您的憲兵指揮部內部法規與規範查詢頁面。</p>
+                    </div>
                 </div>
-                <div class="alert alert-security fw-bold mb-2 text-center" role="alert">
-                    <h5 class="fa fa-exclamation-triangle fa-2x text-white fw-bolder">
-                        警告！嚴禁將憲兵資料公開、分享、複製給非憲兵人員
-                    </h5>
-                    <p class="mb-1 lead fw-bold">
-                        <strong></strong>
-                    </p>
-                    <h5 class="mb-0 fw-bolder">
-                        <strong>不遵守將依懲處，並列入 <span class="highlight">中華民國憲兵永久黑名單!</span></strong>
-                    </h5>
-                </div>
-
-
+            </nav>
+        
+            <div class="container dashboard-container">
                 <div class="row">
-                    <div class="col-12 mb-4">
-                        <div class="card shadow">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 fw-bold text-primary">📜 法規與內部規範查閱</h6>
-                            </div>
-                            <div class="card-body p-5">
-                                <h4 class="mb-4 text-center fw-bold">請選擇您要查閱的規範類型</h4>
-                                <div class="row g-4">
-                                    <div class="col-md-6">
-                                        <div class="card card-custom card-info shadow-sm h-100">
-                                            <div class="card-body text-center">
-                                                <i class="fa fa-balance-scale fa-3x text-info mb-3"></i>
-                                                <h5 class="fw-bold mb-3">外部法規資料庫</h5>
-                                                <p class="text-muted">查閱ROCA法規，檢視法條。</p>
-                                                <a href="https://sites.google.com/view/law-roca/%E9%A6%96%E9%A0%81?authuser=0"
-                                                    target="_blank" class="btn btn-info w-75 mt-3">
-                                                    <i class="fa fa-external-link me-2"></i> 前往查閱 (外部連結)
-                                                </a>
-                                            </div>
-                                        </div>
+                    <div class="col-12">
+                        <div class="mb-4 p-3 p-md-4 bg-white shadow-sm rounded-3">
+                            <h1 class="h3 fw-bold text-dark">
+                                <i class="fa fa-user-secret me-2 text-primary"> </i> 歡迎回來 <span id="userRankDisplay" class="text-warning fw-bolder"></span> <span id="userNameDisplay"></span>！
+                            </h1>
+                            <p class="text-muted">這是您的憲兵指揮部內部法規與規範查詢頁面。</p>
+                        </div>
+        
+                        <div class="alert alert-security fw-bold mb-4 text-center" role="alert">
+                            <h5 class="fa fa-exclamation-triangle fa-2x text-white fw-bolder mb-3 d-block"> 警告！嚴禁將憲兵資料公開、分享、複製給非憲兵人員</h5>
+                            <h5 class="mb-0 fw-bolder">不遵守將依懲處，並列入 <span class="highlight">中華民國憲兵永久黑名單!</span></h5>
+                        </div>
+        
+                        <div class="row g-4">
+                            <div class="col-12">
+                                <div class="card shadow border-0">
+                                    <div class="card-header py-3 bg-white border-bottom">
+                                        <h6 class="m-0 fw-bold text-primary">📜 法規與內部規範查閱</h6>
                                     </div>
-
-                                    <div class="col-md-6">
-                                        <div class="card card-custom shadow-sm h-100"
-                                            style="border-left-color: #6c757d;">
-                                            <div class="card-body text-center">
-                                                <i class="fa fa-book fa-3x text-secondary mb-3"></i>
-                                                <h5 class="fw-bold mb-3">憲兵內部規範</h5>
-                                                <p class="text-muted">查閱憲兵指揮部內部作業標準流程與紀律規範。</p>
-                                                <a href="/regulation_detail.html" class="btn btn-secondary w-75 mt-3">
-                                                    <i class="fa fa-search me-2"></i> 內部規範選單
-                                                </a>
+                                    <div class="card-body p-4 p-md-5">
+                                        <h4 class="mb-4 text-center fw-bold">請選擇您要查閱的規範類型</h4>
+                                        <div class="row g-4">
+                                            <div class="col-md-6">
+                                                <div class="card card-custom card-info shadow-sm h-100 p-3">
+                                                    <div class="card-body text-center">
+                                                        <i class="fa fa-balance-scale fa-3x text-info mb-3"></i>
+                                                        <h5 class="fw-bold mb-3">外部法規資料庫</h5>
+                                                        <p class="text-muted small">查閱ROCA法規，檢視法條。</p>
+                                                        <a href="https://sites.google.com/view/law-roca/" target="_blank" class="btn btn-info w-75 mt-3 text-white"> 前往查閱</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="card card-custom shadow-sm h-100 p-3" style="border-left-color: #6c757d;">
+                                                    <div class="card-body text-center">
+                                                        <i class="fa fa-book fa-3x text-secondary mb-3"></i>
+                                                        <h5 class="fw-bold mb-3">憲兵內部規範</h5>
+                                                        <p class="text-muted small">查閱憲兵指揮部內部作業標準流程。</p>
+                                                        <a href="/regulation_detail.html" class="btn btn-secondary w-75 mt-3"> 內部規範選單</a>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12 mb-4">
-                        <div class="card shadow">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 fw-bold text-danger"><i class="fa fa-info-circle me-2"></i> 系統資訊</h6>
-                            </div>
-                            <div class="card-body p-4">
-                                <p>本系統維護由副指揮官進行維護，對於內部規範有疑問歡迎詢問憲兵幹部</p>
-                                <p class="text-danger fw-bold">注意：本網站僅供Roblox中華民國陸軍事基地使用，與現實中之中華民國法律並無任何關係。</p>
+        
+                            <div class="col-12 mb-5">
+                                <div class="card shadow border-0">
+                                    <div class="card-header py-3 bg-white border-bottom">
+                                        <h6 class="m-0 fw-bold text-danger"><i class="fa fa-info-circle me-2"></i> 系統資訊</h6>
+                                    </div>
+                                    <div class="card-body p-4">
+                                        <p>本系統維護由副指揮官進行維護，對於內部規範有疑問歡迎詢問憲兵幹部</p>
+                                        <p class="text-danger fw-bold mb-0 small">注意：本網站僅供Roblox中華民國陸軍事基地使用，與現實中之中華民國法律並無任何關係。</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const tickerWrapper = document.getElementById('newsTickerBottom');
-            const newsItems = tickerWrapper.querySelectorAll('.news-item');
-
-            if (newsItems.length > 1) {
-                let currentIndex = 0;
-                const itemHeight = 40;
-
-                function startRotation() {
-                    currentIndex++;
-                    if (currentIndex >= newsItems.length) {
-                        // 瞬間回到第一則，達成無縫循環
-                        tickerWrapper.style.transition = 'none';
-                        currentIndex = 0;
-                        tickerWrapper.style.transform = `translateY(0)`;
-                        setTimeout(() => {
-                            tickerWrapper.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
-                        }, 50);
-                    } else {
-                        tickerWrapper.style.transform = `translateY(-${currentIndex * itemHeight}px)`;
-                    }
-                }
-
-                let interval = setInterval(startRotation, 4000); // 4秒轉動一次
-
-                // 滑鼠移入暫停
-                const container = document.querySelector('.news-ticker-bottom');
-                container.addEventListener('mouseenter', () => clearInterval(interval));
-                container.addEventListener('mouseleave', () => {
-                    interval = setInterval(startRotation, 4000);
-                });
-            }
-        });
-        document.addEventListener('DOMContentLoaded', () => {
-            // 1. 設置登出功能 (已啟用並修改導向路徑為 /index.html)
-            setupLogout();
-
-            // 2. 檢查登入狀態並取得使用者資訊
-            checkLoginStatus();
-
-            // 登出功能：只清除 localStorage 並導向首頁 (/index.html)
-            function setupLogout() {
-                const logoutBtn = document.getElementById('logoutBtn');
-                if (!logoutBtn) return;
-
-                logoutBtn.addEventListener('click', (e) => {
-                    e.preventDefault();
-
-                    // 清除本地儲存的登入狀態
-                    localStorage.removeItem('loggedInUser');
-
-                    // 導向使用者指定的首頁
-                    setTimeout(() => {
-                        window.location.href = '/index.html';
-                    }, 500);
-                });
-            }
-
-            // 檢查登入狀態與顯示資訊：純粹從 localStorage 讀取
-            function checkLoginStatus() {
-                const userNameDisplay = document.getElementById('userNameDisplay');
-                const userRankDisplay = document.getElementById('userRankDisplay');
-
-                const storedUserData = localStorage.getItem('loggedInUser');
-
-                if (storedUserData) {
-                    try {
-                        const userData = JSON.parse(storedUserData);
-
-                        // 成功從 localStorage 讀取到資料 (RobloxName 和 Postion)
-                        if (userNameDisplay) {
-                            userNameDisplay.textContent = userData.robloxName;
-                        }
-                        if (userRankDisplay) {
-                            // rank 鍵名儲存的是 Postion (職位/階級)
-                            userRankDisplay.textContent = userData.rank;
-                        }
-                        // 成功讀取並顯示，不需要進一步的伺服器檢查
-
-                    } catch (e) {
-                        console.error("解析本地儲存資料錯誤:", e);
-                        // 如果資料解析失敗，則視為未登入
-                        forceLogout();
-                    }
-                } else {
-                    // localStorage 中沒有資料，視為未登入
-                    forceLogout();
-                }
-            }
-
-            // 強制導向登出頁面 (已修改為 /index.html)
-            function forceLogout() {
-                localStorage.removeItem('loggedInUser');
-                alert("您尚未登入或會話已過期，請重新登入。");
-                window.location.href = '/index.html'; // 導向首頁
-            }
-
-            // 簡單的訊息提示功能 (雖然純前端使用較少，但保留)
-            function alertMessage(message, type = 'info') {
-                const container = document.querySelector('.dashboard-container');
-                const existingAlert = document.getElementById('tempAlert');
-                if (existingAlert) existingAlert.remove();
-
-                const alertDiv = document.createElement('div');
-                alertDiv.id = 'tempAlert';
-                // RWD 修正: 將 w-50 改為 w-75 w-md-50, 讓手機上佔用更多空間
-                alertDiv.className = `alert alert-${type} alert-dismissible fade show fixed-top mx-auto mt-3` +
-                    ` shadow-lg w-75 w-md-50`;
-                alertDiv.role = 'alert';
-                alertDiv.innerHTML = `
-                    <div class="d-flex align-items-center">
-                        <i class="fa fa-info-circle me-2"></i>
-                        <span>${message}</span>
+        
+            <div class="news-ticker-bottom">
+                <div class="news-ticker-label"><i class="fa fa-bullhorn"></i> 內部公告</div>
+                <div class="news-ticker-content">
+                    <div class="news-ticker-wrapper" id="newsTickerBottom">
+                        <div class="news-item">115-02-23 已廢除駕照考試</div>
+                        <div class="news-item">115-02-23 行政規程更新內容</div>
+                        <div class="news-item">115-02-23 內部升階暨點數規範辦法</div>
+                        <div class="news-item">115-02-23 已廢除駕照考試</div>
                     </div>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                `;
-                container.prepend(alertDiv);
-
-                // 自動關閉
-                setTimeout(() => {
-                    if (typeof bootstrap !== 'undefined' && bootstrap.Alert) {
-                        const bsAlert = new bootstrap.Alert(alertDiv);
-                        bsAlert.close();
-                    } else {
-                        alertDiv.remove();
+                </div>
+            </div>
+        
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    // 跑馬燈邏輯
+                    const tickerWrapper = document.getElementById('newsTickerBottom');
+                    const newsItems = tickerWrapper.querySelectorAll('.news-item');
+        
+                    if (newsItems.length > 1) {
+                        let currentIndex = 0;
+                        const itemHeight = 40;
+        
+                        function startRotation() {
+                            currentIndex++;
+                            tickerWrapper.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+                            tickerWrapper.style.transform = `translateY(-${currentIndex * itemHeight}px)`;
+        
+                            if (currentIndex >= newsItems.length - 1) {
+                                setTimeout(() => {
+                                    tickerWrapper.style.transition = 'none';
+                                    currentIndex = 0;
+                                    tickerWrapper.style.transform = `translateY(0)`;
+                                }, 600);
+                            }
+                        }
+                        let interval = setInterval(startRotation, 4000);
+                        const container = document.querySelector('.news-ticker-bottom');
+                        container.addEventListener('mouseenter', () => clearInterval(interval));
+                        container.addEventListener('mouseleave', () => interval = setInterval(startRotation, 4000));
                     }
-                }, 3000);
-            }
-        });
-    </script>
-
-</body>
-
-</html>
+        
+                    // 登入狀態邏輯
+                    const storedUserData = localStorage.getItem('loggedInUser');
+                    if (storedUserData) {
+                        const userData = JSON.parse(storedUserData);
+                        document.getElementById('userNameDisplay').textContent = userData.robloxName;
+                        document.getElementById('userRankDisplay').textContent = userData.rank;
+                    } else {
+                        window.location.href = '/index.html';
+                    }
+        
+                    document.getElementById('logoutBtn').addEventListener('click', () => {
+                        localStorage.removeItem('loggedInUser');
+                        window.location.href = '/index.html';
+                    });
+                });
+            </script>
+        </body>
+        </html>
