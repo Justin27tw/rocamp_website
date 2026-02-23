@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <title>加入我們</title>
     <link rel="icon" type="image/png" href="/images/Png.png">
     <style>
@@ -68,7 +69,6 @@
         .navbar-nav .nav-link.active {
             color: white;
             background-color: rgba(255, 255, 255, 0.1);
-            /* hover 和 active 時增加一個微妙的背景色 */
         }
 
         /* Dropdown Menu */
@@ -84,7 +84,8 @@
             display: block;
         }
 
-        .navbar-nav .dropdown-menu.show {
+        .navbar-nav .dropdown-menu.show,
+        .nav-item.dropdown:hover .dropdown-menu {
             opacity: 1;
             transform: translateY(0);
             pointer-events: auto;
@@ -136,16 +137,13 @@
 
         #bannertext h1 {
             font-size: clamp(2.5rem, 5vw, 3.5rem);
-            /* 響應式字體大小 */
             margin-bottom: 0;
             font-weight: bold;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            /* 增加陰影以提高可讀性 */
         }
 
         #bannertext p {
             font-size: clamp(1rem, 2vw, 1.2rem);
-            /* 響應式字體大小 */
             margin-top: 0;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
         }
@@ -206,13 +204,11 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            /* 圖片混合模式和濾鏡調整 */
-            background-color: rgba(0, 0, 0, 0.5); /* 添加半透明黑色作為底色 */
-            background-blend-mode:overlay; /* 混合模式讓圖片變暗 */
-            filter: grayscale(17%) brightness(90%); /* 增加灰度並大幅降低亮度 */
+            background-color: rgba(0, 0, 0, 0.5); 
+            background-blend-mode:overlay; 
+            filter: grayscale(17%) brightness(90%); 
             position: relative;
             min-height: 400px;
-            display: flex;
             flex-direction: column;
         }
 
@@ -222,7 +218,6 @@
             color: white;
             padding: 15px;
             margin: -20px -20px 20px -20px;
-            /* 填滿父容器左右兩側 */
         }
 
         .tabcontent-title hr {
@@ -240,7 +235,7 @@
 
         .tabcontent ul li {
             font-size: 1.2rem;
-            color: white; /* 將列表文字顏色改為白色 */
+            color: white; 
             padding-bottom: 8px;
             line-height: 1.6;
         }
@@ -267,8 +262,6 @@
 
         /*--- Responsive Design ---*/
         @media (max-width: 767.98px) {
-
-            /* Navbar */
             .navbar-collapse {
                 max-height: calc(100vh - 60px);
                 overflow-y: auto;
@@ -286,7 +279,6 @@
                 padding-left: 2.5rem;
             }
 
-            /* Tab Section */
             .tab-container {
                 flex-direction: column;
             }
@@ -319,104 +311,8 @@
 
 <body>
     <div>
-        <nav class="navbar navbar-expand-md navbar-dark">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="/index.html">
-                    <img src="/images/Png.png" alt="憲兵指揮部Logo" width="50" height="50"
-                        class="d-inline-block align-text-middle">
-                    <span>憲兵指揮部</span>
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/index.html">首頁</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                最新資訊
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/notice.html">指揮部公告</a></li>
-                                <li><a class="dropdown-item active" href="/join.html" aria-current="page">加入我們</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                認識憲兵
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/mp.html">憲兵簡介</a></li>
-                                <li><a class="dropdown-item" href="/mpdept.html">指揮鏈</a></li>
-                                <li><a class="dropdown-item" href="/event.html">活動</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                認識高層
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/CO.html">指揮官</a></li>
-                                <li><a class="dropdown-item" href="/DCO.html">副指揮官</a></li>
-                                <li><a class="dropdown-item" href="/COS.html">參謀長</a></li>
-                                <li><a class="dropdown-item" href="/DCOS.html">副參謀長</a></li>
-                                <li><a class="dropdown-item" href="/history.html">歷屆高層</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                營級幹部
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/MPBC.html">營長</a></li>
-                                <li><a class="dropdown-item" href="/MPDBC.html">副營長</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                轄下單位
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/MPDSC.html">勤務支援大隊</a></li>
-                                <li><a class="dropdown-item" href="/MPSSC.html">特種勤務大隊</a></li>
-                                <li><a class="dropdown-item" href="/MPTC.html">憲兵訓練中心</a></li>
-                                <li><a class="dropdown-item" href="/MPIO.html">督察室</a></li>
-                                <li><a class="dropdown-item" href="/MPRPC.html">獎懲委員會</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                更多資訊
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item"
-                                        href="https://sites.google.com/view/law-roca/%E9%A6%96%E9%A0%81?authuser=0">法規資料庫</a>
-                                </li>
-                                <li><a class="dropdown-item"
-                                        href="https://sites.google.com/view/roca-584/%E9%A6%96%E9%A0%81">陸軍裝甲第五八四旅</a>
-                                </li>
-                                <li><a class="dropdown-item"
-                                        href="https://sites.google.com/view/robloxrocaaasfc/%E9%A6%96%E9%A0%81">陸軍航空特戰指揮部</a>
-                                </li>
-                                <li><a class="dropdown-item" href="https://sites.google.com/view/roca2022">ROCA官方網站</a>
-                                </li>
-                                <li><a class="dropdown-item" href="/creater.html">製作名單</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
+        <div id="navbar-placeholder"></div>
+        
         <div class="banner-section">
             <img src="/images/7646713684_11750841896_1742005422997.png" alt="Banner Image" class="banner-image">
             <div id="bannertext">
@@ -491,36 +387,34 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // 處理導航項的 active 狀態
-            const currentPath = window.location.pathname;
-            const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                link.removeAttribute('aria-current');
+            // 1. 自動抓取導覽列
+            fetch('/navbar.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('navbar-placeholder').innerHTML = data;
+    
+                    // 2. 自動判斷目前的頁面標記為亮色 (Active)
+                    // 這邊我稍微優化了比對邏輯，讓它能準確抓到 joinus.html
+                    const currentPath = window.location.pathname;
+                    const navLinks = document.querySelectorAll('.navbar-nav .nav-link, .dropdown-item');
+                    
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        const linkHref = link.getAttribute('href');
+                        if (linkHref && linkHref !== '#' && currentPath.includes(linkHref.split('/').pop())) {
+                            link.classList.add('active');
+                            // 如果是下拉選單裡面的項目，把外層的 nav-link 也標亮
+                            const parentDropdown = link.closest('.dropdown');
+                            if (parentDropdown) {
+                                const parentToggle = parentDropdown.querySelector('.nav-link.dropdown-toggle');
+                                if (parentToggle) parentToggle.classList.add('active');
+                            }
+                        }
+                    });
+                })
+                .catch(error => console.error('Error loading navbar:', error));
 
-                const linkHref = link.getAttribute('href');
-                if (linkHref && currentPath.endsWith(linkHref)) {
-                    link.classList.add('active');
-                    link.setAttribute('aria-current', 'page');
-                } else if (link.textContent.trim() === '加入我們' && currentPath.endsWith('join.html')) {
-                    link.classList.add('active');
-                    link.setAttribute('aria-current', 'page');
-                }
-            });
-
-            // 處理下拉選單的 active 狀態
-            const dropdownLinks = document.querySelectorAll('.navbar-nav .dropdown-item');
-            dropdownLinks.forEach(item => {
-                if (item.getAttribute('href') === currentPath) {
-                    const dropdownToggle = item.closest('.dropdown').querySelector('.dropdown-toggle');
-                    if (dropdownToggle) {
-                        dropdownToggle.classList.add('active');
-                        dropdownToggle.setAttribute('aria-current', 'page');
-                    }
-                }
-            });
-
-            // 視差滾動效果
+            // 3. 視差滾動效果
             const bannerSection = document.querySelector('.banner-section');
             const bannerImage = document.querySelector('.banner-image');
             if (bannerSection && bannerImage) {
@@ -539,7 +433,7 @@
                 parallaxScroll();
             }
 
-            // 預設顯示第一個 Tab
+            // 4. 預設顯示第一個 Tab
             const defaultTabButton = document.querySelector('.tablinks');
             if (defaultTabButton) {
                 defaultTabButton.click();
