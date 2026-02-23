@@ -235,59 +235,6 @@
             border-radius: 8px;
         }
 
-        /* 公告欄樣式 */
-        .news-ticker-container {
-            background: #f8f9fa;
-            border-bottom: 1px solid #dee2e6;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            overflow: hidden;
-            position: fixed;
-            top: 60px;
-            /* 需對應 Navbar 高度 */
-            width: 100%;
-            z-index: 999;
-        }
-
-        .news-ticker-label {
-            background: #003366;
-            /* 深藍色背景 */
-            color: white;
-            padding: 0 15px;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            font-weight: bold;
-            font-size: 0.9rem;
-            white-space: nowrap;
-            z-index: 2;
-        }
-
-        .news-ticker-content {
-            flex: 1;
-            height: 100%;
-            position: relative;
-            overflow: hidden;
-            padding-left: 15px;
-        }
-
-        .news-ticker-wrapper {
-            position: absolute;
-            width: 100%;
-            transition: transform 0.5s ease-in-out;
-        }
-
-        .news-item {
-            height: 40px;
-            line-height: 40px;
-            font-size: 0.9rem;
-            color: #333;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
         .news-ticker-bottom {
             position: fixed;
             bottom: 0;
@@ -297,16 +244,20 @@
             border-top: 2px solid #003366;
             display: flex;
             z-index: 1050;
+            overflow: hidden;
+            /* 隱藏溢出的公告 */
         }
 
         .news-ticker-wrapper {
-            transition: transform 0.6s ease;
-            /* 這是控制轉動動畫的關鍵 */
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            position: absolute;
+            width: 100%;
         }
 
         .news-item {
             height: 40px;
             line-height: 40px;
+            padding-left: 15px;
         }
 
         /* 定義閃爍動畫 */
@@ -431,16 +382,13 @@
             </div>
         </div>
     </nav>
-    <div class="news-ticker-container">
-        <div class="news-ticker-label">
-            <i class="fa fa-bullhorn"></i> 內部公告
-        </div>
+    <div class="news-ticker-bottom">
+        <div class="news-ticker-label"><i class="fa fa-bullhorn"></i> 內部公告</div>
         <div class="news-ticker-content">
-            <div class="news-ticker-wrapper" id="newsTicker">
+            <div class="news-ticker-wrapper" id="newsTickerBottom">
                 <div class="news-item">115-02-23 已廢除駕照考試</div>
                 <div class="news-item">115-02-23 行政規程更新內容</div>
-                <div class="news-item">115-02-23 內部升階暨點數規範辦法 </div>
-                <div class="news-item">115-02-23 內部升階暨點數規範辦法 </div>
+                <div class="news-item">115-02-23 內部升階暨點數規範辦法</div>
             </div>
         </div>
     </div>
@@ -526,11 +474,6 @@
     </div>
 
     <script>
-        function rotateNews() {
-            const ticker = document.getElementById('news-ticker-content');
-            // 這裡撰寫切換 index 的邏輯，讓 transform: translateY 產生位移
-        }
-        setInterval(rotateNews, 3000); // 每 3 秒轉動一次
         document.addEventListener('DOMContentLoaded', function () {
             const tickerWrapper = document.getElementById('newsTickerBottom');
             const newsItems = tickerWrapper.querySelectorAll('.news-item');
@@ -538,16 +481,14 @@
             if (newsItems.length > 1) {
                 let currentIndex = 0;
                 const itemHeight = 40;
-                const displayTime = 4000; // 每條顯示 4 秒
 
-                function rotateNews() {
+                function startRotation() {
                     currentIndex++;
                     if (currentIndex >= newsItems.length) {
-                        // 瞬間回到第一筆（無動畫）
+                        // 瞬間回到第一則，達成無縫循環
                         tickerWrapper.style.transition = 'none';
                         currentIndex = 0;
                         tickerWrapper.style.transform = `translateY(0)`;
-                        // 強制瀏覽器重繪後恢復動畫
                         setTimeout(() => {
                             tickerWrapper.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
                         }, 50);
@@ -556,13 +497,13 @@
                     }
                 }
 
-                let tickerInterval = setInterval(rotateNews, displayTime);
+                let interval = setInterval(startRotation, 4000); // 4秒轉動一次
 
-                // 滑鼠移入時暫停，移出時繼續
+                // 滑鼠移入暫停
                 const container = document.querySelector('.news-ticker-bottom');
-                container.addEventListener('mouseenter', () => clearInterval(tickerInterval));
+                container.addEventListener('mouseenter', () => clearInterval(interval));
                 container.addEventListener('mouseleave', () => {
-                    tickerInterval = setInterval(rotateNews, displayTime);
+                    interval = setInterval(startRotation, 4000);
                 });
             }
         });
