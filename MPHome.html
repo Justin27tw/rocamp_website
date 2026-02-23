@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" type="image/png" href="/images/Png.png">
     <style>
-       /* 基礎樣式與版面調整 */
-       body {
+        /* 基礎樣式與版面調整 */
+        body {
             font-family: 'Inter', sans-serif;
             background-color: #ffffff;
             /* 輕微的灰色背景 */
@@ -21,7 +21,8 @@
             /* 確保偽元素能相對於 body 定位 */
             min-height: 100vh;
             /* 確保 body 至少佔據整個視窗高度 */
-            display: flex; /* 使用 Flexbox 進行垂直置中 (RWD 優化) */
+            display: flex;
+            /* 使用 Flexbox 進行垂直置中 (RWD 優化) */
             flex-direction: column;
         }
 
@@ -49,21 +50,23 @@
             /* 輕微去色 */
             z-index: -1;
             /* 將偽元素放到最底層 */
-            
+
             /* RWD 浮水印大小調整：小螢幕時包含，大螢幕時覆蓋 */
-            background-size: contain; 
+            background-size: contain;
         }
 
         /* 大螢幕時，讓背景圖片覆蓋整個視窗，看起來更大氣 */
         @media (min-width: 992px) {
             body::before {
                 background-size: cover;
-                opacity: 0.1; /* 在大螢幕上可稍微降低透明度，以防太干擾 */
+                opacity: 0.1;
+                /* 在大螢幕上可稍微降低透明度，以防太干擾 */
             }
         }
+
         /* --- END: RWD 浮水印背景設定 --- */
-              /* Navbar 樣式調整 */
-              .navbar {
+        /* Navbar 樣式調整 */
+        .navbar {
             position: fixed;
             top: 0;
             width: 100%;
@@ -155,14 +158,15 @@
             margin-top: 30px;
             max-width: 1000px;
         }
-        
+
         /* 調整 RWD: 手機上儀表板上邊距縮小 */
         @media (max-width: 767px) {
             .dashboard-container {
                 margin-top: 15px;
             }
-              /* 或者您 navbar-toggler 觸發的 breakpoint */
-              .navbar-collapse {
+
+            /* 或者您 navbar-toggler 觸發的 breakpoint */
+            .navbar-collapse {
                 /* 確保在小螢幕展開時可以滾動 */
                 max-height: calc(100vh - 60px);
                 /* 假設 navbar 高度約 60px，減去它以避免超出螢幕 */
@@ -229,6 +233,59 @@
             padding: 20px;
             animation: pulse-danger 1.5s infinite alternate;
             border-radius: 8px;
+        }
+
+        /* 公告欄樣式 */
+        .news-ticker-container {
+            background: #f8f9fa;
+            border-bottom: 1px solid #dee2e6;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            position: fixed;
+            top: 60px;
+            /* 需對應 Navbar 高度 */
+            width: 100%;
+            z-index: 999;
+        }
+
+        .news-ticker-label {
+            background: #003366;
+            /* 深藍色背景 */
+            color: white;
+            padding: 0 15px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            z-index: 2;
+        }
+
+        .news-ticker-content {
+            flex: 1;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            padding-left: 15px;
+        }
+
+        .news-ticker-wrapper {
+            position: absolute;
+            width: 100%;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .news-item {
+            height: 40px;
+            line-height: 40px;
+            font-size: 0.9rem;
+            color: #333;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         /* 定義閃爍動畫 */
@@ -343,18 +400,29 @@
                             </li>
                             <li><a class="dropdown-item" href="/creater.html">製作名單</a></li>
                         </ul>
-                        <li class="nav-item">
-                            <a class="nav-link text-danger fw-bold" href="/index.html" id="logoutBtn">
-                                <i class="fa fa-sign-out me-1"></i> 登出
-                            </a>
-                        </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-danger fw-bold" href="/index.html" id="logoutBtn">
+                            <i class="fa fa-sign-out me-1"></i> 登出
+                        </a>
+                    </li>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
- 
-
+    <div class="news-ticker-container">
+        <div class="news-ticker-label">
+            <i class="fa fa-bullhorn"></i> 內部公告
+        </div>
+        <div class="news-ticker-content">
+            <div class="news-ticker-wrapper" id="newsTicker">
+                <div class="news-item">115-02-23 已廢除駕照考試</div>
+                <div class="news-item">115-02-23 行政規程更新內容</div>
+                <div class="news-item">115-02-23 內部升階暨點數規範辦法 </div>
+                <div class="news-item">115-02-23 內部升階暨點數規範辦法 </div>
+            </div>
+        </div>
+    </div>
     <div class="container dashboard-container">
         <div class="row">
 
@@ -419,7 +487,7 @@
                             </div>
                         </div>
                     </div>
-                   
+
                     <div class="col-12 mb-4">
                         <div class="card shadow">
                             <div class="card-header py-3">
@@ -437,6 +505,41 @@
     </div>
 
     <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const tickerWrapper = document.getElementById('newsTickerBottom');
+            const newsItems = tickerWrapper.querySelectorAll('.news-item');
+
+            if (newsItems.length > 1) {
+                let currentIndex = 0;
+                const itemHeight = 40;
+                const displayTime = 4000; // 每條顯示 4 秒
+
+                function rotateNews() {
+                    currentIndex++;
+                    if (currentIndex >= newsItems.length) {
+                        // 瞬間回到第一筆（無動畫）
+                        tickerWrapper.style.transition = 'none';
+                        currentIndex = 0;
+                        tickerWrapper.style.transform = `translateY(0)`;
+                        // 強制瀏覽器重繪後恢復動畫
+                        setTimeout(() => {
+                            tickerWrapper.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+                        }, 50);
+                    } else {
+                        tickerWrapper.style.transform = `translateY(-${currentIndex * itemHeight}px)`;
+                    }
+                }
+
+                let tickerInterval = setInterval(rotateNews, displayTime);
+
+                // 滑鼠移入時暫停，移出時繼續
+                const container = document.querySelector('.news-ticker-bottom');
+                container.addEventListener('mouseenter', () => clearInterval(tickerInterval));
+                container.addEventListener('mouseleave', () => {
+                    tickerInterval = setInterval(rotateNews, displayTime);
+                });
+            }
+        });
         document.addEventListener('DOMContentLoaded', () => {
             // 1. 設置登出功能 (已啟用並修改導向路徑為 /index.html)
             setupLogout();
@@ -534,6 +637,7 @@
             }
         });
     </script>
+
 </body>
 
 </html>
