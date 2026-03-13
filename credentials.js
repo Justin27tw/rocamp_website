@@ -51,7 +51,10 @@ USER_CREDENTIALS = {
         password: "bbb00bbccc8ba8f50a4e598aad8a3b06b84ada7ba9f092daee4614444795c8c3",
         Postion: "勤務成員", 
     },
-   
+   "aaa999403": {
+        password: "07f4281d8f06e3832dd2457df3527d02d5c1d6ac1a166667999e5a72c51f6708",
+        Postion: "勤務隊員", 
+    },
     "D1ndolf": {
         password: "0ec914fb8710fdf34473452f52e77d7bc0a51661f5cd2133a10e0887cb37fdc5",
         Postion: "勤務成員", 
@@ -117,16 +120,13 @@ USER_CREDENTIALS = {
         Postion: "特勤成員", 
     },
     
-    "blackforest517": {
-        password: "d2c5a782d5eed19668af66aef64d30576ac51df9210e60c5938f2505d0572a18",
-        Postion: "特勤成員", 
-    },
-
+   
     //憲兵學校MPTC
     
 
-    "aaa999403": {
-        password: "07f4281d8f06e3832dd2457df3527d02d5c1d6ac1a166667999e5a72c51f6708",
+    
+    "voon602": {
+        password: "c68d3550933bdf5fb584c89df0c1e6e62a8d63a4752be51b0ff7ce9b4b77258f",
         Postion: "憲兵學員", 
     },
 
