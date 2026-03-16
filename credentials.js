@@ -32,7 +32,7 @@ USER_CREDENTIALS = {
     },
     "nollihj": {
         password: "857fca9cb8a870be722f0b608c5780eca88dbcef6d90585190a9ef25d89b0fe1",
-        Postion: "副營長", 
+        Postion: "行政主任", 
     },
     //勤務MPSDC
     "aplkjjsffh": {
@@ -42,6 +42,18 @@ USER_CREDENTIALS = {
     "hohim64": {
         password: "01c69509f2492e7007146687bc5d5e808bc2f48c160267905cff006d20055925",
         Postion: "勤務中隊長", 
+    },
+    "stps666451": {
+        password: "8b58a2261ed51568332db59ed16b209dc03cc8b88bb74a680afd7d010a50ddd6",
+        Postion: "勤務教官", 
+    },
+    "BrianNataliu": {
+        password: "0495d14de75e641290ec5bbcab05a2d5ee6236eece0216038dc0c3b7c3b1073a",
+        Postion: "勤務教官", 
+    },
+    "POLICEKTRY": {
+        password: "f1fd6a21830bdbc48933ab842c3d6c96f917f20d23f404b99f1582aa4103952e",
+        Postion: "勤務成員", 
     },
     "eiuegwgu": {
         password: "2dd67b0e310602ffe9822d61833e087ca1fb415dc4068b72d30a4277d5fc891a",
@@ -72,20 +84,11 @@ USER_CREDENTIALS = {
         Postion: "勤務成員", 
     },
     
-    "stps666451": {
-        password: "8b58a2261ed51568332db59ed16b209dc03cc8b88bb74a680afd7d010a50ddd6",
-        Postion: "勤務成員", 
-    },
-    "POLICEKTRY": {
-        password: "f1fd6a21830bdbc48933ab842c3d6c96f917f20d23f404b99f1582aa4103952e",
-        Postion: "勤務成員", 
-    },
-    "jacklin038": {
-        password: "18920b1e7611987ed2f8dd3e666723b8ba166e38ea93db3e3c667543908f0757",
-        Postion: "勤務成員", 
-    },
-    "BrianNataliu": {
-        password: "0495d14de75e641290ec5bbcab05a2d5ee6236eece0216038dc0c3b7c3b1073a",
+    
+    
+    
+    "voon602": {
+        password: "c68d3550933bdf5fb584c89df0c1e6e62a8d63a4752be51b0ff7ce9b4b77258f",
         Postion: "勤務成員", 
     },
     //特勤隊MPSSC
@@ -100,11 +103,11 @@ USER_CREDENTIALS = {
     },
     "ryan00606": {
         password: "d3cd97cff4e3d91c8c1b75e56ac7866e5f8c4136acd675ccfaf17e03cb5f36dc",
-        Postion: "特勤幹部", 
+        Postion: "特勤教官", 
     },
      "mbmvjdvr": {
         password: "66666780d3cddbc12e2a4c94097c240bc5015de67335afdf7f65909600608032",
-        Postion: "特勤幹部", 
+        Postion: "特勤教官", 
     },
     "dammy526": {
         password: "586a60951110538e5c2c4bdc2e92e28f809c45d4839014b6a902a2902b92a23c",
@@ -113,10 +116,14 @@ USER_CREDENTIALS = {
 
     "HGD_kemd": {
         password: "1de6ed7ec15e4b9cbcbdbc31a82d7604e2e4e0ddc5d0b480cef6949c6be578cc",
-        Postion: "特勤成員", 
+        Postion: "特勤教官", 
     },
     "XZPSCA": {
         password: "201e4bfd259b14390a46659d2e06d61f5e9e9e74dcd32b44ec9334f622ace22f",
+        Postion: "特勤成員", 
+    },
+    "jacklin038": {
+        password: "18920b1e7611987ed2f8dd3e666723b8ba166e38ea93db3e3c667543908f0757",
         Postion: "特勤成員", 
     },
     
@@ -125,8 +132,9 @@ USER_CREDENTIALS = {
     
 
     
-    "voon602": {
-        password: "c68d3550933bdf5fb584c89df0c1e6e62a8d63a4752be51b0ff7ce9b4b77258f",
+    
+    "Jefffterj": {
+        password: "0d1491e02668bba486bac1dd985e6cf3267fe0d4f1410a161c5c21981c6ae9b7",
         Postion: "憲兵學員", 
     },
 
