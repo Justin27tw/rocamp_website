@@ -137,6 +137,11 @@ USER_CREDENTIALS = {
         password: "0d1491e02668bba486bac1dd985e6cf3267fe0d4f1410a161c5c21981c6ae9b7",
         Postion: "憲兵學員", 
     },
+    
+    "bIIiy100122": {
+        password: "e90571177798688e09a99ec1a7696fb911f93590636ed61f88a2aa1e17ba8b95",
+        Postion: "憲兵學員", 
+    },
 
 
 
