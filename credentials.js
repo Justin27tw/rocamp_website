@@ -87,10 +87,7 @@ USER_CREDENTIALS = {
     
     
     
-    "voon602": {
-        password: "c68d3550933bdf5fb584c89df0c1e6e62a8d63a4752be51b0ff7ce9b4b77258f",
-        Postion: "勤務成員", 
-    },
+    
     //特勤隊MPSSC
     "yaya_yen": {
         password: "9ceef33fc7c73f4f3bd31777cee8a88bb1d1b087ed672c7489f06ac9d1aef8ad",
@@ -133,8 +130,12 @@ USER_CREDENTIALS = {
 
     
     
-    "Jefffterj": {
-        password: "0d1491e02668bba486bac1dd985e6cf3267fe0d4f1410a161c5c21981c6ae9b7",
+    "ticerli": {
+        password: "dbdc10b219eae410e0343bc565857d9c8d9a6f35060a1175a4c90f017307f8de",
+        Postion: "勤務成員", 
+    },
+    "Jkuricky": {
+        password: "57216a3a008e2be8271dad8db4077001ec0c2ba3d40542a38e8f2a1124427696",
         Postion: "憲兵學員", 
     },
     
