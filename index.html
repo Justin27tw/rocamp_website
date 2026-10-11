@@ -695,6 +695,70 @@
             opacity: 1;
             transform: translateY(0);
         }
+        /* ==================== 戰術時間同步面板 ==================== */
+        .time-sync-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin: 0 auto 20px auto; /* 置中並與下方保持距離 */
+            background-color: rgba(33, 37, 41, 0.9); /* 深色背景帶點透明 */
+            backdrop-filter: blur(5px);
+            padding: 15px 40px;
+            border-radius: 12px;
+            border-left: 5px solid darkgoldenrod; /* 憲兵金邊框 */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            width: fit-content;
+            color: #fff;
+            flex-wrap: wrap; /* 響應式：手機版會自動換行 */
+            z-index: 2;
+            position: relative;
+        }
+        .time-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .time-label {
+            font-size: 0.85rem;
+            color: #adb5bd;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .time-display {
+            font-family: 'Courier New', Courier, monospace; /* 使用等寬字體營造數位時鐘感 */
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: darkgoldenrod; /* 台灣時間使用金色 */
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(184, 134, 11, 0.4); /* 微微發光 */
+        }
+        
+        .time-display.local-color {
+            color: #0dcaf0; /* 訪客時間使用科技藍色作為區分 */
+            text-shadow: 0 0 10px rgba(13, 202, 240, 0.4);
+        }
+
+        .time-divider {
+            width: 2px;
+            height: 40px;
+            background-color: #495057;
+        }
+
+        @media (max-width: 575.98px) {
+            .time-sync-container {
+                gap: 15px;
+                padding: 15px 20px;
+            }
+            .time-divider {
+                display: none; /* 手機版隱藏分隔線 */
+            }
+            .time-display {
+                font-size: 1.5rem;
+            }
+        }
     </style>
 </head>
 
@@ -720,7 +784,18 @@
             <p>【 ROCA MP 】 Republic of China Army Military Police</p>
         </div>
     </div>
-
+    <!-- 戰術時間同步面板 -->
+    <div class="time-sync-container" data-aos="fade-up">
+        <div class="time-box">
+            <span class="time-label"><i class="fa fa-globe"></i> 指揮部標準時間 (台灣 UTC+8)</span>
+            <div id="taiwan-time" class="time-display">--:--:--</div>
+        </div>
+        <div class="time-divider"></div>
+        <div class="time-box">
+            <span class="time-label"><i class="fa fa-map-marker"></i> 您所在的當地時間 (偵測為 <span id="local-tz-label">UTC+?</span>)</span>
+            <div id="local-time" class="time-display local-color">--:--:--</div>
+        </div>
+    </div>
     <div class="content-placeholder">
         <h1>憲兵</h1>
         <p>Military Police</p>
@@ -1251,6 +1326,51 @@ function openPage(pageName, elmnt, color) {
                 container.appendChild(icon);
             }
         });
+        // ==================== 戰術時間同步 (時鐘與時區偵測) ====================
+        document.addEventListener('DOMContentLoaded', function () {
+            function updateClocks() {
+                const now = new Date();
+
+                // 1. 設定並取得台灣時間 (強制指定 Asia/Taipei 時區)
+                const optionsTw = { 
+                    timeZone: 'Asia/Taipei', 
+                    hour12: false, 
+                    hour: '2-digit', 
+                    minute: '2-digit', 
+                    second: '2-digit' 
+                };
+                const timeTw = now.toLocaleTimeString('en-US', optionsTw);
+                const twElement = document.getElementById('taiwan-time');
+                if(twElement) twElement.textContent = timeTw;
+
+                // 2. 取得使用者當地時間 (預設抓取設備系統時間)
+                const optionsLocal = { 
+                    hour12: false, 
+                    hour: '2-digit', 
+                    minute: '2-digit', 
+                    second: '2-digit' 
+                };
+                const timeLocal = now.toLocaleTimeString('en-US', optionsLocal);
+                const localElement = document.getElementById('local-time');
+                if(localElement) localElement.textContent = timeLocal;
+
+                // 3. 自動偵測使用者的時區 (計算與 UTC 的時差)
+                // getTimezoneOffset() 會回傳與 UTC 差的「分鐘數」，且方向相反(例如 UTC+8 會回傳 -480)
+                const offsetMinutes = now.getTimezoneOffset();
+                const offsetHours = -offsetMinutes / 60; 
+                
+                // 格式化顯示為 UTC+8 或 UTC-5
+                const offsetString = offsetHours >= 0 ? `+${offsetHours}` : `${offsetHours}`;
+                const tzLabel = document.getElementById('local-tz-label');
+                if(tzLabel) tzLabel.textContent = `UTC${offsetString}`;
+            }
+
+            // 立即執行一次，避免網頁剛載入時顯示 --:--:--
+            updateClocks();
+            // 每 1000 毫秒 (1秒) 更新一次時鐘
+            setInterval(updateClocks, 1000);
+        });
     </script>
+    
 </body>
 </html>
