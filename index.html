@@ -404,14 +404,17 @@
 
         .custom-carousel-section {
             width: 100%; 
-            background-color: #050505; /* 改為極致深黑，讓留白邊界更隱形 */
+            background-color: transparent; /* 移除黑色背景 */
+            margin-top: -20px; /* 稍微往上移，可依需求微調數值，確保不擋到上方內容 */
+            position: relative;
+            z-index: 1;
         }
         .carousel-item {
-            background-color: #050505; /* 統一輪播項目的底色 */
+            background-color: transparent; /* 移除黑色背景 */
         }
         .carousel-item img {
             height: 600px; 
-            object-fit: contain; /* 💡【關鍵修改】：從 cover 改為 contain，保證圖片完整不裁切 */
+            object-fit: cover; /* 改回 cover，讓圖片自動放大填滿整個寬度，消除左右黑邊 */
             width: 100%;
             object-position: center center;
         }
@@ -489,7 +492,10 @@
             .tabcontent { padding: 30px 10px; height: auto; }
             .tabcontent ul li { font-size: 15px; flex-direction: column; align-items: flex-start; }
             .tabcontent ul li > span:first-child { margin-right: 0; margin-bottom: 8px; }
-            .carousel-item img { height: 250px; }
+            .carousel-item img { 
+                height: 300px; /* 稍微增加高度讓手機版視覺更飽滿 */
+                object-fit: cover; 
+            }
             .carousel-caption { padding: 5px 10px; bottom: 10px; }
         }
         @media (min-width: 375px) and (max-width: 767.98px) {
