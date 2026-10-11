@@ -759,6 +759,42 @@
                 font-size: 1.5rem;
             }
         }
+        /* ==================== 戰術時間面板 - 日期與狀態擴充 ==================== */
+        .date-display {
+            font-size: 1.05rem;
+            color: #ced4da;
+            margin-bottom: 5px;
+            letter-spacing: 1.5px;
+            font-weight: 500;
+        }
+
+        .status-badge {
+            margin-top: 10px;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            display: inline-block;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        /* 戰備日 (綠色) */
+        .status-workday {
+            background-color: rgba(40, 167, 69, 0.15);
+            color: #28a745;
+            border: 1px solid rgba(40, 167, 69, 0.4);
+            text-shadow: 0 0 5px rgba(40, 167, 69, 0.3);
+        }
+
+        /* 休假日/國定假日 (紅色) */
+        .status-holiday {
+            background-color: rgba(220, 53, 69, 0.15);
+            color: #ff4d4d;
+            border: 1px solid rgba(220, 53, 69, 0.4);
+            text-shadow: 0 0 5px rgba(220, 53, 69, 0.3);
+        }
     </style>
 </head>
 
@@ -785,14 +821,18 @@
         </div>
     </div>
     <!-- 戰術時間同步面板 -->
+    <!-- 戰術時間同步面板 (升級版) -->
     <div class="time-sync-container" data-aos="fade-up">
         <div class="time-box">
             <span class="time-label"><i class="fa fa-globe"></i> 指揮部標準時間 (台灣 UTC+8)</span>
+            <div id="taiwan-date" class="date-display">--</div>
             <div id="taiwan-time" class="time-display">--:--:--</div>
+            <div id="taiwan-status" class="status-badge">--</div>
         </div>
         <div class="time-divider"></div>
         <div class="time-box">
             <span class="time-label"><i class="fa fa-map-marker"></i> 您所在的當地時間 (偵測為 <span id="local-tz-label">UTC+?</span>)</span>
+            <div id="local-date" class="date-display">--</div>
             <div id="local-time" class="time-display local-color">--:--:--</div>
         </div>
     </div>
@@ -1326,50 +1366,120 @@ function openPage(pageName, elmnt, color) {
                 container.appendChild(icon);
             }
         });
-        // ==================== 戰術時間同步 (時鐘與時區偵測) ====================
+       // ==================== 戰術時間同步 (整合政府開放資料 API) ====================
         document.addEventListener('DOMContentLoaded', function () {
+            
+            // 用來存放從政府 API 抓回來的行事曆資料
+            let officialCalendar = {};
+            let isApiLoaded = false;
+
+            // 1. 非同步抓取政府開放資料 (使用新北市政府開放資料平台的行政院日曆鏡像，支援 CORS)
+            async function fetchTaiwanCalendar() {
+                try {
+                    // 一次抓取 2000 筆資料 (涵蓋數年的行事曆)
+                    const response = await fetch('https://data.ntpc.gov.tw/api/datasets/308DCD75-6434-45BC-A950-5847466E1EA8/json?page=0&size=2000');
+                    const data = await response.json();
+                    
+                    // 將資料轉換為 Dictionary，方便用日期快速尋找
+                    // API 格式範例: date: "20261010", isHoliday: "是", name: "國慶日", holidayCategory: "放假之紀念日及節日"
+                    data.forEach(day => {
+                        officialCalendar[day.date] = {
+                            isHoliday: day.isHoliday === '是',
+                            name: day.name,
+                            category: day.holidayCategory
+                        };
+                    });
+                    isApiLoaded = true;
+                    console.log("ROCA MP: 成功載入中華民國政府行政日曆表");
+                } catch (error) {
+                    console.warn("ROCA MP: 政府假日 API 連線失敗，切換為備援週末判斷模式", error);
+                }
+            }
+
+            // 執行抓取 API
+            fetchTaiwanCalendar();
+
+            // 2. 更新時鐘與狀態邏輯
             function updateClocks() {
                 const now = new Date();
 
-                // 1. 設定並取得台灣時間 (強制指定 Asia/Taipei 時區)
-                const optionsTw = { 
-                    timeZone: 'Asia/Taipei', 
-                    hour12: false, 
-                    hour: '2-digit', 
-                    minute: '2-digit', 
-                    second: '2-digit' 
-                };
-                const timeTw = now.toLocaleTimeString('en-US', optionsTw);
-                const twElement = document.getElementById('taiwan-time');
-                if(twElement) twElement.textContent = timeTw;
+                // ---------------- A. 台灣時間處理 ----------------
+                const twTimeStr = now.toLocaleString("en-US", { timeZone: "Asia/Taipei" });
+                const twDateObj = new Date(twTimeStr);
 
-                // 2. 取得使用者當地時間 (預設抓取設備系統時間)
-                const optionsLocal = { 
-                    hour12: false, 
-                    hour: '2-digit', 
-                    minute: '2-digit', 
-                    second: '2-digit' 
-                };
-                const timeLocal = now.toLocaleTimeString('en-US', optionsLocal);
-                const localElement = document.getElementById('local-time');
-                if(localElement) localElement.textContent = timeLocal;
+                const twY = twDateObj.getFullYear();
+                const twM = String(twDateObj.getMonth() + 1).padStart(2, '0');
+                const twD = String(twDateObj.getDate()).padStart(2, '0');
+                const twWeekday = new Intl.DateTimeFormat('zh-TW', { weekday: 'long' }).format(twDateObj);
+                
+                const twDateElement = document.getElementById('taiwan-date');
+                if (twDateElement) twDateElement.textContent = `${twY}-${twM}-${twD} (${twWeekday})`;
 
-                // 3. 自動偵測使用者的時區 (計算與 UTC 的時差)
-                // getTimezoneOffset() 會回傳與 UTC 差的「分鐘數」，且方向相反(例如 UTC+8 會回傳 -480)
+                const twTimeElement = document.getElementById('taiwan-time');
+                if (twTimeElement) {
+                    twTimeElement.textContent = twDateObj.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' });
+                }
+
+                // ---------------- B. 戰備/假日 智慧判定 ----------------
+                const statusElement = document.getElementById('taiwan-status');
+                if (statusElement) {
+                    const dateKey = `${twY}${twM}${twD}`; // 組成 "20261010" 格式以核對 API
+
+                    if (isApiLoaded && officialCalendar[dateKey]) {
+                        // 【模式一】政府 API 判定模式 (包含補班、彈性放假與節日名稱)
+                        const todayInfo = officialCalendar[dateKey];
+                        
+                        if (todayInfo.isHoliday) {
+                            // 如果有節日名稱(如春節)就顯示，沒有則顯示一般休假日
+                            const displayName = todayInfo.name ? `★ ${todayInfo.name}` : "休假日 (Weekend)";
+                            statusElement.textContent = displayName;
+                            statusElement.className = "status-badge status-holiday";
+                        } else {
+                            statusElement.textContent = "戰備日 (Workday)";
+                            statusElement.className = "status-badge status-workday";
+                        }
+                    } else {
+                        // 【模式二】備援判定模式 (當 API 尚未載入或連線失敗時，單純以六日判斷)
+                        const twDayNum = twDateObj.getDay(); 
+                        const isWeekend = (twDayNum === 0 || twDayNum === 6);
+                        
+                        if (isWeekend) {
+                            statusElement.textContent = "休假日 (Weekend)";
+                            statusElement.className = "status-badge status-holiday";
+                        } else {
+                            statusElement.textContent = "戰備日 (Workday)";
+                            statusElement.className = "status-badge status-workday";
+                        }
+                    }
+                }
+
+                // ---------------- C. 當地時間處理與時區偵測 ----------------
+                const localY = now.getFullYear();
+                const localM = String(now.getMonth() + 1).padStart(2, '0');
+                const localD = String(now.getDate()).padStart(2, '0');
+                const localWeekday = new Intl.DateTimeFormat('zh-TW', { weekday: 'long' }).format(now);
+                
+                const localDateElement = document.getElementById('local-date');
+                if (localDateElement) localDateElement.textContent = `${localY}-${localM}-${localD} (${localWeekday})`;
+
+                const localTimeElement = document.getElementById('local-time');
+                if (localTimeElement) {
+                    localTimeElement.textContent = now.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' });
+                }
+
                 const offsetMinutes = now.getTimezoneOffset();
                 const offsetHours = -offsetMinutes / 60; 
-                
-                // 格式化顯示為 UTC+8 或 UTC-5
                 const offsetString = offsetHours >= 0 ? `+${offsetHours}` : `${offsetHours}`;
                 const tzLabel = document.getElementById('local-tz-label');
                 if(tzLabel) tzLabel.textContent = `UTC${offsetString}`;
             }
 
-            // 立即執行一次，避免網頁剛載入時顯示 --:--:--
+            // 立即執行一次，避免剛載入時畫面空白
             updateClocks();
-            // 每 1000 毫秒 (1秒) 更新一次時鐘
+            // 每秒更新時鐘
             setInterval(updateClocks, 1000);
         });
+          
     </script>
     
 </body>
