@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>參謀長</title>
+    <title>副營長</title>
     <link rel="icon" type="image/png" href="/images/Png.png">
     <style>
         /* 移除 Bootstrap 預設的一些邊距，使內容更緊湊 */
@@ -110,39 +110,6 @@
             color: white;
         }
 
-
-        /* 下拉選單樣式 (Bootstrap 5) */
-        .navbar-nav .dropdown-menu {
-            background-color: #343330;
-            border: none;
-            border-radius: 0;
-            padding: 0;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: opacity 0.3s ease-out, transform 0.3s ease-out;
-            display: block;
-            visibility: hidden;
-            pointer-events: none;
-        }
-
-        .navbar-nav .dropdown-menu.show {
-            opacity: 1;
-            transform: translateY(0);
-            visibility: visible;
-            pointer-events: auto;
-        }
-
-        .navbar-nav .dropdown-item {
-            color: rgba(255, 255, 255, 0.75);
-            padding: 0.75rem 1.5rem;
-        }
-
-        .navbar-nav .dropdown-item:hover,
-        .navbar-nav .dropdown-item:focus {
-            background-color: #495057;
-            color: white;
-        }
-
         .hicomnav {
 
             width: 100%;
@@ -162,7 +129,6 @@
             color: whitesmoke;
             text-decoration: none;
         }
-
 
         /* 新增的內容區域樣式 */
         .content-section {
@@ -237,9 +203,7 @@
             display: block;
         }
 
-
-        .text-col,
-        .text-col img {
+        .text-col,.text-col img {
             padding: 40px;
             padding-left: 90px;
             /* **調整這裡：增加文字內容的內邊距** */
@@ -257,13 +221,12 @@
             /* 圖片不重複 */
             background-size: 80%;
             /* 圖片大小，可依需求調整 */
-            background-blend-mode: overlay;
+            background-blend-mode:overlay;
             /* 混合模式，讓圖片與背景色融合 */
             opacity: 1;
             /* 調整透明度，讓圖片更淡 */
         }
-
-
+   
         .text-col p {
             margin-bottom: 12px;
             /* **調整這裡：增加每行文字間距** */
@@ -271,7 +234,9 @@
             /* **調整這裡：增加字體大小** */
             line-height: 1.8;
             /* **調整這裡：增加行高** */
+            color:#000;
             font-weight: bold;
+
 
         }
 
@@ -280,7 +245,7 @@
             /* 加粗文字顏色更深 */
         }
 
-        #cos p {
+        #DBC p {
             font-weight: bold;
             text-align: center;
             margin-top: 30px;
@@ -428,7 +393,6 @@
                 height: 130px;
                 background-color: rgb(51, 81, 0);
             }
-
         }
     </style>
 
@@ -449,86 +413,47 @@
                     <div class="logo-image-container">
 
                     </div>
-                    <div class="profile-image-container" id="cos">
-                        <img src="/images/cos.png" alt="參謀長rockroll901" class="img-fluid">
-                        <p><strong>參謀長</strong><br>rockroll901</p>
+                    <div class="profile-image-container" id="DBC">
+                        <img src="/images/DBC_nollihj.png" alt="副營長nollihj" class="img-fluid">
+                        <p><strong>參謀長</strong><br>nollihj</p>
                     </div>
                 </div>
                 <div class="col-md-8 text-col" id="profilehhistory">
                     <p><strong>經歷：</strong></p>
                     <ul>
-                        <li>
-                            <p>國防部憲兵指揮部-參謀長<span>(現任)</span></p>
-                        </li>
-                        <li>
-                            <p>國防部軍官評鑑委員會-委員<span>(現任)</span></p>
-                        </li>
-                        <li>
-                            <p>政治作戰局-軍聞社<span>(現任)</span></p>
-                        </li>
-                        <li>
-                            <p>革命解放陣線-新進陣線成員<span>(現任)</span></p>
-                        </li>
-                        <li>
-                            <p>國防部憲兵指揮部-獎懲委員會主席</p>
-                        </li>
-                        <li>
-                            <p>國防部憲兵指揮部-督察室主任</p>
-                        </li>
-                        <li>
-                            <p>陸軍官校-專科班教官</p>
-                        </li>
+                        <li><p>國防部憲兵指揮部-參謀長<span>(現任)</span></p></li>
 
-                        <li>
-                            <p>教育暨準則發展指揮部-入伍訓指導員</p>
-                        </li>
+                        <li><p>國防部憲兵指揮部-副營長</p></li>
 
-                        <li>
-                            <p>陸軍儀隊-排長</p>
-                        </li>
-                        <li>
-                            <p>陸軍官校-專科班科長</p>
-                        </li>
-                        <li>
-                            <p>國防部高等軍事法庭-法制委員會-第一屆憲兵代表委員</p>
-                        </li>
+                        <li><p>國防部高等軍事法庭-法制委員會-第三屆憲兵代表委員<span>(現任)</span></p></li>
+                        
+                        <li><p>國防部憲兵指揮部-督導</p></li>
 
-                        <li>
-                            <p>陸軍官校-專科班教官</p>
-                        </li>
-                        <li>
-                            <p>國防部憲兵指揮部-督察室副主任</p>
-                        </li>
-                        <li>
-                            <p>國防部憲兵指揮部-獎懲委員會委員</p>
-                        </li>
+                        <li><p>國防部憲兵指揮部-勤務支援中隊大隊長</p></li>
+                        
+                        <li><p>國防部憲兵指揮部-勤務支援中隊中隊長</p></li>
+                        
+                        <li><p>國防部高等軍事法庭-法制委員會-第一屆憲兵代表委員</p></li>
+                        
+                        <li><p>國防部憲兵指揮部-勤務支援中隊幹部</p></li>
 
-                        <li>
-                            <p>國防部憲兵指揮部-督導</p>
-                        </li>
-
-                        <li>
-                            <p>國防部憲兵指揮部-特勤隊中隊長</p>
-                        </li>
-
-                        <li>
-                            <p>國防部憲兵指揮部-營訓練官</p>
-                        </li>
-
-                        <li>
-                            <p>國防部憲兵指揮部-第三班班長</p>
-                        </li>
                     </ul>
                     <p><strong><span style="color:darkorange">勳章&獎章</span></strong></p>
                     <ul style="font-weight: bold;font-size: 24px;">
                         <li>
-                            <p>寶星獎章</p>
-                        </li>
-                        <li>
-                            <p>干城獎章</p>
+                            <p>ROCA建軍二周年閱兵紀念獎章</p>
                         </li>
                         <li>
                             <p>ROCA建軍三周年閱兵紀念獎章</p>
+                        </li>
+                        <li>
+                            <p>ROCA建軍四周年閱兵紀念獎章</p>
+                        </li>
+                        <li>
+                            <p>寶星獎章</p>
+                        </li>
+                        <li>
+                            <p>寶星一星獎章</p>
                         </li>
                     </ul>
 
@@ -541,18 +466,19 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-12 col-md-8 text-center">
-                    <button type="button" class="btn btn-warning btn-lg"data-bs-toggle="collapse" data-bs-target="#collapseText" aria-expanded="false" aria-controls="collapseText">
-                       了解更多關於參謀長
+                    <button type="button" class="btn btn-info btn-lg" data-bs-toggle="collapse"
+                        data-bs-target="#collapseText" aria-expanded="false" aria-controls="collapseText">
+                     
                     </button>
                     <div class="collapse" id="collapseText">
                         <div class="expandable-content mt-3">
-                            <h3></h3>
-                            <p style="text-align: justify;"></p>
-                            <h3 style="text-align: center;"></h3>
-                            <p style="text-align: justify;"></p>
-                            <p></p>
-                            <p style="text-align: right;"></p>
+                            <h3>To </h3>
+                            <p style="text-align: justify;">
+                             
+                            </p>
                             
+                            <p style="text-align: right;"></p>
+
                         </div>
                     </div>
                 </div>
